@@ -1,6 +1,6 @@
 package com.example.demo.repository.entity;
 
-import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -17,8 +17,6 @@ import lombok.ToString;
 @Entity
 @Table(name = "usuario")
 public class Usuario {
-
-
 
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,11 +35,11 @@ public class Usuario {
 
 		@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "usuario")
 		@ToString.Exclude
-		private List<Solicitud> solicitud;
+		private Set<Solicitud> solicitud;
 
 		@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "usuario")
 		@ToString.Exclude
-		private List<Alquiler> alquiler;
+		private Set<Alquiler> alquiler;
 	
 	
 }

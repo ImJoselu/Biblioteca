@@ -1,6 +1,6 @@
 package com.example.demo.repository.entity;
 
-import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -26,6 +27,7 @@ public class Editorial {
 	private int numero_contacto;
 	
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "editorial")
-	private List<Libro> listaLibros;
+	@ToString.Exclude
+	private Set<Libro> listaLibros;
 
 }

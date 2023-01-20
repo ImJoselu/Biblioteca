@@ -1,6 +1,6 @@
 package com.example.demo.repository.entity;
 
-import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -9,10 +9,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -26,9 +29,25 @@ public class Libro {
 	private String titulo;
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "libro")
-	private List<Ejemplar> listaEjemplares;
+	private Set<Ejemplar> listaEjemplares;
 	
 	@ManyToOne
 	@JoinColumn(name = "fk_editorial")
 	private Editorial editorial;
+	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	// Tabla que mantiene la relacion N-N
+	@JoinTable(
+			// Nombre de la tabla
+			name = "libro_pertenece_genero",
+			// columna que almacena el id de cliente en la tabla libro_pertenece_genero
+			joinColumns = @JoinColumn(name = "fk_libro_pertenece"),
+			// columna que almacena el id de la direccion en la tabla libro_pertenece_genero
+			inverseJoinColumns = @JoinColumn(name = "fk_genero_pertenece"))
+	@ToString.Exclude
+	private Set<Genero> listaGeneros;
+	
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "libro")
+	private Set<LibroEscribeAutor> listaLibroEscribeAutor;
+	
 }
