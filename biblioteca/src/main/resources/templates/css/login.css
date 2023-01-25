@@ -1,0 +1,59 @@
+#seccionLogin {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+}
+
+#seccionLogin>form {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto;
+}
+
+#seccionLogin input:nth-of-type(1) {
+    grid-row: 1;
+    grid-column: 1;
+}
+
+#seccionLogin input:nth-of-type(2) {
+    grid-row: 2;
+    grid-column: 1;
+}
+
+#seccionLogin button {
+    grid-row: 3;
+    grid-column: 1;
+}
+
+#seccionRegistro {
+    display: none;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto;
+}
+
+main {
+
+    flex-direction: column;
+}
+main>div>span{
+    transition: all 1s;
+}
+main>div>span:nth-of-type(1):hover, main>div>span:nth-of-type(3):hover {
+    cursor: pointer;
+    text-decoration: underline;
+    transform: scale(0.9);
+}
+
+
+main>div>span:nth-of-type(2) {
+    border-right: 1px solid rgb(0, 0, 0);
+
+}
+
+main>div {
+    display: flex;
+    height: 20px;
+    width: 15%;
+    justify-content: space-evenly;
+}
