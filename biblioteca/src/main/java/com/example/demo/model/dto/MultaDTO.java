@@ -6,6 +6,8 @@ import java.sql.Date;
 import com.example.demo.repository.entity.Multa;
 
 import lombok.Data;
+import lombok.ToString;
+import lombok.experimental.Tolerate;
 
 @Data
 public class MultaDTO implements Serializable {
@@ -19,6 +21,8 @@ public class MultaDTO implements Serializable {
 	private Boolean descartada;
 	private Double importe;
 	private String observaciones;
+	@ToString.Exclude
+	private AlquilerDTO alquilerDTO;
 
 	// Convertir una entidad a un DTO
 	public static MultaDTO convertToDTO(Multa multa) {
@@ -30,8 +34,10 @@ public class MultaDTO implements Serializable {
 		multaDTO.setImporte(multa.getImporte());
 		multaDTO.setObservaciones(multa.getObservaciones());
 
+		multaDTO.setAlquilerDTO(AlquilerDTO.convertToDTO(multa.getAlquiler()));
+		
 		return multaDTO;
-		// Cambio realizado por Cesar Rama DTO's
+		
 	}
 	
 	// Convertir una entidad a un DTO
@@ -44,7 +50,15 @@ public class MultaDTO implements Serializable {
 		multa.setImporte(multaDTO.getImporte());
 		multa.setObservaciones(multaDTO.getObservaciones());
 
+		multa.setAlquiler(AlquilerDTO.convertToEntity(multaDTO.getAlquilerDTO()));
+		
 		return multa;
-		// Cambio realizado por Cesar Rama DTO's
+		
 	}
+
+	public MultaDTO() {
+		this.alquilerDTO = new AlquilerDTO();
+	}
+	
+	
 }

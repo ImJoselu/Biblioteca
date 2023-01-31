@@ -4,8 +4,11 @@ import java.io.Serializable;
 
 import com.example.demo.repository.entity.Multa;
 import com.example.demo.repository.entity.Solicitud;
+import com.example.demo.repository.entity.Usuario;
 
+import ch.qos.logback.core.status.StatusUtil;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 public class SolicitudDTO implements Serializable{
@@ -22,6 +25,8 @@ public class SolicitudDTO implements Serializable{
 	private String titulo;
 	private String mensaje;
 	private String estado;
+	@ToString.Exclude
+	private UsuarioDTO usuarioDTO;
 	
 	// Convertir una entidad a un DTO
 	public static SolicitudDTO convertToDTO(Solicitud solicitud) {
@@ -34,9 +39,12 @@ public class SolicitudDTO implements Serializable{
 		solicitudDTO.setTitulo(solicitud.getTitulo());
 		solicitudDTO.setMensaje(solicitud.getMensaje());
 		solicitudDTO.setEstado(solicitud.getEstado());
-
+		
+		solicitudDTO.setUsuarioDTO(UsuarioDTO.convertToDTO(solicitud.getUsuario()));
+		
 		return solicitudDTO;
-		// Cambio realizado por Cesar Rama DTO's
+		
+		
 	}
 	
 	// Convertir una entidad a un DTO
@@ -50,9 +58,16 @@ public class SolicitudDTO implements Serializable{
 		solicitud.setTitulo(solicitudDTO.getTitulo());
 		solicitud.setMensaje(solicitudDTO.getMensaje());
 		solicitud.setEstado(solicitudDTO.getEstado());
-
+	
+		solicitud.setUsuario(UsuarioDTO.convertToEntity(solicitudDTO.getUsuarioDTO()));
+		
 		return solicitud;
-		// Cambio realizado por Cesar Rama DTO's
 	}
+
+	public SolicitudDTO() {
+		this.usuarioDTO = new UsuarioDTO();;
+	}
+	
+	
 	
 }

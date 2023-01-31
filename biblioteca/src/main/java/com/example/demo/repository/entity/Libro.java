@@ -1,5 +1,9 @@
 package com.example.demo.repository.entity;
 
+/* FALTA CONSTRUCTOR N - N  de genero y autor*/
+
+import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
@@ -49,5 +53,27 @@ public class Libro {
 	
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "libro")
 	private Set<LibroEscribeAutor> listaLibroEscribeAutor;
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Libro other = (Libro) obj;
+		return Objects.equals(isbn, other.isbn);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(isbn);
+	}
+
+	public Libro() {
+		this.listaEjemplares = new HashSet<Ejemplar>();
+		this.editorial = new Editorial();
+	}
 	
 }

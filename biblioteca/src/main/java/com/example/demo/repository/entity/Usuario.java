@@ -1,5 +1,7 @@
 package com.example.demo.repository.entity;
 
+import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
@@ -35,11 +37,31 @@ public class Usuario {
 
 		@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "usuario")
 		@ToString.Exclude
-		private Set<Solicitud> solicitud;
+		private Set<Solicitud> listaSolicitudes;
 
 		@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "usuario")
 		@ToString.Exclude
-		private Set<Alquiler> alquiler;
-	
-	
+		private Set<Alquiler> listaAlquileres;
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			Usuario other = (Usuario) obj;
+			return Objects.equals(id, other.id);
+		}
+
+		@Override
+		public int hashCode() {
+			return Objects.hash(id);
+		}
+
+		public Usuario() {
+			this.listaAlquileres = new HashSet<Alquiler>();
+			this.listaSolicitudes = new HashSet<Solicitud>();
+		}
 }

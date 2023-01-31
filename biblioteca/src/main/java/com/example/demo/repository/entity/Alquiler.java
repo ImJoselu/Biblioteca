@@ -1,6 +1,8 @@
 package com.example.demo.repository.entity;
 
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
@@ -44,4 +46,31 @@ public class Alquiler {
 	@ToString.Exclude
 	private Set<Multa> listaMultas;
 
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Alquiler other = (Alquiler) obj;
+		return Objects.equals(id, other.id);
+	}
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+
+	public Alquiler() {
+		this.usuario = new Usuario();
+		this.ejemplar = new Ejemplar();
+		this.listaMultas = new HashSet<Multa>();
+	}
+
+	
 }

@@ -1,5 +1,6 @@
 package com.example.demo.model.dto;
 
+/* FALTA N - N */
 import java.io.Serializable;
 
 import com.example.demo.repository.entity.Autor;

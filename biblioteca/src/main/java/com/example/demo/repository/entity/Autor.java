@@ -1,5 +1,6 @@
 package com.example.demo.repository.entity;
 
+/* FALTA N - N */
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
