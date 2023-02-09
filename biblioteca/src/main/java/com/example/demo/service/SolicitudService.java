@@ -1,5 +1,14 @@
 package com.example.demo.service;
 
+import java.util.List;
+
+import com.example.demo.model.dto.SolicitudDTO;
+import com.example.demo.model.dto.UsuarioDTO;
+
 public interface SolicitudService {
+
+	List<SolicitudDTO> findAll();
+
+	List<SolicitudDTO> findByUsuario(UsuarioDTO usuarioDTO);
 
 }
