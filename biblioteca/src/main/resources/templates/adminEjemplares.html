@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administracion de Libros</title>
+  <link rel="stylesheet" href="css/general.css">
+  <link rel="stylesheet" href="css/generalAdmin.css">
+  <link rel="stylesheet" href="css/movil.css">
+  <link rel="stylesheet" media="(max-width: 600px)" href="css/tablet.css">
+  <link rel="stylesheet" media="(max-width: 800px)" href="css/pc.css">
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+
+</head>
+
+<body>
+  <header>
+    <h2 th>LogoAdmin</h2><!--Esto será luego una imagen o algo asi-->
+
+  </header>
+  <nav>
+    <h3 th:href="">Contacto</h3>
+    <h3 th:href="">Cliente</h3>
+    <h3 th:href="">Libro</h3>
+  </nav>
+  <main>
+
+    <table>
+      <thead>
+      <tr>
+        <th>ISBN</th>
+        <th>Nombre</th>
+        <th>Editorial</th>
+        <th>Stock</th>
+        <th>Cambiar Stock</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="${}">
+        <td th:text="${}"></td>
+        <td th:text="${}"></td>
+        <td th:text="${}"></td>
+        <td th:text="${}"></td>
+        <td class="cambiarInput"><a>Cambiar Stock</a> <input type="number" id="cambiarStock"></td>
+        <!--Cuando hagas click en el link de cambiar stock, aparecerá el input number-->
+      </tr>
+    </tbody>
+    </table>
+  </main>
+  <footer>
+    <div>
+      <p>En la Biblioteca X, nos esforzamos por brindar un acceso fácil y conveniente a una amplia selección de libros y recursos. Si tiene alguna pregunta o comentario, no dude en ponerse en contacto con nosotros.</p>
+    </div>
+    <h4>&copy; Biblioteca X, 2022-2023. Todos los derechos reservados.</h4>
+  </footer>
+  
+  <script src="js/jquery-3.6.3.min.js"></script>
+  <script src="js/admin.js"></script>
+
+</body>
+
+</html>

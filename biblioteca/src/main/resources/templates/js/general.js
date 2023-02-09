@@ -1,16 +1,50 @@
-document.querySelector("form").addEventListener("submit", function (e) {
 
-    e.preventDefault();
-});
+
 $(function(){
 
-    $("main>div>span:nth-of-type(1)").click(function () {
-        $("#seccionRegistro").css("display", "none");
-        $("#seccionLogin").css("display", "flex");
-    })
-    $("main>div>span:nth-of-type(3)").click(function () {
-        $("#seccionRegistro").css("display", "flex");
-        $("#seccionLogin").css("display", "none");
-    })
+$("figure").hover(
+function () {
+  $(this).css("z-index", "20");
+ 
+  $("#tapar").css("opacity", "1");
+  $("#tapar").css("display", "block");
+},function () {
+  $(this).css("z-index", "auto");
+  $("#tapar").css("display", "none");
+  $("#tapar").css("opacity", "0");
+}
+);
+
+$("nav>img").click(function () {
+  
+ $("nav>h3").toggle();
+
+
 
 });
+
+$("#seccionLogin").show();
+  $("#seccionRegistro").hide();
+  $("span:last").show();
+  $("span:first").hide();
+
+  $("span:first").click(function(){
+    $("#seccionRegistro").toggle();
+    $("#seccionLogin").toggle();
+    $("span:first").toggle();
+    $("span:last").toggle();
+  });
+
+  $("span:last").click(function(){
+    $("#seccionRegistro").toggle();
+    $("#seccionLogin").toggle();
+    $("span:last").toggle();
+    $("span:first").toggle();
+  });
+
+
+
+
+
+
+})

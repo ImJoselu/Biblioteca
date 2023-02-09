@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200&family=Raleway:wght@200&display=swap');
-
+html {
+    scroll-behavior: smooth;
+  }
 
 * {
     margin: 0;
@@ -21,7 +23,7 @@ a {
 body {
 
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    /*grid-template-columns: 1fr 1fr;*/
     grid-template-rows: auto auto auto;
     gap: 30px;
     font-family: 'Raleway', sans-serif;
@@ -39,36 +41,44 @@ header {
 
 header>h2 {
     margin-left: 20px;
+    transition: all 1s;
 }
 
-nav{animation: anim 1s ease 0s 1 normal forwards;
+header>h2:hover {
+    text-shadow: #513719 20px 20px 2px;
+    cursor: pointer;
+}
+
+nav {
+    animation: anim 1s ease 0s 1 normal forwards;
 }
 
 @keyframes anim {
     0% {
-       
+
         opacity: 0;
         transform: translateY(-100px) scale(0, 0);
     }
 
     100% {
-       
+
         opacity: 1;
         transform: translateY(0) scale(1, 1);
     }
 }
 
-nav>h3 {
+nav h3 {
     margin-right: 20px;
     cursor: pointer;
     transition: all 1s;
 }
 
-nav>h3:hover {
-   
-   transform: scale(1.1);
-    
+nav h3:hover {
+text-shadow: #513719 0px 0px 1px;
+    transform: scale(1.1);
+
 }
+
 nav {
     display: flex;
     grid-column: span 1;
@@ -86,6 +96,15 @@ main {
     align-items: center;
 }
 
+ul {
+    list-style: none;
+    padding: 0px;
+}
+
+h5 {
+    font-size: 1rem;
+}
+
 footer {
     display: flex;
     grid-column: span 2;
@@ -93,7 +112,11 @@ footer {
     align-content: stretch;
     justify-content: flex-end;
     align-items: center;
-    
+    text-align: center;
+}
+
+footer>div {
+    width: 100%;
 }
 
 footer>div:first-child {
@@ -101,18 +124,19 @@ footer>div:first-child {
     background-color: #513719;
     display: flex;
     flex-direction: row;
-    padding:10px;
+    padding: 10px;
 }
 
 footer>div:first-child>div {
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: nowrap;
+    padding: 20px;
 }
-footer h4{ padding:6px;}
+
+footer h4 {
+    padding: 6px;
+}
 
 /*  */
 
@@ -133,6 +157,7 @@ button {
     cursor: pointer;
     transition: all 1s;
 }
+
 input:focus, textarea:focus {
     outline: none;
     border-width: 2px;
@@ -143,3 +168,55 @@ button:hover {
     transform: scale(0.9);
     box-shadow: #513719 0px 0px 8px;
 }
+
+
+figure>img {
+    width: 100%;
+}
+
+figure {
+    transition: all 1s;
+    width: 85%;
+}
+
+figure:hover {
+    transform: scale(1.1);
+    background-color: #513719;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.297) 0px 0px 6px;
+    border: 1px solid #513719;
+    cursor: pointer;
+}
+
+figcaption {
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
+
+#tapar {
+    width: 100%;
+    height: 2002px;
+    background-color: #8d653755;
+    position: absolute;
+    z-index: 10;
+    opacity: 0;
+    display: none;
+    transition: all 1s;
+}
+#btnMenuMovil{width:100px;}
+
+
+body::-webkit-scrollbar {
+    width: 5px;               /* width of the entire scrollbar */
+  }
+  
+  body::-webkit-scrollbar-track {
+    background: white ;        /* color of the tracking area */
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: #cfcccc;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 3px solid  #dfd8d0;  /* creates padding around scroll thumb */
+  }
+ nav a, header a {text-decoration: none;    color: #513719;}

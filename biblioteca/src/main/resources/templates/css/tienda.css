@@ -1,0 +1,108 @@
+figure {
+    width: 45%;
+}
+
+#content {
+    flex-direction: row !important;
+
+}
+
+#content>select {
+    flex: 1;
+    margin: 0px 20px;
+}
+
+#nuevasAdiciones {
+
+    grid-template-rows: auto !important;
+}
+
+#librosTienda {
+    display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#librosTienda figure {
+    width: 190px;
+}
+
+#btnPaginacion {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+#btnPaginacion>button {
+    width: 40px;
+    margin: 0px 5px
+}
+
+#catalogo {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    align-items: center;
+}
+
+main>section:first-child {
+    position: relative;
+}
+
+#carousel {
+    position: absolute !important;
+    z-index: -1;
+    width: 100% !important;
+    height: 100%;
+    top: 0;
+
+}
+
+section>h5,section>h2{
+    color: white;
+    text-shadow: black 0px 0px 6px;
+}
+section>h2{
+    padding: 20px;
+    
+}
+
+#nuevasAdiciones {
+    color: white;
+    text-shadow: black 0px 0px 6px;
+}
+
+#nuevasAdiciones figure>img:hover {
+    transform: scale(1.1);
+    background-color: #513719;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.297) 0px 0px 6px;
+    border: 1px solid #513719;
+    cursor: pointer;
+    transition: all 1s;
+}
+
+#nuevasAdiciones img {
+    box-shadow: black 0px 0px 6px;
+    transition: all 1s;
+}
+
+#nuevasAdiciones figcaption {
+    background-color: rgba(0, 0, 0, 0.301);
+}
+
+#nuevasAdiciones figure:hover {
+    transform: scale(1.00);
+    background-color: transparent;
+
+
+    box-shadow: rgba(0, 0, 0, 0.297) 0px 0px 0px;
+    border: 0px solid #513719;
+    cursor: pointer;
+}
