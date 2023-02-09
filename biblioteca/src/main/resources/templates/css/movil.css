@@ -1,0 +1,13 @@
+nav>img {
+    display: block;
+}
+
+nav>div {
+    display: none;
+    position: fixed;
+}
+
+nav>h3 {
+    display: none;
+}
+
