@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.demo.model.dto.ClienteDTO;
+
 import com.example.demo.model.dto.EjemplarDTO;
 import com.example.demo.model.dto.SolicitudDTO;
 import com.example.demo.model.dto.UsuarioDTO;
