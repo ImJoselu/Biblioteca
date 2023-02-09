@@ -65,6 +65,7 @@ public class SolicitudController {
 			
 			UsuarioDTO usuarioDTO = usuarioService.findById(idUsuario);
 			SolicitudDTO solicitudDTO = new SolicitudDTO();
+			solicitudDTO.setUsuarioDTO(usuarioDTO);
 			
 			
 			ModelAndView mav = new ModelAndView("contacto");
@@ -81,7 +82,7 @@ public class SolicitudController {
 			log.info("ClienteController - save: Salvamos los datos de la solicitud:" + solicitudDTO.toString());
 			
 			// Invocamos a la capa de servicios para que almacene los datos del cliente
-			solicitudService.save(solicitudDTO);
+			solicitudService.save(solicitudDTO); 
 			
 			// Redireccionamos para volver a invocar el metodo que escucha /clientes
 			ModelAndView mav = new ModelAndView("redirect:/usuario/{idUsuario}/solicitud/add");		
