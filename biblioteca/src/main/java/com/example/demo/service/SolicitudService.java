@@ -11,4 +11,6 @@ public interface SolicitudService {
 
 	List<SolicitudDTO> findByUsuario(UsuarioDTO usuarioDTO);
 
+	void save(SolicitudDTO solicitudDTO);
+
 }
