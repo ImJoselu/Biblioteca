@@ -25,7 +25,7 @@ public class MultaDTO implements Serializable {
 	private AlquilerDTO alquilerDTO;
 
 	// Convertir una entidad a un DTO
-	public static MultaDTO convertToDTO(Multa multa) {
+	public static MultaDTO convertToDTO(Multa multa , AlquilerDTO alquilerDTO) {
 
 		MultaDTO multaDTO = new MultaDTO();
 		multaDTO.setId(multa.getId());
@@ -34,7 +34,7 @@ public class MultaDTO implements Serializable {
 		multaDTO.setImporte(multa.getImporte());
 		multaDTO.setObservaciones(multa.getObservaciones());
 
-		multaDTO.setAlquilerDTO(AlquilerDTO.convertToDTO(multa.getAlquiler()));
+		multaDTO.setAlquilerDTO(alquilerDTO);
 		
 		return multaDTO;
 		

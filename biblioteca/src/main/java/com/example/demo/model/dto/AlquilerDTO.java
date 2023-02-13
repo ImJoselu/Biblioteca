@@ -1,3 +1,5 @@
+
+
 package com.example.demo.model.dto;
 
 import java.sql.Date;
@@ -26,19 +28,19 @@ public class AlquilerDTO {
 
 	// FALTAN LAS LISTAS Y CONSTRUCTOR VACIO
 
-		public static AlquilerDTO convertToDTO(Alquiler alquiler) {
+		public static AlquilerDTO convertToDTO(Alquiler alquiler, UsuarioDTO usuarioDTO) {
 			AlquilerDTO alquilerDTO = new AlquilerDTO();
 			alquilerDTO.setId(alquiler.getId());
 			alquilerDTO.setFecha_inicio(alquiler.getFecha_inicio());
 			alquilerDTO.setFecha_limite(alquiler.getFecha_limite());
 			alquilerDTO.setFecha_entrega(alquiler.getFecha_entrega());
-			alquilerDTO.setUsuarioDTO(UsuarioDTO.convertToDTO(alquiler.getUsuario()));
+			alquilerDTO.setUsuarioDTO(usuarioDTO);
 			alquilerDTO.setEjemplarDTO(EjemplarDTO.convertToDTO(alquiler.getEjemplar()));
 			
 			MultaDTO multaDTO = new MultaDTO();
 			
 			for (Multa m : alquiler.getListaMultas()) {
-				multaDTO = MultaDTO.convertToDTO(m);
+				multaDTO = MultaDTO.convertToDTO(m, alquilerDTO);
 				alquilerDTO.getListaMultasDTO().add(multaDTO);
 			}
 			

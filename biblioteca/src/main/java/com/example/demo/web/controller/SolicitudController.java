@@ -46,8 +46,10 @@ public class SolicitudController {
 	public ModelAndView misSolicitudes(@PathVariable("idUsuario") Long idUsuario) {
 		
 		log.info("SolicitudController - index: Mostramos las solicitudes del cliente: " + idUsuario);
+		UsuarioDTO usuarioDTO = new UsuarioDTO();
+		usuarioDTO.setId(idUsuario);
 		
-		UsuarioDTO usuarioDTO = usuarioService.findById(idUsuario);
+		
 		
 		List<SolicitudDTO> listaSolicitudesDTO = solicitudService.findByUsuario(usuarioDTO);
 		
@@ -63,13 +65,12 @@ public class SolicitudController {
 			
 			log.info("ClienteController - add: Anyadimos una nueva solicitud para el cliente: " + idUsuario);
 			
-			UsuarioDTO usuarioDTO = usuarioService.findById(idUsuario);
-			SolicitudDTO solicitudDTO = new SolicitudDTO();
-			solicitudDTO.setUsuarioDTO(usuarioDTO);
+			UsuarioDTO usuarioDTO = new UsuarioDTO();
+			usuarioDTO.setId(idUsuario);
 			
 			
 			ModelAndView mav = new ModelAndView("contacto");
-			mav.addObject("solicitudDTO", solicitudDTO);
+			mav.addObject("solicitudDTO", new SolicitudDTO());
 			mav.addObject("usuarioDTO", usuarioDTO);
 			
 			return mav;
@@ -85,7 +86,7 @@ public class SolicitudController {
 			solicitudService.save(solicitudDTO); 
 			
 			// Redireccionamos para volver a invocar el metodo que escucha /clientes
-			ModelAndView mav = new ModelAndView("redirect:/usuario/{idUsuario}/solicitud/add");		
+			ModelAndView mav = new ModelAndView("redirect:/MisSolicitudes/{idUsuario}");		
 			return mav;
 		}
 		
