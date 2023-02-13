@@ -11,5 +11,6 @@ import com.example.demo.model.dto.UsuarioDTO;
 public interface AlquilerService {
 	
 	List<AlquilerDTO> findAllByUsuario(UsuarioDTO usuarioDTO);
+	void save(AlquilerDTO alquilerDTO);
 
 }

@@ -55,7 +55,7 @@ public class UsuarioDTO implements Serializable {
 		}
 		
 		for (Alquiler a : usuario.getListaAlquileres()) {
-			alquilerDTO = AlquilerDTO.convertToDTO(a);
+			alquilerDTO = AlquilerDTO.convertToDTO(a, usuarioDTO);
 			usuarioDTO.getListaAlquileresDTO().add(alquilerDTO);
 		}
 		

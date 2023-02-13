@@ -11,8 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.example.demo.model.dto.AlquilerDTO;
 import com.example.demo.model.dto.AlquilerDTO;
+import com.example.demo.model.dto.AlquilerDTO;
 import com.example.demo.model.dto.UsuarioDTO;
 import com.example.demo.repository.dao.AlquilerRepository;
+import com.example.demo.repository.entity.Alquiler;
+import com.example.demo.repository.entity.Usuario;
 import com.example.demo.repository.entity.Alquiler;
 
 public class AlquilerServiceImpl implements AlquilerService{
@@ -37,6 +40,21 @@ private static final Logger log = LoggerFactory.getLogger(AlquilerServiceImpl.cl
 		}
 		// Devolvemos la lista de DTO's
 		return listaAlquileresDTO;
+	}
+
+	@Override
+	public void save(AlquilerDTO alquilerDTO) {
+		log.info("AlquilerServiceImpl - save: salvamos la alquiler : " + alquilerDTO.toString());
+
+		Alquiler alquiler = AlquilerDTO.convertToEntity(alquilerDTO);
+		// Seguimos sin tener la necesidad de buscarlo
+		Usuario usuario = new Usuario();
+		usuario.setId(alquilerDTO.getUsuarioDTO().getId());
+		alquiler.setUsuario(usuario);
+ 
+		alquilerRepository.save(alquiler);
+
+		
 	}
 
 }

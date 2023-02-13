@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.demo.model.dto.ClienteDTO;
-import com.example.demo.model.dto.CuentaDTO;
 import com.example.demo.model.dto.MultaDTO;
 import com.example.demo.model.dto.UsuarioDTO;
 import com.example.demo.repository.entity.Usuario;
@@ -35,7 +33,7 @@ private static final Logger log = LoggerFactory.getLogger(MultaController.class)
 		
 		
 		ModelAndView mav = new ModelAndView("adminMulta");
-		List<MultaDTO> listaMultasDTO = multaService.findAllByUsuario(usuarioDTO);
+		List<MultaDTO> listaMultasDTO = multaService.findAllByAlquiler(usuarioDTO);
 		mav.addObject("listaMultasDTO", listaMultasDTO);
 
 		return mav;
