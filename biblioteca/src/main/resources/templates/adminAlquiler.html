@@ -8,22 +8,22 @@
     <title>Administracion de Alquileres</title>
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/generalAdmin.css">
-   
-    <link rel="stylesheet" media="(max-width: 600px)" href="css/tablet.css">
-    <link rel="stylesheet" media="(max-width: 800px)" href="css/pc.css">
+    <link rel="stylesheet" media="(max-width: 600px)" href="css/movil.css">
+    <link rel="stylesheet" media="(min-width: 600px) and (max-width: 800px)" href="css/tablet.css">
+    <link rel="stylesheet" media="(min-width: 800px)" href="css/pc.css">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 
 </head>
 
 <body>
     <header>
-        <h2>LogoAdmin</h2><!--Esto será luego una imagen o algo asi-->
+        <h2><a href="adminIndex.html">LogoAdmin</a></h2><!--Esto será luego una imagen o algo asi-->
 
     </header>
     <nav>
-        <h3 th:href="">Contacto</h3>
-        <h3 th:href="">Cliente</h3>
-        <h3 th:href="">Libro</h3>
+        <h3 th:href=""><a href="adminContacto.html">Contacto</a></h3>
+        <h3 th:href=""><a href="adminClientes.html">Cliente</a></h3>
+        <h3 th:href=""><a href="adminEjemplares.html">Libro</a></h3>
     </nav>
     <main>
 
@@ -35,7 +35,7 @@
                     <th>Fecha Incio</th>
                     <th>Fecha Limite</th>
                     <th>Fecha Entrega</th>
-                    
+                    <th>Multas</th>
                 </tr>
             </thead>
             <tbody>
@@ -45,6 +45,7 @@
                     <td th:text="${}"></td>
                     <td th:text="${}"></td>
                     <td th:text="${}"></td>
+                    <td><a href="adminMultas.html" th:href="">Ver Multas</a></td>
                 </tr>
                 <tr>
                     <td>El Gran Gatsby</td>
@@ -52,6 +53,7 @@
                     <td>01/01/2022</td>
                     <td>01/14/2022</td>
                     <td>01/12/2022</td>
+                    <td><a href="adminMultas.html" th:href="">Ver Multas</a></td>
                 </tr>
                 <tr>
                     <td>Cien años de soledad</td>
@@ -59,6 +61,7 @@
                     <td>02/01/2022</td>
                     <td>02/15/2022</td>
                     <td>02/14/2022</td>
+                    <td><a href="adminMultas.html" th:href="">Ver Multas</a></td>
                 </tr>
                 <tr>
                     <td>Matar a un ruiseñor</td>
@@ -66,6 +69,7 @@
                     <td>03/01/2022</td>
                     <td>03/17/2022</td>
                     <td>03/16/2022</td>
+                    <td><a href="adminMultas.html" th:href="">Ver Multas</a></td>
                 </tr>
                 <tr>
                     <td>1984</td>
@@ -73,23 +77,28 @@
                     <td>04/01/2022</td>
                     <td>04/15/2022</td>
                     <td>04/14/2022</td>
+                    <td><a href="adminMultas.html" th:href="">Ver Multas</a></td>
                 </tr>
             </tbody>
 
         </table>
     </main>
+    <div class="volver">
+        <p>Volver a Clientes: <a href="adminClientes.html"><b>Volver</b></a></p>
+        </div>
     <footer>
         <div>
             <div>
-                <p>adipisicing elit. Perferendis praesentium veniam eligendi</p>
+                <p>En la Biblioteca, nos esforzamos por brindar un acceso fácil y conveniente a una amplia selección de libros y recursos.</p>
+              </div>
+              <div>
+                <p>Nuestro compromiso es brindar una experiencia de lectura inolvidable</p>
             </div>
             <div>
-                <p>nihil, totam molestiae, soluta facilis quibusdam fugit reiciendis natus quam fuga alias dolores
-                    repudiandae!
-                </p>
+                <p>Nuestro equipo de bibliotecarios trabaja incansablemente para ofrecerte los mejores recursos</p>
             </div>
             <div>
-                <p>Lorem ipsum dolor sit amet consectetur aliquid deserunt. Iusto, a </p>
+                <p>Gracias por formar parte de esta comunidad de lectores</p>
             </div>
         </div>
         <h4>©Bibliotecarios S.L. 2022/2023</h4>

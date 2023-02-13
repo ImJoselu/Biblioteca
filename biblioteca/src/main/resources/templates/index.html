@@ -8,8 +8,8 @@
     <title>Pagina Principal</title>
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/movil.css">
-    <link rel="stylesheet" media="(min-width: 600px)" href="css/tablet.css">
+    <link rel="stylesheet" media="(max-width: 600px)" href="css/movil.css">
+    <link rel="stylesheet" media="(min-width: 600px) and (max-width: 800px)" href="css/tablet.css">
     <link rel="stylesheet" media="(min-width: 800px)" href="css/pc.css">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 
@@ -18,17 +18,18 @@
 <body>
     <div id="tapar"></div>
     <header>
-        <h2>Biblioteca</h2><!--Esto será luego una imagen o algo asi-->
+        <h2><a href="index.html">Biblioteca</a></h2><!--Esto será luego una imagen o algo asi-->
 
     </header>
     <nav>
-       
-           
-            <h3 th:href="">Inicio</h3>
-            <h3 th:href="">Libros</h3>
-            <h3 th:href="">Contacto</h3>
-            <h3 th:href="">Cuenta</h3>
-      
+
+
+    <h3 th:href="">    <a href="index.html">Inicio</a></h3>
+        <h3 th:href=""><a href="tienda.html">Libros</a></h3>
+        <h3 th:href=""><a href="contacto.html">Contacto</a></h3>   <!--solo puede haber 1 de estos dos activo-->
+        <h3 th:href=""><a href="proximamente.html">Cuenta</a></h3>
+        <h3 th:href=""><a href="login.html">Login</a></h3>
+        <!---->
         <img src="images/menu_black_24dp.svg" id="btnMenuMovil">
     </nav>
     <main>
@@ -72,7 +73,7 @@
 
 
             </div>
-            <button>Ver Coleccion</button>
+           <a href="tienda.html"> <button>Ver Coleccion</button></a>
         </section>
 
     </main>
