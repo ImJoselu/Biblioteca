@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pagina Principal</title>
-    <link rel="stylesheet" href="css/general.css" />
-    <link rel="stylesheet" href="css/index.css" />
-    <link rel="stylesheet" media="(max-width: 600px)" href="css/movil.css" />
+    <link rel="stylesheet" th:href="@{/css/general.css}" />
+    <link rel="stylesheet" th:href="@{/css/index.css}" />
+    <link rel="stylesheet" media="(max-width: 600px)" th:href="@{/css/movil.css}" />
     <link
       rel="stylesheet"
       media="(min-width: 600px) and (max-width: 800px)"
@@ -45,9 +45,9 @@
     </nav>
     <main>
       <div id="carousel">
-        <img src="images/CasadelLibro_Blog.webp" alt="Image 1" />
-        <img src="images/imagen-libros.wep.webp" alt="Image 2" />
-        <img src="images/libro.webp" alt="Image 3" />
+        <img th:src="@{/images/CasadelLibro_Blog.webp}" alt="Image 1" />
+        <img th:src="@{/images/imagen-libros.wep.webp}" alt="Image 2" />
+        <img th:src="@{/images/libro.webp}" alt="Image 3" />
         <!-- Agrega más imágenes aquí si deseas -->
       </div>
 

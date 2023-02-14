@@ -31,7 +31,7 @@ public class EjemplarController {
 		List<EjemplarDTO> listaEjemplaresDTO = ejemplarService.findAll();
 		
 		ModelAndView mav = new ModelAndView("adminEjemplares");
-		mav.addObject("listaEjemplares", listaEjemplaresDTO);
+		mav.addObject("listaEjemplaresDTO", listaEjemplaresDTO);
 		
 		return mav;
 	}
