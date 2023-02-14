@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200&family=Raleway:wght@200&display=swap');
+
 html {
     scroll-behavior: smooth;
-  }
+}
 
 * {
     margin: 0;
@@ -74,7 +75,7 @@ nav h3 {
 }
 
 nav h3:hover {
-text-shadow: #513719 0px 0px 1px;
+    text-shadow: #513719 0px 0px 1px;
     transform: scale(1.1);
 
 }
@@ -203,20 +204,37 @@ figcaption {
     display: none;
     transition: all 1s;
 }
-#btnMenuMovil{width:100px;}
+
+#btnMenuMovil {
+    width: 100px;
+}
 
 
 body::-webkit-scrollbar {
-    width: 5px;               /* width of the entire scrollbar */
-  }
-  
-  body::-webkit-scrollbar-track {
-    background: white ;        /* color of the tracking area */
-  }
-  
-  body::-webkit-scrollbar-thumb {
-    background-color: #cfcccc;    /* color of the scroll thumb */
-    border-radius: 20px;       /* roundness of the scroll thumb */
-    border: 3px solid  #dfd8d0;  /* creates padding around scroll thumb */
-  }
- nav a, header a {text-decoration: none;    color: #513719;}
+    width: 5px;
+    /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+    background: white;
+    /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #8d653755;
+    /* color of the scroll thumb */
+    border-radius: 20px;
+    /* roundness of the scroll thumb */
+    border: 3px solid #8d653755;
+    /* creates padding around scroll thumb */
+    width: 5px;
+}
+
+nav a, header a {
+    text-decoration: none;
+    color: #513719;
+}
+
+#menuMovil {
+    display: none;
+}

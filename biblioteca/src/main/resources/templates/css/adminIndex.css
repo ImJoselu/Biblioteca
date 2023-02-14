@@ -14,8 +14,15 @@ main {
     display: flex;
     flex-direction: column;
 }
+
 .btnAdmin:hover>img {
     filter: brightness(0.1);
     transition: all 1s;
- }
- 
+    cursor: pointer;
+}
+.btnAdmin h2{cursor: pointer; text-decoration: none !important;}
+
+.btnAdmin a {
+    text-decoration: none !important;
+    cursor: pointer !important;
+}

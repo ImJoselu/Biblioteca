@@ -5,9 +5,172 @@ nav>img {
 nav>div {
     display: none;
     position: fixed;
+
 }
+
+/*
+nav{    display: flex;
+    justify-content: flex-start;
+    align-items: center;}*/
 
 nav>h3 {
     display: none;
 }
 
+footer>div {
+    flex-direction: column !important;
+}
+
+
+footer>div:first-child>div {
+
+    padding: 5px;
+}
+
+footer {
+    width: 100%;
+}
+
+#btnMenuMovil {
+
+    width: 45px;
+    margin: 5px;
+    border: 1px solid #513719;
+    border-radius: 12px;
+}
+
+main>section>section:nth-of-type(1) {
+    grid-row: 1;
+    grid-column: span 3;
+    text-align: center;
+}
+
+#nuevasAdiciones {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 30px 20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    justify-items: center;
+}
+
+
+#seccionRegistro>form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto auto;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+#seccionRegistro input:nth-of-type(1) {
+    grid-row: 1;
+    grid-column: 1;
+}
+
+#seccionRegistro input:nth-of-type(2) {
+    grid-row: 2;
+    grid-column: 1;
+}
+
+#seccionRegistro input:nth-of-type(3) {
+    grid-row: 3;
+    grid-column: 1;
+}
+
+#seccionRegistro input:nth-of-type(4) {
+    grid-row: 4;
+    grid-column: 1;
+}
+
+#seccionRegistro input:nth-of-type(5) {
+    grid-row: 5;
+    grid-column: 1;
+}
+
+#seccionRegistro input:nth-of-type(6) {
+    grid-row: 6;
+    grid-column: 1;
+}
+
+#seccionRegistro input:nth-of-type(7) {
+    grid-row: 7;
+    grid-column: 1;
+}
+
+#seccionRegistro button {
+    grid-row: 8;
+    grid-column: 1;
+}
+
+
+#menuMovil {
+    z-index: 100;
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 65%;
+    box-shadow: transparent;
+    background-color: #513719df;
+    color: #fff;
+    transform: translateX(-100%);
+    transition: all 0.3s;
+    text-align: center;
+}
+
+#menuMovil>h3>a {
+    color: white;
+    text-decoration: none;
+    margin: 11px;
+    font-size: 35px;
+}
+
+#menuMovil>h3:first-of-type {
+    margin-top: 35%;
+}
+
+#menuMovil>h3 {
+    margin-top: 18px;
+}
+
+#menuMovil.active {
+    transform: translateX(0%);
+    box-shadow: black 0px 0px 6px;
+}
+
+aside a:hover {
+
+    color: white;
+    transition: all 1s;
+    transform: scale(1.1);
+    text-shadow: white 0px 0px 6px;
+
+}
+
+aside a {
+    text-align: center;
+}
+
+aside>img {
+    float: right;
+    position: absolute;
+    width: 44px;
+    right: 0;
+}
+
+
+
+
+@media (max-width: 200px) {
+    #menuMovil>h3:first-of-type {
+        margin-top: 15%;
+    }
+
+    #menuMovil>h3>a {
+
+        font-size: 100%;
+    }
+}

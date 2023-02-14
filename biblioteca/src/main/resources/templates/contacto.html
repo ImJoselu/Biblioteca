@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/contacto.css">
     <link rel="stylesheet" media="(max-width: 600px)" href="css/movil.css">
+    <link rel="stylesheet" media="(max-width: 600px)" href="css/movilContacto.css">
     <link rel="stylesheet" media="(min-width: 600px) and (max-width: 800px)" href="css/tablet.css">
     <link rel="stylesheet" media="(min-width: 800px)" href="css/pc.css">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
@@ -19,15 +20,23 @@
     <header>
         <h2><a href="index.html">Biblioteca</a></h2><!--Esto será luego una imagen o algo asi-->
 
-    </header>
+    </header>  <aside id="menuMovil">
+        <img src="images/close_black_24dp.svg">
+      <h3><a href="index.html">Inicio</a></h3>
+      <h3><a href="tienda.html">Libros</a></h3>
+      <h3><a href="contacto.html">Contacto</a></h3>
+      <!--solo puede haber 1 de estos dos activo-->
+      <h3><a href="proximamente.html">Cuenta</a></h3>
+      <h3><a href="login.html">Login</a></h3>
+    </aside>
     <nav>
 
 
-    <h3 th:href="">    <a href="index.html">Inicio</a></h3>
-        <h3 th:href=""><a href="tienda.html">Libros</a></h3>
-        <h3 th:href=""><a href="contacto.html">Contacto</a></h3>   <!--solo puede haber 1 de estos dos activo-->
-        <h3 th:href=""><a href="proximamente.html">Cuenta</a></h3>
-        <h3 th:href=""><a href="login.html">Login</a></h3>
+    <h3>    <a href="index.html">Inicio</a></h3>
+        <h3><a href="tienda.html">Libros</a></h3>
+        <h3><a href="contacto.html">Contacto</a></h3>   <!--solo puede haber 1 de estos dos activo-->
+        <h3><a href="proximamente.html">Cuenta</a></h3>
+        <h3><a href="login.html">Login</a></h3>
         <!---->
 
         <img src="images/menu_black_24dp.svg" id="btnMenuMovil">

@@ -15,13 +15,6 @@ function () {
 }
 );
 
-$("nav>img").click(function () {
-  
- $("nav>h3").toggle();
-
-
-
-});
 
 $("#seccionLogin").show();
   $("#seccionRegistro").hide();
@@ -42,8 +35,12 @@ $("#seccionLogin").show();
     $("span:first").toggle();
   });
 
-
-
+  $("#btnMenuMovil").click(function() {
+    $("#menuMovil").toggleClass("active");
+  });
+  $("aside>img").click(function() {
+    $("#menuMovil").toggleClass("active");
+  });
 
 
 
