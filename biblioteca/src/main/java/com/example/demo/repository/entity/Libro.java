@@ -32,14 +32,14 @@ public class Libro {
 
 	private String titulo;
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "libro")
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "libro")
 	private Set<Ejemplar> listaEjemplares;
 	
 	@ManyToOne
 	@JoinColumn(name = "fk_editorial")
 	private Editorial editorial;
 	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	// Tabla que mantiene la relacion N-N
 	@JoinTable(
 			// Nombre de la tabla
@@ -51,7 +51,7 @@ public class Libro {
 	@ToString.Exclude
 	private Set<Genero> listaGeneros;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "libro")
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "libro")
 	private Set<LibroEscribeAutor> listaLibroEscribeAutor;
 
 	@Override

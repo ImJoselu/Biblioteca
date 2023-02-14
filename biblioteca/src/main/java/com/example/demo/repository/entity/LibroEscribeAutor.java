@@ -10,6 +10,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.Data;
 
 
@@ -27,9 +29,13 @@ public class LibroEscribeAutor {
 	@ManyToOne
 	@JoinColumn(name = "fk_autor_escribe")
 	private Autor autor;
+	
+	
 	@Column(name = "fecha_publicacion")
+	@Temporal(TemporalType.DATE)
 	private Date fechaPublicacion;
 	@Column(name = "edad_recomendada")
+	@Temporal(TemporalType.DATE)
 	private Date edadRecomendada;
 	
 	

@@ -32,4 +32,17 @@ private static final Logger log = LoggerFactory.getLogger(IndexController.class)
 		*/
 		return mav;
 	}
+	
+	@GetMapping("/login")
+	public ModelAndView login() {
+		
+		log.info("IndexController - index: Mostramos la pagina inicial");
+		
+		ModelAndView mav = new ModelAndView("login");
+		/*
+		mav.addObject("titulo", nombreAplicacion);
+		mav.addObject("nombreAsignatura", nombreAsignatura);
+		*/
+		return mav;
+	}
 }

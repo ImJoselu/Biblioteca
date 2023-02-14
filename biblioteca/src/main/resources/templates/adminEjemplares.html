@@ -39,16 +39,16 @@
         <th>ISBN</th>
         <th>Nombre</th>
         <th>Editorial</th>
-        <th>Stock</th>
+        <!--  <th>Stock</th>-->
         <th>Cambiar Stock</th>
       </tr>
     </thead>
     <tbody>
-      <tr th:each="${}">
-        <td th:text="${}"></td>
-        <td th:text="${}"></td>
-        <td th:text="${}"></td>
-        <td th:text="${}"></td>
+      <tr th:each="ejemplarDTO : ${listaEjemplaresDTO}">
+        <td th:text="${ejemplarDTO.libroDTO.isbn}"></td>
+        <td th:text="${ejemplarDTO.libroDTO.titulo}"></td>
+        <td th:text="${ejemplarDTO.libroDTO.editorialDTO.nombre}"></td>
+        <!--<td th:text="${}"></td>-->
         <td class="cambiarInput"><a>Cambiar Stock</a> <input type="number" id="cambiarStock"></td>
         <!--Cuando hagas click en el link de cambiar stock, aparecerá el input number-->
       </tr>
@@ -56,7 +56,7 @@
     </table>
   </main>
   <div class="volver">
-    <p>Volver a Inicio: <a href="adminIndex.html"><b>Volver</b></a></p>
+    <p>Volver a Inicio: <a th:href="@{/}">Inicio</a></p>
     </div>
   <footer>
     <div>

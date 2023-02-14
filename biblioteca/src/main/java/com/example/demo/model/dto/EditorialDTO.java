@@ -32,10 +32,12 @@ public class EditorialDTO implements Serializable {
 
 		LibroDTO libroDTO = new LibroDTO();
 
+		/*
 		for (Libro l : editorial.getListaLibros()) {
 			libroDTO = LibroDTO.convertToDTO(l);
 			editorialDTO.getListaLibrosDTO().add(libroDTO);
 		}
+		*/
 
 		return editorialDTO;
 	}

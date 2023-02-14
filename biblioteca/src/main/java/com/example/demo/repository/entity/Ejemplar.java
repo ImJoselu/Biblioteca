@@ -30,7 +30,7 @@ public class Ejemplar {
 	
 	private Boolean prestado;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "ejemplar")
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "ejemplar")
 	@ToString.Exclude
 	private Set<Alquiler> listaAlquileres;
 	

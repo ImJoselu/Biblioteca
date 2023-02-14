@@ -26,6 +26,6 @@ public class Autor {
 	
 	private String apellidos;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "autor")
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "autor")
 	private Set<LibroEscribeAutor> listaAutorEscribeLibro;
 }

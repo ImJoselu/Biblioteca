@@ -25,23 +25,23 @@
     </header>
 
     <aside id="menuMovil">
-        <img src="images/close_black_24dp.svg">
-      <h3 ><a href="index.html">Inicio</a></h3>
+        <img th:src="@{/images/close_black_24dp.svg}">
+      <h3 ><a th:href="@{/}">Inicio</a></h3>
       <h3 ><a href="tienda.html">Libros</a></h3>
       <h3 ><a href="contacto.html">Contacto</a></h3>
       <!--solo puede haber 1 de estos dos activo-->
       <h3 ><a href="proximamente.html">Cuenta</a></h3>
-      <h3 ><a href="login.html">Login</a></h3>
+      <h3 ><a th:href="@{/login}">Login</a></h3>
     </aside>
     <nav>
-      <h3 ><a href="index.html">Inicio</a></h3>
+      <h3 ><a th:href="@{/}">Inicio</a></h3>
       <h3><a href="tienda.html">Libros</a></h3>
       <h3><a href="contacto.html">Contacto</a></h3>
       <!--solo puede haber 1 de estos dos activo-->
       <h3 ><a href="proximamente.html">Cuenta</a></h3>
-      <h3 ><a href="login.html">Login</a></h3>
+      <h3 ><a th:href="@{/login}">Login</a></h3>
       <!---->
-      <img src="images/menu_black_24dp.svg" id="btnMenuMovil" />
+      <img th:src="@{/images/menu_black_24dp.svg}" id="btnMenuMovil" />
     </nav>
     <main>
       <div id="carousel">
@@ -52,7 +52,7 @@
       </div>
 
       <div id="content">
-        <img src="images/iconoLibro.svg" alt="" />
+        <img th:src="@{/images/iconoLibro.svg}" alt="" />
         <p>
           Bienvenido a nuestra biblioteca web. Aquí encontrará una gran variedad
           de libros electrónicos y recursos en línea para satisfacer sus
@@ -68,27 +68,27 @@
         <div id="nuevasAdiciones">
           <!--Todo lo de dentro de este div se va a poner desde servidor-->
           <figure>
-            <img src="images/libros/10.jpg" alt="" />
+            <img th:src="@{/images/libros/10.jpg}" alt="" />
             <figcaption>La DecimoCuarta - Enrique Ortego</figcaption>
           </figure>
           <figure>
-            <img src="images/libros/9.jpg" alt="" />
+            <img th:src="@{/images/libros/9.jpg}" alt="" />
             <figcaption>Dragon Ball Z Super - Akira Toriyama</figcaption>
           </figure>
           <figure>
-            <img src="images/libros/8.jpg" alt="" />
+            <img th:src="@{/images/libros/8.jpg}" alt="" />
             <figcaption>En la Sombra - Principe Harry</figcaption>
           </figure>
           <figure>
-            <img src="images/libros/4.jpg" alt="" />
+            <img th:src="@{/images/libros/4.jpg}" alt="" />
             <figcaption>Esperando al Diluvio - Dolores Redondo</figcaption>
           </figure>
           <figure>
-            <img src="images/libros/5.jpg" alt="" />
+            <img th:src="@{/images/libros/5.jpg}" alt="" />
             <figcaption>Mis Ganas Ganan - Elena Huelva</figcaption>
           </figure>
           <figure>
-            <img src="images/libros/6.jpg" alt="" />
+            <img th:src="@{/images/libros/6.jpg}" alt="" />
             <figcaption>Meditaciones de Cine - Quentin Tarantino</figcaption>
           </figure>
         </div>

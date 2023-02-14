@@ -29,7 +29,7 @@ public class Editorial {
 	
 	private int numero_contacto;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "editorial")
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "editorial")
 	@ToString.Exclude
 	private Set<Libro> listaLibros;
 
