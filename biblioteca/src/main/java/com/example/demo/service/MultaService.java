@@ -11,6 +11,8 @@ import com.example.demo.model.dto.UsuarioDTO;
 @Service
 public interface MultaService {
 
-	List<MultaDTO> findAllByAlquiler(UsuarioDTO usuarioDTO);
+	List<MultaDTO> findAllByAlquiler(AlquilerDTO alquilerDTO);
+	public void save(MultaDTO multaDTO);
+	public void delete(MultaDTO multaDTO);
 
 }

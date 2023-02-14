@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.model.dto.AlquilerDTO;
 import com.example.demo.model.dto.AlquilerDTO;
@@ -18,6 +19,7 @@ import com.example.demo.repository.entity.Alquiler;
 import com.example.demo.repository.entity.Usuario;
 import com.example.demo.repository.entity.Alquiler;
 
+@Service
 public class AlquilerServiceImpl implements AlquilerService{
 
 private static final Logger log = LoggerFactory.getLogger(AlquilerServiceImpl.class);

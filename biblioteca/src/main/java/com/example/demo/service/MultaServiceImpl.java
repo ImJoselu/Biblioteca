@@ -11,7 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.example.demo.model.dto.MultaDTO;
 import com.example.demo.model.dto.MultaDTO;
 import com.example.demo.model.dto.AlquilerDTO;
+import com.example.demo.model.dto.MultaDTO;
 import com.example.demo.repository.dao.MultaRepository;
+import com.example.demo.repository.entity.Alquiler;
+import com.example.demo.repository.entity.Multa;
 import com.example.demo.repository.entity.Multa;
 
 public class MultaServiceImpl implements MultaService {
@@ -36,5 +39,26 @@ public class MultaServiceImpl implements MultaService {
 		}
 		// Devolvemos la listaMultas de DTO's
 		return listaMultasDTO;
+	}
+
+	@Override
+	public void save(MultaDTO multaDTO) {
+		log.info("MultaServiceImpl - save: salvamos la multa : " + multaDTO.toString());
+
+		Multa multa = MultaDTO.convertToEntity(multaDTO);
+		// Seguimos sin tener la necesidad de buscarlo
+		Alquiler alquiler = new Alquiler();
+		alquiler.setId(multaDTO.getAlquilerDTO().getId());
+		multa.setAlquiler(alquiler);
+ 
+		multaRepository.save(multa);
+		
+	}
+
+	@Override
+	public void delete(MultaDTO multaDTO) {
+		log.info("MultaServiceImpl - delete: Metodo 1: borramos la multa: " + multaDTO.toString());
+		 
+		multaRepository.deleteById(multaDTO.getId());	
 	}
 }

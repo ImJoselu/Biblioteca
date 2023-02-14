@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.model.dto.AlquilerDTO;
 import com.example.demo.model.dto.MultaDTO;
 import com.example.demo.model.dto.UsuarioDTO;
 import com.example.demo.repository.entity.Usuario;
@@ -23,25 +24,29 @@ private static final Logger log = LoggerFactory.getLogger(MultaController.class)
 	private MultaService multaService;
 
 	// Listar los multas
-	@GetMapping("usuario/{idUsuario}/adminMulta")
-	public ModelAndView findAllByUsuario(@PathVariable Long idUsuario) {
+	@GetMapping("usuario/{idUsuario}/adminAlquiler/{idAlquiler}/adminMultas")
+	public ModelAndView findAllByAlquiler(@PathVariable Long idUsuario , @PathVariable Long idAlquiler) {
 
 		log.info("MultaController - findAll: Mostramos todos los multas del usuario: " + idUsuario);
 
 		UsuarioDTO usuarioDTO = new UsuarioDTO();
 		usuarioDTO.setId(idUsuario);
+		AlquilerDTO alquilerDTO = new AlquilerDTO();
+		alquilerDTO.setId(idAlquiler);
+		
+		alquilerDTO.setUsuarioDTO(usuarioDTO);
 		
 		
 		ModelAndView mav = new ModelAndView("adminMulta");
-		List<MultaDTO> listaMultasDTO = multaService.findAllByAlquiler(usuarioDTO);
+		List<MultaDTO> listaMultasDTO = multaService.findAllByAlquiler(alquilerDTO);
 		mav.addObject("listaMultasDTO", listaMultasDTO);
 
 		return mav;
 
 	}
 	
-	@GetMapping("/usuario/{idUsuario}/multas/add")
-	public ModelAndView add(@PathVariable Long idUsuario) {
+	@GetMapping("usuario/{idUsuario}/adminAlquiler/{idAlquiler}/adminMultas/add")
+	public ModelAndView add(@PathVariable Long idUsuario , @PathVariable Long idAlquiler) {
 		
 		log.info("CuentaController - add: Alta de multa del usuario: " + idUsuario);
 		
@@ -49,45 +54,63 @@ private static final Logger log = LoggerFactory.getLogger(MultaController.class)
 		UsuarioDTO usuarioDTO = new UsuarioDTO();
 		usuarioDTO.setId(idUsuario);
 		
+		AlquilerDTO alquilerDTO = new AlquilerDTO();
+		alquilerDTO.setId(idAlquiler);
+		
+		alquilerDTO.setUsuarioDTO(usuarioDTO);
+		
 		// pasamos el usuario y la nueva multa a la vista
 		ModelAndView mav = new ModelAndView("multaform");
 		mav.addObject("usuarioDTO", usuarioDTO);
+		mav.addObject("alquilerDTO", alquilerDTO);
 		mav.addObject("multaDTO", new MultaDTO());
 		mav.addObject("add", true);
 		return mav;
 	}
 	
-	@PostMapping("/usuario/{idUsuario}/multas/save")
-	public ModelAndView save(@PathVariable Long idUsuario, @ModelAttribute("multaDTO") MultaDTO multaDTO) {
+	@PostMapping("usuario/{idUsuario}/adminAlquiler/{idAlquiler}/adminMultas/save")
+	public ModelAndView save(@PathVariable Long idUsuario , @PathVariable Long idAlquiler, 
+			@ModelAttribute("multaDTO") MultaDTO multaDTO) {
 		
 		log.info("CuentaController - save: Salvando la multa del usuario: " + idUsuario);
 		
 		// Obtenemos el usuario para luego poner sus datos en la pantalla
 		UsuarioDTO usuarioDTO = new UsuarioDTO();
 		usuarioDTO.setId(idUsuario);
+		AlquilerDTO alquilerDTO = new AlquilerDTO();
+		alquilerDTO.setId(idAlquiler);
+		
+		alquilerDTO.setUsuarioDTO(usuarioDTO);
 		// Asignamos a la multa el usuario (no hace falta buscarlo ya que al salvarlo lo buscaremos)
-		multaDTO.setUsuarioDTO(usuarioDTO);
+		multaDTO.setAlquilerDTO(alquilerDTO);
 
 		// invocamos la operacion save a la capa de servicio de multa
 		multaService.save(multaDTO);
 		// Retornamos a la lista de multas del usuario
-		ModelAndView mav = new ModelAndView("redirect:/usuario/{idUsuario}/adminMultas");
+		ModelAndView mav = new ModelAndView("redirect:/usuario/{idUsuario}/adminAlquiler/{idAlquiler}/adminMultas");
 		return mav;
 	}
 	
 	// Borrar un usuario
-		@GetMapping("/usuario/{idUsuario}/multas/{idMulta}")
-		public ModelAndView delete(@PathVariable("idUsuario") Long idUsuario, @PathVariable("idMulta") Long idMulta) {
+		@GetMapping("usuario/{idUsuario}/adminAlquiler/{idAlquiler}/adminMultas/delete/{idMulta}")
+		public ModelAndView delete(@PathVariable Long idUsuario , @PathVariable Long idAlquiler, @PathVariable("idMulta") Long idMulta) {
 			
 			log.info("MultaController - delete: Borramos la multa:" + idMulta);
 			
+			UsuarioDTO usuarioDTO = new UsuarioDTO();
+			usuarioDTO.setId(idUsuario);
+			AlquilerDTO alquilerDTO = new AlquilerDTO();
+			alquilerDTO.setId(idAlquiler);
+			
+			alquilerDTO.setUsuarioDTO(usuarioDTO);
 			// Creamos un usuario y le asignamos el id. Este usuario es el que se va a borrar
 			MultaDTO multaDTO = new MultaDTO();
 			multaDTO.setId(idMulta);
+			multaDTO.setAlquilerDTO(alquilerDTO);
 			multaService.delete(multaDTO);
 			
 			// Redireccionamos para volver a invocar al metodo que escucha /usuario
-			ModelAndView mav = new ModelAndView("redirect:/usuario/{idUsuario}/multas");
+			ModelAndView mav = new ModelAndView("redirect:/usuario/{idUsuario}/adminAlquiler/{idAlquiler}/adminMultas");
 			
 			return mav;
 		}	
