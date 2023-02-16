@@ -1,16 +1,20 @@
 package com.example.demo.service;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.dto.SolicitudDTO;
-import com.example.demo.model.dto.SolicitudDTO;
 import com.example.demo.model.dto.UsuarioDTO;
 import com.example.demo.repository.dao.EjemplarRepository;
 import com.example.demo.repository.dao.SolicitudRepository;
+import com.example.demo.repository.entity.Usuario;
+import com.example.demo.repository.entity.Solicitud;
 import com.example.demo.repository.entity.Solicitud;
 
 @Service
