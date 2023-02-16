@@ -36,8 +36,8 @@
          <img src="images/menu_black_24dp.svg" id="btnMenuMovil">
     </nav>
     <main>
-<div class="btnAdmin">
-    <h3 >Añadir Multa</h3>
+<div th:if="${alquilerDTO}" class="btnAdmin">
+    <a  th:href = "@{/usuario/{idUsuario}/adminAlquiler/{idAlquiler}/adminMultas/add (idUsuario=${usuarioDTO.id} , idAlquiler=${alquilerDTO.id})}"><h3>Añadir Multa</h3></a>
 </div>
         <table>
             <thead>
@@ -49,11 +49,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="multaDTO:${listaMultasDTO}">
+                <tr th:each="multaDTO:${listaMultasDTO}" >
                     <td th:text="${multaDTO.fecha}"></td>
                     <td th:text="${multaDTO.importe}"></td>
                     <td class="verTextarea"><a>Ver Obsevacion</a><textarea th:utext="${multaDTO.observaciones}" readonly></textarea></td>
-                    <td><a> <!--th:href="" -->Descartar</a></td>
+                    <td><a th:classappend="${multaDTO.descartada == true} ?  'descartada' : ''"   th:href= "@{/usuario/{idUsuario}/adminMultas/{idMulta}/descartar (idUsuario=${usuarioDTO.id} , idMulta=${multaDTO.id})}">Descartar</a></td>
                    
                     <!--Cuando hagas click en el link de cambiar stock, aparecerá el input number-->
                 </tr>
@@ -63,7 +63,7 @@
         
     </main>
     <div class="volver">
-    <p>Volver a clientes: <a href="adminClientes.html"><b>Volver</b></a></p>
+    <p>Volver a clientes: <a th:href="@{/adminClientes}"><b>Volver</b></a></p>
     </div>
     <footer>
         <div>

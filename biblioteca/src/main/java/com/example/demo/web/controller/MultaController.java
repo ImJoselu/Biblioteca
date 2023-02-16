@@ -42,6 +42,9 @@ private static final Logger log = LoggerFactory.getLogger(MultaController.class)
 		ModelAndView mav = new ModelAndView("adminMultas");
 		List<MultaDTO> listaMultasDTO = multaService.findAllByAlquiler(alquilerDTO);
 		mav.addObject("listaMultasDTO", listaMultasDTO);
+		mav.addObject("usuarioDTO", usuarioDTO);
+		mav.addObject("alquilerDTO", alquilerDTO);
+
 
 		return mav;
 
@@ -62,7 +65,7 @@ private static final Logger log = LoggerFactory.getLogger(MultaController.class)
 		ModelAndView mav = new ModelAndView("adminMultas");
 		List<MultaDTO> listaMultasDTO = multaService.findAllByUsuario(usuarioDTO);
 		mav.addObject("listaMultasDTO", listaMultasDTO);
-
+		mav.addObject("usuarioDTO", usuarioDTO);
 		return mav;
 
 	}
@@ -82,7 +85,7 @@ private static final Logger log = LoggerFactory.getLogger(MultaController.class)
 		alquilerDTO.setUsuarioDTO(usuarioDTO);
 		
 		// pasamos el usuario y la nueva multa a la vista
-		ModelAndView mav = new ModelAndView("multaform");
+		ModelAndView mav = new ModelAndView("multasForm");
 		mav.addObject("usuarioDTO", usuarioDTO);
 		mav.addObject("alquilerDTO", alquilerDTO);
 		mav.addObject("multaDTO", new MultaDTO());
@@ -114,25 +117,22 @@ private static final Logger log = LoggerFactory.getLogger(MultaController.class)
 	}
 	
 	// Borrar un usuario
-		@GetMapping("/usuario/{idUsuario}/adminAlquiler/{idAlquiler}/adminMultas/delete/{idMulta}")
-		public ModelAndView delete(@PathVariable Long idUsuario , @PathVariable Long idAlquiler, @PathVariable("idMulta") Long idMulta) {
+		@GetMapping("/usuario/{idUsuario}/adminMultas/{idMulta}/descartar")
+		public ModelAndView descartar(@PathVariable Long idUsuario, @PathVariable Long idMulta) {
 			
 			log.info("MultaController - delete: Borramos la multa:" + idMulta);
 			
 			UsuarioDTO usuarioDTO = new UsuarioDTO();
 			usuarioDTO.setId(idUsuario);
-			AlquilerDTO alquilerDTO = new AlquilerDTO();
-			alquilerDTO.setId(idAlquiler);
-			
-			alquilerDTO.setUsuarioDTO(usuarioDTO);
+	
 			// Creamos un usuario y le asignamos el id. Este usuario es el que se va a borrar
 			MultaDTO multaDTO = new MultaDTO();
 			multaDTO.setId(idMulta);
-			multaDTO.setAlquilerDTO(alquilerDTO);
-			multaService.delete(multaDTO);
+			
+			multaService.descartar(multaDTO);
 			
 			// Redireccionamos para volver a invocar al metodo que escucha /usuario
-			ModelAndView mav = new ModelAndView("redirect:/usuario/{idUsuario}/adminAlquiler/{idAlquiler}/adminMultas");
+			ModelAndView mav = new ModelAndView("redirect:/usuario/{idUsuario}/adminMultas");
 			
 			return mav;
 		}	

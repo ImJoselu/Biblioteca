@@ -15,5 +15,6 @@ public interface MultaService {
 	public void save(MultaDTO multaDTO);
 	public void delete(MultaDTO multaDTO);
 	List<MultaDTO> findAllByUsuario(UsuarioDTO usuarioDTO);
+	void descartar(MultaDTO multaDTO);
 
 }

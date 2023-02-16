@@ -1,7 +1,7 @@
 package com.example.demo.model.dto;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 import com.example.demo.repository.entity.Multa;
 
@@ -50,7 +50,7 @@ public class MultaDTO implements Serializable {
 		multa.setImporte(multaDTO.getImporte());
 		multa.setObservaciones(multaDTO.getObservaciones());
 
-		multa.setAlquiler(AlquilerDTO.convertToEntity(multaDTO.getAlquilerDTO()));
+		//multa.setAlquiler(AlquilerDTO.convertToEntity(multaDTO.getAlquilerDTO()));
 		
 		return multa;
 		

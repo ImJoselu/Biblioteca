@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Identificate</title>
+
+<link rel="stylesheet" th:href="@{/css/general.css}" />
+<link rel="stylesheet" th:href="@{/css/generalAdmin.css}" />
+<link rel="stylesheet" media="(max-width: 600px)"
+	th:href="@{/css/movil.css}" />
+<link rel="stylesheet" media="(min-width: 600px) and (max-width: 800px)"
+	th:href="@{/css/tablet.css}" />
+<link rel="stylesheet" media="(min-width: 800px)"
+	th:href="@{/css/pc.css}" />
+
+</head>
+
+<body>
+	<header>
+		<h2>
+			<a href="index.html">Biblioteca</a>
+		</h2>
+		<!--Esto será luego una imagen o algo asi-->
+
+	</header>
+	<aside id="menuMovil">
+		<img src="images/close_black_24dp.svg">
+		<h3>
+			<a href="index.html">Inicio</a>
+		</h3>
+		<h3>
+			<a href="tienda.html">Libros</a>
+		</h3>
+		<h3>
+			<a href="contacto.html">Contacto</a>
+		</h3>
+		<!--solo puede haber 1 de estos dos activo-->
+		<h3>
+			<a href="proximamente.html">Cuenta</a>
+		</h3>
+		<h3>
+			<a href="login.html">Login</a>
+		</h3>
+	</aside>
+	<nav>
+
+
+		<h3>
+			<a href="index.html">Inicio</a>
+		</h3>
+		<h3>
+			<a href="tienda.html">Libros</a>
+		</h3>
+		<h3>
+			<a href="contacto.html">Contacto</a>
+		</h3>
+		<!--solo puede haber 1 de estos dos activo-->
+		<h3>
+			<a href="proximamente.html">Cuenta</a>
+		</h3>
+		<h3>
+			<a href="login.html">Login</a>
+		</h3>
+		<h3>
+			<a th:href="@{/adminIndex}">Admin</a>
+		</h3>
+		<!---->
+		<img src="images/menu_black_24dp.svg" id="btnMenuMovil">
+	</nav>
+	<main>
+		
+		<section>
+			<h1>Crear Multa</h1>
+			<form
+				th:action="@{/usuario/{idUsuario}/adminAlquiler/{idAlquiler}/adminMultas/save (idUsuario=${usuarioDTO.id}, idAlquiler=${alquilerDTO.id})}"
+				th:object="${multaDTO}" method="POST">
+				<input th:field="${multaDTO.importe}" placeholder="Importe">
+				<textarea th:field="${multaDTO.observaciones}"
+					placeholder="Observaciones"></textarea>
+
+				
+				<input type="submit" th:value="Crear" />
+			</form>
+		</section>
+
+
+	</main>
+	<footer>
+		<div>
+			<div>
+				<h5>Nosotros</h5>
+				<ul>
+					<li><a>Acerca de nosotros</a></li>
+					<li><a>Contacto</a></li>
+					<li><a>Empleo</a></li>
+				</ul>
+			</div>
+
+			<div>
+				<h5>Servicios</h5>
+				<ul>
+					<li><a>Envío</a></li>
+					<li><a>Devoluciones</a></li>
+					<li><a>Preguntas frecuentes</a></li>
+				</ul>
+
+			</div>
+			<div>
+				<h5>Contacto</h5>
+				<ul>
+					<li>123 Calle Principal</li>
+					<li>Ciudad, Estado</li>
+					<li>Código Postal</li>
+					<li>555-555-5555</li>
+					<li><a>info@libreria.com</a></li>
+				</ul>
+			</div>
+		</div>
+		<h4>
+			Copyright &copy; Bibliotecarios S.L.
+			<script>document.write(new Date().getFullYear());</script>
+		</h4>
+	</footer>
+	<script src="/js/jquery-3.6.3.min.js"></script>
+	<script src="/js/general.js"></script>
+
+</body>
+
+</html>

@@ -1,7 +1,9 @@
 package com.example.demo.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -53,6 +55,11 @@ public class MultaServiceImpl implements MultaService {
 		Alquiler alquiler = new Alquiler();
 		alquiler.setId(multaDTO.getAlquilerDTO().getId());
 		multa.setAlquiler(alquiler);
+		
+		Date fecha = new Date();
+		multa.setFecha(fecha);
+		
+		multa.setDescartada(false);
  
 		multaRepository.save(multa);
 		
@@ -77,5 +84,15 @@ public class MultaServiceImpl implements MultaService {
 		}
 		
 		return listaMultasDTO;
+	}
+
+	@Override
+	public void descartar(MultaDTO multaDTO) {
+		// TODO Auto-generated method stub
+		Optional<Multa> multa = multaRepository.findById(multaDTO.getId());
+		multa.get().setDescartada(true);
+		
+		multaRepository.save(multa.get());
+		
 	}
 }
