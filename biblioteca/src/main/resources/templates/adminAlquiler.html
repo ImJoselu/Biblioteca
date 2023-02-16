@@ -6,11 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administracion de Alquileres</title>
-    <link rel="stylesheet" href="css/general.css">
+    
+      <link rel="stylesheet" th:href="@{/css/general.css}" />
+    <link rel="stylesheet" th:href="@{/css/generalAdmin.css}" />
+    <link rel="stylesheet" media="(max-width: 600px)" th:href="@{/css/movil.css}" />
+    <link
+      rel="stylesheet"
+      media="(min-width: 600px) and (max-width: 800px)"
+      th:href="@{/css/tablet.css}"
+    />
+    <link rel="stylesheet" media="(min-width: 800px)" th:href="@{/css/pc.css}" />
+    <!--  
+    <link rel="stylesheet" href="/css/general.css">
     <link rel="stylesheet" href="css/generalAdmin.css">
     <link rel="stylesheet" media="(max-width: 600px)" href="css/movil.css">
     <link rel="stylesheet" media="(min-width: 600px) and (max-width: 800px)" href="css/tablet.css">
     <link rel="stylesheet" media="(min-width: 800px)" href="css/pc.css">
+    
+    -->
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 
 </head>
@@ -46,46 +59,15 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="${}">
-                    <td th:text="${}"></td>
-                    <td th:text="${}"></td>
-                    <td th:text="${}"></td>
-                    <td th:text="${}"></td>
-                    <td th:text="${}"></td>
-                    <td><a href="adminMultas.html" th:href="">Ver Multas</a></td>
+                <tr th:each="alquilerDTO :${listaAlquileresDTO}">
+                    <td th:text="${alquilerDTO.ejemplarDTO.libroDTO.titulo}"></td>
+                    <td th:text="${alquilerDTO.ejemplarDTO.libroDTO.isbn}"></td>
+                    <td th:text="${alquilerDTO.fecha_inicio}"></td>
+                    <td th:text="${alquilerDTO.fecha_limite}"></td>
+                    <td th:text="${alquilerDTO.fecha_entrega}"></td>
+                    <td><a href="adminMultas.html" th:href="@{/usuario/{idUsuario}/adminAlquiler/{idAlquiler}/adminMultas (idUsuario=${usuarioDTO.id} , idAlquiler=${alquilerDTO.id}) }">Ver Multas</a></td>
                 </tr>
-                <tr>
-                    <td>El Gran Gatsby</td>
-                    <td>9788498387426</td>
-                    <td>01/01/2022</td>
-                    <td>01/14/2022</td>
-                    <td>01/12/2022</td>
-                    <td><a href="adminMultas.html" th:href="">Ver Multas</a></td>
-                </tr>
-                <tr>
-                    <td>Cien años de soledad</td>
-                    <td>9788497594824</td>
-                    <td>02/01/2022</td>
-                    <td>02/15/2022</td>
-                    <td>02/14/2022</td>
-                    <td><a href="adminMultas.html" th:href="">Ver Multas</a></td>
-                </tr>
-                <tr>
-                    <td>Matar a un ruiseñor</td>
-                    <td>9788497591283</td>
-                    <td>03/01/2022</td>
-                    <td>03/17/2022</td>
-                    <td>03/16/2022</td>
-                    <td><a href="adminMultas.html" th:href="">Ver Multas</a></td>
-                </tr>
-                <tr>
-                    <td>1984</td>
-                    <td>9788497594343</td>
-                    <td>04/01/2022</td>
-                    <td>04/15/2022</td>
-                    <td>04/14/2022</td>
-                    <td><a href="adminMultas.html" th:href="">Ver Multas</a></td>
-                </tr>
+                
             </tbody>
 
         </table>

@@ -7,8 +7,10 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.model.dto.MultaDTO;
+import com.example.demo.model.dto.UsuarioDTO;
 import com.example.demo.model.dto.MultaDTO;
 import com.example.demo.model.dto.AlquilerDTO;
 import com.example.demo.model.dto.MultaDTO;
@@ -17,6 +19,7 @@ import com.example.demo.repository.entity.Alquiler;
 import com.example.demo.repository.entity.Multa;
 import com.example.demo.repository.entity.Multa;
 
+@Service
 public class MultaServiceImpl implements MultaService {
 
 	private static final Logger log = LoggerFactory.getLogger(MultaServiceImpl.class);
@@ -60,5 +63,19 @@ public class MultaServiceImpl implements MultaService {
 		log.info("MultaServiceImpl - delete: Metodo 1: borramos la multa: " + multaDTO.toString());
 		 
 		multaRepository.deleteById(multaDTO.getId());	
+	}
+
+	@Override
+	public List<MultaDTO> findAllByUsuario(UsuarioDTO usuarioDTO) {
+		// TODO Auto-generated method stub
+		List<Multa> listaMultas = multaRepository.findAllByCliente(usuarioDTO.getId());
+		List<MultaDTO> listaMultasDTO = new ArrayList<>();
+		
+		for (Multa multa : listaMultas) {
+			MultaDTO multaDTO = MultaDTO.convertToDTO(multa, new AlquilerDTO());
+			listaMultasDTO.add(multaDTO);
+		}
+		
+		return listaMultasDTO;
 	}
 }

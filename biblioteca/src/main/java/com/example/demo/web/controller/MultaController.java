@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import com.example.demo.model.dto.UsuarioDTO;
 import com.example.demo.repository.entity.Usuario;
 import com.example.demo.service.MultaService;
 
+@Controller
 public class MultaController {
 private static final Logger log = LoggerFactory.getLogger(MultaController.class);
 	
@@ -24,7 +26,7 @@ private static final Logger log = LoggerFactory.getLogger(MultaController.class)
 	private MultaService multaService;
 
 	// Listar los multas
-	@GetMapping("usuario/{idUsuario}/adminAlquiler/{idAlquiler}/adminMultas")
+	@GetMapping("/usuario/{idUsuario}/adminAlquiler/{idAlquiler}/adminMultas")
 	public ModelAndView findAllByAlquiler(@PathVariable Long idUsuario , @PathVariable Long idAlquiler) {
 
 		log.info("MultaController - findAll: Mostramos todos los multas del usuario: " + idUsuario);
@@ -37,7 +39,7 @@ private static final Logger log = LoggerFactory.getLogger(MultaController.class)
 		alquilerDTO.setUsuarioDTO(usuarioDTO);
 		
 		
-		ModelAndView mav = new ModelAndView("adminMulta");
+		ModelAndView mav = new ModelAndView("adminMultas");
 		List<MultaDTO> listaMultasDTO = multaService.findAllByAlquiler(alquilerDTO);
 		mav.addObject("listaMultasDTO", listaMultasDTO);
 
@@ -45,7 +47,27 @@ private static final Logger log = LoggerFactory.getLogger(MultaController.class)
 
 	}
 	
-	@GetMapping("usuario/{idUsuario}/adminAlquiler/{idAlquiler}/adminMultas/add")
+	
+	
+	// Listar los multas
+	@GetMapping("/usuario/{idUsuario}/adminMultas")
+	public ModelAndView findAllByAlquiler(@PathVariable Long idUsuario) {
+
+		log.info("MultaController - findAll: Mostramos todos los multas del usuario: " + idUsuario);
+
+		UsuarioDTO usuarioDTO = new UsuarioDTO();
+		usuarioDTO.setId(idUsuario);
+	
+
+		ModelAndView mav = new ModelAndView("adminMultas");
+		List<MultaDTO> listaMultasDTO = multaService.findAllByUsuario(usuarioDTO);
+		mav.addObject("listaMultasDTO", listaMultasDTO);
+
+		return mav;
+
+	}
+	
+	@GetMapping("/usuario/{idUsuario}/adminAlquiler/{idAlquiler}/adminMultas/add")
 	public ModelAndView add(@PathVariable Long idUsuario , @PathVariable Long idAlquiler) {
 		
 		log.info("CuentaController - add: Alta de multa del usuario: " + idUsuario);
@@ -68,7 +90,7 @@ private static final Logger log = LoggerFactory.getLogger(MultaController.class)
 		return mav;
 	}
 	
-	@PostMapping("usuario/{idUsuario}/adminAlquiler/{idAlquiler}/adminMultas/save")
+	@PostMapping("/usuario/{idUsuario}/adminAlquiler/{idAlquiler}/adminMultas/save")
 	public ModelAndView save(@PathVariable Long idUsuario , @PathVariable Long idAlquiler, 
 			@ModelAttribute("multaDTO") MultaDTO multaDTO) {
 		
@@ -92,7 +114,7 @@ private static final Logger log = LoggerFactory.getLogger(MultaController.class)
 	}
 	
 	// Borrar un usuario
-		@GetMapping("usuario/{idUsuario}/adminAlquiler/{idAlquiler}/adminMultas/delete/{idMulta}")
+		@GetMapping("/usuario/{idUsuario}/adminAlquiler/{idAlquiler}/adminMultas/delete/{idMulta}")
 		public ModelAndView delete(@PathVariable Long idUsuario , @PathVariable Long idAlquiler, @PathVariable("idMulta") Long idMulta) {
 			
 			log.info("MultaController - delete: Borramos la multa:" + idMulta);

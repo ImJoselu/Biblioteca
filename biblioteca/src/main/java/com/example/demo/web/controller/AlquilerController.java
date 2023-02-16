@@ -27,7 +27,7 @@ public class AlquilerController {
 	private AlquilerService alquilerService;
 
 	// Listar los alquileres
-	@GetMapping("usuario/{idUsuario}/adminAlquiler")
+	@GetMapping("/usuario/{idUsuario}/adminAlquiler")
 	public ModelAndView findAllByUsuario(@PathVariable Long idUsuario) {
 
 		log.info("AlquilerController - findAll: Mostramos todos los alquileres del usuario: " + idUsuario);
@@ -38,7 +38,8 @@ public class AlquilerController {
 		ModelAndView mav = new ModelAndView("adminAlquiler");
 		List<AlquilerDTO> listaAlquileresDTO = alquilerService.findAllByUsuario(usuarioDTO);
 		mav.addObject("listaAlquileresDTO", listaAlquileresDTO);
-
+		mav.addObject("usuarioDTO", usuarioDTO);
+		
 		return mav;
 
 	}
