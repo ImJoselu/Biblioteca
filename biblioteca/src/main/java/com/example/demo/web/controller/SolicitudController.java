@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,24 +20,22 @@ import com.example.demo.service.EjemplarService;
 import com.example.demo.service.SolicitudService;
 import com.example.demo.service.UsuarioService;
 
+@Controller
 public class SolicitudController {
 
 	@Autowired
-	private SolicitudService solicitudService;
-	
-	@Autowired
-	private UsuarioService usuarioService;
+	private SolicitudService solucitudService;
 	
 	private static final Logger log = LoggerFactory.getLogger(SolicitudController.class);
 	
-	@GetMapping("/adminSolicitudes")
+	@GetMapping("/adminContacto")
 	public ModelAndView index() {
 		
 		log.info("SolicitudController - index: Mostramos la gestion de Solicitudes");
 		
-		List<SolicitudDTO> listaSolicitudesDTO = solicitudService.findAll();
+		List<SolicitudDTO> listaSolicitudesDTO = solucitudService.findAll();
 		
-		ModelAndView mav = new ModelAndView("adminSolicitudes");
+		ModelAndView mav = new ModelAndView("adminContacto");
 		mav.addObject("listaSolicitudesDTO", listaSolicitudesDTO);
 		
 		return mav;
@@ -51,7 +50,7 @@ public class SolicitudController {
 		
 		
 		
-		List<SolicitudDTO> listaSolicitudesDTO = solicitudService.findByUsuario(usuarioDTO);
+		List<SolicitudDTO> listaSolicitudesDTO = solucitudService.findByUsuario(usuarioDTO);
 		
 		ModelAndView mav = new ModelAndView("adminSolicitudes");
 		mav.addObject("listaSolicitudesDTO", listaSolicitudesDTO);
@@ -83,7 +82,7 @@ public class SolicitudController {
 			log.info("ClienteController - save: Salvamos los datos de la solicitud:" + solicitudDTO.toString());
 			
 			// Invocamos a la capa de servicios para que almacene los datos del cliente
-			solicitudService.save(solicitudDTO); 
+			solucitudService.save(solicitudDTO); 
 			
 			// Redireccionamos para volver a invocar el metodo que escucha /clientes
 			ModelAndView mav = new ModelAndView("redirect:/MisSolicitudes/{idUsuario}");		
