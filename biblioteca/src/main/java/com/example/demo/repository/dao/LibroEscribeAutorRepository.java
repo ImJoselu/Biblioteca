@@ -1,5 +1,12 @@
 package com.example.demo.repository.dao;
 
-public interface LibroEscribeAutorRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+
+
+import jakarta.transaction.Transactional;
+
+public interface LibroEscribeAutorRepository{
 
 }

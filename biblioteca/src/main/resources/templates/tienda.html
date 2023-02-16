@@ -2,254 +2,202 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda</title>
-    <link rel="stylesheet" href="css/general.css">
-    <link rel="stylesheet" href="css/tienda.css">
-    <link rel="stylesheet" href="css/index.css">
- 
-    <link rel="stylesheet" media="(max-width: 600px)" href="css/movil.css">
-    <link rel="stylesheet" media="(max-width: 600px)" href="css/movilTienda.css">
-    <link rel="stylesheet" media="(min-width: 600px) and (max-width: 800px)" href="css/tablet.css">
-    <link rel="stylesheet" media="(min-width: 800px)" href="css/pc.css">
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tienda</title>
+
+
+<link rel="stylesheet" th:href="@{/css/general.css}" />
+<link rel="stylesheet" th:href="@{/css/index.css}" />
+<link rel="stylesheet" th:href="@{/css/tienda.css}">
+<link rel="stylesheet" media="(max-width: 600px)"
+	th:href="@{/css/movil.css}" />
+<link rel="stylesheet" media="(min-width: 600px) and (max-width: 800px)"
+	th:href="@{/css/tablet.css}" />
+<link rel="stylesheet" media="(min-width: 800px)"
+	th:href="@{/css/pc.css}" />
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 
 </head>
 
 <body>
 
-    <header>
-        <h2><a href="index.html">Biblioteca</a></h2><!--Esto será luego una imagen o algo asi-->
+	<header>
+		<h2>
+			<a href="index.html">Biblioteca</a>
+		</h2>
+		<!--Esto será luego una imagen o algo asi-->
 
-    </header>
-    <aside id="menuMovil">
-        <img src="images/close_black_24dp.svg">
-      <h3><a href="index.html">Inicio</a></h3>
-      <h3><a href="tienda.html">Libros</a></h3>
-      <h3><a href="contacto.html">Contacto</a></h3>
-      <!--solo puede haber 1 de estos dos activo-->
-      <h3><a href="proximamente.html">Cuenta</a></h3>
-      <h3><a href="login.html">Login</a></h3>
-    </aside>
-    <nav>
-
-
-    <h3>    <a href="index.html">Inicio</a></h3>
-        <h3><a href="tienda.html">Libros</a></h3>
-        <h3><a href="contacto.html">Contacto</a></h3>   <!--solo puede haber 1 de estos dos activo-->
-        <h3><a href="proximamente.html">Cuenta</a></h3>
-        <h3><a href="login.html">Login</a></h3>
-        <!---->
-
-        <img src="images/menu_black_24dp.svg" id="btnMenuMovil">
-    </nav>
-    <main>
-     
-
-        <section>
-            <h2>Mas Populares</h2>
-            <h5>El Top 3 de Libros de Esta Semana</h5>
-            <div id="nuevasAdiciones">
-                <!--Todo lo de dentro de este div se va a poner desde servidor-->
-
-                <figure><img src="images/libros/10.jpg" alt="">
-                    <figcaption>La DecimoCuarta - Enrique Ortego</figcaption>
-                </figure>
-                <figure><img src="images/libros/9.jpg" alt="">
-                    <figcaption>Dragon Ball Z Super - Akira Toriyama</figcaption>
-                </figure>
-                <figure><img src="images/libros/8.jpg" alt="">
-                    <figcaption>En la Sombra - Principe Harry </figcaption>
-                </figure>
-            </div>
-            <div id="carousel">
-                <img src="images/CasadelLibro_Blog.webp" alt="Image 1">
-                <img src="images/imagen-libros.wep.webp" alt="Image 2">
-                <img src="images/libro.webp" alt="Image 3">
-              
-    
-            </div>
-
-        </section>
-        <div id="content">
-
-            <select name="filtros" id="filtros">
-                <option value="-1" selected hidden disabled>Seleccione filtro</option>
-                <option value="all">Por Defecto (Todos)</option>
-                <option value="autor">Autor</option>
-                <option value="genero">Genero</option>
-                <option value="editorial">Editorial</option>
-            </select>
-            <select name="filtroAutor" id="filtroAutor" hidden>
-                <option value="-1" disabled selected hidden>Seleccione Autor</option>
-                <!--Este select se rellenará desde servidor-->
-            </select>
-            <select name="filtroEditorial" id="filtroEditorial" hidden>
-
-                <option value="-1" disabled selected hidden>Seleccione Editorial</option>
-                <!--Este select se rellenará desde servidor-->
-            </select>
-            <select name="filtroGenero" id="filtroGenero" hidden>
-
-                <option value="-1" disabled selected hidden>Seleccione Genero</option>
-                <!--Este select se rellenará desde servidor-->
-            </select>
-            <select name="ordenar" id="ordenar">
-                <option value="-1" selected hidden disabled>Seleccione orden</option>
-                <option value="ua">Por Defecto (Ultimos Añadidos)</option>
-                <option value="az">A - Z</option>
-                <option value="za">Z - A</option>
-                <option value="eaz">Editorial A - Z</option>
-                <option value="eza">Editorial Z - A</option>
-                <option value="edad0">Edad 0 - 18</option>
-                <option value="edad18">Edad 18 - 0</option>
-
-            </select>
-        </div>
-
-        <section id="catalogo">
-
-            <div id="librosTienda">
-                <!--Todo lo de dentro de este div se va a poner desde servidor-->
-
-                <figure><img src="images/libros/10.jpg" alt="">
-                    <figcaption>La DecimoCuarta - Enrique Ortego</figcaption>
-                </figure>
-                <figure><img src="images/libros/9.jpg" alt="">
-                    <figcaption>Dragon Ball Z Super - Akira Toriyama</figcaption>
-                </figure>
-                <figure><img src="images/libros/8.jpg" alt="">
-                    <figcaption>En la Sombra - Principe Harry </figcaption>
-                </figure>
-                <figure><img src="images/libros/4.jpg" alt="">
-                    <figcaption>Esperando al Diluvio - Dolores Redondo</figcaption>
-                </figure>
-                <figure><img src="images/libros/6.jpg" alt="">
-                    <figcaption>Meditaciones de Cine - Quentin Tarantino</figcaption>
-                </figure>
-                
-                <figure><img src="images/libros/10.jpg" alt="">
-                    <figcaption>La DecimoCuarta - Enrique Ortego</figcaption>
-                </figure>
-                <figure><img src="images/libros/9.jpg" alt="">
-                    <figcaption>Dragon Ball Z Super - Akira Toriyama</figcaption>
-                </figure>
-                <figure><img src="images/libros/8.jpg" alt="">
-                    <figcaption>En la Sombra - Principe Harry </figcaption>
-                </figure>
-                <figure><img src="images/libros/4.jpg" alt="">
-                    <figcaption>Esperando al Diluvio - Dolores Redondo</figcaption>
-                </figure>
-                <figure><img src="images/libros/5.jpg" alt="">
-                    <figcaption>Mis Ganas Ganan - Elena Huelva</figcaption>
-                </figure>
-                <figure><img src="images/libros/5.jpg" alt="">
-                    <figcaption>Mis Ganas Ganan - Elena Huelva</figcaption>
-                </figure>
-                <figure><img src="images/libros/6.jpg" alt="">
-                    <figcaption>Meditaciones de Cine - Quentin Tarantino</figcaption>
-                </figure>
-                <figure><img src="images/libros/4.jpg" alt="">
-                    <figcaption>Esperando al Diluvio - Dolores Redondo</figcaption>
-                </figure>
-                <figure><img src="images/libros/10.jpg" alt="">
-                    <figcaption>La DecimoCuarta - Enrique Ortego</figcaption>
-                </figure>
-                <figure><img src="images/libros/9.jpg" alt="">
-                    <figcaption>Dragon Ball Z Super - Akira Toriyama</figcaption>
-                </figure>
-                <figure><img src="images/libros/8.jpg" alt="">
-                    <figcaption>En la Sombra - Principe Harry </figcaption>
-                </figure>
-                <figure><img src="images/libros/4.jpg" alt="">
-                    <figcaption>Esperando al Diluvio - Dolores Redondo</figcaption>
-                </figure>
-                <figure><img src="images/libros/6.jpg" alt="">
-                    <figcaption>Meditaciones de Cine - Quentin Tarantino</figcaption>
-                </figure>
-                
-                <figure><img src="images/libros/10.jpg" alt="">
-                    <figcaption>La DecimoCuarta - Enrique Ortego</figcaption>
-                </figure>
-                <figure><img src="images/libros/9.jpg" alt="">
-                    <figcaption>Dragon Ball Z Super - Akira Toriyama</figcaption>
-                </figure>
-                <figure><img src="images/libros/8.jpg" alt="">
-                    <figcaption>En la Sombra - Principe Harry </figcaption>
-                </figure>
-                <figure><img src="images/libros/4.jpg" alt="">
-                    <figcaption>Esperando al Diluvio - Dolores Redondo</figcaption>
-                </figure>
-                <figure><img src="images/libros/5.jpg" alt="">
-                    <figcaption>Mis Ganas Ganan - Elena Huelva</figcaption>
-                </figure>
-                <figure><img src="images/libros/6.jpg" alt="">
-                    <figcaption>Meditaciones de Cine - Quentin Tarantino</figcaption>
-                </figure>
-                
-                <figure><img src="images/libros/10.jpg" alt="">
-                    <figcaption>La DecimoCuarta - Enrique Ortego</figcaption>
-                </figure>
-                <figure><img src="images/libros/9.jpg" alt="">
-                    <figcaption>Dragon Ball Z Super - Akira Toriyama</figcaption>
-                </figure>
-                <figure><img src="images/libros/8.jpg" alt="">
-                    <figcaption>En la Sombra - Principe Harry </figcaption>
-                </figure>
-                <figure><img src="images/libros/4.jpg" alt="">
-                    <figcaption>Esperando al Diluvio - Dolores Redondo</figcaption>
-                </figure>
-                <figure><img src="images/libros/5.jpg" alt="">
-                    <figcaption>Mis Ganas Ganan - Elena Huelva</figcaption>
-                </figure>
+	</header>
+	<aside id="menuMovil">
+		<img src="images/close_black_24dp.svg">
+		<h3>
+			<a href="index.html">Inicio</a>
+		</h3>
+		<h3>
+			<a href="tienda.html">Libros</a>
+		</h3>
+		<h3>
+			<a href="contacto.html">Contacto</a>
+		</h3>
+		<!--solo puede haber 1 de estos dos activo-->
+		<h3>
+			<a href="proximamente.html">Cuenta</a>
+		</h3>
+		<h3>
+			<a href="login.html">Login</a>
+		</h3>
+	</aside>
+	<nav>
 
 
-            </div>
-            <div id="btnPaginacion"><button> << <button>1</button><button>2</button><button>3</button><button>4</button><button>>></button>
-            </div>
-        </section>
-    </main>
-    <footer>
-        <div>
-            <div>
-                <h5>Nosotros</h5>
-                <ul>
-                    <li><a>Acerca de nosotros</a></li>
-                    <li><a>Contacto</a></li>
-                    <li><a>Empleo</a></li>
-                </ul>
-            </div>
+		<h3>
+			<a href="index.html">Inicio</a>
+		</h3>
+		<h3>
+			<a href="tienda.html">Libros</a>
+		</h3>
+		<h3>
+			<a href="contacto.html">Contacto</a>
+		</h3>
+		<!--solo puede haber 1 de estos dos activo-->
+		<h3>
+			<a href="proximamente.html">Cuenta</a>
+		</h3>
+		<h3>
+			<a href="login.html">Login</a>
+		</h3>
+		<!---->
 
-            <div>
-                <h5>Servicios</h5>
-                <ul>
-                    <li><a>Envío</a></li>
-                    <li><a>Devoluciones</a></li>
-                    <li><a>Preguntas frecuentes</a></li>
-                </ul>
+		<img src="images/menu_black_24dp.svg" id="btnMenuMovil">
+	</nav>
+	<main>
 
-            </div>
-            <div>
-                <h5>Contacto</h5>
-                <ul>
-                    <li>123 Calle Principal</li>
-                    <li>Ciudad, Estado</li>
-                    <li>Código Postal</li>
-                    <li>555-555-5555</li>
-                    <li><a>info@libreria.com</a></li>
-                </ul>
-            </div>
-        </div>
-        <h4>Copyright &copy; Bibliotecarios S.L.
-            <script>document.write(new Date().getFullYear());</script>
-        </h4>
-    </footer>
-    <script src="js/jquery-3.6.3.min.js"></script>
-    <script src="js/tienda.js"></script>
-    <script src="js/carousel.js"></script>
-    <script src="js/general.js"></script>
+
+		<section>
+			<h2>Mas Populares</h2>
+			<h5>El Top 3 de Libros de Esta Semana</h5>
+			<div id="nuevasAdiciones">
+				<!--Todo lo de dentro de este div se va a poner desde servidor-->
+
+				<figure th:each="libro : ${listaPopulares}">
+					<img th:src="'/imagenesLibros/' + ${libro.isbn} + '.jpg'" alt="">
+					<figcaption th:text="${libro.titulo}"></figcaption>
+
+				</figure>
+			</div>
+			<div id="carousel">
+				<img src="images/CasadelLibro_Blog.webp" alt="Image 1"> <img
+					src="images/imagen-libros.wep.webp" alt="Image 2"> <img
+					src="images/libro.webp" alt="Image 3">
+
+
+			</div>
+
+		</section>
+		<div id="content">
+
+			<select name="filtros" id="filtros">
+				<option value="-1" selected hidden disabled>Seleccione
+					filtro</option>
+				<option value="all">Por Defecto (Todos)</option>
+				<option value="autor">Autor</option>
+				<option value="genero">Genero</option>
+				<option value="editorial">Editorial</option>
+			</select> <select name="filtroAutor" id="filtroAutor" hidden>
+				<option value="-1" disabled selected hidden>Seleccione
+					Autor</option>
+				<!--Este select se rellenará desde servidor-->
+			</select> <select name="filtroEditorial" id="filtroEditorial" hidden>
+
+				<option value="-1" disabled selected hidden>Seleccione
+					Editorial</option>
+				<!--Este select se rellenará desde servidor-->
+			</select> <select name="filtroGenero" id="filtroGenero" hidden>
+
+				<option value="-1" disabled selected hidden>Seleccione
+					Genero</option>
+				<!--Este select se rellenará desde servidor-->
+			</select> <select name="ordenar" id="ordenar">
+				<option value="-1" selected hidden disabled>Seleccione
+					orden</option>
+				<option value="ua">Por Defecto (Ultimos Añadidos)</option>
+				<option value="az">A - Z</option>
+				<option value="za">Z - A</option>
+				<option value="eaz">Editorial A - Z</option>
+				<option value="eza">Editorial Z - A</option>
+				<option value="edad0">Edad 0 - 18</option>
+				<option value="edad18">Edad 18 - 0</option>
+
+			</select>
+		</div>
+
+		<section id="catalogo">
+
+			<div id="librosTienda">
+				<!--Todo lo de dentro de este div se va a poner desde servidor-->
+
+				<figure th:each="libro : ${listaLibrosDTO}">
+					<img th:src="'/imagenesLibros/' + ${libro.isbn} + '.jpg'" alt="">
+					<figcaption th:text="${libro.titulo}"></figcaption>
+					<a
+						th:href="@{/usuario/{idUsuario}/adminAlquiler/{idLibro}/add  (idUsuario=${usuario.id},idLibro=${libro.isbn})}"><button>Alquilar</button></a>
+
+				</figure>
+
+			</div>
+			<div id="btnPaginacion">
+				<button>
+					<<
+					<button>1</button>
+					<button>2</button>
+					<button>3</button>
+					<button>4</button>
+					<button>>></button>
+			</div>
+		</section>
+	</main>
+	<footer>
+		<div>
+			<div>
+				<h5>Nosotros</h5>
+				<ul>
+					<li><a>Acerca de nosotros</a></li>
+					<li><a>Contacto</a></li>
+					<li><a>Empleo</a></li>
+				</ul>
+			</div>
+
+			<div>
+				<h5>Servicios</h5>
+				<ul>
+					<li><a>Envío</a></li>
+					<li><a>Devoluciones</a></li>
+					<li><a>Preguntas frecuentes</a></li>
+				</ul>
+
+			</div>
+			<div>
+				<h5>Contacto</h5>
+				<ul>
+					<li>123 Calle Principal</li>
+					<li>Ciudad, Estado</li>
+					<li>Código Postal</li>
+					<li>555-555-5555</li>
+					<li><a>info@libreria.com</a></li>
+				</ul>
+			</div>
+		</div>
+		<h4>
+			Copyright &copy; Bibliotecarios S.L.
+			<script>document.write(new Date().getFullYear());</script>
+		</h4>
+	</footer>
+	<script src="js/jquery-3.6.3.min.js"></script>
+	<script src="js/tienda.js"></script>
+	<script src="js/carousel.js"></script>
+	<script src="js/general.js"></script>
 
 </body>
 

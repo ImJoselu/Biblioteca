@@ -1,5 +1,5 @@
 figure {
-    width: 45%;
+    width: 80%;
 }
 
 #content {
@@ -58,10 +58,9 @@ main>section:first-child {
 #carousel {
     position: absolute !important;
     z-index: -1;
-    width: 100% !important;
+    width: 200%;
     height: 100%;
     top: 0;
-
 }
 
 section>h5,section>h2{
@@ -88,9 +87,11 @@ section>h2{
     transition: all 1s;
 }
 
-#nuevasAdiciones img {
+#nuevasAdiciones figure img {
     box-shadow: black 0px 0px 6px;
     transition: all 1s;
+    /* height: 60%; */
+   width: auto; 
 }
 
 #nuevasAdiciones figcaption {
@@ -106,3 +107,13 @@ section>h2{
     border: 0px solid #513719;
     cursor: pointer;
 }
+main>section:first-child{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+

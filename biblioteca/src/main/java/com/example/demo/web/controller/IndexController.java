@@ -36,7 +36,7 @@ private static final Logger log = LoggerFactory.getLogger(IndexController.class)
 	@GetMapping("/login")
 	public ModelAndView login() {
 		
-		log.info("IndexController - index: Mostramos la pagina inicial");
+		log.info("IndexController - index: Mostramos la pagina login");
 		
 		ModelAndView mav = new ModelAndView("login");
 		/*
@@ -45,4 +45,17 @@ private static final Logger log = LoggerFactory.getLogger(IndexController.class)
 		*/
 		return mav;
 	}
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
