@@ -41,16 +41,18 @@
                     <th>Email</th>
                     <th>Nombre</th>
                     <th>Alquileres</th>
+                    <th>Multas</th>
                    
                 </tr>
             </thead>
             <tbody>
-                <tr th:each=" : ${}">
-                    <td th:text="${}"></td>
-                    <td th:text="${}"></td>
-                    <td th:text="${}"></td>
+                <tr th:each="usuarioDTO : ${listaClientesDTO}">
+                    <td th:text="${usuarioDTO.nif}"></td>
+                    <td th:text="${usuarioDTO.email}"></td>
+                    <td th:text="${usuarioDTO.nombre}"></td>
                    
-                    <td><a   href="adminAlquiler.html" th:href="">Ver Alquileres</a></td>
+                    <td><a  th:href="@{/usuario/{idUsuario}/adminAlquiler (idUsuario=${usuarioDTO.id})}">Ver Alquileres</a></td>
+                    <td><a  th:href="@{/usuario/{idUsuario}/adminMultas (idUsuario=${usuarioDTO.id})}">Ver Multas</a></td>
                     <!--Cuando hagas click en el link de cambiar stock, aparecerá el input number-->
                 </tr>
             </tbody>

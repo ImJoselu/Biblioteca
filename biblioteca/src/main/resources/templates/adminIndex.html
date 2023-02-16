@@ -22,26 +22,26 @@
 
     </header> <aside id="menuMovil">
         <img src="images/close_black_24dp.svg">
-        <h3><a href="adminContacto.html">Contacto</a></h3>
-        <h3><a href="adminClientes.html">Cliente</a></h3>
+        <h3><a th:href="@{/adminContacto}">Contacto</a></h3>
+        <h3><a th:href="@{/adminClientes}">Cliente</a></h3>
         <h3><a th:href="@{/adminEjemplares}">Libro</a></h3>
     </aside>
     <nav>
-        <h3><a href="adminContacto.html">Contacto</a></h3>
-        <h3><a href="adminClientes.html">Cliente</a></h3>
+        <h3><a th:href="@{/adminContacto}">Contacto</a></h3>
+        <h3><a th:href="@{/adminClientes}">Cliente</a></h3>
         <h3><a th:href="@{/adminEjemplares}">Libro</a></h3>
          <!---->
          <img src="images/menu_black_24dp.svg" id="btnMenuMovil">
     </nav>
     <main>
 
-        <a href="adminClientes.html"><button class="btnAdmin">
+        <a th:href="@{/adminClientes}"><button class="btnAdmin">
                 <h2>Clientes</h2> <img src="images/groups_white_48dp.svg" alt="">
             </button></a>
         <a th:href="@{/adminEjemplares}"><button class="btnAdmin">
                 <h2>Libros</h2><img src="images/book_white_24dp.svg" alt="">
             </button></a>
-        <a href="adminContacto.html"><button class="btnAdmin">
+        <a th:href="@{/adminContacto}"><button class="btnAdmin">
                 <h2>Contacto</h2><img src="images/support_agent_white_48dp.svg" alt="">
             </button></a>
     </main>
