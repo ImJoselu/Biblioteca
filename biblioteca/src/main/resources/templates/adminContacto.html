@@ -37,7 +37,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>Nombre</th>
+                    <th>Username</th>
                     <th>Email</th>
                     <th>ISBN</th>
                     <th>Titulo Libro</th>
@@ -46,12 +46,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="${}">
-                    <td th:text="${}"></td>
-                    <td th:text="${}"></td>
-                    <td th:text="${}"></td>
-                    <td th:text="${}"></td>
-                    <td class="verTextarea"><a>Ver Mensaje</a><textarea th:value="" readonly></textarea></td>
+                <tr th:each="solicitudDTO : ${listaSolicitudesDTO}">
+                    <td th:text="${solicitudDTO.username}"></td>
+                    <td th:text="${solicitudDTO.email}"></td>
+                    <td th:text="${solicitudDTO.ISBN}"></td>
+                    <td th:text="${solicitudDTO.titulo}"></td>
+                    <td class="verTextarea"><a>Ver Mensaje</a><textarea th:utext="${solicitudDTO.mensaje}" readonly></textarea></td>
                     <td><select name="estadoContacto" id="estadoContacto" class="estadoContacto"><option value="Aceptada">Aceptada</option><option value="Pendiente" selected>Pendiente</option><option value="Denegada">Denegada</option></select></td>
                   
                 </tr>
@@ -79,8 +79,8 @@
         </div>
         <h4>©Bibliotecarios S.L. 2022/2023</h4>
     </footer>
-    <script src="js/jquery-3.6.3.min.js"></script>
-    <script src="js/admin.js"></script>
+    <script src="/js/jquery-3.6.3.min.js"></script>
+    <script src="/js/admin.js"></script>
 
 </body>
 

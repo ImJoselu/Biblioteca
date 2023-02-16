@@ -22,12 +22,12 @@
 
     </header> <aside id="menuMovil">
         <img src="images/close_black_24dp.svg">
-        <h3><a href="adminContacto.html">Contacto</a></h3>
+        <h3><a th:href="@{/adminContacto}">Contacto</a></h3>
         <h3><a href="adminClientes.html">Cliente</a></h3>
         <h3><a th:href="@{/adminEjemplares}">Libro</a></h3>
     </aside>
     <nav>
-        <h3><a href="adminContacto.html">Contacto</a></h3>
+        <h3><a th:href="@{/adminContacto}">Contacto</a></h3>
         <h3><a href="adminClientes.html">Cliente</a></h3>
         <h3><a th:href="@{/adminEjemplares}">Libro</a></h3>
          <!---->
@@ -41,7 +41,7 @@
         <a th:href="@{/adminEjemplares}"><button class="btnAdmin">
                 <h2>Libros</h2><img src="images/book_white_24dp.svg" alt="">
             </button></a>
-        <a href="adminContacto.html"><button class="btnAdmin">
+        <a th:href="@{/adminContacto}"><button class="btnAdmin">
                 <h2>Contacto</h2><img src="images/support_agent_white_48dp.svg" alt="">
             </button></a>
     </main>
