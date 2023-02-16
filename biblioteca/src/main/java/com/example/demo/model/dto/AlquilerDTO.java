@@ -36,6 +36,7 @@ public class AlquilerDTO {
 			alquilerDTO.setFecha_entrega(alquiler.getFecha_entrega());
 			alquilerDTO.setUsuarioDTO(usuarioDTO);
 			alquilerDTO.setEjemplarDTO(EjemplarDTO.convertToDTO(alquiler.getEjemplar()));
+			/*
 			
 			MultaDTO multaDTO = new MultaDTO();
 			
@@ -43,6 +44,7 @@ public class AlquilerDTO {
 				multaDTO = MultaDTO.convertToDTO(m, alquilerDTO);
 				alquilerDTO.getListaMultasDTO().add(multaDTO);
 			}
+			*/
 			
 			return alquilerDTO;
 

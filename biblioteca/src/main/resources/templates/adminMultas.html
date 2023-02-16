@@ -6,12 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administracion de Multas</title>
-    <link rel="stylesheet" href="css/general.css">
-    <link rel="stylesheet" href="css/generalAdmin.css">
-    <link rel="stylesheet" media="(max-width: 600px)" href="css/movil.css">
-    <link rel="stylesheet" media="(min-width: 600px) and (max-width: 800px)" href="css/tablet.css">
-    <link rel="stylesheet" media="(min-width: 800px)" href="css/pc.css">
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+      <link rel="stylesheet" th:href="@{/css/general.css}" />
+    <link rel="stylesheet" th:href="@{/css/generalAdmin.css}" />
+    <link rel="stylesheet" media="(max-width: 600px)" th:href="@{/css/movil.css}" />
+    <link
+      rel="stylesheet"
+      media="(min-width: 600px) and (max-width: 800px)"
+      th:href="@{/css/tablet.css}"
+    />
+    <link rel="stylesheet" media="(min-width: 800px)" th:href="@{/css/pc.css}" />
 
 </head>
 
@@ -46,11 +49,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="${}">
-                    <td th:text="${}"></td>
-                    <td th:text="${}"></td>
-                    <td class="verTextarea"><a>Ver Obsevacion</a><textarea th:value="" readonly></textarea></td>
-                    <td><a th:href="">Descartar</a></td>
+                <tr th:each="multaDTO:${listaMultasDTO}">
+                    <td th:text="${multaDTO.fecha}"></td>
+                    <td th:text="${multaDTO.importe}"></td>
+                    <td class="verTextarea"><a>Ver Obsevacion</a><textarea th:utext="${multaDTO.observaciones}" readonly></textarea></td>
+                    <td><a> <!--th:href="" -->Descartar</a></td>
                    
                     <!--Cuando hagas click en el link de cambiar stock, aparecerá el input number-->
                 </tr>
@@ -79,8 +82,8 @@
         </div>
         <h4>©Bibliotecarios S.L. 2022/2023</h4>
     </footer>
-    <script src="js/jquery-3.6.3.min.js"></script>
-    <script src="js/admin.js"></script>
+    <script src="/js/jquery-3.6.3.min.js"></script>
+    <script src="/js/admin.js"></script>
 
 </body>
 

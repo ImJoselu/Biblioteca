@@ -22,5 +22,14 @@ public interface MultaRepository extends JpaRepository<Multa, Long>{
 	public List<Multa> findAllByAlquiler(@Param("idA") Long idAlquiler);	
 
 	
+	/*
+	select multa.*
+	from usuario
+	join alquiler on usuario.id = alquiler.fk_usuario_alquiler
+	join multa on alquiler.id = multa.fk_alquiler
+	where usuario.id = 1;
+	*/
+	@Query("SELECT m from Usuario u JOIN u.listaAlquileres a JOIN a.listaMultas m WHERE u.id = :idU")
+	public List<Multa> findAllByCliente(@Param("idU") Long idCliente);
 
 }
