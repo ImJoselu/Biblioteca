@@ -28,6 +28,8 @@ public class SolicitudController {
 
 	private static final Logger log = LoggerFactory.getLogger(SolicitudController.class);
 
+	/* Index - la id, y la vista el select y el isbn */
+	
 	@GetMapping("/adminContacto")
 	public ModelAndView index() {
 
