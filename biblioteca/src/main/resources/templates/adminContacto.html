@@ -50,7 +50,7 @@
 		<img src="images/menu_black_24dp.svg" id="btnMenuMovil">
 	</nav>
 	<main>
-	<form method="POST" th:action="@{/usuario/{idUsuario}/solicitud/save (idUsuario=${usuarioDTO.id})}" th:object="${solicitudDTO}">
+	<form method="POST" th:action="@{/solicitud/save}" th:object="${solicitudDTO}">
 		<button class="btnAdmin" th:href="@{/usuario/{idUsuario}/solicitud/updateEstado (idUsuario=${usuarioDTO.id})}">
 			Confirmar acciones
 		</button>
@@ -67,6 +67,7 @@
 			</thead>
 			<tbody>
 				<tr th:each="solicitudDTO : ${listaSolicitudesDTO}">
+					<td th:text="${solicitudDTO.id}" hidden></td>
 					<td th:text="${solicitudDTO.username}"></td>
 					<td th:text="${solicitudDTO.email}"></td>
 					<td th:text="${solicitudDTO.ISBN}"></td>
@@ -75,7 +76,7 @@
 					<textarea th:utext="${solicitudDTO.mensaje}" readonly></textarea></td>
 					<td><select name="estado" id="estadoContacto"
 						class="estadoContacto"><option value="Aceptada">Aceptada</option>
-							<option value="Pendiente" selected>Pendiente</option>
+							<option value="Pendiente">Pendiente</option>
 							<option value="Denegada">Denegada</option></select></td>
 				</tr>
 			</tbody>

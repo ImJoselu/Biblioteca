@@ -65,7 +65,7 @@ public class SolicitudController {
 	@GetMapping("/usuario/{idUsuario}/solicitud/add")
 	public ModelAndView add(@PathVariable("idUsuario") Long idUsuario) {
 
-		log.info("UsuarioController - add: Anyadimos una nueva solicitud para el usuario: " + idUsuario);
+		log.info("SolicitudController - add: Anyadimos una nueva solicitud para el usuario: " + idUsuario);
 
 		UsuarioDTO usuarioDTO = new UsuarioDTO();
 		usuarioDTO.setId(idUsuario);
@@ -78,10 +78,10 @@ public class SolicitudController {
 	}
 
 	// Salvar usuarios
-	@PostMapping("/usuario/{idUsuario}/solicitud/save")
+	@PostMapping("/solicitud/save")
 	public ModelAndView save(@ModelAttribute("solicitudDTO") SolicitudDTO solicitudDTO) {
 
-		log.info("UsuarioController - save: Salvamos los datos de la solicitud:" + solicitudDTO.toString());
+		log.info("SolicitudController - save: Salvamos los datos de la solicitud:" + solicitudDTO.toString());
 
 		// Invocamos a la capa de servicios para que almacene los datos del usuario
 		solucitudService.save(solicitudDTO);
