@@ -86,32 +86,12 @@
 			<h5>Ultimos Libros que Hemos Añadido</h5>
 			<div id="nuevasAdiciones">
 				<!--Todo lo de dentro de este div se va a poner desde servidor-->
-				<figure>
-					<img th:src="@{/images/libros/10.jpg}" alt="" />
-					<figcaption>La DecimoCuarta - Enrique Ortego</figcaption>
-				</figure>
-				<figure>
-					<img th:src="@{/images/libros/9.jpg}" alt="" />
-					<figcaption>Dragon Ball Z Super - Akira Toriyama</figcaption>
-				</figure>
-				<figure>
-					<img th:src="@{/images/libros/8.jpg}" alt="" />
-					<figcaption>En la Sombra - Principe Harry</figcaption>
-				</figure>
-				<figure>
-					<img th:src="@{/images/libros/4.jpg}" alt="" />
-					<figcaption>Esperando al Diluvio - Dolores Redondo</figcaption>
-				</figure>
-				<figure>
-					<img th:src="@{/images/libros/5.jpg}" alt="" />
-					<figcaption>Mis Ganas Ganan - Elena Huelva</figcaption>
-				</figure>
-				<figure>
-					<img th:src="@{/images/libros/6.jpg}" alt="" />
-					<figcaption>Meditaciones de Cine - Quentin Tarantino</figcaption>
-				</figure>
+				<figure th:each="libro : ${listaLibrosDTO}">
+					<img th:src="'/imagenesLibros/' + ${libro.isbn} + '.jpg'" alt="">
+					<figcaption th:text="${libro.titulo}"></figcaption>
+					</figure>
 			</div>
-			<a href="tienda.html">
+			<a th:href="@{/tienda}">
 				<button>Ver Coleccion</button>
 			</a>
 		</section>

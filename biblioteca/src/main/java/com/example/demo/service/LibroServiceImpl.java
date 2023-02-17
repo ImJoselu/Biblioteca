@@ -27,4 +27,15 @@ public class LibroServiceImpl implements LibroService {
 		return listaDTONueva;
 	}
 
+	@Override
+	public List<LibroDTO> findTop6ByOrderByIdDesc() {
+		List<LibroDTO> listaDTONueva = new ArrayList<>();
+
+		for (Libro libro : libroRepository.findTop6ByOrderByIdDesc()) {
+			listaDTONueva.add(LibroDTO.convertToDTO(libro));
+		}
+
+		return listaDTONueva;
+	}
+
 }

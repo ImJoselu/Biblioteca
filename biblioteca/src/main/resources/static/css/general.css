@@ -149,7 +149,7 @@ button {
 input:focus, textarea:focus {
 	outline: none;
 	border-width: 2px;
-	height: 30px;
+	height: 100%;
 }
 
 button:hover {

@@ -16,31 +16,54 @@
 </head>
 
 <body>
-    <header>
-        <h2><a href="index.html">Biblioteca</a></h2><!--Esto será luego una imagen o algo asi-->
+   	<header>
+		<h2>
+			<a th:href="@{/}">Biblioteca</a>
+		</h2>
+		<!--Esto será luego una imagen o algo asi-->
+	</header>
 
-    </header>  <aside id="menuMovil">
-        <img src="images/close_black_24dp.svg">
-      <h3><a href="index.html">Inicio</a></h3>
-      <h3><a href="tienda.html">Libros</a></h3>
-      <h3><a href="contacto.html">Contacto</a></h3>
-      <!--solo puede haber 1 de estos dos activo-->
-      <h3><a href="proximamente.html">Cuenta</a></h3>
-      <h3><a href="login.html">Login</a></h3>
-    </aside>
-    <nav>
-
-
-    <h3>    <a href="index.html">Inicio</a></h3>
-        <h3><a href="tienda.html">Libros</a></h3>
-        <h3><a href="contacto.html">Contacto</a></h3>
-        <!--solo puede haber 1 de estos dos activo-->
-        <h3><a href="proximamente.html">Cuenta</a></h3>
-        <h3><a href="login.html">Login</a></h3>
-        <h3><a th:href="@{/adminIndex}">Admin</a></h3>
-        <!---->
-        <img src="images/menu_black_24dp.svg" id="btnMenuMovil">
-    </nav>
+	<aside id="menuMovil">
+		<img src="/images/close_black_24dp.svg">
+		<h3>
+			<a th:href="@{/}">Inicio</a>
+		</h3>
+		<h3>
+			<a th:href="@{/tienda}">Libros</a>
+		</h3>
+		<h3>
+			<a th:href="@{/contacto}">Contacto</a>
+		</h3>
+		<!--solo puede haber 1 de estos dos activo-->
+		<h3>
+			<a href="proximamente.html">Cuenta</a>
+		</h3>
+		<h3>
+			<a th:href="@{/login}">Login</a>
+		</h3>
+	</aside>
+	<nav>
+		<h3>
+			<a th:href="@{/}">Inicio</a>
+		</h3>
+		<h3>
+			<a th:href="@{/tienda}">Libros</a>
+		</h3>
+		<h3>
+			<a th:href="@{/contacto}">Contacto</a>
+		</h3>
+		<!--solo puede haber 1 de estos dos activo-->
+		<h3>
+			<a href="proximamente.html">Cuenta</a>
+		</h3>
+		<h3>
+			<a th:href="@{/login}">Login</a>
+		</h3>
+		<h3><a th:href="@{/adminIndex}">Admin</a></h3>
+		<!---->
+		<img th:src="@{/images/menu_black_24dp.svg}" id="btnMenuMovil" />
+	</nav>        
+     
     <main>
         <section id="seccionLogin">
             <h1>Login</h1>

@@ -25,59 +25,56 @@
 
 	<header>
 		<h2>
-			<a href="index.html">Biblioteca</a>
+			<a th:href="@{/}">Biblioteca</a>
 		</h2>
 		<!--Esto será luego una imagen o algo asi-->
-
 	</header>
+
 	<aside id="menuMovil">
-		<img src="images/close_black_24dp.svg">
+		<img src="/images/close_black_24dp.svg">
 		<h3>
-			<a href="index.html">Inicio</a>
+			<a th:href="@{/}">Inicio</a>
 		</h3>
 		<h3>
-			<a href="tienda.html">Libros</a>
+			<a th:href="@{/tienda}">Libros</a>
 		</h3>
 		<h3>
-			<a href="contacto.html">Contacto</a>
+			<a th:href="@{/contacto}">Contacto</a>
 		</h3>
 		<!--solo puede haber 1 de estos dos activo-->
 		<h3>
 			<a href="proximamente.html">Cuenta</a>
 		</h3>
 		<h3>
-			<a href="login.html">Login</a>
+			<a th:href="@{/login}">Login</a>
 		</h3>
 	</aside>
 	<nav>
-
-
 		<h3>
-			<a href="index.html">Inicio</a>
+			<a th:href="@{/}">Inicio</a>
 		</h3>
 		<h3>
-			<a href="tienda.html">Libros</a>
+			<a th:href="@{/tienda}">Libros</a>
 		</h3>
 		<h3>
-			<a href="contacto.html">Contacto</a>
+			<a th:href="@{/contacto}">Contacto</a>
 		</h3>
 		<!--solo puede haber 1 de estos dos activo-->
 		<h3>
 			<a href="proximamente.html">Cuenta</a>
 		</h3>
 		<h3>
-			<a href="login.html">Login</a>
+			<a th:href="@{/login}">Login</a>
 		</h3>
 		<!---->
-
-		<img src="images/menu_black_24dp.svg" id="btnMenuMovil">
+		<img th:src="@{/images/menu_black_24dp.svg}" id="btnMenuMovil" />
 	</nav>
 	<main>
 
 
 		<section>
-			<h2>Mas Populares</h2>
-			<h5>El Top 3 de Libros de Esta Semana</h5>
+			<h2>Te Recomendamos</h2>
+			<h5>Libros que Seguro Que Te Encantan</h5>
 			<div id="nuevasAdiciones">
 				<!--Todo lo de dentro de este div se va a poner desde servidor-->
 
