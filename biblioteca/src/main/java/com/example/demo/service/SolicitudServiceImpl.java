@@ -67,8 +67,15 @@ public class SolicitudServiceImpl implements SolicitudService {
 		log.info("SolicitudServiceImpl - findById: Entidad usuario: ");
 		Solicitud solicitud = SolicitudDTO.convertToEntity(solicitudDTO);
 		
-		solicitudRepository.save(solicitud);
+		solicitudRepository.updateEstadoById(solicitud.getId() , solicitud.getEstado());
 
+	}
+
+	@Override
+	public SolicitudDTO findById(SolicitudDTO solicitudDTO) {
+		// TODO Auto-generated method stub
+		
+		return SolicitudDTO.convertToDTO(solicitudRepository.findById(solicitudDTO.getId()).get());
 	}
 
 }

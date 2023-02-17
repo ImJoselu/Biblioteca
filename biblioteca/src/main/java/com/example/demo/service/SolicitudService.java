@@ -15,4 +15,6 @@ public interface SolicitudService {
 
 	void save(SolicitudDTO solicitudDTO);
 
+	SolicitudDTO findById(SolicitudDTO solicitudDTO);
+
 }

@@ -92,21 +92,16 @@ public class SolicitudController {
 	}
 
 	// Updatear AdminContacto
-	@GetMapping("/usuario/{idUsuario}/solicitud/updateEstado")
-	public ModelAndView updateEstado(@ModelAttribute("solicitudDTO") SolicitudDTO solicitudDTO,
-			@PathVariable("idUsuario") Long idUsuario) {
+	@GetMapping("/adminContacto/{idSolicitud}/adminContactoform")
+	public ModelAndView updateEstado(@PathVariable ("idSolicitud") Long idSolicitud) {
 
 		log.info("SolicitudController - save:Salvamos los datos del solicitud");
 
-		ModelAndView mav = new ModelAndView();
-		UsuarioDTO usuarioDTO = new UsuarioDTO();
-		usuarioDTO.setId(idUsuario);
-		usuarioDTO = usuarioService.findById(idUsuario);
-
-		solicitudDTO.setUsuarioDTO(usuarioDTO);
-		solucitudService.save(solicitudDTO);
-
-		mav.setViewName("redirect:/usuarios/{idUsuario}/solicitud");
+		ModelAndView mav = new ModelAndView("adminContactoform");
+		SolicitudDTO solicitudDTO = new SolicitudDTO();
+		solicitudDTO.setId(idSolicitud);
+		solicitudDTO = solucitudService.findById(solicitudDTO);
+		mav.addObject("solicitudDTO", solicitudDTO);
 
 		return mav;
 	}

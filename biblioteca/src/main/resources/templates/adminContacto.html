@@ -50,38 +50,40 @@
 		<img src="images/menu_black_24dp.svg" id="btnMenuMovil">
 	</nav>
 	<main>
-	<form method="POST" th:action="@{/solicitud/save}" th:object="${solicitudDTO}">
-		<button class="btnAdmin" th:href="@{/usuario/{idUsuario}/solicitud/updateEstado (idUsuario=${usuarioDTO.id})}">
-			Confirmar acciones
-		</button>
-		<table>
-			<thead>
-				<tr>
-					<th>Username</th>
-					<th>Email</th>
-					<th>ISBN</th>
-					<th>Titulo Libro</th>
-					<th>Mensaje</th>
-					<th>Estado</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="solicitudDTO : ${listaSolicitudesDTO}">
-					<td th:text="${solicitudDTO.id}" hidden></td>
-					<td th:text="${solicitudDTO.username}"></td>
-					<td th:text="${solicitudDTO.email}"></td>
-					<td th:text="${solicitudDTO.ISBN}"></td>
-					<td th:text="${solicitudDTO.titulo}"></td>
-					<td class="verTextarea"><a>Ver Mensaje</a>
-					<textarea th:utext="${solicitudDTO.mensaje}" readonly></textarea></td>
-					<td><select name="estado" id="estadoContacto"
-						class="estadoContacto"><option value="Aceptada">Aceptada</option>
-							<option value="Pendiente">Pendiente</option>
-							<option value="Denegada">Denegada</option></select></td>
-				</tr>
-			</tbody>
-		</table>
-		</form>
+	
+    <table>
+        <thead>
+            <tr> 
+                <th>Username</th>
+                <th>Email</th>
+                <th>ISBN</th>
+                <th>Titulo Libro</th>
+                <th>Mensaje</th>
+                <th>Estado</th>
+                <th>Editar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="solicitudDTO : ${listaSolicitudesDTO}">
+           
+                <td th:text="${solicitudDTO.id}" hidden th:field="${solicitudDTO.id}"></td>
+                <td th:text="${solicitudDTO.username}"></td>
+                <td th:text="${solicitudDTO.email}"></td>
+                <td th:text="${solicitudDTO.ISBN}"></td>
+                <td th:text="${solicitudDTO.titulo}"></td>
+                <td class="verTextarea">
+                    <a>Ver Mensaje</a>
+                    <textarea th:utext="${solicitudDTO.mensaje}" readonly></textarea>
+                </td>
+                <td th:text="${solicitudDTO.estado}"></td>
+                <td>
+                    <a th:href="@{/adminContacto/{idSolicitud}/adminContactoform (idSolicitud=${solicitudDTO.id})} ">Editar</a>
+                </td>
+              
+            </tr>
+        </tbody>
+    </table>
+
 	</main>
 	<div class="volver">
 		<p>
