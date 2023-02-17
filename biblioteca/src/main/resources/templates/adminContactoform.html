@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${add} ? 'Nuevo solicitud' : 'Actualizar solicitud'"></title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/general.css}">
+</head>
+<body>
+	<h2 class="mensaje-error" th:if="${errorMessage}"
+		th:utext="${errorMessage}"></h2>
+	<br>
+	 <form method="POST" th:action="@{/solicitud/save}" th:object="${solicitudDTO}">
+		<table>
+			<tr>
+				<td>id</td>
+				<td>:</td>
+				<td><input type="text" th:field="*{id}" readonly /></td>
+			</tr>
+			<tr>
+				<td>Username</td>
+				<td>:</td>
+				<td><input type="text" th:field="*{username}" readonly/></td>
+			</tr>
+			<tr>
+				<td>Email</td>
+				<td>:</td>
+				<td><input type="text" th:field="*{email}" readonly/></td>
+			</tr>
+			<tr>
+				<td>ISBN</td>
+				<td>:</td>
+				<td><input type="text" th:field="*{ISBN}" readonly/></td>
+			</tr>
+			<tr>
+				<td>Titulo</td>
+				<td>:</td>
+				<td><input type="text" th:field="*{titulo}" readonly/></td>
+			</tr>
+			<tr>
+				<td>Mensaje</td>
+				<td>:</td>
+				<td><input type="text" th:field="*{mensaje}" readonly/></td>
+			</tr>
+			<tr>
+				<td>Estado</td>
+				<td>:</td>
+				<td>
+				<select name="estado" id="estadoContacto" class="estadoContacto" th:field="${solicitudDTO.estado}">
+                        <option value="Aceptada" th:selected="${solicitudDTO.estado == 'Aceptada'}">Aceptada</option>
+                        <option value="Pendiente" th:selected="${solicitudDTO.estado == 'Pendiente'}">Pendiente</option>
+                        <option value="Denegada" th:selected="${solicitudDTO.estado == 'Denegada'}">Denegada</option>
+               	</select>
+                </td>
+			</tr>
+		</table>
+		<input><input
+			class="enlace-boton" type="submit"
+			th:value="Actualizar" />
+	</form>
+	<br>
+	<a class="enlace-boton" th:href="@{/adminContacto}">Volver</a>
+</body>
+</html>
