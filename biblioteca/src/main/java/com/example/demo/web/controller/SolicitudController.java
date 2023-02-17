@@ -13,16 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.dto.UsuarioDTO;
-import com.example.demo.model.dto.UsuarioDTO;
-import com.example.demo.model.dto.UsuarioDTO;
-import com.example.demo.model.dto.UsuarioDTO;
 import com.example.demo.model.dto.SolicitudDTO;
-import com.example.demo.model.dto.EjemplarDTO;
-import com.example.demo.model.dto.SolicitudDTO;
-import com.example.demo.model.dto.SolicitudDTO;
-import com.example.demo.model.dto.SolicitudDTO;
-import com.example.demo.model.dto.UsuarioDTO;
-import com.example.demo.service.EjemplarService;
 import com.example.demo.service.SolicitudService;
 import com.example.demo.service.UsuarioService;
 
@@ -43,10 +34,13 @@ public class SolicitudController {
 		log.info("SolicitudController - index: Mostramos la gestion de Solicitudes");
 
 		List<SolicitudDTO> listaSolicitudesDTO = solucitudService.findAll();
-
+		UsuarioDTO usuarioDTO = new UsuarioDTO();
+		usuarioDTO.setId((Long.valueOf(1)));
 		ModelAndView mav = new ModelAndView("adminContacto");
+		
+		// Obtenemos el cliente
 		mav.addObject("listaSolicitudesDTO", listaSolicitudesDTO);
-
+		mav.addObject("usuarioDTO", usuarioDTO);
 		return mav;
 	}
 
@@ -91,12 +85,12 @@ public class SolicitudController {
 		solucitudService.save(solicitudDTO);
 
 		// Redireccionamos para volver a invocar el metodo que escucha /usuarios
-		ModelAndView mav = new ModelAndView("redirect:/MisSolicitudes/{idUsuario}");
+		ModelAndView mav = new ModelAndView("redirect:/adminIndex");
 		return mav;
 	}
 
 	// Updatear AdminContacto
-	@PostMapping("/usuario/{idUsuario}/solicitud/updateEstado")
+	@GetMapping("/usuario/{idUsuario}/solicitud/updateEstado")
 	public ModelAndView updateEstado(@ModelAttribute("solicitudDTO") SolicitudDTO solicitudDTO,
 			@PathVariable("idUsuario") Long idUsuario) {
 
@@ -106,8 +100,8 @@ public class SolicitudController {
 		UsuarioDTO usuarioDTO = new UsuarioDTO();
 		usuarioDTO.setId(idUsuario);
 		usuarioDTO = usuarioService.findById(idUsuario);
-		solicitudDTO.setUsuarioDTO(usuarioDTO);
 
+		solicitudDTO.setUsuarioDTO(usuarioDTO);
 		solucitudService.save(solicitudDTO);
 
 		mav.setViewName("redirect:/usuarios/{idUsuario}/solicitud");

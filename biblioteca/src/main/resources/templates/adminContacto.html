@@ -50,10 +50,10 @@
 		<img src="images/menu_black_24dp.svg" id="btnMenuMovil">
 	</nav>
 	<main>
-	<form method="POST" th:action="@{/clientes/{idCliente}/propiedades/asignar (idCliente=${clienteDTO.id})}" th:object="${solicitudDTO}">
-		<div class="btnAdmin" th:href="@{/clientes/{idCliente}/propiedades/addselect (idCliente=${clienteDTO.id})}">
-			<h3>Confirmar acciones</h3>
-		</div>
+	<form method="POST" th:action="@{/usuario/{idUsuario}/solicitud/save (idUsuario=${usuarioDTO.id})}" th:object="${solicitudDTO}">
+		<button class="btnAdmin" th:href="@{/usuario/{idUsuario}/solicitud/updateEstado (idUsuario=${usuarioDTO.id})}">
+			Confirmar acciones
+		</button>
 		<table>
 			<thead>
 				<tr>
@@ -63,7 +63,6 @@
 					<th>Titulo Libro</th>
 					<th>Mensaje</th>
 					<th>Estado</th>
-
 				</tr>
 			</thead>
 			<tbody>
@@ -78,10 +77,8 @@
 						class="estadoContacto"><option value="Aceptada">Aceptada</option>
 							<option value="Pendiente" selected>Pendiente</option>
 							<option value="Denegada">Denegada</option></select></td>
-
 				</tr>
 			</tbody>
-
 		</table>
 		</form>
 	</main>
