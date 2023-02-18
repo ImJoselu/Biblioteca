@@ -6,6 +6,10 @@ import com.example.demo.model.dto.LibroDTO;
 
 public interface LibroService {
 
+	List<LibroDTO> findAll();
+
+	List<LibroDTO> findTop6ByOrderByIdDesc();
+
 
 
 }

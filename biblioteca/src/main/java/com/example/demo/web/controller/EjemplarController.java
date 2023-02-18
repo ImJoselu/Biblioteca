@@ -36,17 +36,6 @@ public class EjemplarController {
 		return mav;
 	}
 	
-	@GetMapping("/tienda")
-	public ModelAndView tienda() {
-		
-		log.info("EjemplarController - index: Mostramos la gestion de ejemplares");
-		
-		List<EjemplarDTO> listaEjemplaresDTO = ejemplarService.findAll();
-		
-		ModelAndView mav = new ModelAndView("tienda");
-		mav.addObject("listaEjemplaresDTO", listaEjemplaresDTO);
-		
-		return mav;
-	}
+
 
 }
