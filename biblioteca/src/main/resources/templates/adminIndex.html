@@ -2,69 +2,89 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administracion</title>
-    <link rel="stylesheet" href="css/general.css">
-    <link rel="stylesheet" href="css/generalAdmin.css">
-    <link rel="stylesheet" href="css/adminIndex.css">
-    <link rel="stylesheet" media="(max-width: 600px)" href="css/movil.css">
-    <link rel="stylesheet" media="(min-width: 600px) and (max-width: 800px)" href="css/tablet.css">
-    <link rel="stylesheet" media="(min-width: 800px)" href="css/pc.css">
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Administracion</title>
+<link rel="stylesheet" href="css/general.css">
+<link rel="stylesheet" href="css/generalAdmin.css">
+<link rel="stylesheet" href="css/adminIndex.css">
+<link rel="stylesheet" media="(max-width: 600px)" href="css/movil.css">
+<link rel="stylesheet" media="(min-width: 600px) and (max-width: 800px)"
+	href="css/tablet.css">
+<link rel="stylesheet" media="(min-width: 800px)" href="css/pc.css">
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 
 </head>
 
 <body>
-    <header>
-        <h2><a href="adminIndex.html">LogoAdmin</a></h2><!--Esto será luego una imagen o algo asi-->
+	<header>
+		<h2>
+			<a href="adminIndex.html">LogoAdmin</a>
+		</h2>
+		<!--Esto será luego una imagen o algo asi-->
 
-    </header> <aside id="menuMovil">
-        <img src="images/close_black_24dp.svg">
-        <h3><a th:href="@{/adminContacto}">Contacto</a></h3>
-        <h3><a th:href="@{/adminClientes}">Cliente</a></h3>
-        <h3><a th:href="@{/adminEjemplares}">Libro</a></h3>
-    </aside>
-    <nav>
-        <h3><a th:href="@{/adminContacto}">Contacto</a></h3>
-        <h3><a th:href="@{/adminClientes}">Cliente</a></h3>
-        <h3><a th:href="@{/adminEjemplares}">Libro</a></h3>
-         <!---->
-         <img src="images/menu_black_24dp.svg" id="btnMenuMovil">
-    </nav>
-    <main>
+	</header>
+	<aside id="menuMovil">
+		<img src="images/close_black_24dp.svg">
+		<h3>
+			<a th:href="@{/adminContacto}">Contacto</a>
+		</h3>
+		<h3>
+			<a th:href="@{/adminClientes}">Cliente</a>
+		</h3>
+		<h3>
+			<a th:href="@{/adminEjemplares}">Libro</a>
+		</h3>
+	</aside>
+	<nav>
+		<h3>
+			<a th:href="@{/adminContacto}">Contacto</a>
+		</h3>
+		<h3>
+			<a th:href="@{/adminClientes}">Cliente</a>
+		</h3>
+		<h3>
+			<a th:href="@{/adminEjemplares}">Libro</a>
+		</h3>
+		<!---->
+		<img src="images/menu_black_24dp.svg" id="btnMenuMovil">
+	</nav>
+	<main>
 
-        <a th:href="@{/adminClientes}"><button class="btnAdmin">
-                <h2>Clientes</h2> <img src="images/groups_white_48dp.svg" alt="">
-            </button></a>
-        <a th:href="@{/adminEjemplares}"><button class="btnAdmin">
-                <h2>Libros</h2><img src="images/book_white_24dp.svg" alt="">
-            </button></a>
-        <a th:href="@{/adminContacto}"><button class="btnAdmin">
-                <h2>Contacto</h2><img src="images/support_agent_white_48dp.svg" alt="">
-            </button></a>
-    </main>
-    <footer>
-        <div>
-            <div>
-                <p>En la Biblioteca, nos esforzamos por brindar un acceso fácil y conveniente a una amplia selección de
-                    libros y recursos.</p>
-            </div>
-            <div>
-                <p>Nuestro compromiso es brindar una experiencia de lectura inolvidable</p>
-            </div>
-            <div>
-                <p>Nuestro equipo de bibliotecarios trabaja incansablemente para ofrecerte los mejores recursos</p>
-            </div>
-            <div>
-                <p>Gracias por formar parte de esta comunidad de lectores</p>
-            </div>
-        </div>
-        <h4>©Bibliotecarios S.L. 2022/2023</h4>
-    </footer>
-    <script src="/js/jquery-3.6.3.min.js"></script>
-    <script src="/js/admin.js"></script>
+		<a th:href="@{/adminClientes}"><button class="btnAdmin">
+				<h2>Clientes</h2>
+				<img src="images/groups_white_48dp.svg" alt="">
+			</button></a> <a th:href="@{/adminEjemplares}"><button class="btnAdmin">
+				<h2>Libros</h2>
+				<img src="images/book_white_24dp.svg" alt="">
+			</button></a> <a th:href="@{/adminContacto}"><button class="btnAdmin">
+				<h2>Contacto</h2>
+				<img src="images/support_agent_white_48dp.svg" alt="">
+			</button></a>
+	</main>
+	<footer>
+		<div>
+			<div>
+				<p>En la Biblioteca, nos esforzamos por brindar un acceso fácil
+					y conveniente a una amplia selección de libros y recursos.</p>
+			</div>
+			<div>
+				<p>Nuestro compromiso es brindar una experiencia de lectura
+					inolvidable</p>
+			</div>
+			<div>
+				<p>Nuestro equipo de bibliotecarios trabaja incansablemente para
+					ofrecerte los mejores recursos</p>
+			</div>
+			<div>
+				<p>Gracias por formar parte de esta comunidad de lectores</p>
+			</div>
+		</div>
+		<h4>©Bibliotecarios S.L. 2022/2023</h4>
+	</footer>
+	<script src="/js/jquery-3.6.3.min.js"></script>
+	<script src="/js/admin.js"></script>
 
 </body>
 

@@ -1,72 +1,71 @@
 .cambiarInput input {
-    display: none;
+	display: none;
 }
 
 .verTextarea textarea {
-    display: none;
+	display: none;
 }
 
 .btnAdmin {
-    background-color: #513719;
-    color: white;
-    height: 100px;
-    width: 100px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 1s;
-    margin-right: 50px;
+	background-color: #513719;
+	color: white;
+	height: 100px;
+	width: 100px;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 1s;
+	margin-right: 50px;
 }
 
 .btnAdmin:hover {
-    transform: scale(0.8);
-    color: #1c1d1d;
-    background-color: #dcdcdc;
-    box-shadow: #1c1d1d 10px 10px;
-    cursor: pointer;
+	transform: scale(0.8);
+	color: #1c1d1d;
+	background-color: #dcdcdc;
+	box-shadow: #1c1d1d 10px 10px;
+	cursor: pointer;
 }
 
 .btnAdmin>h3:hover {
-    cursor: pointer
+	cursor: pointer
 }
 
 .estadoContacto {
-    color: #513719;
+	color: #513719;
 }
 
 .estadoContacto option {
-    text-shadow: 0 0 0.2em black, 0 0 0.2em black,
-        0 0 0.2em black;
-    background-color: #1c1d1d;
+	text-shadow: 0 0 0.2em black, 0 0 0.2em black, 0 0 0.2em black;
+	background-color: #1c1d1d;
 }
 
 .estadoContacto option:nth-of-type(1) {
-    color: greenyellow;
+	color: greenyellow;
 }
 
 .estadoContacto option:nth-of-type(2) {
-    color: yellow;
+	color: yellow;
 }
 
 .estadoContacto option:nth-of-type(3) {
-    color: red;
+	color: red;
 }
 
-td{font-family: Arial, Helvetica, sans-serif;
-text-align: center;
-
+td {
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
 }
 
-  table, th, td {
-    border: 1px solid;
-    border-collapse: collapse;
-    padding: 10px;
-  }
-  
-  th{background-color: #513719;
-color: white;
+table, th, td {
+	border: 1px solid;
+	border-collapse: collapse;
+	padding: 10px;
+}
 
+th {
+	background-color: #513719;
+	color: white;
 }
 
 /*
@@ -75,8 +74,6 @@ th{
     color: #4c2f0d;
 }
 */
-
-.volver{
-
-    text-align: center;
+.volver {
+	text-align: center;
 }

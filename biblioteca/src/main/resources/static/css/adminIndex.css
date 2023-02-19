@@ -1,28 +1,32 @@
 main {
-    display: flex;
-    flex-wrap: wrap;
-    width: 80%;
-    align-items: center;
-    margin: 0 auto;
-    gap: 40px;
+	display: flex;
+	flex-wrap: wrap;
+	width: 80%;
+	align-items: center;
+	margin: 0 auto;
+	gap: 40px;
 }
 
 .btnAdmin {
-    margin: 0;
-    width: 300px;
-    height: 300px;
-    display: flex;
-    flex-direction: column;
+	margin: 0;
+	width: 300px;
+	height: 300px;
+	display: flex;
+	flex-direction: column;
 }
 
 .btnAdmin:hover>img {
-    filter: brightness(0.1);
-    transition: all 1s;
-    cursor: pointer;
+	filter: brightness(0.1);
+	transition: all 1s;
+	cursor: pointer;
 }
-.btnAdmin h2{cursor: pointer; text-decoration: none !important;}
+
+.btnAdmin h2 {
+	cursor: pointer;
+	text-decoration: none !important;
+}
 
 .btnAdmin a {
-    text-decoration: none !important;
-    cursor: pointer !important;
+	text-decoration: none !important;
+	cursor: pointer !important;
 }

@@ -89,7 +89,7 @@
 				<figure th:each="libro : ${listaLibrosDTO}">
 					<img th:src="'/imagenesLibros/' + ${libro.isbn} + '.jpg'" alt="">
 					<figcaption th:text="${libro.titulo}"></figcaption>
-					</figure>
+				</figure>
 			</div>
 			<a th:href="@{/tienda}">
 				<button>Ver Coleccion</button>
