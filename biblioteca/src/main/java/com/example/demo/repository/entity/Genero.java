@@ -25,5 +25,5 @@ public class Genero {
 
 	@ManyToMany(cascade = { CascadeType.ALL }, mappedBy = "listaGeneros")
 	@ToString.Exclude
-	private Set<Libro> listaLibros;	
+	private Set<Libro> listaLibros;
 }

@@ -12,30 +12,25 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.demo.model.dto.EjemplarDTO;
 import com.example.demo.service.EjemplarService;
 
-
 @Controller
 public class EjemplarController {
 
-
-	
 	@Autowired
 	private EjemplarService ejemplarService;
-	
+
 	private static final Logger log = LoggerFactory.getLogger(IndexController.class);
-	
+
 	@GetMapping("/adminEjemplares")
 	public ModelAndView index() {
-		
+
 		log.info("EjemplarController - index: Mostramos la gestion de ejemplares");
-		
+
 		List<EjemplarDTO> listaEjemplaresDTO = ejemplarService.findAll();
-		
+
 		ModelAndView mav = new ModelAndView("adminEjemplares");
 		mav.addObject("listaEjemplaresDTO", listaEjemplaresDTO);
-		
+
 		return mav;
 	}
-	
-
 
 }

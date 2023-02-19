@@ -17,9 +17,9 @@
 </head>
 
 <body>
-	<header>
+		<header>
 		<h2>
-			<a href="adminIndex.html">LogoAdmin</a>
+			<a th:href="@{/adminIndex}">LogoAdmin</a>
 		</h2>
 		<!--Esto será luego una imagen o algo asi-->
 
@@ -27,24 +27,24 @@
 	<aside id="menuMovil">
 		<img src="images/close_black_24dp.svg">
 		<h3>
-			<a href="adminContacto.html">Contacto</a>
+			<a th:href="@{/adminContacto}">Contacto</a>
 		</h3>
 		<h3>
-			<a href="adminClientes.html">Cliente</a>
+			<a th:href="@{/adminClientes}">Cliente</a>
 		</h3>
 		<h3>
-			<a href="adminEjemplares.html">Libro</a>
+			<a th:href="@{/adminEjemplares}">Libro</a>
 		</h3>
 	</aside>
 	<nav>
 		<h3>
-			<a href="adminContacto.html">Contacto</a>
+			<a th:href="@{/adminContacto}">Contacto</a>
 		</h3>
 		<h3>
-			<a href="adminClientes.html">Cliente</a>
+			<a th:href="@{/adminClientes}">Cliente</a>
 		</h3>
 		<h3>
-			<a href="adminEjemplares.html">Libro</a>
+			<a th:href="@{/adminEjemplares}">Libro</a>
 		</h3>
 		<!---->
 		<img src="images/menu_black_24dp.svg" id="btnMenuMovil">
@@ -76,7 +76,7 @@
 	</main>
 	<div class="volver">
 		<p>
-			Volver a Inicio: <a th:href="@{/}">Inicio</a>
+			Volver a Inicio: <a th:href="@{/adminIndex}">Inicio</a>
 		</p>
 	</div>
 	<footer>

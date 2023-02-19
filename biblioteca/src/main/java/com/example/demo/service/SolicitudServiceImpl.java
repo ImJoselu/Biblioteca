@@ -26,7 +26,6 @@ public class SolicitudServiceImpl implements SolicitudService {
 
 	private static final Logger log = LoggerFactory.getLogger(SolicitudServiceImpl.class);
 
-	
 	@Autowired
 	SolicitudRepository solicitudRepository;
 
@@ -66,15 +65,15 @@ public class SolicitudServiceImpl implements SolicitudService {
 		// TODO Auto-generated method stub
 		log.info("SolicitudServiceImpl - findById: Entidad usuario: ");
 		Solicitud solicitud = SolicitudDTO.convertToEntity(solicitudDTO);
-		
-		solicitudRepository.updateEstadoById(solicitud.getId() , solicitud.getEstado());
+
+		solicitudRepository.updateEstadoById(solicitud.getId(), solicitud.getEstado());
 
 	}
 
 	@Override
 	public SolicitudDTO findById(SolicitudDTO solicitudDTO) {
 		// TODO Auto-generated method stub
-		
+
 		return SolicitudDTO.convertToDTO(solicitudRepository.findById(solicitudDTO.getId()).get());
 	}
 

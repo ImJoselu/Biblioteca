@@ -11,14 +11,14 @@ import lombok.Data;
 import lombok.ToString;
 
 @Data
-public class SolicitudDTO implements Serializable{
+public class SolicitudDTO implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private Long id;
-	
+
 	private String username;
 	private String email;
 	private String ISBN;
@@ -27,7 +27,7 @@ public class SolicitudDTO implements Serializable{
 	private String estado;
 	@ToString.Exclude
 	private UsuarioDTO usuarioDTO;
-	
+
 	// Convertir una entidad a un DTO
 	public static SolicitudDTO convertToDTO(Solicitud solicitud) {
 
@@ -39,14 +39,13 @@ public class SolicitudDTO implements Serializable{
 		solicitudDTO.setTitulo(solicitud.getTitulo());
 		solicitudDTO.setMensaje(solicitud.getMensaje());
 		solicitudDTO.setEstado(solicitud.getEstado());
-		
+
 		solicitudDTO.setUsuarioDTO(UsuarioDTO.convertToDTO(solicitud.getUsuario()));
-		
+
 		return solicitudDTO;
-		
-		
+
 	}
-	
+
 	// Convertir una entidad a un DTO
 	public static Solicitud convertToEntity(SolicitudDTO solicitudDTO) {
 
@@ -58,16 +57,15 @@ public class SolicitudDTO implements Serializable{
 		solicitud.setTitulo(solicitudDTO.getTitulo());
 		solicitud.setMensaje(solicitudDTO.getMensaje());
 		solicitud.setEstado(solicitudDTO.getEstado());
-	
+
 		solicitud.setUsuario(UsuarioDTO.convertToEntity(solicitudDTO.getUsuarioDTO()));
-		
+
 		return solicitud;
 	}
 
 	public SolicitudDTO() {
-		this.usuarioDTO = new UsuarioDTO();;
+		this.usuarioDTO = new UsuarioDTO();
+		;
 	}
-	
-	
-	
+
 }

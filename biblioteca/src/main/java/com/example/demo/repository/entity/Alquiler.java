@@ -1,6 +1,8 @@
 package com.example.demo.repository.entity;
 
-import java.sql.Date;
+import java.util.Date;
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -30,31 +32,29 @@ public class Alquiler {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name="fecha_inicio")
-	@Temporal(TemporalType.DATE)
+	@Column(name = "fecha_inicio")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date fecha_inicio;
 
-	@Column(name="fecha_limite")
+	@Column(name = "fecha_limite")
 	@Temporal(TemporalType.DATE)
 	private Date fecha_limite;
 
-	@Column(name="fecha_entrega")
-	@Temporal(TemporalType.DATE)
+	@Column(name = "fecha_entrega")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date fecha_entrega;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "fk_usuario_alquiler")
 	private Usuario usuario;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "fk_ejemplar")
 	private Ejemplar ejemplar;
-	
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "alquiler")
 	@ToString.Exclude
 	private Set<Multa> listaMultas;
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -68,12 +68,10 @@ public class Alquiler {
 		return Objects.equals(id, other.id);
 	}
 
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-
 
 	public Alquiler() {
 		this.usuario = new Usuario();
@@ -81,5 +79,4 @@ public class Alquiler {
 		this.listaMultas = new HashSet<Multa>();
 	}
 
-	
 }

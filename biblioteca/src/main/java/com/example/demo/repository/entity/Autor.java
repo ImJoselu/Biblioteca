@@ -17,15 +17,15 @@ import lombok.Data;
 @Entity
 @Table(name = "autor")
 public class Autor {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	private String nombre;
-	
+
 	private String apellidos;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "autor")
 	private Set<LibroEscribeAutor> listaAutorEscribeLibro;
 }

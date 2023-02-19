@@ -20,48 +20,48 @@ import lombok.ToString;
 @Table(name = "usuario")
 public class Usuario {
 
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-		private String nif;
-		private String nombre;
-		private String apellidos;
-		private String email;
-		
-		private String username;
-		private String password;
-		
-		private boolean es_administrador;
-		private boolean es_cliente;
+	private String nif;
+	private String nombre;
+	private String apellidos;
+	private String email;
 
-		@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "usuario")
-		@ToString.Exclude
-		private Set<Solicitud> listaSolicitudes;
+	private String username;
+	private String password;
 
-		@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "usuario")
-		@ToString.Exclude
-		private Set<Alquiler> listaAlquileres;
+	private boolean es_administrador;
+	private boolean es_cliente;
 
-		@Override
-		public boolean equals(Object obj) {
-			if (this == obj)
-				return true;
-			if (obj == null)
-				return false;
-			if (getClass() != obj.getClass())
-				return false;
-			Usuario other = (Usuario) obj;
-			return Objects.equals(id, other.id);
-		}
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "usuario")
+	@ToString.Exclude
+	private Set<Solicitud> listaSolicitudes;
 
-		@Override
-		public int hashCode() {
-			return Objects.hash(id);
-		}
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "usuario")
+	@ToString.Exclude
+	private Set<Alquiler> listaAlquileres;
 
-		public Usuario() {
-			this.listaAlquileres = new HashSet<Alquiler>();
-			this.listaSolicitudes = new HashSet<Solicitud>();
-		}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		return Objects.equals(id, other.id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	public Usuario() {
+		this.listaAlquileres = new HashSet<Alquiler>();
+		this.listaSolicitudes = new HashSet<Solicitud>();
+	}
 }

@@ -31,7 +31,7 @@ public class Multa {
 	private Double importe;
 
 	private String observaciones;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "fk_alquiler")
 	private Alquiler alquiler;
@@ -56,6 +56,5 @@ public class Multa {
 	public Multa() {
 		this.alquiler = new Alquiler();
 	}
-	
-	
+
 }

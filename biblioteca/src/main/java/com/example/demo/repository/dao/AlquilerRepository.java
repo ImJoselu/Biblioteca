@@ -14,7 +14,8 @@ import jakarta.transaction.Transactional;
 @Repository
 @Transactional
 public interface AlquilerRepository extends JpaRepository<Alquiler, Long> {
+
 	@Query(value = "SELECT a FROM Alquiler a WHERE a.usuario.id = :idU")
-public List<Alquiler> findAllByUsuario(@Param("idU") Long idUsuario);
+	public List<Alquiler> findAllByUsuario(@Param("idU") Long idUsuario);
 
 }

@@ -34,7 +34,8 @@ public class MultaServiceImpl implements MultaService {
 
 		// Obtenemos la listaMultas de multas del alquiler
 		List<Multa> listaMultas = (List<Multa>) multaRepository.findAllByAlquiler(alquilerDTO.getId());
-		// Creamos una listaMultas de MultaDTO que serÃ¡ la que devolvamos al controlador
+		// Creamos una listaMultas de MultaDTO que serÃ¡ la que devolvamos al
+		// controlador
 		List<MultaDTO> listaMultasDTO = new ArrayList<MultaDTO>();
 		// Recorremos la listaMultas de multas y las mapeamos a DTO
 		for (int i = 0; i < listaMultas.size(); ++i) {
@@ -53,16 +54,16 @@ public class MultaServiceImpl implements MultaService {
 		Alquiler alquiler = new Alquiler();
 		alquiler.setId(multaDTO.getAlquilerDTO().getId());
 		multa.setAlquiler(alquiler);
- 
+
 		multaRepository.save(multa);
-		
+
 	}
 
 	@Override
 	public void delete(MultaDTO multaDTO) {
 		log.info("MultaServiceImpl - delete: Metodo 1: borramos la multa: " + multaDTO.toString());
-		 
-		multaRepository.deleteById(multaDTO.getId());	
+
+		multaRepository.deleteById(multaDTO.getId());
 	}
 
 	@Override
@@ -70,12 +71,12 @@ public class MultaServiceImpl implements MultaService {
 		// TODO Auto-generated method stub
 		List<Multa> listaMultas = multaRepository.findAllByCliente(usuarioDTO.getId());
 		List<MultaDTO> listaMultasDTO = new ArrayList<>();
-		
+
 		for (Multa multa : listaMultas) {
 			MultaDTO multaDTO = MultaDTO.convertToDTO(multa, new AlquilerDTO());
 			listaMultasDTO.add(multaDTO);
 		}
-		
+
 		return listaMultasDTO;
 	}
 }

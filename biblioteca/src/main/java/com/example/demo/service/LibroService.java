@@ -10,6 +10,4 @@ public interface LibroService {
 
 	List<LibroDTO> findTop6ByOrderByIdDesc();
 
-
-
 }

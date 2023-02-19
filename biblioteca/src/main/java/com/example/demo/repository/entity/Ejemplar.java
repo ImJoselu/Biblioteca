@@ -27,13 +27,13 @@ public class Ejemplar {
 	private Long id;
 
 	private String localizacion;
-	
+
 	private Boolean prestado;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "ejemplar")
 	@ToString.Exclude
 	private Set<Alquiler> listaAlquileres;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "fk_libro")
 	private Libro libro;
@@ -60,7 +60,5 @@ public class Ejemplar {
 		this.listaAlquileres = new HashSet<Alquiler>();
 		this.libro = new Libro();
 	}
-	
-	
-	
+
 }

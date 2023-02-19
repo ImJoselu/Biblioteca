@@ -19,20 +19,20 @@ public class UsuarioController {
 
 	@Autowired
 	private UsuarioService usuarioService;
-	
+
 	private static final Logger log = LoggerFactory.getLogger(IndexController.class);
-	
+
 	@GetMapping("/adminClientes")
 	public ModelAndView adminClientes() {
-		
+
 		log.info("EjemplarController - index: Mostramos la gestion de clientes");
-		
+
 		List<UsuarioDTO> listaClientesDTO = usuarioService.findAllClientes();
-		
+
 		ModelAndView mav = new ModelAndView("adminClientes");
 		mav.addObject("listaClientesDTO", listaClientesDTO);
-		
+
 		return mav;
 	}
-	
+
 }

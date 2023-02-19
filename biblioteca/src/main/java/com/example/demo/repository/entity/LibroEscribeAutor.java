@@ -14,12 +14,11 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import lombok.Data;
 
-
 @Data
 @Entity
 @Table(name = "libro_escribe_autor")
 public class LibroEscribeAutor {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -29,16 +28,12 @@ public class LibroEscribeAutor {
 	@ManyToOne
 	@JoinColumn(name = "fk_autor_escribe")
 	private Autor autor;
-	
-	
+
 	@Column(name = "fecha_publicacion")
 	@Temporal(TemporalType.DATE)
 	private Date fechaPublicacion;
 	@Column(name = "edad_recomendada")
 	@Temporal(TemporalType.DATE)
 	private Date edadRecomendada;
-	
-	
-	
-	
+
 }

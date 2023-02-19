@@ -12,7 +12,6 @@ import com.example.demo.repository.entity.Usuario;
 import lombok.Data;
 import lombok.ToString;
 
-
 @Data
 public class UsuarioDTO implements Serializable {
 
@@ -26,11 +25,10 @@ public class UsuarioDTO implements Serializable {
 	private String password;
 	private boolean es_administrador;
 	private boolean es_cliente;
-	@ToString.Exclude	
+	@ToString.Exclude
 	private List<SolicitudDTO> listaSolicitudesDTO;
 	@ToString.Exclude
-	private List<AlquilerDTO> listaAlquileresDTO;	
-
+	private List<AlquilerDTO> listaAlquileresDTO;
 
 	// FALTAN LAS LISTAS Y CONSTRUCTOR VACIO
 
@@ -44,22 +42,20 @@ public class UsuarioDTO implements Serializable {
 		usuarioDTO.setUsername(usuario.getUsername());
 		usuarioDTO.setPassword(usuario.getPassword());
 		usuarioDTO.setEs_administrador(usuario.isEs_administrador());
-		usuarioDTO.setEs_cliente(usuario.isEs_cliente());		
-		
+		usuarioDTO.setEs_cliente(usuario.isEs_cliente());
+
 		SolicitudDTO solicitudDTO = new SolicitudDTO();
 		AlquilerDTO alquilerDTO = new AlquilerDTO();
 		/*
-		for (Solicitud s : usuario.getListaSolicitudes()) {
-			solicitudDTO = SolicitudDTO.convertToDTO(s);
-			usuarioDTO.getListaSolicitudesDTO().add(solicitudDTO);
-		}
-		
-		for (Alquiler a : usuario.getListaAlquileres()) {
-			alquilerDTO = AlquilerDTO.convertToDTO(a, usuarioDTO);
-			usuarioDTO.getListaAlquileresDTO().add(alquilerDTO);
-<<<<<<< HEAD
-		}*/
-		
+		 * for (Solicitud s : usuario.getListaSolicitudes()) { solicitudDTO =
+		 * SolicitudDTO.convertToDTO(s);
+		 * usuarioDTO.getListaSolicitudesDTO().add(solicitudDTO); }
+		 * 
+		 * for (Alquiler a : usuario.getListaAlquileres()) { alquilerDTO =
+		 * AlquilerDTO.convertToDTO(a, usuarioDTO);
+		 * usuarioDTO.getListaAlquileresDTO().add(alquilerDTO); <<<<<<< HEAD }
+		 */
+
 		return usuarioDTO;
 
 	}
@@ -78,18 +74,17 @@ public class UsuarioDTO implements Serializable {
 
 		Solicitud solicitud = new Solicitud();
 		Alquiler alquiler = new Alquiler();
-		
 
 		for (SolicitudDTO s : usuarioDTO.getListaSolicitudesDTO()) {
 			solicitud = SolicitudDTO.convertToEntity(s);
 			usuario.getListaSolicitudes().add(solicitud);
 		}
-		
+
 		for (AlquilerDTO a : usuarioDTO.getListaAlquileresDTO()) {
 			alquiler = AlquilerDTO.convertToEntity(a);
 			usuario.getListaAlquileres().add(alquiler);
 		}
-		
+
 		return usuario;
 
 	}
@@ -98,6 +93,5 @@ public class UsuarioDTO implements Serializable {
 		this.listaSolicitudesDTO = new ArrayList<SolicitudDTO>();
 		this.listaAlquileresDTO = new ArrayList<AlquilerDTO>();
 	}
-	
-	
+
 }

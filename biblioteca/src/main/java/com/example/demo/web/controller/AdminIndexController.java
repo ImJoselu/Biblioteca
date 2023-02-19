@@ -8,20 +8,20 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class AdminIndexController {
-	
+
 	private static final Logger log = LoggerFactory.getLogger(IndexController.class);
 
 	@GetMapping("/adminIndex")
 	public ModelAndView index() {
-		
+
 		log.info("IndexController - index: Mostramos la pagina inicial");
-		
+
 		ModelAndView mav = new ModelAndView("adminIndex");
 		/*
-		mav.addObject("titulo", nombreAplicacion);
-		mav.addObject("nombreAsignatura", nombreAsignatura);
-		*/
+		 * mav.addObject("titulo", nombreAplicacion); mav.addObject("nombreAsignatura",
+		 * nombreAsignatura);
+		 */
 		return mav;
 	}
-	
+
 }

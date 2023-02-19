@@ -139,7 +139,7 @@
 					<img th:src="'/imagenesLibros/' + ${libro.isbn} + '.jpg'" alt="">
 					<figcaption th:text="${libro.titulo}"></figcaption>
 					<a
-						th:href="@{/usuario/{idUsuario}/adminAlquiler/{idLibro}/add  (idUsuario=${usuario.id},idLibro=${libro.isbn})}"><button>Alquilar</button></a>
+						th:href="@{/usuario/{idUsuario}/alquilar/{idLibro} (idUsuario=${usuario.id},idLibro=${libro.isbn})}"><button>Alquilar</button></a>
 
 				</figure>
 

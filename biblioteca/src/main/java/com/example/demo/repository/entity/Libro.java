@@ -25,7 +25,7 @@ import lombok.ToString;
 @Entity
 @Table(name = "libro")
 public class Libro {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String isbn;
@@ -34,11 +34,11 @@ public class Libro {
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "libro")
 	private Set<Ejemplar> listaEjemplares;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "fk_editorial")
 	private Editorial editorial;
-	
+
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	// Tabla que mantiene la relacion N-N
 	@JoinTable(
@@ -50,7 +50,7 @@ public class Libro {
 			inverseJoinColumns = @JoinColumn(name = "fk_genero_pertenece"))
 	@ToString.Exclude
 	private Set<Genero> listaGeneros;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "libro")
 	private Set<LibroEscribeAutor> listaLibroEscribeAutor;
 
@@ -75,5 +75,5 @@ public class Libro {
 		this.listaEjemplares = new HashSet<Ejemplar>();
 		this.editorial = new Editorial();
 	}
-	
+
 }

@@ -15,13 +15,13 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @Transactional
-public interface SolicitudRepository extends JpaRepository<Solicitud, Long>{
+public interface SolicitudRepository extends JpaRepository<Solicitud, Long> {
 
 	@Query(value = "SELECT s FROM Solicitud s WHERE s.usuario.id = :idUsu")
 	public List<Solicitud> findAllByUsuario(@Param("idUsu") Long idUsuario);
-	
+
 	@Modifying
-	@Query("UPDATE Solicitud s SET s.estado = :estado WHERE s.id = :id")     
+	@Query("UPDATE Solicitud s SET s.estado = :estado WHERE s.id = :id")
 	public int updateEstadoById(@Param("id") Long id, @Param("estado") String estado);
 
 }

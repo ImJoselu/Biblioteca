@@ -33,12 +33,11 @@ public class LibroDTO implements Serializable {
 		libroDTO.setEditorialDTO(EditorialDTO.convertToDTO(libro.getEditorial()));
 
 		/*
-		EjemplarDTO ejemplarDTO = new EjemplarDTO();
-		for (Ejemplar e : libro.getListaEjemplares()) {
-			ejemplarDTO = EjemplarDTO.convertToDTO(e);
-			libroDTO.getListaEjemplaresDTO().add(ejemplarDTO);
-		
-*/
+		 * EjemplarDTO ejemplarDTO = new EjemplarDTO(); for (Ejemplar e :
+		 * libro.getListaEjemplares()) { ejemplarDTO = EjemplarDTO.convertToDTO(e);
+		 * libroDTO.getListaEjemplaresDTO().add(ejemplarDTO);
+		 * 
+		 */
 
 		return libroDTO;
 
@@ -63,6 +62,5 @@ public class LibroDTO implements Serializable {
 		this.editorialDTO = new EditorialDTO();
 		this.listaEjemplaresDTO = new ArrayList<EjemplarDTO>();
 	}
-	
-	
+
 }

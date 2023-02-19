@@ -13,15 +13,14 @@ import com.example.demo.model.dto.UsuarioDTO;
 import com.example.demo.repository.dao.UsuarioRepository;
 import com.example.demo.repository.entity.Usuario;
 
-
 @Service
-public class UsuarioServiceImpl implements UsuarioService{
+public class UsuarioServiceImpl implements UsuarioService {
 
 	private static final Logger log = LoggerFactory.getLogger(UsuarioServiceImpl.class);
-	
+
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-	
+
 	@Override
 	public UsuarioDTO findById(Long idUsuario) {
 		log.info("ClienteServiceImpl - findById: Busca el usuario: " + idUsuario);
@@ -30,7 +29,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 		UsuarioDTO usuarioDTO = new UsuarioDTO();
 		// Paso de entidad a DTO
 		usuarioDTO = UsuarioDTO.convertToDTO(usuario.get());
-		
+
 		return usuarioDTO;
 
 	}
@@ -39,9 +38,9 @@ public class UsuarioServiceImpl implements UsuarioService{
 	public List<UsuarioDTO> findAllClientes() {
 		// TODO Auto-generated method stub
 		List<Usuario> listaClientes = usuarioRepository.findAllClientes();
-		
+
 		List<UsuarioDTO> listaClientesDTO = new ArrayList<>();
-		
+
 		for (Usuario usuario : listaClientes) {
 			UsuarioDTO usuarioDTO = UsuarioDTO.convertToDTO(usuario);
 			listaClientesDTO.add(usuarioDTO);

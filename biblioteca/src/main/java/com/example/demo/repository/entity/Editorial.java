@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -26,9 +25,9 @@ public class Editorial {
 	private Long codigo_editorial;
 
 	private String nombre;
-	
+
 	private int numero_contacto;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "editorial")
 	@ToString.Exclude
 	private Set<Libro> listaLibros;
@@ -54,5 +53,4 @@ public class Editorial {
 		this.listaLibros = new HashSet<Libro>();
 	}
 
-	
 }

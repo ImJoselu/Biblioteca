@@ -16,18 +16,17 @@ import lombok.Data;
 @Table(name = "solicitud")
 public class Solicitud {
 
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String username;
 	private String email;
 	private String ISBN;
 	private String titulo;
 	private String mensaje;
 	private String estado;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "fk_usuario_solicitud")
 	private Usuario usuario;
@@ -50,9 +49,8 @@ public class Solicitud {
 	}
 
 	public Solicitud() {
-		this.usuario = new Usuario();;
+		this.usuario = new Usuario();
+		;
 	}
-	
-	
 
 }

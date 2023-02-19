@@ -29,7 +29,7 @@ public class SolicitudController {
 	private static final Logger log = LoggerFactory.getLogger(SolicitudController.class);
 
 	/* Index - la id, y la vista el select y el isbn */
-	
+
 	@GetMapping("/adminContacto")
 	public ModelAndView index() {
 
@@ -39,7 +39,7 @@ public class SolicitudController {
 		UsuarioDTO usuarioDTO = new UsuarioDTO();
 		usuarioDTO.setId((Long.valueOf(1)));
 		ModelAndView mav = new ModelAndView("adminContacto");
-		
+
 		// Obtenemos el cliente
 		mav.addObject("listaSolicitudesDTO", listaSolicitudesDTO);
 		mav.addObject("usuarioDTO", usuarioDTO);
@@ -93,7 +93,7 @@ public class SolicitudController {
 
 	// Updatear AdminContacto
 	@GetMapping("/adminContacto/{idSolicitud}/adminContactoform")
-	public ModelAndView updateEstado(@PathVariable ("idSolicitud") Long idSolicitud) {
+	public ModelAndView updateEstado(@PathVariable("idSolicitud") Long idSolicitud) {
 
 		log.info("SolicitudController - save:Salvamos los datos del solicitud");
 

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.dto.AlquilerDTO;
+import com.example.demo.model.dto.LibroDTO;
 import com.example.demo.model.dto.MultaDTO;
 import com.example.demo.model.dto.UsuarioDTO;
 import com.example.demo.repository.entity.Usuario;
@@ -22,7 +23,7 @@ import com.example.demo.service.AlquilerService;
 public class AlquilerController {
 
 	private static final Logger log = LoggerFactory.getLogger(AlquilerController.class);
-	
+
 	@Autowired
 	private AlquilerService alquilerService;
 
@@ -34,25 +35,25 @@ public class AlquilerController {
 
 		UsuarioDTO usuarioDTO = new UsuarioDTO();
 		usuarioDTO.setId(idUsuario);
-		
+
 		ModelAndView mav = new ModelAndView("adminAlquiler");
 		List<AlquilerDTO> listaAlquileresDTO = alquilerService.findAllByUsuario(usuarioDTO);
 		mav.addObject("listaAlquileresDTO", listaAlquileresDTO);
 		mav.addObject("usuarioDTO", usuarioDTO);
-		
+
 		return mav;
 
 	}
-	
+
 	@GetMapping("/usuario/{idUsuario}/adminAlquiler/add")
 	public ModelAndView add(@PathVariable Long idUsuario) {
-		
+
 		log.info("CuentaController - add: Alta de alquiler del usuario: " + idUsuario);
-		
+
 		// Obtenemos el usuario para luego poner sus datos en la pantalla
 		UsuarioDTO usuarioDTO = new UsuarioDTO();
 		usuarioDTO.setId(idUsuario);
-		
+
 		// pasamos el usuario y la nueva multa a la vista
 		ModelAndView mav = new ModelAndView("alquilerForm");
 		mav.addObject("usuarioDTO", usuarioDTO);
@@ -60,16 +61,17 @@ public class AlquilerController {
 		mav.addObject("add", true);
 		return mav;
 	}
-	
+
 	@PostMapping("/usuario/{idUsuario}/adminAlquiler/save")
 	public ModelAndView save(@PathVariable Long idUsuario, @ModelAttribute("alquilerDTO") AlquilerDTO alquilerDTO) {
-		
+
 		log.info("CuentaController - save: Salvando el alquiler del usuario: " + idUsuario);
-		
+
 		// Obtenemos el usuario para luego poner sus datos en la pantalla
 		UsuarioDTO usuarioDTO = new UsuarioDTO();
 		usuarioDTO.setId(idUsuario);
-		// Asignamos a la alquiler el usuario (no hace falta buscarlo ya que al salvarlo lo buscaremos)
+		// Asignamos a la alquiler el usuario (no hace falta buscarlo ya que al salvarlo
+		// lo buscaremos)
 		alquilerDTO.setUsuarioDTO(usuarioDTO);
 
 		// invocamos la operacion save a la capa de servicio de alquiler
@@ -78,5 +80,25 @@ public class AlquilerController {
 		ModelAndView mav = new ModelAndView("redirect:/usuario/{idUsuario}/adminAlquilers");
 		return mav;
 	}
-	
+
+	@GetMapping("/usuario/{idUsuario}/alquilar/{idLibro}")
+	public ModelAndView alquilar(@PathVariable Long idUsuario, @PathVariable String idLibro) {
+
+		log.info("CuentaController - add: Alta de alquiler del usuario: " + idUsuario);
+
+		// Obtenemos el usuario para luego poner sus datos en la pantalla
+		UsuarioDTO usuarioDTO = new UsuarioDTO();
+		usuarioDTO.setId(idUsuario);
+
+		LibroDTO libroDTO = new LibroDTO();
+		libroDTO.setIsbn(idLibro);
+
+		alquilerService.alquilar(usuarioDTO, libroDTO);
+
+		ModelAndView mav = new ModelAndView("index");
+		mav.addObject("usuarioDTO", usuarioDTO);
+
+		return mav;
+	}
+
 }

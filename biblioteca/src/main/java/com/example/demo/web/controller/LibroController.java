@@ -36,8 +36,6 @@ public class LibroController {
 
 		List<LibroDTO> listaAleatoria = new ArrayList<>();
 
-		
-		
 		// Obtenemos tres índices aleatorios
 		Random random = new Random();
 		Set<Integer> indices = new HashSet<>();
@@ -51,12 +49,10 @@ public class LibroController {
 			listaAleatoria.add(listaLibrosDTO.get(indice));
 		}
 
-		
-		
 		ModelAndView mav = new ModelAndView("tienda");
 
 		UsuarioDTO usuario = new UsuarioDTO();
-		usuario.setId(0L); // ESTA LINEA HAY QUE CAMBIAR EL "0" POR EL ID DEL USUARIO LOGEADO EN EL MOMENTO
+		usuario.setId(1L); // ESTA LINEA HAY QUE CAMBIAR EL "0" POR EL ID DEL USUARIO LOGEADO EN EL MOMENTO
 		mav.addObject("usuario", usuario);
 		mav.addObject("listaLibrosDTO", listaLibrosDTO);
 		mav.addObject("listaPopulares", listaAleatoria);
