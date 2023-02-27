@@ -90,13 +90,15 @@
 				<p>09:00 - 14:30</p>
 			</section>
 			<div>
-				<form>
-					<input type="text" id="nombre" placeholder="Nombre"> <input
-						type="email" id="email" placeholder="Correo Electrónico">
-					<input type="text" id="titulo" placeholder="Titulo Libro">
-					<input type="text" id="isbn" placeholder="ISBN Libro">
-					<textarea id="mensaje" placeholder="Mensaje"></textarea>
-					<button id="btnEnviar">Enviar</button>
+				<form
+				th:action="@{/usuario/{idUsuario}/solicitud/save (idUsuario=${usuario.id})}"
+				th:object="${solicitud}" method="POST">
+					<input th:field="${solicitud.username}" type="text" id="nombre" placeholder="Nombre"> 
+					<input th:field="${solicitud.email}" type="email" id="email" placeholder="Correo Electrónico">
+					<input th:field="${solicitud.titulo}" type="text" id="titulo" placeholder="Titulo Libro">
+					<input th:field="${solicitud.ISBN}" type="text" id="isbn" placeholder="ISBN Libro">
+					<textarea th:field="${solicitud.mensaje}" id="mensaje" placeholder="Mensaje"></textarea>
+					<button type="submit" id="btnEnviar">Enviar</button>
 				</form>
 
 			</div>
