@@ -14,7 +14,11 @@ import jakarta.transaction.Transactional;
 @Transactional
 public interface EjemplarRepository extends JpaRepository<Ejemplar, Long> {
 
-	@Query("SELECT e FROM Ejemplar e JOIN e.libro l WHERE e.prestado = false AND l.isbn = :isbn")
+//	@Query("SELECT e FROM Ejemplar e JOIN e.libro l WHERE e.prestado = false AND l.isbn = :isbn")
+//	Optional<Ejemplar> findFirstByISBNDisponible(@Param("isbn") String isbn);
+	
+	
+	@Query("SELECT e FROM Ejemplar e JOIN e.libro l WHERE e.prestado = false AND l.isbn = :isbn ORDER BY e.id ASC LIMIT 1")
 	Optional<Ejemplar> findFirstByISBNDisponible(@Param("isbn") String isbn);
 
 	@Modifying

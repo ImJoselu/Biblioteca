@@ -67,8 +67,8 @@
 				<tr th:each="multaDTO:${listaMultasDTO}">
 					<td th:text="${multaDTO.fecha}"></td>
 					<td th:text="${multaDTO.importe}"></td>
-					<td class="verTextarea"><a>Ver Obsevacion</a>
-					<textarea th:utext="${multaDTO.observaciones}" readonly></textarea></td>
+					<td class="verTextarea"><a>Ver Obsevacion</a> <textarea
+							th:utext="${multaDTO.observaciones}" readonly></textarea></td>
 					<td><a> <!--th:href="" -->Descartar
 					</a></td>
 
@@ -81,7 +81,7 @@
 	</main>
 	<div class="volver">
 		<p>
-			Volver a clientes: <a  th:href="@{/adminClientes}"><b>Volver</b></a>
+			Volver a clientes: <a th:href="@{/adminClientes}"><b>Volver</b></a>
 		</p>
 	</div>
 	<footer>
