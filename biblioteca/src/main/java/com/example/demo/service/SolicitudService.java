@@ -17,4 +17,6 @@ public interface SolicitudService {
 
 	SolicitudDTO findById(SolicitudDTO solicitudDTO);
 
+	void nuevaSolicitud(SolicitudDTO solicitudDTO);
+
 }
