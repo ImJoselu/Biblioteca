@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.dto.AlquilerDTO;
+import com.example.demo.model.dto.EjemplarDTO;
 import com.example.demo.model.dto.LibroDTO;
 import com.example.demo.model.dto.AlquilerDTO;
 import com.example.demo.model.dto.AlquilerDTO;
@@ -75,7 +76,7 @@ public class AlquilerServiceImpl implements AlquilerService {
 	}
 
 	@Override
-	public void alquilar(UsuarioDTO usuarioDTO, LibroDTO libroDTO) {
+	public EjemplarDTO alquilar(UsuarioDTO usuarioDTO, LibroDTO libroDTO) {
 		Optional<Usuario> usuario = usuarioRepository.findById(usuarioDTO.getId());
 		Optional<Ejemplar> optionalEjemplar = ejemplarRepository.findFirstByISBNDisponible(libroDTO.getIsbn());
 
@@ -102,8 +103,12 @@ public class AlquilerServiceImpl implements AlquilerService {
 
 			alquilerRepository.save(alquiler);
 
+			return EjemplarDTO.convertToDTO(ejemplar);
+
 		} else {
-			// Manejo del caso en que el Optional no tiene valor
+			EjemplarDTO ejemplarDTO = new EjemplarDTO();
+			ejemplarDTO.setId(0L);
+			return ejemplarDTO;
 
 		}
 

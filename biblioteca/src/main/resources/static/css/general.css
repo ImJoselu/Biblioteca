@@ -52,31 +52,7 @@ header>h2:hover {
 nav {
 	animation: anim 1s ease 0s 1 normal forwards;
 }
-
-@
-keyframes anim { 0% {
-	opacity: 0;
-	transform: translateY(-100px) scale(0, 0);
-}
-
-100
-%
-{
-opacity
-:
-1;
-transform
-:
-translateY(
-0
-)
-scale(
-1
-,
-1
-);
-}
-}
+@keyframes anim {     0% {          opacity: 0;         transform: translateY(-100px) scale(0, 0);     }      100% {          opacity: 1;         transform: translateY(0) scale(1, 1);     } }
 nav h3 {
 	margin-right: 20px;
 	cursor: pointer;
@@ -164,6 +140,8 @@ button {
 	border: 1px black solid;
 	cursor: pointer;
 	transition: all 1s;
+	z-index: 11;
+	position: relative;
 }
 
 input:focus, textarea:focus {

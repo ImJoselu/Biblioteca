@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.dto.AlquilerDTO;
+import com.example.demo.model.dto.EjemplarDTO;
 import com.example.demo.model.dto.LibroDTO;
 import com.example.demo.model.dto.UsuarioDTO;
+import com.example.demo.repository.entity.Ejemplar;
 
 public interface AlquilerService {
 
@@ -14,6 +16,6 @@ public interface AlquilerService {
 
 	void save(AlquilerDTO alquilerDTO);
 
-	void alquilar(UsuarioDTO usuarioDTO, LibroDTO libroDTO);
+	EjemplarDTO alquilar(UsuarioDTO usuarioDTO, LibroDTO libroDTO);
 
 }

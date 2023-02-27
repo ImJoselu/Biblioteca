@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.dto.AlquilerDTO;
+import com.example.demo.model.dto.EjemplarDTO;
 import com.example.demo.model.dto.LibroDTO;
 import com.example.demo.model.dto.MultaDTO;
 import com.example.demo.model.dto.UsuarioDTO;
+import com.example.demo.repository.entity.Ejemplar;
 import com.example.demo.repository.entity.Usuario;
 import com.example.demo.service.AlquilerService;
 
@@ -93,12 +95,23 @@ public class AlquilerController {
 		LibroDTO libroDTO = new LibroDTO();
 		libroDTO.setIsbn(idLibro);
 
-		alquilerService.alquilar(usuarioDTO, libroDTO);
+		EjemplarDTO ejemplarDTO = alquilerService.alquilar(usuarioDTO, libroDTO);
+		
 
-		ModelAndView mav = new ModelAndView("index");
+		
+		
+		
+		
+		
+		ModelAndView mav = new ModelAndView("confirmacion");
+		
 		mav.addObject("usuarioDTO", usuarioDTO);
-
+		mav.addObject("existe", ejemplarDTO.getId());
+		mav.addObject("ejemplarDTO", ejemplarDTO);
 		return mav;
 	}
+	
+	
+	
 
 }
