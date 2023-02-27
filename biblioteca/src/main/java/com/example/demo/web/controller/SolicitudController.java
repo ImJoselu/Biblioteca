@@ -52,7 +52,7 @@ public class SolicitudController {
 		// Invocamos a la capa de servicios para que almacene los datos del usuario         
 		solucitudService.save(solicitudDTO);          
 		// Redireccionamos para volver a invocar el metodo que escucha /usuarios        
-		ModelAndView mav = new ModelAndView("redirect:/adminIndex");         
+		ModelAndView mav = new ModelAndView("redirect:/adminContacto");         
 		return mav;     
 		}
 	
