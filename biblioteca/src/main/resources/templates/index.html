@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Pagina Principal</title>
-<link rel="stylesheet" th:href="@{/css/general.css}" />
-<link rel="stylesheet" th:href="@{/css/index.css}" />
-<link rel="stylesheet" media="(max-width: 600px)"
-	th:href="@{/css/movil.css}" />
-<link rel="stylesheet" media="(min-width: 600px) and (max-width: 800px)"
-	th:href="@{/css/tablet.css}" />
-<link rel="stylesheet" media="(min-width: 800px)"
-	th:href="@{/css/pc.css}" />
-<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Pagina Principal</title>
+	<link rel="stylesheet" th:href="@{/css/general.css}" />
+	<link rel="stylesheet" th:href="@{/css/index.css}" />
+	<link rel="stylesheet" media="(max-width: 600px)" th:href="@{/css/movil.css}" />
+	<link rel="stylesheet" media="(min-width: 600px) and (max-width: 800px)" th:href="@{/css/tablet.css}" />
+	<link rel="stylesheet" media="(min-width: 800px)" th:href="@{/css/pc.css}" />
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 </head>
 
 <body>
@@ -69,8 +67,8 @@
 	<main>
 		<div id="carousel">
 			<img th:src="@{/images/CasadelLibro_Blog.webp}" alt="Image 1" /> <img
-				th:src="@{/images/imagen-libros.wep.webp}" alt="Image 2" /> <img
-				th:src="@{/images/libro.webp}" alt="Image 3" />
+				th:src="@{/images/imagen-libros.wep.webp}" alt="Image 2" /> <img th:src="@{/images/libro.webp}"
+				alt="Image 3" />
 			<!-- Agrega más imágenes aquí si deseas -->
 		</div>
 
@@ -106,6 +104,22 @@
 					<li><a>Acerca de nosotros</a></li>
 					<li><a>Contacto</a></li>
 					<li><a>Empleo</a></li>
+					<div id="donate-button-container">
+						<div id="donate-button"></div>
+						<script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
+						<script>
+							PayPal.Donation.Button({
+								env: 'production',
+								hosted_button_id: 'PD2WGRXEN6PZ8',
+								image: {
+									src: 'https://www.paypalobjects.com/es_ES/ES/i/btn/btn_donate_LG.gif',
+									alt: 'Botón Donar con PayPal',
+									title: 'PayPal - The safer, easier way to pay online!',
+								}
+							}).render('#donate-button');
+						</script>
+					</div>
+
 				</ul>
 			</div>
 
@@ -131,12 +145,13 @@
 		<h4>
 			Copyright &copy; Bibliotecarios S.L.
 			<script>
-          document.write(new Date().getFullYear());
-        </script>
+				document.write(new Date().getFullYear());
+			</script>
 		</h4>
 	</footer>
 	<script src="js/jquery-3.6.3.min.js"></script>
 	<script src="js/general.js"></script>
 	<script src="js/carousel.js"></script>
 </body>
+
 </html>
