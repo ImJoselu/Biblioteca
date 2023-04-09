@@ -30,7 +30,7 @@ public class LibroController {
 	@GetMapping("/tienda")
 	public ModelAndView tienda() {
 
-		log.info("LibroController - index: Mostramos la gestion de ejemplares");
+		log.info("LibroController - index: Mostramos la gestion de libroes");
 
 		List<LibroDTO> listaLibrosDTO = libroService.findAll();
 
@@ -56,6 +56,18 @@ public class LibroController {
 		mav.addObject("usuario", usuario);
 		mav.addObject("listaLibrosDTO", listaLibrosDTO);
 		mav.addObject("listaPopulares", listaAleatoria);
+		return mav;
+	}
+
+	@GetMapping("/adminLibros")
+	public ModelAndView index() {
+
+		log.info("LibroController - index: Mostramos la gestion de libros");
+
+		List<LibroDTO> listaLibrosDTO = libroService.findAll();
+
+		ModelAndView mav = new ModelAndView("adminLibros");
+		mav.addObject("listaLibrosDTO", listaLibrosDTO);
 
 		return mav;
 	}

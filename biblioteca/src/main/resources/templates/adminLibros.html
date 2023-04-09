@@ -43,7 +43,7 @@
 			<a th:href="@{/adminClientes}">Cliente</a>
 		</h3>
 		<h3>
-			<a th:href="@{/adminEjemplares}">Libro</a>
+			<a th:href="@{/adminLibros}">Libro</a>
 		</h3>
 		<!---->
 		<img src="images/menu_black_24dp.svg" id="btnMenuMovil">
@@ -54,21 +54,16 @@
 			<thead>
 				<tr>
 					<th>ISBN</th>
-					<th>Nombre</th>
-					<th>Editorial</th>
-					<th>Stock</th>
-					<th>Cambiar Stock</th>
+					<th>Titulo</th>
+					<th>Ejemplares</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="${}">
-					<td th:text="${}"></td>
-					<td th:text="${}"></td>
-					<td th:text="${}"></td>
-					<td th:text="${}"></td>
-					<td class="cambiarInput"><a>Cambiar Stock</a> <input
-						type="number" id="cambiarStock"></td>
-					<!--Cuando hagas click en el link de cambiar stock, aparecerá el input number-->
+				<tr th:each="libroDTO : ${listaLibrosDTO}">
+					<td th:text="${libroDTO.isbn}"></td>
+					<td th:text="${libroDTO.titulo}"></td>
+					<td><a th:href="@{/adminEjemplares}">Ver ejemplares</a></td>
+					
 				</tr>
 			</tbody>
 		</table>
@@ -76,15 +71,19 @@
 	<footer>
 		<div>
 			<div>
-				<p>adipisicing elit. Perferendis praesentium veniam eligendi</p>
+				<p>En la Biblioteca, nos esforzamos por brindar un acceso fácil
+					y conveniente a una amplia selección de libros y recursos.</p>
 			</div>
 			<div>
-				<p>nihil, totam molestiae, soluta facilis quibusdam fugit
-					reiciendis natus quam fuga alias dolores repudiandae!</p>
+				<p>Nuestro compromiso es brindar una experiencia de lectura
+					inolvidable</p>
 			</div>
 			<div>
-				<p>Lorem ipsum dolor sit amet consectetur aliquid deserunt.
-					Iusto, a</p>
+				<p>Nuestro equipo de bibliotecarios trabaja incansablemente para
+					ofrecerte los mejores recursos</p>
+			</div>
+			<div>
+				<p>Gracias por formar parte de esta comunidad de lectores</p>
 			</div>
 		</div>
 		<h4>©Bibliotecarios S.L. 2022/2023</h4>
