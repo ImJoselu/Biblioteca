@@ -74,6 +74,23 @@ th{
     color: #4c2f0d;
 }
 */
+
 .volver {
 	text-align: center;
+
+}
+
+
+
+.descartada{
+	
+	text-decoration: none;
+	text-decoration-line: line-through;
+	pointer-events: none;
+	
+}
+
+.btnAdmin a{
+	text-decoration: none;
+
 }

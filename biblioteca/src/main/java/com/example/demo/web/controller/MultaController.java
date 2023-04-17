@@ -41,6 +41,8 @@ public class MultaController {
 		ModelAndView mav = new ModelAndView("adminMultas");
 		List<MultaDTO> listaMultasDTO = multaService.findAllByAlquiler(alquilerDTO);
 		mav.addObject("listaMultasDTO", listaMultasDTO);
+		mav.addObject("usuarioDTO", usuarioDTO);
+		mav.addObject("alquilerDTO", alquilerDTO);
 
 		return mav;
 
@@ -58,7 +60,7 @@ public class MultaController {
 		ModelAndView mav = new ModelAndView("adminMultas");
 		List<MultaDTO> listaMultasDTO = multaService.findAllByUsuario(usuarioDTO);
 		mav.addObject("listaMultasDTO", listaMultasDTO);
-
+		mav.addObject("usuarioDTO", usuarioDTO);
 		return mav;
 
 	}
@@ -78,7 +80,7 @@ public class MultaController {
 		alquilerDTO.setUsuarioDTO(usuarioDTO);
 
 		// pasamos el usuario y la nueva multa a la vista
-		ModelAndView mav = new ModelAndView("multaform");
+		ModelAndView mav = new ModelAndView("multasForm");
 		mav.addObject("usuarioDTO", usuarioDTO);
 		mav.addObject("alquilerDTO", alquilerDTO);
 		mav.addObject("multaDTO", new MultaDTO());
@@ -111,6 +113,7 @@ public class MultaController {
 	}
 
 	// Borrar un usuario
+
 	@GetMapping("/usuario/{idUsuario}/adminAlquiler/{idAlquiler}/adminMultas/delete/{idMulta}")
 	public ModelAndView delete(@PathVariable Long idUsuario, @PathVariable Long idAlquiler,
 			@PathVariable("idMulta") Long idMulta) {
@@ -132,6 +135,27 @@ public class MultaController {
 
 		// Redireccionamos para volver a invocar al metodo que escucha /usuario
 		ModelAndView mav = new ModelAndView("redirect:/usuario/{idUsuario}/adminAlquiler/{idAlquiler}/adminMultas");
+
+		return mav;
+	}
+
+	@GetMapping("/usuario/{idUsuario}/adminMultas/{idMulta}/descartar")
+	public ModelAndView descartar(@PathVariable Long idUsuario, @PathVariable Long idMulta) {
+
+		log.info("MultaController - delete: Borramos la multa:" + idMulta);
+
+		UsuarioDTO usuarioDTO = new UsuarioDTO();
+		usuarioDTO.setId(idUsuario);
+
+		// Creamos un usuario y le asignamos el id. Este usuario es el que se va a
+		// borrar
+		MultaDTO multaDTO = new MultaDTO();
+		multaDTO.setId(idMulta);
+
+		multaService.descartar(multaDTO);
+
+		// Redireccionamos para volver a invocar al metodo que escucha /usuario
+		ModelAndView mav = new ModelAndView("redirect:/usuario/{idUsuario}/adminMultas");
 
 		return mav;
 	}

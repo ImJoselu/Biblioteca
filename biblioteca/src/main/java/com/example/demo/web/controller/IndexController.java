@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.dto.LibroDTO;
+import com.example.demo.model.dto.SolicitudDTO;
 import com.example.demo.model.dto.UsuarioDTO;
 import com.example.demo.service.LibroService;
 
@@ -41,7 +42,7 @@ public class IndexController {
 		List<LibroDTO> listaLibrosDTO = libroService.findTop6ByOrderByIdDesc();
 
 		UsuarioDTO usuario = new UsuarioDTO();
-		usuario.setId(0L); // ESTA LINEA HAY QUE CAMBIAR EL "0" POR EL ID DEL USUARIO LOGEADO EN EL MOMENTO
+		usuario.setId(1L); // ESTA LINEA HAY QUE CAMBIAR EL "0" POR EL ID DEL USUARIO LOGEADO EN EL MOMENTO
 		mav.addObject("usuario", usuario);
 		mav.addObject("listaLibrosDTO", listaLibrosDTO);
 
@@ -71,6 +72,12 @@ public class IndexController {
 		 * mav.addObject("titulo", nombreAplicacion); mav.addObject("nombreAsignatura",
 		 * nombreAsignatura);
 		 */
+		UsuarioDTO usuario = new UsuarioDTO();
+		SolicitudDTO solicitud = new SolicitudDTO();
+		usuario.setId(1L); // ESTA LINEA HAY QUE CAMBIAR EL "0" POR EL ID DEL USUARIO LOGEADO EN EL MOMENTO
+		mav.addObject("usuario", usuario);
+		mav.addObject("solicitud", solicitud);
+		
 		return mav;
 	}
 

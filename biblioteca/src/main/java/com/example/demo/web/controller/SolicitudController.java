@@ -46,6 +46,17 @@ public class SolicitudController {
 		return mav;
 	}
 
+	@PostMapping("/solicitud/save")
+	public ModelAndView save(@ModelAttribute("solicitudDTO") SolicitudDTO solicitudDTO) {
+		log.info("SolicitudController - save: Salvamos los datos de la solicitud:" + solicitudDTO.toString());          
+		// Invocamos a la capa de servicios para que almacene los datos del usuario         
+		solucitudService.save(solicitudDTO);          
+		// Redireccionamos para volver a invocar el metodo que escucha /usuarios        
+		ModelAndView mav = new ModelAndView("redirect:/adminContacto");         
+		return mav;     
+		}
+	
+
 	@GetMapping("/MisSolicitudes/{idUsuario}")
 	public ModelAndView misSolicitudes(@PathVariable("idUsuario") Long idUsuario) {
 
@@ -78,13 +89,18 @@ public class SolicitudController {
 	}
 
 	// Salvar usuarios
-	@PostMapping("/solicitud/save")
-	public ModelAndView save(@ModelAttribute("solicitudDTO") SolicitudDTO solicitudDTO) {
+	@PostMapping("/usuario/{idUsuario}/solicitud/save")
+	public ModelAndView nuevaSolicitud(@ModelAttribute("solicitud") SolicitudDTO solicitudDTO,
+			@PathVariable("idUsuario") Long idUsuario) {
 
 		log.info("SolicitudController - save: Salvamos los datos de la solicitud:" + solicitudDTO.toString());
 
 		// Invocamos a la capa de servicios para que almacene los datos del usuario
-		solucitudService.save(solicitudDTO);
+		UsuarioDTO usuarioDTO = new UsuarioDTO();
+		usuarioDTO.setId(idUsuario);
+		solicitudDTO.setUsuarioDTO(usuarioDTO);
+
+		solucitudService.nuevaSolicitud(solicitudDTO);
 
 		// Redireccionamos para volver a invocar el metodo que escucha /usuarios
 		ModelAndView mav = new ModelAndView("redirect:/adminIndex");
