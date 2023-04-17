@@ -17,15 +17,19 @@ import com.example.demo.model.dto.EjemplarDTO;
 import com.example.demo.model.dto.LibroDTO;
 import com.example.demo.model.dto.MultaDTO;
 import com.example.demo.model.dto.UsuarioDTO;
+import com.example.demo.repository.dao.UsuarioRepository;
 import com.example.demo.repository.entity.Ejemplar;
 import com.example.demo.repository.entity.Usuario;
 import com.example.demo.service.AlquilerService;
+import com.example.demo.service.UsuarioService;
 
 @Controller
 public class AlquilerController {
 
 	private static final Logger log = LoggerFactory.getLogger(AlquilerController.class);
 
+	@Autowired
+	private UsuarioService usuarioService;
 	@Autowired
 	private AlquilerService alquilerService;
 
@@ -36,7 +40,7 @@ public class AlquilerController {
 		log.info("AlquilerController - findAll: Mostramos todos los alquileres del usuario: " + idUsuario);
 
 		UsuarioDTO usuarioDTO = new UsuarioDTO();
-		usuarioDTO.setId(idUsuario);
+		usuarioDTO = usuarioService.findById(idUsuario);
 
 		ModelAndView mav = new ModelAndView("adminAlquiler");
 		List<AlquilerDTO> listaAlquileresDTO = alquilerService.findAllByUsuario(usuarioDTO);
@@ -96,12 +100,6 @@ public class AlquilerController {
 		libroDTO.setIsbn(idLibro);
 
 		EjemplarDTO ejemplarDTO = alquilerService.alquilar(usuarioDTO, libroDTO);
-		
-
-		
-		
-		
-		
 		
 		ModelAndView mav = new ModelAndView("confirmacion");
 		

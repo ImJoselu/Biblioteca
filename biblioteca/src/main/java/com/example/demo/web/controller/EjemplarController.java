@@ -13,10 +13,14 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.demo.model.dto.EjemplarDTO;
 import com.example.demo.model.dto.LibroDTO;
 import com.example.demo.service.EjemplarService;
+import com.example.demo.service.LibroService;
 
 @Controller
 public class EjemplarController {
 
+	@Autowired
+	private LibroService libroService;
+	
 	@Autowired
 	private EjemplarService ejemplarService;
 
@@ -32,6 +36,8 @@ public class EjemplarController {
 		List<EjemplarDTO> listaEjemplaresDTO = ejemplarService.findByLibro(libroDTO);
 
 		ModelAndView mav = new ModelAndView("adminEjemplares");
+		
+		mav.addObject("libroDTO", libroDTO);
 		mav.addObject("listaEjemplaresDTO", listaEjemplaresDTO);
 
 		return mav;

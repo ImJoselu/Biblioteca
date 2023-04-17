@@ -8,10 +8,9 @@
 <title>Administracion de Ejemplares</title>
 <link rel="stylesheet" href="css/general.css">
 <link rel="stylesheet" href="css/generalAdmin.css">
-<link rel="stylesheet" media="(max-width: 600px)" href="css/movil.css">
-<link rel="stylesheet" media="(min-width: 600px) and (max-width: 800px)"
-	href="css/tablet.css">
-<link rel="stylesheet" media="(min-width: 800px)" href="css/pc.css">
+<link rel="stylesheet" href="css/movil.css">
+<link rel="stylesheet" media="(max-width: 600px)" href="css/tablet.css">
+<link rel="stylesheet" media="(max-width: 800px)" href="css/pc.css">
 <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 
 </head>
@@ -51,7 +50,7 @@
 	</nav>
 	<main>
 
-		<table>
+		<table th:if="${listaEjemplaresDTO.size() > 0}">
 			<thead>
 				<tr>
 					<th>ISBN</th>
@@ -67,6 +66,7 @@
 				</tr>
 			</tbody>
 		</table>
+		<h1 th:if="${listaEjemplaresDTO.size() == 0}">No hay ejemplares para <span th:text="${libroDTO.Isbn}"></span> </h1>
 	</main>
 	<div class="volver">
 		<p>

@@ -38,8 +38,6 @@ public class AlquilerServiceImpl implements AlquilerService {
 	@Autowired
 	private AlquilerRepository alquilerRepository;
 	@Autowired
-	private LibroRepository libroRepository;
-	@Autowired
 	private UsuarioRepository usuarioRepository;
 	@Autowired
 	private EjemplarRepository ejemplarRepository;
