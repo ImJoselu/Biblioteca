@@ -20,12 +20,16 @@ import com.example.demo.model.dto.UsuarioDTO;
 import com.example.demo.repository.entity.Ejemplar;
 import com.example.demo.repository.entity.Usuario;
 import com.example.demo.service.AlquilerService;
+import com.example.demo.service.EmailSenderService;
 
 @Controller
 public class AlquilerController {
 
 	private static final Logger log = LoggerFactory.getLogger(AlquilerController.class);
 
+	@Autowired
+	private EmailSenderService senderService;
+	
 	@Autowired
 	private AlquilerService alquilerService;
 
@@ -98,6 +102,11 @@ public class AlquilerController {
 		EjemplarDTO ejemplarDTO = alquilerService.alquilar(usuarioDTO, libroDTO);
 		
 
+		if (ejemplarDTO.getId()>0) {
+			senderService.sendSimpleEmail("davmarbos@alu.edu.gva.es"/*usuarioDTO.email*/,//Poner email del usuario al que se le envia
+					"This is email titulo",
+					"This is email body");
+		}
 		
 		
 		
