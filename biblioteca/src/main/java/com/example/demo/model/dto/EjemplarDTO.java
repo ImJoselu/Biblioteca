@@ -35,8 +35,6 @@ public class EjemplarDTO implements Serializable {
 		ejemplarDTO.setPrestado(ejemplar.getPrestado());
 		ejemplarDTO.setLibroDTO(LibroDTO.convertToDTO(ejemplar.getLibro()));
 
-		AlquilerDTO alquilerDTO = new AlquilerDTO();
-
 		/*
 		 * for (Alquiler a : ejemplar.getListaAlquileres()) { alquilerDTO =
 		 * AlquilerDTO.convertToDTO(a, null);

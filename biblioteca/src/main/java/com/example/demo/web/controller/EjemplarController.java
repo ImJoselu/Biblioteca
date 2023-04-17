@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.dto.EjemplarDTO;
+import com.example.demo.model.dto.LibroDTO;
 import com.example.demo.service.EjemplarService;
 
 @Controller
@@ -22,12 +23,13 @@ public class EjemplarController {
 	private static final Logger log = LoggerFactory.getLogger(IndexController.class);
 
 	// RUTA DEL LIBRO /adminEjemplares CORREGIR
-	@GetMapping("/adminLibros/{idLibro}/adminEjemplares")
-	public ModelAndView index(@PathVariable("idLibro") Long idLibro) {
+	@GetMapping("/adminLibros/{isbnLibro}/adminEjemplares")
+	public ModelAndView index(@PathVariable("isbnLibro") String isbnLibro) {
 
 		log.info("EjemplarController - index: Mostramos la gestion de ejemplares");
-
-		List<EjemplarDTO> listaEjemplaresDTO = ejemplarService.findAll();
+		LibroDTO libroDTO = new LibroDTO();
+		libroDTO.setIsbn(isbnLibro);
+		List<EjemplarDTO> listaEjemplaresDTO = ejemplarService.findByLibro(libroDTO);
 
 		ModelAndView mav = new ModelAndView("adminEjemplares");
 		mav.addObject("listaEjemplaresDTO", listaEjemplaresDTO);

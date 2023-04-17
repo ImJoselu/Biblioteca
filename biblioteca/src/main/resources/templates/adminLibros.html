@@ -62,7 +62,7 @@
 				<tr th:each="libroDTO : ${listaLibrosDTO}">
 					<td th:text="${libroDTO.isbn}"></td>
 					<td th:text="${libroDTO.titulo}"></td>
-					<td><a th:href="@{/adminEjemplares}">Ver ejemplares</a></td>
+					<td><a th:href="@{/adminLibros/{isbnLibro}/adminEjemplares (isbnLibro=${libroDTO.isbn})}">Ver ejemplares</a></td>
 					
 				</tr>
 			</tbody>

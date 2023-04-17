@@ -1,5 +1,6 @@
 package com.example.demo.repository.dao;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -24,5 +25,9 @@ public interface EjemplarRepository extends JpaRepository<Ejemplar, Long> {
 	@Modifying
 	@Query("UPDATE Ejemplar e SET e.prestado = true WHERE e.id = :id")
 	int prestarEjemplar(@Param("id") Long id);
+
+	@Query(value = "SELECT m FROM Ejemplar m WHERE m.libro.isbn = :idA")
+	public List<Ejemplar> findAllByLibro(@Param("idA") String libroIsbn);
+	
 
 }
