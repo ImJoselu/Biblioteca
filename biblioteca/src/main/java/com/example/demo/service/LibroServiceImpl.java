@@ -38,4 +38,10 @@ public class LibroServiceImpl implements LibroService {
 		return listaDTONueva;
 	}
 
+	@Override
+	public LibroDTO findByIsbn(String isbnLibro) {
+		// TODO Auto-generated method stub
+		return LibroDTO.convertToDTO(libroRepository.findByIsbn(isbnLibro));
+	}
+
 }

@@ -60,11 +60,11 @@
 		<!---->
 		<img src="images/menu_black_24dp.svg" id="btnMenuMovil">
 	</nav>
-	<main>
-		<h2>
-			Viendo alquileres de:<b th:text="${usuarioDTO.nombre}"></b>
+	<main style="flex-direction: column;">
+		<h2 th:if="${listaAlquileresDTO.size() > 0}" style="text-align: center; margin-bottom: 20px;">
+			Viendo alquileres de:<b th:text="${usuarioDTO.nombre}" style="text-decoration: underline;"></b>
 		</h2>
-		<table>
+		<table th:if="${listaAlquileresDTO.size() > 0}">
 			<thead>
 				<tr>
 					<th>Titulo</th>
@@ -91,6 +91,8 @@
 			</tbody>
 
 		</table>
+		<h1 th:if="${listaAlquileresDTO.size() == 0}">No hay alquileres de <span th:text="${usuarioDTO.nombre}" style="text-decoration: underline;"></span> </h1>
+		
 	</main>
 
 	<div class="volver">

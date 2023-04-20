@@ -6,13 +6,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Administracion de Ejemplares</title>
-<link rel="stylesheet" href="css/general.css">
-<link rel="stylesheet" href="css/generalAdmin.css">
-<link rel="stylesheet" href="css/movil.css">
-<link rel="stylesheet" media="(max-width: 600px)" href="css/tablet.css">
-<link rel="stylesheet" media="(max-width: 800px)" href="css/pc.css">
+<link rel="stylesheet" th:href="@{/css/general.css}" />
+<link rel="stylesheet" th:href="@{/css/generalAdmin.css}" />
+<link rel="stylesheet" th:href="@{/css/movil.css}">
+<link rel="stylesheet" media="(max-width: 600px)"
+	th:href="@{/css/movil.css}" />
+<link rel="stylesheet" media="(min-width: 600px) and (max-width: 800px)"
+	th:href="@{/css/tablet.css}" />
+<link rel="stylesheet" media="(min-width: 800px)"
+	th:href="@{/css/pc.css}" />
 <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-
 </head>
 
 <body>
@@ -47,8 +50,10 @@
 		</h3>
 		<!---->
 		<img src="images/menu_black_24dp.svg" id="btnMenuMovil">
-	</nav>
-	<main>
+	</nav>		
+
+	<main style="flex-direction: column;">
+		<h1 th:if="${listaEjemplaresDTO.size() > 0}" style="text-align: center; margin-bottom: 20px;">Viendo ejemplares de <span th:text="${libroDTO.titulo}" style="text-decoration: underline;"></span> </h1>
 
 		<table th:if="${listaEjemplaresDTO.size() > 0}">
 			<thead>
@@ -66,7 +71,7 @@
 				</tr>
 			</tbody>
 		</table>
-		<h1 th:if="${listaEjemplaresDTO.size() == 0}">No hay ejemplares para <span th:text="${libroDTO.Isbn}"></span> </h1>
+		<h1 th:if="${listaEjemplaresDTO.size() == 0}">No hay ejemplares para <span th:text="${libroDTO.titulo}" style="text-decoration: underline;"></span> </h1>
 	</main>
 	<div class="volver">
 		<p>

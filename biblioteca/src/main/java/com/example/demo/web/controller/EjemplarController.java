@@ -33,6 +33,7 @@ public class EjemplarController {
 		log.info("EjemplarController - index: Mostramos la gestion de ejemplares");
 		LibroDTO libroDTO = new LibroDTO();
 		libroDTO.setIsbn(isbnLibro);
+		libroDTO = libroService.findByIsbn(isbnLibro);
 		List<EjemplarDTO> listaEjemplaresDTO = ejemplarService.findByLibro(libroDTO);
 
 		ModelAndView mav = new ModelAndView("adminEjemplares");
