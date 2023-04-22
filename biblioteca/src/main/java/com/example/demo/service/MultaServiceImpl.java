@@ -36,6 +36,12 @@ public class MultaServiceImpl implements MultaService {
 
 		// Obtenemos la listaMultas de multas del alquiler
 		List<Multa> listaMultas = (List<Multa>) multaRepository.findAllByAlquiler(alquilerDTO.getId());
+		// Solo son visibles las multas a la entrega del libro
+		// Filtrar la lista para quedarte solo con las multas cuyo alquiler tenga fecha
+		// de entrega
+		listaMultas = listaMultas.stream().filter(multa -> multa.getAlquiler().getFecha_entrega() != null)
+				.collect(Collectors.toList());
+
 		// Creamos una listaMultas de MultaDTO que serÃ¡ la que devolvamos al
 		// controlador
 		List<MultaDTO> listaMultasDTO = new ArrayList<MultaDTO>();
@@ -59,9 +65,9 @@ public class MultaServiceImpl implements MultaService {
 
 		Date fecha = new Date();
 		multa.setFecha(fecha);
-		
+
 		multa.setDescartada(false);
- 
+
 		multaRepository.save(multa);
 
 	}
@@ -77,6 +83,12 @@ public class MultaServiceImpl implements MultaService {
 	public List<MultaDTO> findAllByUsuario(UsuarioDTO usuarioDTO) {
 		// TODO Auto-generated method stub
 		List<Multa> listaMultas = multaRepository.findAllByCliente(usuarioDTO.getId());
+		
+		// Solo son visibles las multas a la entrega del libro
+		// Filtrar la lista para quedarte solo con las multas cuyo alquiler tenga fecha
+		// de entrega
+		listaMultas = listaMultas.stream().filter(multa -> multa.getAlquiler().getFecha_entrega() != null)
+				.collect(Collectors.toList());
 		List<MultaDTO> listaMultasDTO = new ArrayList<>();
 
 		for (Multa multa : listaMultas) {
@@ -92,8 +104,8 @@ public class MultaServiceImpl implements MultaService {
 		// TODO Auto-generated method stub
 		Optional<Multa> multa = multaRepository.findById(multaDTO.getId());
 		multa.get().setDescartada(true);
-		
+
 		multaRepository.save(multa.get());
-		
+
 	}
 }
