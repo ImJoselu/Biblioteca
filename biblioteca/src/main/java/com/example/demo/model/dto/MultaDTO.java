@@ -50,8 +50,8 @@ public class MultaDTO implements Serializable {
 		multa.setImporte(multaDTO.getImporte());
 		multa.setObservaciones(multaDTO.getObservaciones());
 
-		//multa.setAlquiler(AlquilerDTO.convertToEntity(multaDTO.getAlquilerDTO()));
-		
+		// multa.setAlquiler(AlquilerDTO.convertToEntity(multaDTO.getAlquilerDTO()));
+
 		return multa;
 
 	}

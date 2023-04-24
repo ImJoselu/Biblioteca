@@ -17,4 +17,7 @@ public interface LibroRepository extends JpaRepository<Libro, Long> {
 	@Query("SELECT l FROM Libro l ORDER BY l.id DESC LIMIT 6")
 	List<Libro> findTop6ByOrderByIdDesc();
 
+	@Query("SELECT l FROM Libro l where isbn = :isbn")
+	Libro findByISBN(String isbn);
+
 }

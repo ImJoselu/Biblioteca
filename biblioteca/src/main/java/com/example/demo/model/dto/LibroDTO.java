@@ -19,6 +19,7 @@ public class LibroDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String isbn;
 	private String titulo;
+
 	@ToString.Exclude
 	private EditorialDTO editorialDTO;
 	@ToString.Exclude

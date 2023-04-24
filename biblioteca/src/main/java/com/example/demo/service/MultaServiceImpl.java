@@ -59,9 +59,9 @@ public class MultaServiceImpl implements MultaService {
 
 		Date fecha = new Date();
 		multa.setFecha(fecha);
-		
+
 		multa.setDescartada(false);
- 
+
 		multaRepository.save(multa);
 
 	}
@@ -92,8 +92,8 @@ public class MultaServiceImpl implements MultaService {
 		// TODO Auto-generated method stub
 		Optional<Multa> multa = multaRepository.findById(multaDTO.getId());
 		multa.get().setDescartada(true);
-		
+
 		multaRepository.save(multa.get());
-		
+
 	}
 }

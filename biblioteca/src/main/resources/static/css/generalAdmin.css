@@ -4,6 +4,7 @@
 
 .verTextarea textarea {
 	display: none;
+	height: 70px;
 }
 
 .btnAdmin {
@@ -16,7 +17,6 @@
 	align-items: center;
 	justify-content: center;
 	transition: all 1s;
-	margin-right: 50px;
 }
 
 .btnAdmin:hover {
@@ -27,6 +27,11 @@
 	cursor: pointer;
 }
 
+.btnAdmin:hover a {
+	color: #1c1d1d;
+	cursor: pointer;
+}
+
 .btnAdmin>h3:hover {
 	cursor: pointer
 }
@@ -34,7 +39,7 @@
 .estadoContacto {
 	color: #513719;
 }
-
+/*
 .estadoContacto option {
 	text-shadow: 0 0 0.2em black, 0 0 0.2em black, 0 0 0.2em black;
 	background-color: #1c1d1d;
@@ -51,7 +56,7 @@
 .estadoContacto option:nth-of-type(3) {
 	color: red;
 }
-
+*/
 td {
 	font-family: Arial, Helvetica, sans-serif;
 	text-align: center;
@@ -74,23 +79,45 @@ th{
     color: #4c2f0d;
 }
 */
-
 .volver {
 	text-align: center;
-
 }
 
-
-
-.descartada{
-	
+.descartada {
 	text-decoration: none;
 	text-decoration-line: line-through;
 	pointer-events: none;
-	
 }
 
-.btnAdmin a{
+.btnAdmin a {
 	text-decoration: none;
+	color: white;
+}
 
+a {
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.botonIcono {
+	cursor: pointer;
+}
+
+img.botonIconoBack {
+	border: 1px solid black;
+	height: 30px;
+	margin-left: 15px;
+	transition: all 0.4s;
+	cursor: pointer;
+}
+
+img.botonIconoBack:hover {
+	border: 2px solid #513719;
+	color: #513719;
+	height: 38px;
+}
+
+footer {
+	bottom: 0;
+	width: 100%;
 }

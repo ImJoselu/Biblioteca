@@ -77,7 +77,7 @@ public class IndexController {
 		usuario.setId(1L); // ESTA LINEA HAY QUE CAMBIAR EL "0" POR EL ID DEL USUARIO LOGEADO EN EL MOMENTO
 		mav.addObject("usuario", usuario);
 		mav.addObject("solicitud", solicitud);
-		
+
 		return mav;
 	}
 

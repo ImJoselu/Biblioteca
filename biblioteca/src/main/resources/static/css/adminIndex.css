@@ -30,3 +30,7 @@ main {
 	text-decoration: none !important;
 	cursor: pointer !important;
 }
+
+main#mainIndexAdmin {
+	flex-direction: row;
+}

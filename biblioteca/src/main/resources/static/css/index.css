@@ -46,3 +46,26 @@ main {
 	margin-bottom: 40px;
 	justify-items: center
 }
+
+.imagenConfirm {
+	height: 300px;
+}
+
+.confirmDiv {
+	display: flex;
+	gap: 30px;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	align-content: center;
+}
+
+.catalogoDiv {
+	display: flex;
+	gap: 30px;
+	flex-direction: column;
+}
+
+.confirmDiv>p {
+	max-width: 739px;
+}

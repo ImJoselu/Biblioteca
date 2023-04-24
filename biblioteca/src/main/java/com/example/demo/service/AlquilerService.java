@@ -18,4 +18,8 @@ public interface AlquilerService {
 
 	EjemplarDTO alquilar(UsuarioDTO usuarioDTO, LibroDTO libroDTO);
 
+	AlquilerDTO findAll(UsuarioDTO usuarioDTO);
+
+	EjemplarDTO comprobar(UsuarioDTO usuarioDTO, LibroDTO libroDTO);
+
 }

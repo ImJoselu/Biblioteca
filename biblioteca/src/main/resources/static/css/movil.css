@@ -160,3 +160,7 @@ aside>img {
 		font-size: 100%;
 	}
 }
+
+#librosTienda figure {
+	width: 40%;
+}
