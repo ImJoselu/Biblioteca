@@ -33,7 +33,6 @@ public class LibroEscribeAutor {
 	@Temporal(TemporalType.DATE)
 	private Date fechaPublicacion;
 	@Column(name = "edad_recomendada")
-	@Temporal(TemporalType.DATE)
-	private Date edadRecomendada;
+	private String edadRecomendada;
 
 }

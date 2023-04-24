@@ -3,8 +3,13 @@ package com.example.demo.repository.dao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.repository.entity.Ejemplar;
+import com.example.demo.repository.entity.LibroEscribeAutor;
+
 import jakarta.transaction.Transactional;
 
-public interface LibroEscribeAutorRepository {
+@Repository
+@Transactional
+public interface LibroEscribeAutorRepository extends JpaRepository<LibroEscribeAutor, Long>{
 
 }

@@ -23,7 +23,7 @@ public class Genero {
 
 	private String nombre;
 
-	@ManyToMany(cascade = { CascadeType.ALL }, mappedBy = "listaGeneros")
+	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "listaGeneros")
 	@ToString.Exclude
 	private Set<Libro> listaLibros;
 }

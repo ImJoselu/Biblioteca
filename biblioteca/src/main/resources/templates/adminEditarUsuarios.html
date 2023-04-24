@@ -51,7 +51,7 @@
 		th:utext="${errorMessage}"></h2>
 	<br>
 	<form method="POST" th:action="@{/usuarios/save}"
-		th:object="${usuario}">
+		th:object="${usuarioDTO}">
 		<table>
 			<tr hidden>
 				<td><label for="nombre">ID:</label></td>
@@ -80,6 +80,10 @@
 			<tr hidden>
 				<td><label for="nombre">Es Admin:</label></td>
 				<td><input type="text" id="esadmin" th:field="*{es_administrador}" readonly/></td>
+			</tr>
+			<tr hidden>
+				<td><label for="nif">Nif:</label></td>
+				<td><input type="text" id="nif" th:field="*{nif}" readonly/></td>
 			</tr>
 			<tr hidden>
 				<td><label for="nombre">Es cliente:</label></td>

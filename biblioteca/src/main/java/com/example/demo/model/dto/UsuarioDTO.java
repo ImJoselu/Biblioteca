@@ -75,6 +75,7 @@ public class UsuarioDTO implements Serializable {
 		Solicitud solicitud = new Solicitud();
 		Alquiler alquiler = new Alquiler();
 
+		/*
 		for (SolicitudDTO s : usuarioDTO.getListaSolicitudesDTO()) {
 			solicitud = SolicitudDTO.convertToEntity(s);
 			usuario.getListaSolicitudes().add(solicitud);
@@ -84,7 +85,7 @@ public class UsuarioDTO implements Serializable {
 			alquiler = AlquilerDTO.convertToEntity(a);
 			usuario.getListaAlquileres().add(alquiler);
 		}
-
+*/
 		return usuario;
 
 	}

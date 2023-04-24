@@ -41,7 +41,10 @@ public class UsuarioController {
 
 		log.info("UsuarioController - adminEditarUsuarios: editamos la gestion de usuarios");
 		ModelAndView mav = new ModelAndView("adminEditarUsuarios");
-		mav.addObject("usuario", usuarioService.findById(idUsuario));
+		UsuarioDTO usuarioDTO = usuarioService.findById(idUsuario);
+		log.info(usuarioDTO.toString());
+		
+		mav.addObject("usuarioDTO", usuarioDTO);
 
 		return mav;
 	}
@@ -50,7 +53,7 @@ public class UsuarioController {
 	@PostMapping("/usuarios/save")
 	public ModelAndView save(@ModelAttribute("usuarioDTO") UsuarioDTO usuarioDTO) {
 
-		log.info("UsuarioController - save:Salvamos los datos del usuarioDTO");
+		log.info("UsuarioController - save:Salvamos los datos del usuarioDTO: " + usuarioDTO.toString());
 
 		ModelAndView mav = new ModelAndView();
 		boolean seguir = !usuarioDTO.getNombre().isEmpty() 

@@ -13,6 +13,8 @@ import com.example.demo.model.dto.UsuarioDTO;
 import com.example.demo.repository.dao.UsuarioRepository;
 import com.example.demo.repository.entity.Usuario;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
 
@@ -50,8 +52,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Override
 	public void save(UsuarioDTO usuarioDTO) {
-		log.info("UsuarioServiceImpl - save: Salva el cliente: ");
+		log.info("UsuarioServiceImpl - save: Salva el cliente: " + usuarioDTO.toString());
 		Usuario usuario = UsuarioDTO.convertToEntity(usuarioDTO);
+
 		usuarioRepository.save(usuario);	
 	}
 
