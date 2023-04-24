@@ -23,7 +23,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Override
 	public UsuarioDTO findById(Long idUsuario) {
-		log.info("ClienteServiceImpl - findById: Busca el usuario: " + idUsuario);
+		log.info("UsuarioServiceImpl - findById: Busca el usuario: " + idUsuario);
 		// Paso de DTO a entidad
 		Optional<Usuario> usuario = usuarioRepository.findById(idUsuario);
 		UsuarioDTO usuarioDTO = new UsuarioDTO();
@@ -46,6 +46,13 @@ public class UsuarioServiceImpl implements UsuarioService {
 			listaClientesDTO.add(usuarioDTO);
 		}
 		return listaClientesDTO;
+	}
+
+	@Override
+	public void save(UsuarioDTO usuarioDTO) {
+		log.info("UsuarioServiceImpl - save: Salva el cliente: ");
+		Usuario usuario = UsuarioDTO.convertToEntity(usuarioDTO);
+		usuarioRepository.save(usuario);	
 	}
 
 }

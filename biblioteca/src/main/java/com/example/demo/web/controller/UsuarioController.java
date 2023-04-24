@@ -7,12 +7,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.demo.model.dto.EjemplarDTO;
 import com.example.demo.model.dto.UsuarioDTO;
-import com.example.demo.service.EjemplarService;
 import com.example.demo.service.UsuarioService;
 
 @Controller
@@ -42,7 +42,29 @@ public class UsuarioController {
 		log.info("UsuarioController - adminEditarUsuarios: editamos la gestion de usuarios");
 		ModelAndView mav = new ModelAndView("adminEditarUsuarios");
 		mav.addObject("usuario", usuarioService.findById(idUsuario));
-		
+
+		return mav;
+	}
+
+	// Salvar
+	@PostMapping("/usuarios/save")
+	public ModelAndView save(@ModelAttribute("usuarioDTO") UsuarioDTO usuarioDTO) {
+
+		log.info("UsuarioController - save:Salvamos los datos del usuarioDTO");
+
+		ModelAndView mav = new ModelAndView();
+		boolean seguir = !usuarioDTO.getNombre().isEmpty() 
+				&& !usuarioDTO.getApellidos().isEmpty() 
+				&& !usuarioDTO.getEmail().isEmpty()
+				&& !usuarioDTO.getUsername().isEmpty();
+		if (!seguir) {
+			mav.addObject("usuarioDTO", usuarioDTO);
+			mav.addObject("errorMessage", "Algunos valores son vacios");
+			mav.setViewName("adminEditarUsuarios");
+		} else {
+			usuarioService.save(usuarioDTO);
+			mav.setViewName("redirect:/adminClientes");
+		}
 		return mav;
 	}
 

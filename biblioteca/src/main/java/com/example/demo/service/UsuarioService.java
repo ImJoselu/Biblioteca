@@ -13,4 +13,6 @@ public interface UsuarioService {
 
 	List<UsuarioDTO> findAllClientes();
 
+	void save(UsuarioDTO usuarioDTO);
+
 }
