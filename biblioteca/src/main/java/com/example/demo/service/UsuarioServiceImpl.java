@@ -55,7 +55,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 		log.info("UsuarioServiceImpl - save: Salva el cliente: " + usuarioDTO.toString());
 		Usuario usuario = UsuarioDTO.convertToEntity(usuarioDTO);
 
-		usuarioRepository.save(usuario);	
+		usuarioRepository.actualizarUsuario(usuario);	
 	}
 
 }
