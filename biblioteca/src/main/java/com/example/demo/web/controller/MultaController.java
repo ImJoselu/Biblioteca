@@ -17,11 +17,15 @@ import com.example.demo.model.dto.MultaDTO;
 import com.example.demo.model.dto.UsuarioDTO;
 import com.example.demo.repository.entity.Usuario;
 import com.example.demo.service.MultaService;
+import com.example.demo.service.UsuarioService;
 
 @Controller
 public class MultaController {
 	private static final Logger log = LoggerFactory.getLogger(MultaController.class);
 
+	@Autowired
+	private UsuarioService usuarioService;
+	
 	@Autowired
 	private MultaService multaService;
 
@@ -55,7 +59,7 @@ public class MultaController {
 		log.info("MultaController - findAll: Mostramos todos los multas del usuario: " + idUsuario);
 
 		UsuarioDTO usuarioDTO = new UsuarioDTO();
-		usuarioDTO.setId(idUsuario);
+		usuarioDTO = usuarioService.findById(idUsuario);
 
 		ModelAndView mav = new ModelAndView("adminMultas");
 		List<MultaDTO> listaMultasDTO = multaService.findAllByUsuario(usuarioDTO);

@@ -13,6 +13,8 @@ import com.example.demo.model.dto.UsuarioDTO;
 import com.example.demo.repository.dao.UsuarioRepository;
 import com.example.demo.repository.entity.Usuario;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
 
@@ -23,7 +25,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Override
 	public UsuarioDTO findById(Long idUsuario) {
-		log.info("ClienteServiceImpl - findById: Busca el usuario: " + idUsuario);
+		log.info("UsuarioServiceImpl - findById: Busca el usuario: " + idUsuario);
 		// Paso de DTO a entidad
 		Optional<Usuario> usuario = usuarioRepository.findById(idUsuario);
 		UsuarioDTO usuarioDTO = new UsuarioDTO();
@@ -46,6 +48,14 @@ public class UsuarioServiceImpl implements UsuarioService {
 			listaClientesDTO.add(usuarioDTO);
 		}
 		return listaClientesDTO;
+	}
+
+	@Override
+	public void save(UsuarioDTO usuarioDTO) {
+		log.info("UsuarioServiceImpl - save: Salva el cliente: " + usuarioDTO.toString());
+		Usuario usuario = UsuarioDTO.convertToEntity(usuarioDTO);
+
+		usuarioRepository.actualizarUsuario(usuario);	
 	}
 
 }

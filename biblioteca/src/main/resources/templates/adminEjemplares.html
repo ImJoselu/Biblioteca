@@ -5,15 +5,17 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Administracion de Libros</title>
-<link rel="stylesheet" href="css/general.css">
-<link rel="stylesheet" href="css/generalAdmin.css">
-<link rel="stylesheet" media="(max-width: 600px)" href="css/movil.css">
+<title>Administracion de Ejemplares</title>
+<link rel="stylesheet" th:href="@{/css/general.css}" />
+<link rel="stylesheet" th:href="@{/css/generalAdmin.css}" />
+<link rel="stylesheet" th:href="@{/css/movil.css}">
+<link rel="stylesheet" media="(max-width: 600px)"
+	th:href="@{/css/movil.css}" />
 <link rel="stylesheet" media="(min-width: 600px) and (max-width: 800px)"
-	href="css/tablet.css">
-<link rel="stylesheet" media="(min-width: 800px)" href="css/pc.css">
+	th:href="@{/css/tablet.css}" />
+<link rel="stylesheet" media="(min-width: 800px)"
+	th:href="@{/css/pc.css}" />
 <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-
 </head>
 
 <body>
@@ -33,7 +35,7 @@
 			<a th:href="@{/adminClientes}">Cliente</a>
 		</h3>
 		<h3>
-			<a th:href="@{/adminEjemplares}">Libro</a>
+			<a th:href="@{/adminLibros}">Libro</a>
 		</h3>
 	</aside>
 	<nav>
@@ -48,17 +50,17 @@
 		</h3>
 		<!---->
 		<img src="images/menu_black_24dp.svg" id="btnMenuMovil">
-	</nav>
-	<main>
+	</nav>		
 
-		<table>
+	<main style="flex-direction: column;">
+		<h1 th:if="${listaEjemplaresDTO.size() > 0}" style="text-align: center; margin-bottom: 20px;">Viendo ejemplares de <span th:text="${libroDTO.titulo}" style="text-decoration: underline;"></span> </h1>
+
+		<table th:if="${listaEjemplaresDTO.size() > 0}">
 			<thead>
 				<tr>
 					<th>ISBN</th>
 					<th>Nombre</th>
 					<th>Editorial</th>
-					<!--  <th>Stock</th>-->
-					<th>Cambiar Stock</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -66,13 +68,10 @@
 					<td th:text="${ejemplarDTO.libroDTO.isbn}"></td>
 					<td th:text="${ejemplarDTO.libroDTO.titulo}"></td>
 					<td th:text="${ejemplarDTO.libroDTO.editorialDTO.nombre}"></td>
-					<!--<td th:text="${}"></td>-->
-					<td class="cambiarInput"><a>Cambiar Stock</a> <input
-						type="number" id="cambiarStock"></td>
-					<!--Cuando hagas click en el link de cambiar stock, aparecerá el input number-->
 				</tr>
 			</tbody>
 		</table>
+		<h1 th:if="${listaEjemplaresDTO.size() == 0}">No hay ejemplares para <span th:text="${libroDTO.titulo}" style="text-decoration: underline;"></span> </h1>
 	</main>
 	<div class="volver">
 		<p>

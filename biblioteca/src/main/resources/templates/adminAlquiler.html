@@ -44,7 +44,7 @@
 			<a th:href="@{/adminClientes}">Cliente</a>
 		</h3>
 		<h3>
-			<a th:href="@{/adminEjemplares}">Libro</a>
+			<a th:href="@{/adminLibros}">Libro</a>
 		</h3>
 	</aside>
 	<nav>
@@ -55,14 +55,16 @@
 			<a th:href="@{/adminClientes}">Cliente</a>
 		</h3>
 		<h3>
-			<a th:href="@{/adminEjemplares}">Libro</a>
+			<a th:href="@{/adminLibros}">Libro</a>
 		</h3>
 		<!---->
 		<img src="images/menu_black_24dp.svg" id="btnMenuMovil">
 	</nav>
-	<main>
-
-		<table>
+	<main style="flex-direction: column;">
+		<h2 th:if="${listaAlquileresDTO.size() > 0}" style="text-align: center; margin-bottom: 20px;">
+			Viendo alquileres de:<b th:text="${usuarioDTO.nombre}" style="text-decoration: underline;"></b>
+		</h2>
+		<table th:if="${listaAlquileresDTO.size() > 0}">
 			<thead>
 				<tr>
 					<th>Titulo</th>
@@ -89,30 +91,37 @@
 			</tbody>
 
 		</table>
+		<h1 th:if="${listaAlquileresDTO.size() == 0}">No hay alquileres de <span th:text="${usuarioDTO.nombre}" style="text-decoration: underline;"></span> </h1>
+		
 	</main>
-	
-    <div class="volver">
-        <p>Volver a Clientes: <a th:href="@{/adminClientes}"><b>Volver</b></a></p>
-        </div>
-    <footer>
-        <div>
-            <div>
-                <p>En la Biblioteca, nos esforzamos por brindar un acceso fácil y conveniente a una amplia selección de libros y recursos.</p>
-              </div>
-              <div>
-                <p>Nuestro compromiso es brindar una experiencia de lectura inolvidable</p>
-            </div>
-            <div>
-                <p>Nuestro equipo de bibliotecarios trabaja incansablemente para ofrecerte los mejores recursos</p>
-            </div>
-            <div>
-                <p>Gracias por formar parte de esta comunidad de lectores</p>
-            </div>
-        </div>
-        <h4>©Bibliotecarios S.L. 2022/2023</h4>
-    </footer>
-    <script src="js/jquery-3.6.3.min.js"></script>
-    <script src="js/admin.js"></script>
+
+	<div class="volver">
+		<p>
+			Volver a Clientes: <a th:href="@{/adminClientes}"><b>Volver</b></a>
+		</p>
+	</div>
+	<footer>
+		<div>
+			<div>
+				<p>En la Biblioteca, nos esforzamos por brindar un acceso fácil
+					y conveniente a una amplia selección de libros y recursos.</p>
+			</div>
+			<div>
+				<p>Nuestro compromiso es brindar una experiencia de lectura
+					inolvidable</p>
+			</div>
+			<div>
+				<p>Nuestro equipo de bibliotecarios trabaja incansablemente para
+					ofrecerte los mejores recursos</p>
+			</div>
+			<div>
+				<p>Gracias por formar parte de esta comunidad de lectores</p>
+			</div>
+		</div>
+		<h4>©Bibliotecarios S.L. 2022/2023</h4>
+	</footer>
+	<script src="js/jquery-3.6.3.min.js"></script>
+	<script src="js/admin.js"></script>
 
 
 </body>

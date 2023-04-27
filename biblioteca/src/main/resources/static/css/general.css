@@ -52,7 +52,26 @@ header>h2:hover {
 nav {
 	animation: anim 1s ease 0s 1 normal forwards;
 }
-@keyframes anim {     0% {          opacity: 0;         transform: translateY(-100px) scale(0, 0);     }      100% {          opacity: 1;         transform: translateY(0) scale(1, 1);     } }
+
+@keyframes anim { 0% {
+	opacity: 0;
+	transform: translateY(-100px) scale(0, 0);
+}
+
+100% {
+opacity:1;
+
+transform:
+translateY(
+0
+)
+scale(
+1
+,
+1
+);
+}
+}
 nav h3 {
 	margin-right: 20px;
 	cursor: pointer;
@@ -222,4 +241,20 @@ nav a, header a {
 
 #menuMovil {
 	display: none;
+}
+
+#contenedorSocial {
+	background-color: #513719;
+	border-bottom: 1px solid black;
+}
+
+#contenedorSocial>abbr>a {
+	margin: 40px;
+}
+
+#contenedorSocial>abbr>a>img {
+	margin: -10px;
+	margin-bottom:10px;
+	width: 50px;
+	height: 50px;
 }

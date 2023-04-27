@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.dto.EjemplarDTO;
+import com.example.demo.model.dto.LibroDTO;
+import com.example.demo.model.dto.EjemplarDTO;
 import com.example.demo.repository.dao.EjemplarRepository;
+import com.example.demo.repository.entity.Ejemplar;
 import com.example.demo.repository.entity.Ejemplar;
 
 @Service
@@ -31,6 +34,21 @@ public class EjemplarServiceImpl implements EjemplarService {
 
 		return listaEjemplaresDTO;
 
+	}
+
+	@Override
+	public List<EjemplarDTO> findByLibro(LibroDTO libroDTO) {
+		// Obtenemos la listaEjemplars de ejemplars del libro
+		List<Ejemplar> listaEjemplares = (List<Ejemplar>) ejemplarRepository.findAllByLibro(libroDTO.getIsbn());
+		// Creamos una listaEjemplars de EjemplarDTO que serÃ¡ la que devolvamos al
+		// controlador
+		List<EjemplarDTO> listaEjemplaresDTO = new ArrayList<EjemplarDTO>();
+		// Recorremos la listaEjemplars de ejemplars y las mapeamos a DTO
+		for (int i = 0; i < listaEjemplares.size(); ++i) {
+			listaEjemplaresDTO.add(EjemplarDTO.convertToDTO(listaEjemplares.get(i)));
+		}
+		// Devolvemos la listaEjemplars de DTO's
+		return listaEjemplaresDTO;
 	}
 
 }
