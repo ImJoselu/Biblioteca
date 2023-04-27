@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.dto.EjemplarDTO;
+import com.example.demo.model.dto.EstadisticaDTO;
 import com.example.demo.model.dto.LibroDTO;
 import com.example.demo.model.dto.UsuarioDTO;
 import com.example.demo.service.EjemplarService;
+import com.example.demo.service.EstadisticasService;
 import com.example.demo.service.LibroService;
 
 @Controller
@@ -24,6 +26,9 @@ public class LibroController {
 
 	@Autowired
 	private LibroService libroService;
+	
+	@Autowired
+	private EstadisticasService estadisticasService;
 
 	private static final Logger log = LoggerFactory.getLogger(IndexController.class);
 
@@ -35,7 +40,10 @@ public class LibroController {
 		List<LibroDTO> listaLibrosDTO = libroService.findAll();
 
 		List<LibroDTO> listaAleatoria = new ArrayList<>();
-
+		listaAleatoria = estadisticasService.librosRecomendados();
+		
+		log.info(listaAleatoria.toString());
+		/*
 		// Obtenemos tres índices aleatorios
 		Random random = new Random();
 		Set<Integer> indices = new HashSet<>();
@@ -48,7 +56,7 @@ public class LibroController {
 		for (Integer indice : indices) {
 			listaAleatoria.add(listaLibrosDTO.get(indice));
 		}
-
+*/
 		ModelAndView mav = new ModelAndView("tienda");
 
 		UsuarioDTO usuario = new UsuarioDTO();
