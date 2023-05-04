@@ -60,7 +60,7 @@
 		<h3>
 			<a th:href="@{/login}">Login</a>
 		</h3>
-		
+
 		<!---->
 		<img th:src="@{/images/menu_black_24dp.svg}" id="btnMenuMovil" />
 	</nav>
@@ -69,12 +69,12 @@
 		<section id="seccionLogin">
 			<h1>Login</h1>
 			<form th:action="@{/login}" method="post">
-				<input type="password" id="loginPass" placeholder="Contraseña" name="password">
-				<input type="text" id="loginUser" placeholder="Nombre de Usuario" name="username">
+				<input type="password" id="loginPass" placeholder="Contraseña"
+					name="password"> <input type="text" id="loginUser"
+					placeholder="Nombre de Usuario" name="username">
 				<button id="btnLogin" type="submit">Entrar</button>
 			</form>
-
-
+			<div th:if="${param.error}">Usuario y/o password inválido.</div>
 		</section>
 		<section id="seccionRegistro">
 			<h1>Registro</h1>
@@ -130,8 +130,12 @@
 			</div>
 		</div>
 		<div id="contenedorSocial">
-		<abbr title="Siguenos en Instagram"><a th:href="@{https://www.instagram.com/bibliotecasocialpremium/}"> <img th:src="'/images/instagram.png'" alt="Logo de mi proyecto"></a></abbr>
-		<abbr title="Siguenos en Twitter"><a th:href="@{https://twitter.com/bilbiotecaSP}"> <img th:src="'/images/twitter.png'" alt="Logo de mi proyecto"></a></abbr>
+			<abbr title="Siguenos en Instagram"><a
+				th:href="@{https://www.instagram.com/bibliotecasocialpremium/}">
+					<img th:src="'/images/instagram.png'" alt="Logo de mi proyecto">
+			</a></abbr> <abbr title="Siguenos en Twitter"><a
+				th:href="@{https://twitter.com/bilbiotecaSP}"> <img
+					th:src="'/images/twitter.png'" alt="Logo de mi proyecto"></a></abbr>
 		</div>
 		<h4>
 			Copyright &copy; Bibliotecarios S.L.
