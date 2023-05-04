@@ -22,6 +22,14 @@
 		<h2>
 			<a th:href="@{/adminIndex}">LogoAdmin</a>
 		</h2>
+		<div sec:authorize="isAuthenticated()">
+			<h2 id="mensajeBienvenida" th:inline="text">
+				<a th:href="@{/}">
+					¡Hola,	<span th:remove="tag" sec:authentication="name"> </span>!
+				</a>
+
+			</h2>
+		</div>
 		<!--Esto será luego una imagen o algo asi-->
 
 	</header>
@@ -47,8 +55,16 @@
 		<h3>
 			<a th:href="@{/adminLibros}">Libro</a>
 		</h3>
+		<div sec:authorize="isAuthenticated()">
+			<form th:action="@{/logout}" method="post">
+				<h3>
+					<input id="logoutBoton" type="submit" value="Logout" />
+				</h3>
+			</form>
+		</div>
 		<!---->
 		<img src="images/menu_black_24dp.svg" id="btnMenuMovil">
+		
 	</nav>
 	<main>
 
@@ -72,7 +88,6 @@
 			<img src="images/support_agent_white_48dp.svg" alt="">
 			</button>
 		</a>
-		
 	</main>
 	<footer>
 		<div>

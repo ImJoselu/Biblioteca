@@ -48,19 +48,20 @@ public class IndexController {
 
 		return mav;
 	}
-
+	/*
 	@GetMapping("/login")
 	public ModelAndView login() {
 
 		log.info("IndexController - index: Mostramos la pagina login");
 
 		ModelAndView mav = new ModelAndView("login");
-		/*
+		// comentado estas dos lineasd de abajo
 		 * mav.addObject("titulo", nombreAplicacion); mav.addObject("nombreAsignatura",
 		 * nombreAsignatura);
-		 */
+		 
 		return mav;
 	}
+	*/
 
 	@GetMapping("/contacto")
 	public ModelAndView contacto() {

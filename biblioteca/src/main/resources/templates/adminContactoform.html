@@ -35,6 +35,13 @@
 		<h3>
 			<a th:href="@{/adminLibros}">Libro</a>
 		</h3>
+		<div sec:authorize="isAuthenticated()">
+			<form th:action="@{/logout}" method="post">
+				<h3>
+					<input id="logoutBoton" type="submit" value="Logout" />
+				</h3>
+			</form>
+		</div>
 		<!---->
 		<img src="images/menu_black_24dp.svg" id="btnMenuMovil">
 	</nav>
