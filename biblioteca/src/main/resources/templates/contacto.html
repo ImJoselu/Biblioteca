@@ -24,6 +24,14 @@
 			<a th:href="@{/}">Biblioteca</a>
 		</h2>
 		<!--Esto será luego una imagen o algo asi-->
+		<div sec:authorize="isAuthenticated()">
+			<h2 id="mensajeBienvenida" th:inline="text">
+				<a th:href="@{/}"> ¡Hola, <span th:remove="tag"
+					sec:authentication="name"> </span>!
+				</a>
+
+			</h2>
+		</div>
 	</header>
 
 	<aside id="menuMovil">
@@ -56,16 +64,13 @@
 			<a th:href="@{/contacto}">Contacto</a>
 		</h3>
 		<!--solo puede haber 1 de estos dos activo-->
-		<h3>
-			<a href="proximamente.html">Cuenta</a>
-		</h3>		
-		<div sec:authorize="isAuthenticated()">
-			<form th:action="@{/logout}" method="post">
-				<h3>
-					<input id="logoutBoton" type="submit" value="Logout" />
-				</h3>
-			</form>
-		</div>
+
+		<form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()" style="display: block;">
+			<h3>
+				<input id="logoutBoton" type="submit" value="Logout" />
+			</h3>
+		</form>
+
 
 		<!-- SI NO SE HA AUTENTICADO -->
 		<div sec:authorize="isAnonymous()">
@@ -102,13 +107,17 @@
 			</section>
 			<div>
 				<form
-				th:action="@{/usuario/{idUsuario}/solicitud/save (idUsuario=${usuario.id})}"
-				th:object="${solicitud}" method="POST">
-					<input th:field="${solicitud.username}" type="text" id="nombre" placeholder="Nombre"> 
-					<input th:field="${solicitud.email}" type="email" id="email" placeholder="Correo Electrónico">
-					<input th:field="${solicitud.titulo}" type="text" id="titulo" placeholder="Titulo Libro">
-					<input th:field="${solicitud.ISBN}" type="text" id="isbn" placeholder="ISBN Libro">
-					<textarea th:field="${solicitud.mensaje}" id="mensaje" placeholder="Mensaje"></textarea>
+					th:action="@{/usuario/{idUsuario}/solicitud/save (idUsuario=${usuario.id})}"
+					th:object="${solicitud}" method="POST">
+					<input th:field="${solicitud.username}" type="text" id="nombre"
+						placeholder="Nombre"> <input th:field="${solicitud.email}"
+						type="email" id="email" placeholder="Correo Electrónico">
+					<input th:field="${solicitud.titulo}" type="text" id="titulo"
+						placeholder="Titulo Libro"> <input
+						th:field="${solicitud.ISBN}" type="text" id="isbn"
+						placeholder="ISBN Libro">
+					<textarea th:field="${solicitud.mensaje}" id="mensaje"
+						placeholder="Mensaje"></textarea>
 					<button type="submit" id="btnEnviar">Enviar</button>
 				</form>
 
@@ -153,8 +162,12 @@
 			</div>
 		</div>
 		<div id="contenedorSocial">
-		<abbr title="Siguenos en Instagram"><a th:href="@{https://www.instagram.com/bibliotecasocialpremium/}"> <img th:src="'/images/instagram.png'" alt="Logo de mi proyecto"></a></abbr>
-		<abbr title="Siguenos en Twitter"><a th:href="@{https://twitter.com/bilbiotecaSP}"> <img th:src="'/images/twitter.png'" alt="Logo de mi proyecto"></a></abbr>
+			<abbr title="Siguenos en Instagram"><a
+				th:href="@{https://www.instagram.com/bibliotecasocialpremium/}">
+					<img th:src="'/images/instagram.png'" alt="Logo de mi proyecto">
+			</a></abbr> <abbr title="Siguenos en Twitter"><a
+				th:href="@{https://twitter.com/bilbiotecaSP}"> <img
+					th:src="'/images/twitter.png'" alt="Logo de mi proyecto"></a></abbr>
 		</div>
 		<h4>
 			Copyright &copy; Bibliotecarios S.L.

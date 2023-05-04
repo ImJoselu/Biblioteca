@@ -113,6 +113,12 @@ main>div {
 	grid-row: 5;
 	grid-column: span 2;
 }
+#errorIncorrecto {
+	margin: 10px;
+    color: red;
+    font-weight: bold;
+    font-size: 1em;
+}
 
 @media ( min-width : 800px) {
 	body {

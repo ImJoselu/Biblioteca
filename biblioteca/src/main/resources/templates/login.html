@@ -74,7 +74,7 @@
 					placeholder="Nombre de Usuario" name="username">
 				<button id="btnLogin" type="submit">Entrar</button>
 			</form>
-			<div th:if="${param.error}">Usuario y/o password inválido.</div>
+			<div id="errorIncorrecto" th:if="${param.error}">Usuario y/o password inválido.</div>
 		</section>
 		<section id="seccionRegistro">
 			<h1>Registro</h1>
