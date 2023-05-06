@@ -46,16 +46,32 @@ keyframes anim2 { 0% {
 }
 
 100
+
+
 %
 {
 opacity
+
+
 :
+
+
 1
+
+
 ;
 transform
+
+
 :
+
+
 translateY
+
+
 (
+
+
 
 
 
@@ -63,9 +79,17 @@ translateY
 
 
 0
+
+
 )
+
+
 scale
+
+
 (
+
+
 
 
 
@@ -75,7 +99,11 @@ scale
 1
 ,
 1
+
+
 )
+
+
 ;
 }
 }

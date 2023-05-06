@@ -49,7 +49,7 @@ public class Comment {
 	   
 	    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "comentarioPadre")
 		@ToString.Exclude
-		private List<Comment> listaComentarios;
+		private List<Comment> listaComentarios= new ArrayList<>();
 	    
 	    @JoinColumn(name = "es_padre")
 	    private boolean esPadre;

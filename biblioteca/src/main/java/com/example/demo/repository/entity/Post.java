@@ -52,7 +52,7 @@ public class Post {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "post")
 	@ToString.Exclude
-	private List<Comment> listaComentarios;
+	private List<Comment> listaComentarios= new ArrayList<>();
 
 	@Override
 	public boolean equals(Object obj) {
