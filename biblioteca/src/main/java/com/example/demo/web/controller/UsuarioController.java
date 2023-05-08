@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.configuracion.EncriptaPassword;
+import com.example.demo.model.dto.RolDTO;
 import com.example.demo.model.dto.UsuarioDTO;
 import com.example.demo.service.UsuarioService;
 
@@ -43,7 +46,7 @@ public class UsuarioController {
 		ModelAndView mav = new ModelAndView("adminEditarUsuarios");
 		UsuarioDTO usuarioDTO = usuarioService.findById(idUsuario);
 		log.info(usuarioDTO.toString());
-		
+
 		mav.addObject("usuarioDTO", usuarioDTO);
 
 		return mav;
@@ -51,16 +54,32 @@ public class UsuarioController {
 
 	// Salvar
 	@PostMapping("/usuarios/save")
-	public ModelAndView save(@ModelAttribute("usuarioDTO") UsuarioDTO usuarioDTO) {
-
+	public ModelAndView save(@ModelAttribute("usuarioDTO") UsuarioDTO usuarioDTO , @RequestParam String[] roles) {
+	
+		/*log.info("UsuarioController - save: Salvamos los datos del usuario:" +
+			usuarioDTO.toString());
+			 for (String param : roles) {
+			 RolDTO rolDTO = new RolDTO();
+			 rolDTO.setNombre(param);
+			 rolDTO.(usuarioDTO);
+			 usuarioDTO.getRolesDTO().add(rolDTO);
+			 }
+			 // Invocamos a la capa de servicios para que almacene los datos del usuario
+			 usuarioService.save(usuarioDTO);
+			 // Redireccionamos para volver a invocar a la raiz
+			 ModelAndView mav = new ModelAndView("redirect:/");
+			 return mav;
+			 }
+		*/
 		log.info("UsuarioController - save:Salvamos los datos del usuarioDTO: " + usuarioDTO.toString());
-
+		
 		ModelAndView mav = new ModelAndView();
 		boolean seguir = !usuarioDTO.getNombre().isEmpty() 
 				&& !usuarioDTO.getApellidos().isEmpty() 
 				&& !usuarioDTO.getEmail().isEmpty()
 				&& !usuarioDTO.getUsername().isEmpty();
 		if (!seguir) {
+			
 			mav.addObject("usuarioDTO", usuarioDTO);
 			mav.addObject("errorMessage", "Algunos valores son vacios");
 			mav.setViewName("adminEditarUsuarios");

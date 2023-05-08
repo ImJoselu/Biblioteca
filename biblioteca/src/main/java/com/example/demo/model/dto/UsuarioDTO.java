@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import com.example.demo.configuracion.EncriptaPassword;
 import com.example.demo.repository.entity.Alquiler;
 import com.example.demo.repository.entity.Solicitud;
 import com.example.demo.repository.entity.Usuario;
@@ -29,6 +30,8 @@ public class UsuarioDTO implements Serializable {
 	private List<SolicitudDTO> listaSolicitudesDTO;
 	@ToString.Exclude
 	private List<AlquilerDTO> listaAlquileresDTO;
+	@ToString.Exclude
+	private List<RolDTO> listaRolesDTO;
 
 	// FALTAN LAS LISTAS Y CONSTRUCTOR VACIO
 
@@ -68,7 +71,7 @@ public class UsuarioDTO implements Serializable {
 		usuario.setApellidos(usuarioDTO.getApellidos());
 		usuario.setEmail(usuarioDTO.getEmail());
 		usuario.setUsername(usuarioDTO.getUsername());
-		usuario.setPassword(usuarioDTO.getPassword());
+		usuario.setPassword(EncriptaPassword.encriptarPassword(usuarioDTO.getPassword()));
 		usuario.setEs_administrador(usuarioDTO.isEs_administrador());
 		usuario.setEs_cliente(usuarioDTO.isEs_cliente());
 
@@ -91,6 +94,7 @@ public class UsuarioDTO implements Serializable {
 	}
 
 	public UsuarioDTO() {
+		this.listaRolesDTO = new ArrayList<RolDTO>();
 		this.listaSolicitudesDTO = new ArrayList<SolicitudDTO>();
 		this.listaAlquileresDTO = new ArrayList<AlquilerDTO>();
 	}
