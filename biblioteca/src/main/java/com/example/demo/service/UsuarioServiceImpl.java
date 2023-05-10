@@ -24,7 +24,7 @@ import com.example.demo.repository.entity.Usuario;
 import jakarta.transaction.Transactional;
 
 @Service
-public class UsuarioServiceImpl implements UserDetailsService , UsuarioService {
+public class UsuarioServiceImpl implements UserDetailsService, UsuarioService {
 
 	private static final Logger log = LoggerFactory.getLogger(UsuarioServiceImpl.class);
 
@@ -94,6 +94,14 @@ public class UsuarioServiceImpl implements UserDetailsService , UsuarioService {
 		usuarioDTO = UsuarioDTO.convertToDTO(usuario);
 
 		return usuarioDTO;
+	}
+
+	@Override
+	public void saveNuevoUsuario(UsuarioDTO usuarioDTO) {
+		log.info("UsuarioServiceImpl - save: salvamos el usuario : " + usuarioDTO.toString());
+		Usuario usuario = UsuarioDTO.convertToEntity(usuarioDTO);
+		usuarioRepository.save(usuario);
+
 	}
 
 }

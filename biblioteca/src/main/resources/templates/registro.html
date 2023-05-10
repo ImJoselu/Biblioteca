@@ -5,12 +5,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Pagina Principal</title>
-<link rel="stylesheet" th:href="@{/css/general.css}" />
-<link rel="stylesheet" th:href="@{/css/index.css}" />
-<link rel="stylesheet" media="(max-width: 600px)" th:href="@{/css/movil.css}" />
-<link rel="stylesheet" media="(min-width: 600px) and (max-width: 800px)" th:href="@{/css/tablet.css}" />
-<link rel="stylesheet" media="(min-width: 800px)" th:href="@{/css/pc.css}" />
-<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="css/general.css">
+<link rel="stylesheet" href="css/registro.css">
+<link rel="stylesheet" media="(max-width: 600px)" href="css/movil.css">
+<link rel="stylesheet" media="(min-width: 600px) and (max-width: 800px)" href="css/tablet.css">
+<link rel="stylesheet" media="(min-width: 800px)" href="css/pc.css">
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -84,29 +84,76 @@
 			<h3>
 				<a href="/login">Login</a>
 			</h3>
+			
+		</div>
+		<div sec:authorize="isAnonymous()">
+			<h3>
+				<a th:href="@{/registro}">Registro</a>
+			</h3>
 		</div>
 		<!---->
 		<img th:src="@{/images/menu_black_24dp.svg}" id="btnMenuMovil" />
 	</nav>
-	<section id="seccionRegistro">
+	<main>
+		<section id="seccionRegistro">
 		<h1>Registro</h1>
-		<form th:action="@{/usuarios/save}" method="post" th:object="${usuarioDTO}">
+		<form th:action="@{/usuarios/saveNuevoUsuario}" method="post" th:object="${usuarioDTO}">
 			<input type="email" id="registroEmail" placeholder="Correo Electronico" th:field="*{email}"> 
 			<input type="text" id="registroUser" placeholder="Nombre de Usuario" th:field="*{username}"> 
 			<input type="text" id="registroNombre" placeholder="Nombre" th:field="*{nombre}"> 
 			<input type="text" id="registroApellidos" placeholder="Apellidos" th:field="*{apellidos}">
 			<input type="text" id="registroDNI" placeholder="NIF" th:field="*{nif}"> 
 			<input type="text" id="registroPass" placeholder="Contraseña" th:field="*{password}"> 
-			<input type="text" id="registroPass2" placeholder="Repetir Contraseña">
-			<label>Roles:
-			<input type="checkbox" name="roles"	text="ADMIN" value="ROLE_ADMIN">ADMIN</input>
-			<input type="checkbox" name="roles"	text="USER" value="ROLE_USER">USER</input>
-			</label>
 			<button id="btnRegistro" type="submit">Registrar</button>
 		</form>
-	</section>
-		<div>
-			<span>Login</span><span>Registro</span>
-		</div>
+		</section>
+
+	</main>
+	<footer>
+			<div>
+				<div>
+					<h5>Nosotros</h5>
+					<ul>
+						<li><a>Acerca de nosotros</a></li>
+						<li><a>Contacto</a></li>
+						<li><a>Empleo</a></li>
+					</ul>
+				</div>
+	
+				<div>
+					<h5>Servicios</h5>
+					<ul>
+						<li><a>Envío</a></li>
+						<li><a>Devoluciones</a></li>
+						<li><a>Preguntas frecuentes</a></li>
+						<br>
+						<br>
+						<h5>Redes sociales</h5>
+					</ul>
+				</div>
+				<div>
+					<h5>Contacto</h5>
+					<ul>
+						<li>123 Calle Principal</li>
+						<li>Ciudad, Estado</li>
+						<li>Código Postal</li>
+						<li>555-555-5555</li>
+						<li><a>info@libreria.com</a></li>
+					</ul>
+				</div>
+			</div>
+			<div id="contenedorSocial">
+				<abbr title="Siguenos en Instagram"><a
+					th:href="@{https://www.instagram.com/bibliotecasocialpremium/}">
+						<img th:src="'/images/instagram.png'" alt="Logo de mi proyecto">
+				</a></abbr> <abbr title="Siguenos en Twitter"><a
+					th:href="@{https://twitter.com/bilbiotecaSP}"> <img
+						th:src="'/images/twitter.png'" alt="Logo de mi proyecto"></a></abbr>
+			</div>
+			<h4>
+				Copyright &copy; Bibliotecarios S.L.
+				<script>document.write(new Date().getFullYear());</script>
+			</h4>
+	</footer>
 </body>
 </html>

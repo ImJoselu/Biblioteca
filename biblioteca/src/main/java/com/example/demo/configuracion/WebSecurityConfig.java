@@ -22,7 +22,7 @@ public class WebSecurityConfig {
 
 		http.authorizeHttpRequests()
 				.requestMatchers("/", "/login", "/contacto", "/tienda", "/css/**", "/js/**", "/imagenesLibros/**",
-						"/images/**", "/register", "/usuarios/save/*")
+						"/images/**", "/registro","/usuarios/saveNuevoUsuario", "/usuarios/saveNuevoUsuario/**")
 				.permitAll()
 				.requestMatchers("/adminIndex", 
 						"/usuario/{idUsuario}/adminAlquiler",

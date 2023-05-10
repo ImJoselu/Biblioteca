@@ -87,12 +87,16 @@
 			<h3>
 				<a href="/login">Login</a>
 			</h3>
+			
+		</div>
+		<div sec:authorize="isAnonymous()">
+			<h3>
+				<a th:href="@{/registro}">Registro</a>
+			</h3>
 		</div>
 		<!---->
 		<img th:src="@{/images/menu_black_24dp.svg}" id="btnMenuMovil" />
 	</nav>
-
-
 	<main>
 		<div id="carousel">
 			<img th:src="@{/images/CasadelLibro_Blog.webp}" alt="Image 1" /> <img

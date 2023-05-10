@@ -65,12 +65,13 @@ public class IndexController {
 	*/
 	
 	// Alta de usuarios
-	 @GetMapping("/register")
-	 public ModelAndView register() {
-		 log.info("UsuarioController - register: Mostramos la pantalla de registro");
-		 ModelAndView mav = new ModelAndView("register");
-		 mav.addObject("usuarioDTO", new UsuarioDTO());
-	 return mav;
+	@GetMapping("/registro")
+	public ModelAndView registro() {
+		log.info("UsuarioController - register: Mostramos la pantalla de registro");
+		ModelAndView mav = new ModelAndView("registro");
+		mav.addObject("usuarioDTO", new UsuarioDTO());
+		 
+		return mav;
 	 }
 
 	@GetMapping("/contacto")

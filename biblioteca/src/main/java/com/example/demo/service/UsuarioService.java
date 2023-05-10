@@ -21,4 +21,6 @@ public interface UsuarioService {
 
 	UsuarioDTO findByName(String usernameUsuario);
 
+	void saveNuevoUsuario(UsuarioDTO usuarioDTO);
+
 }

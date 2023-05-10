@@ -52,28 +52,30 @@ public class UsuarioController {
 		return mav;
 	}
 
-	// Salvar
 	@PostMapping("/usuarios/save")
-	public ModelAndView save(@ModelAttribute("usuarioDTO") UsuarioDTO usuarioDTO, @RequestParam String[] roles) {
+	public ModelAndView save(@ModelAttribute("usuarioDTO") UsuarioDTO usuarioDTO) {
 
-		log.info("UsuarioController - save: Salvamos los datos del usuario:" + usuarioDTO.toString());
-		for (String param : roles) {
-			RolDTO rolDTO = new RolDTO();
-			rolDTO.setNombre(param);
-			rolDTO.setUsuarioDTO(usuarioDTO);
-			usuarioDTO.getListaRolesDTO().add(rolDTO);
+		log.info("UsuarioController - save:Salvamos los datos del usuarioDTO");
+		log.info("UsuarioController - save:Salvamos los datos del usuarioDTO: " + usuarioDTO.toString());
+
+		ModelAndView mav = new ModelAndView();
+		boolean seguir = !usuarioDTO.getNombre().isEmpty() && !usuarioDTO.getApellidos().isEmpty()
+				&& !usuarioDTO.getEmail().isEmpty() && !usuarioDTO.getUsername().isEmpty();
+		if (!seguir) {
+			mav.addObject("usuarioDTO", usuarioDTO);
+			mav.addObject("errorMessage", "Algunos valores son vacios");
+			mav.setViewName("adminEditarUsuarios");
+		} else {
+			usuarioService.save(usuarioDTO);
+			mav.setViewName("redirect:/adminClientes");
 		}
-		// Invocamos a la capa de servicios para que almacene los datos del usuario
-		usuarioService.save(usuarioDTO);
-		// Redireccionamos para volver a invocar a la raiz
-		ModelAndView mav = new ModelAndView("redirect:/");
 		return mav;
 	}
-	
+
 	// Cuenta
 	@GetMapping("/usuarios/{usernameUsuario}")
 	public ModelAndView findById(@PathVariable("usernameUsuario") String usernameUsuario) {
-				
+
 		log.info("UsuarioController - adminEditarUsuarios: editamos la gestion de usuarios");
 		ModelAndView mav = new ModelAndView("cuenta");
 		UsuarioDTO usuarioDTO = usuarioService.findByName(usernameUsuario);
@@ -81,6 +83,17 @@ public class UsuarioController {
 
 		mav.addObject("usuarioDTO", usuarioDTO);
 
+		return mav;
+	}
+
+	// Alamcenar usuarios
+	@PostMapping("/usuarios/saveNuevoUsuario")
+	public ModelAndView saveNuevoUsuario(@ModelAttribute("usuarioDTO") UsuarioDTO usuarioDTO) {
+		log.info("UsuarioController - save: Salvamos los datos del usuario:" + usuarioDTO.toString());
+		// Invocamos a la capa de servicios para que almacene los datos del usuario
+		usuarioService.saveNuevoUsuario(usuarioDTO);
+		// Redireccionamos para volver a invocar a la raiz
+		ModelAndView mav = new ModelAndView("redirect:/");
 		return mav;
 	}
 }
