@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<section id="seccionRegistro">
+			<h1>Registro</h1>
+			<form th:action="@{/usuarios/save}" method="post" th:object="${usuarioDTO}">
+				<input type="email" id="registroEmail" placeholder="Correo Electronico" th:field="*{email}"> 
+				<input type="text" id="registroUser" placeholder="Nombre de Usuario" th:field="*{username}"> 
+				<input type="text" id="registroNombre" placeholder="Nombre" th:field="*{nombre}"> 
+				<input type="text" id="registroApellidos" placeholder="Apellidos" th:field="*{apellidos}">
+				<input type="text" id="registroDNI" placeholder="NIF" th:field="*{nif}"> 
+				<input type="text" id="registroPass" placeholder="Contraseña" th:field="*{password}"> 
+				<input type="text" id="registroPass2" placeholder="Repetir Contraseña">
+				<label>Roles:
+				<input type="checkbox" name="roles"	text="ADMIN" value="ROLE_ADMIN">ADMIN</input>
+				<input type="checkbox" name="roles"	text="USER" value="ROLE_USER">USER</input>
+				</label>
+				<button id="btnRegistro" type="submit">Registrar</button>
+			</form>
+
+		</section>
+		<div>
+			<span>Login</span><span>Registro</span>
+		</div>
+</body>
+</html>

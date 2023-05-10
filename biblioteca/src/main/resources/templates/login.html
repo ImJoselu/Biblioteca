@@ -75,25 +75,7 @@
 			</form>
 			<div id="errorIncorrecto" th:if="${param.error}">Usuario y/o password inválido.</div>
 		</section>
-		<section id="seccionRegistro">
-			<h1>Registro</h1>
-			<form th:action="@{/users/save}" th:object="${usuarioDTO}" method="post">
-				<input type="email" id="registroEmail" placeholder="Correo Electronico"> 
-				<input type="text" id="registroUser" placeholder="Nombre de Usuario" th:field="*{username}"> 
-				<input type="text" id="registroNombre" placeholder="Nombre"> 
-				<input type="text" id="registroApellidos" placeholder="Apellidos">
-				<input type="text" id="registroDNI" placeholder="DNI"> 
-				<input type="text" id="registroPass" placeholder="Contraseña" th:field="*{password}"> 
-				<input type="text" id="registroPass2" placeholder="Repetir Contraseña">
-				<button id="btnRegistro">Registrame</button>
-			</form>
-
-		</section>
-		<div>
-			<span>Login</span><span>Registro</span>
-		</div>
-
-	</main>
+		</main>
 	<footer>
 		<div>
 			<div>

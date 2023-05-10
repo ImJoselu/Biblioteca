@@ -63,10 +63,13 @@
 			<a th:href="@{/contacto}">Contacto</a>
 		</h3>
 		<!--solo puede haber 1 de estos dos activo-->
-		<h3>
-			<a href="proximamente.html">Cuenta</a>
+		<h3 sec:authorize="isAnonymous()">
+			<a th:href="@{/login}">Cuenta</a>
 		</h3>
-		<div sec:authorize="isAuthenticated()">
+		<h3 sec:authorize="isAuthenticated()">
+    		<a th:href="@{/usuarios/{idUsuario}(idUsuario=${#authentication.name})}">Cuenta</a>
+		</h3>
+		<div sec:authorize="hasRole('ROLE_ADMIN')">
 			<h3>
 				<a th:href="@{/adminIndex}">Admin</a>
 			</h3>

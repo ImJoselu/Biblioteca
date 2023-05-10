@@ -23,5 +23,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 	@Query ("UPDATE Usuario u SET u.nombre = :#{#usuario.nombre}, u.apellidos = :#{#usuario.apellidos}, u.email = :#{#usuario.email} , u.username = :#{#usuario.username} WHERE u.id = :#{#usuario.id}")
 	void actualizarUsuario(@Param("usuario") Usuario usuario);
 	
-	Usuario findByUsername(String username);
+	@Query("SELECT u FROM Usuario u WHERE u.username = :username")
+	Usuario findByUsername(@Param("username")String username);
+	
+	
 }

@@ -19,4 +19,6 @@ public interface UsuarioService {
 
 	UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
 
+	UsuarioDTO findByName(String usernameUsuario);
+
 }

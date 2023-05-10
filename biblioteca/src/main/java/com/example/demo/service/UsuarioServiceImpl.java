@@ -85,4 +85,15 @@ public class UsuarioServiceImpl implements UserDetailsService , UsuarioService {
 		}
 	}
 
+	@Override
+	public UsuarioDTO findByName(String usernameUsuario) {
+		// Paso de DTO a entidad
+		Usuario usuario = usuarioRepository.findByUsername(usernameUsuario);
+		UsuarioDTO usuarioDTO = new UsuarioDTO();
+		// Paso de entidad a DTO
+		usuarioDTO = UsuarioDTO.convertToDTO(usuario);
+
+		return usuarioDTO;
+	}
+
 }
