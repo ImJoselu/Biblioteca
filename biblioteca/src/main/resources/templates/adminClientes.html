@@ -86,6 +86,7 @@
 			<thead>
 				<tr>
 					<th>NIF</th>
+					<th>Username</th>
 					<th>Email</th>
 					<th>Nombre</th>
 					<th>Editar</th>
@@ -96,6 +97,7 @@
 			<tbody>
 				<tr th:each="usuarioDTO : ${listaClientesDTO}">
 					<td th:text="${usuarioDTO.nif}"></td>
+					<td th:text="${usuarioDTO.username}"></td>
 					<td th:text="${usuarioDTO.email}"></td>
 					<td th:text="${usuarioDTO.nombre}"></td>
 

@@ -50,8 +50,7 @@
 	<h2 class="mensaje-error" th:if="${errorMessage}"
 		th:utext="${errorMessage}"></h2>
 	<br>
-	<form method="POST" th:action="@{/usuarios/save}"
-		th:object="${usuario}">
+	<form method="POST" th:action="@{/usuarios/saveAdmin}" th:object="${usuarioDTO}">
 		<table>
 			<tr hidden>
 				<td><label for="nombre">ID:</label></td>
