@@ -52,8 +52,8 @@ public class UsuarioController {
 		return mav;
 	}
 
-	@PostMapping("/usuarios/save")
-	public ModelAndView save(@ModelAttribute("usuarioDTO") UsuarioDTO usuarioDTO) {
+	@PostMapping("/usuarios/saveAdmin")
+	public ModelAndView saveAdmin(@ModelAttribute("usuarioDTO") UsuarioDTO usuarioDTO) {
 
 		log.info("UsuarioController - save:Salvamos los datos del usuarioDTO");
 		log.info("UsuarioController - save:Salvamos los datos del usuarioDTO: " + usuarioDTO.toString());
@@ -68,6 +68,26 @@ public class UsuarioController {
 		} else {
 			usuarioService.save(usuarioDTO);
 			mav.setViewName("redirect:/adminClientes");
+		}
+		return mav;
+	}
+	
+	@PostMapping("/usuarios/save")
+	public ModelAndView save(@ModelAttribute("usuarioDTO") UsuarioDTO usuarioDTO) {
+
+		log.info("UsuarioController - save:Salvamos los datos del usuarioDTO");
+		log.info("UsuarioController - save:Salvamos los datos del usuarioDTO: " + usuarioDTO.toString());
+
+		ModelAndView mav = new ModelAndView();
+		boolean seguir = !usuarioDTO.getNombre().isEmpty() && !usuarioDTO.getApellidos().isEmpty()
+				&& !usuarioDTO.getEmail().isEmpty() && !usuarioDTO.getUsername().isEmpty();
+		if (!seguir) {
+			mav.addObject("usuarioDTO", usuarioDTO);
+			mav.addObject("errorMessage", "Algunos valores son vacios");
+			mav.setViewName("cuenta");
+		} else {
+			usuarioService.save(usuarioDTO);
+			mav.setViewName("redirect:/");
 		}
 		return mav;
 	}

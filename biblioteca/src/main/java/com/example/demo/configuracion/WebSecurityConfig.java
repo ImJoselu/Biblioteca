@@ -22,7 +22,7 @@ public class WebSecurityConfig {
 
 		http.authorizeHttpRequests()
 				.requestMatchers("/", "/login", "/contacto", "/tienda", "/css/**", "/js/**", "/imagenesLibros/**",
-						"/images/**", "/registro","/usuarios/saveNuevoUsuario", "/usuarios/saveNuevoUsuario/**")
+						"/images/**", "/registro","/usuarios/saveNuevoUsuario", "/usuarios/saveNuevoUsuario/**" , "/usuarios/save")
 				.permitAll()
 				.requestMatchers("/adminIndex", 
 						"/usuario/{idUsuario}/adminAlquiler",
@@ -40,8 +40,7 @@ public class WebSecurityConfig {
 						"/adminContacto",
 						"/adminContacto/{idSolicitud}/adminContactoform", 
 						"/adminClientes",
-						"/usuario/{idUsuario}/adminEditarUsuarios", 
-						"/usuarios/save")
+						"/usuario/{idUsuario}/adminEditarUsuarios")
 				.hasRole("ADMIN").anyRequest().authenticated()
 				.and()
 				.formLogin().loginPage("/login")
