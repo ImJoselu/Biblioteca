@@ -100,8 +100,7 @@
 		<img th:src="@{/images/menu_black_24dp.svg}" id="btnMenuMovil" />
 	</nav>
 	<main>
-		<h1>Editando a <span th:text="${usuarioDTO.nombre}" style="text-decoration: underline;"></span> </h1> <br>
-
+		<h1>Estas en tu perfil:&nbsp;<span th:text="${usuarioDTO.nombre}" style="text-decoration: underline;"></span> </h1>
 	<form method="POST" th:action="@{/usuarios/save}" th:object="${usuarioDTO}">
 		<table>
 			<tr hidden>

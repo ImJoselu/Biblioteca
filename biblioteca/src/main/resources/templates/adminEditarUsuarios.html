@@ -50,6 +50,7 @@
 	<h2 class="mensaje-error" th:if="${errorMessage}"
 		th:utext="${errorMessage}"></h2>
 	<br>
+	<h1>Editando a:&nbsp;<span th:text="${usuarioDTO.nombre}" style="text-decoration: underline;"></span> </h1>
 	<form method="POST" th:action="@{/usuarios/saveAdmin}" th:object="${usuarioDTO}">
 		<table>
 			<tr hidden>
