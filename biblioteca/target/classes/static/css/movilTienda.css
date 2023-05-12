@@ -1,0 +1,26 @@
+#nuevasAdiciones {
+	display: grid;
+	grid-template-columns: repeat(1, 1fr);
+	grid-template-rows: repeat(3, 1fr);
+	gap: 30px 20px;
+	margin-top: 40px;
+	margin-bottom: 40px;
+	justify-items: center;
+}
+
+#carousel {
+	width: 80%;
+	height: 1021px;
+	position: relative;
+	overflow: hidden;
+}
+
+#content {
+	display: block;
+	width: 80%;
+	padding: 10px;
+}
+
+main>section:first-of-type {
+	height: 1021px;
+}

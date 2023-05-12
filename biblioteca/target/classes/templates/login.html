@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Identificate</title>
+<link rel="stylesheet" href="css/general.css">
+<link rel="stylesheet" href="css/login.css">
+<link rel="stylesheet" media="(max-width: 600px)" href="css/movil.css">
+<link rel="stylesheet" media="(min-width: 600px) and (max-width: 800px)"
+	href="css/tablet.css">
+<link rel="stylesheet" media="(min-width: 800px)" href="css/pc.css">
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+
+</head>
+
+<body>
+	<header>
+		<h2>
+			<a th:href="@{/}">Biblioteca</a>
+		</h2>
+		<!--Esto será luego una imagen o algo asi-->
+	</header>
+
+	<aside id="menuMovil">
+		<img src="/images/close_black_24dp.svg">
+		<h3>
+			<a th:href="@{/}">Inicio</a>
+		</h3>
+		<h3>
+			<a th:href="@{/tienda}">Libros</a>
+		</h3>
+		<h3>
+			<a th:href="@{/contacto}">Contacto</a>
+		</h3>
+		<!--solo puede haber 1 de estos dos activo-->
+		<h3>
+			<a href="proximamente.html">Cuenta</a>
+		</h3>
+		<h3>
+			<a th:href="@{/foro}">Foro</a>
+		</h3>
+		<h3>
+			<a th:href="@{/login}">Login</a>
+		</h3>
+	</aside>
+	<nav>
+		<h3>
+			<a th:href="@{/}">Inicio</a>
+		</h3>
+		<h3>
+			<a th:href="@{/tienda}">Libros</a>
+		</h3>
+		<h3>
+			<a th:href="@{/contacto}">Contacto</a>
+		</h3>
+		<!--solo puede haber 1 de estos dos activo-->
+		<h3>
+			<a href="proximamente.html">Cuenta</a>
+		</h3>
+		<h3>
+			<a th:href="@{/foro}">Foro</a>
+		</h3>
+		<h3>
+			<a th:href="@{/login}">Login</a>
+		</h3>
+		<h3>
+			<a th:href="@{/adminIndex}">Admin</a>
+		</h3>
+		<!---->
+		<img th:src="@{/images/menu_black_24dp.svg}" id="btnMenuMovil" />
+	</nav>
+
+	<main>
+		<section id="seccionLogin">
+			<h1>Login</h1>
+			<form>
+				<input type="text" id="loginUser" placeholder="Nombre de Usuario">
+				<input type="password" id="loginPass" placeholder="Contraseña">
+				<button id="btnLogin">Entrar</button>
+			</form>
+
+
+		</section>
+		<section id="seccionRegistro">
+			<h1>Registro</h1>
+			<form>
+				<input type="email" id="registroEmail"
+					placeholder="Correo Electronico"> <input type="text"
+					id="registroUser" placeholder="Nombre de Usuario"> <input
+					type="text" id="registroNombre" placeholder="Nombre"> <input
+					type="text" id="registroApellidos" placeholder="Apellidos">
+				<input type="text" id="registroDNI" placeholder="DNI"> <input
+					type="text" id="registroPass" placeholder="Contraseña"> <input
+					type="text" id="registroPass2" placeholder="Repetir Contraseña">
+				<button id="btnRegistro">Registrame</button>
+			</form>
+
+		</section>
+		<div>
+			<span>Login</span><span>Registro</span>
+		</div>
+
+	</main>
+	<footer>
+		<div>
+			<div>
+				<h5>Nosotros</h5>
+				<ul>
+					<li><a>Acerca de nosotros</a></li>
+					<li><a>Contacto</a></li>
+					<li><a>Empleo</a></li>
+				</ul>
+			</div>
+
+			<div>
+				<h5>Servicios</h5>
+				<ul>
+					<li><a>Envío</a></li>
+					<li><a>Devoluciones</a></li>
+					<li><a>Preguntas frecuentes</a></li>
+				</ul>
+
+			</div>
+			<div>
+				<h5>Contacto</h5>
+				<ul>
+					<li>123 Calle Principal</li>
+					<li>Ciudad, Estado</li>
+					<li>Código Postal</li>
+					<li>555-555-5555</li>
+					<li><a>info@libreria.com</a></li>
+				</ul>
+			</div>
+		</div>
+		<h4>
+			Copyright &copy; Bibliotecarios S.L.
+			<script>document.write(new Date().getFullYear());</script>
+		</h4>
+	</footer>
+	<script th:src="@{/js/jquery-3.6.3.min.js}"></script>
+	<script th:src="@{/js/login.js}"></script>
+	<script th:src="@{/js/general.js}"></script>
+</body>
+
+</html>

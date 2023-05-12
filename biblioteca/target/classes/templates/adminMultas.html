@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Administracion de Multas</title>
+<link rel="stylesheet" th:href="@{/css/general.css}" />
+<link rel="stylesheet" th:href="@{/css/generalAdmin.css}" />
+<link rel="stylesheet" media="(max-width: 600px)"
+	th:href="@{/css/movil.css}" />
+<link rel="stylesheet" media="(min-width: 600px) and (max-width: 800px)"
+	th:href="@{/css/tablet.css}" />
+<link rel="stylesheet" media="(min-width: 800px)"
+	th:href="@{/css/pc.css}" />
+
+</head>
+
+<body>
+	<header>
+		<h2>
+			<a th:href="@{/adminIndex}">LogoAdmin</a>
+		</h2>
+		<!--Esto será luego una imagen o algo asi-->
+
+
+	</header>
+	<aside id="menuMovil">
+		<img src="images/close_black_24dp.svg">
+		<h3>
+			<a th:href="@{/adminContacto}">Contacto</a>
+		</h3>
+		<h3>
+			<a th:href="@{/adminClientes}">Cliente</a>
+		</h3>
+		<h3>
+			<a th:href="@{/adminEjemplares}">Libro</a>
+		</h3>
+	</aside>
+	<nav>
+		<h3>
+			<a th:href="@{/adminContacto}">Contacto</a>
+		</h3>
+		<h3>
+			<a th:href="@{/adminClientes}">Cliente</a>
+		</h3>
+		<h3>
+			<a th:href="@{/adminEjemplares}">Libro</a>
+		</h3>
+		<!---->
+		<img src="images/menu_black_24dp.svg" id="btnMenuMovil">
+	</nav>
+
+	<main>
+
+
+		<div th:if="${alquilerDTO}" class="btnAdmin">
+			<a
+				th:href="@{/usuario/{idUsuario}/adminAlquiler/{idAlquiler}/adminMultas/add (idUsuario=${usuarioDTO.id} , idAlquiler=${alquilerDTO.id})}"><h3>Añadir
+					Multa</h3></a>
+		</div>
+		<table>
+			<thead>
+				<tr>
+					<th>Fecha</th>
+					<th>Importe</th>
+					<th>Observaciones</th>
+					<th>Estado</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="multaDTO:${listaMultasDTO}">
+					<td th:text="${multaDTO.fecha}"></td>
+					<td th:text="${multaDTO.importe}"></td>
+					<td class="verTextarea"><a><img
+							th:src="@{/images/visibility_black_24dp.svg}" class="botonIcono" /></a>
+						<textarea th:utext="${multaDTO.observaciones}" readonly></textarea></td>
+					<td><a th:if="${multaDTO.descartada == false}"
+						th:href="@{/usuario/{idUsuario}/adminMultas/{idMulta}/descartar (idUsuario=${usuarioDTO.id} , idMulta=${multaDTO.id})}">No
+							Pagada</a> <a th:if="${multaDTO.descartada == true}"
+						class="descartada">Pagada</a></td>
+
+
+				</tr>
+			</tbody>
+
+
+
+		</table>
+		<div class="volver">
+			<p>
+				Volver a clientes: <a th:href="@{/adminClientes}"><img
+					th:src="@{/images/arrow_back_black_24dp.svg}"
+					class="botonIconoBack" /></a>
+			</p>
+		</div>
+	</main>
+
+
+
+	<footer>
+		<div>
+			<div>
+				<p>En la Biblioteca, nos esforzamos por brindar un acceso fácil
+					y conveniente a una amplia selección de libros y recursos.</p>
+			</div>
+			<div>
+				<p>Nuestro compromiso es brindar una experiencia de lectura
+					inolvidable</p>
+			</div>
+			<div>
+				<p>Nuestro equipo de bibliotecarios trabaja incansablemente para
+					ofrecerte los mejores recursos</p>
+			</div>
+			<div>
+				<p>Gracias por formar parte de esta comunidad de lectores</p>
+			</div>
+		</div>
+		<h4>©Bibliotecarios S.L. 2022/2023</h4>
+	</footer>
+	<script th:src="@{/js/jquery-3.6.3.min.js}"></script>
+	<script th:src="@{/js/admin.js}"></script>
+
+
+
+</body>
+
+</html>
