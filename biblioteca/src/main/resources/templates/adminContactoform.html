@@ -1,16 +1,30 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+
 <head>
 <meta charset="UTF-8">
-<title th:text="${add} ? 'Nuevo solicitud' : 'Actualizar solicitud'"></title>
-<link rel="stylesheet" type="text/css" th:href="@{/css/general.css}">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Administracion de Multas</title>
+<link rel="stylesheet" th:href="@{/css/general.css}" />
+<link rel="stylesheet" th:href="@{/css/adminForm.css}" />
+<link rel="stylesheet" th:href="@{/css/generalAdmin.css}" />
+<link rel="stylesheet" media="(max-width: 600px)"
+	th:href="@{/css/movil.css}" />
+<link rel="stylesheet" media="(min-width: 600px) and (max-width: 800px)"
+	th:href="@{/css/tablet.css}" />
+<link rel="stylesheet" media="(min-width: 800px)"
+	th:href="@{/css/pc.css}" />
+
 </head>
+
 <body>
 	<header>
 		<h2>
 			<a th:href="@{/adminIndex}">LogoAdmin</a>
 		</h2>
 		<!--Esto será luego una imagen o algo asi-->
+
 
 	</header>
 	<aside id="menuMovil">
@@ -70,59 +84,91 @@
 		<!---->
 		<img th:src="@{/images/menu_black_24dp.svg}" id="btnMenuMovil" />
 	</nav>
-	<h2 class="mensaje-error" th:if="${errorMessage}"
-		th:utext="${errorMessage}"></h2>
-	<br>
-	<form method="POST" th:action="@{/solicitud/save}"
-		th:object="${solicitudDTO}">
-		<table>
-			<tr>
-				<td>id</td>
-				<td>:</td>
-				<td><input type="text" th:field="*{id}" readonly /></td>
-			</tr>
-			<tr>
-				<td>Username</td>
-				<td>:</td>
-				<td><input type="text" th:field="*{username}" readonly /></td>
-			</tr>
-			<tr>
-				<td>Email</td>
-				<td>:</td>
-				<td><input type="text" th:field="*{email}" readonly /></td>
-			</tr>
-			<tr>
-				<td>ISBN</td>
-				<td>:</td>
-				<td><input type="text" th:field="*{ISBN}" readonly /></td>
-			</tr>
-			<tr>
-				<td>Titulo</td>
-				<td>:</td>
-				<td><input type="text" th:field="*{titulo}" readonly /></td>
-			</tr>
-			<tr>
-				<td>Mensaje</td>
-				<td>:</td>
-				<td><textarea th:field="*{mensaje}" readonly /></td>
-			</tr>
-			<tr>
-				<td>Estado</td>
-				<td>:</td>
-				<td><select name="estado" id="estadoContacto"
-					class="estadoContacto" th:field="${solicitudDTO.estado}">
-						<option value="Aceptada"
-							th:selected="${solicitudDTO.estado == 'Aceptada'}">Aceptada</option>
-						<option value="Pendiente"
-							th:selected="${solicitudDTO.estado == 'Pendiente'}">Pendiente</option>
-						<option value="Denegada"
-							th:selected="${solicitudDTO.estado == 'Denegada'}">Denegada</option>
-				</select></td>
-			</tr>
-		</table>
-		<input class="enlace-boton" type="submit" th:value="Actualizar" />
-	</form>
-	<br>
-	<a class="enlace-boton" th:href="@{/adminContacto}">Volver</a>
+	<main>
+		<section>
+			<form method="POST" th:action="@{/solicitud/save}"
+				th:object="${solicitudDTO}">
+				<h1>
+					Viendo la solicitud Nº <span th:text="${solicitudDTO.id}"></span>
+				</h1>
+
+				<div class="solicitud-info">
+					<div class="info-field">
+						<label>Username:</label> <span th:text="${solicitudDTO.username}"></span>
+					</div>
+					<div class="info-field">
+						<label>Email:</label> <span th:text="${solicitudDTO.email}"></span>
+					</div>
+					<div class="info-field">
+						<label>ISBN:</label> <span th:text="${solicitudDTO.ISBN}"></span>
+					</div>
+					<div class="info-field">
+						<label>Titulo:</label> <span th:text="${solicitudDTO.titulo}"></span>
+					</div>
+					<div class="info-field">
+						<label>Mensaje:</label> <span th:text="${solicitudDTO.mensaje}"></span>
+					</div>
+					<div class="info-field">
+						<label>Estado:</label> <select name="estado" id="estadoContacto"
+							class="estadoContacto" th:field="${solicitudDTO.estado}">
+							<option value="Aceptada"
+								th:selected="${solicitudDTO.estado == 'Aceptada'}">Aceptada</option>
+							<option value="Pendiente"
+								th:selected="${solicitudDTO.estado == 'Pendiente'}">Pendiente</option>
+							<option value="Denegada"
+								th:selected="${solicitudDTO.estado == 'Denegada'}">Denegada</option>
+						</select>
+					</div>
+				</div>
+				<button type="submit" class="btn">Actualizar</button>
+
+
+
+				<input type="hidden" th:field="*{id}" readonly /> <input
+					type="hidden" th:field="*{username}" readonly /> <input
+					type="hidden" th:field="*{email}" readonly /> <input type="hidden"
+					th:field="*{ISBN}" readonly /> <input type="hidden"
+					th:field="*{titulo}" readonly /> <input type="hidden"
+					th:field="*{mensaje}" readonly />
+
+
+
+
+
+			</form>
+		</section>
+		<div class="volver">
+			<p>
+				Volver a Solicitudes: <a th:href="@{/adminContacto}"><img
+					th:src="@{/images/arrow_back_black_24dp.svg}"
+					class="botonIconoBack" /></a>
+			</p>
+		</div>
+	</main>
+
+
+	<footer>
+		<div>
+			<div>
+				<p>En la Biblioteca, nos esforzamos por brindar un acceso fácil
+					y conveniente a una amplia selección de libros y recursos.</p>
+			</div>
+			<div>
+				<p>Nuestro compromiso es brindar una experiencia de lectura
+					inolvidable</p>
+			</div>
+			<div>
+				<p>Nuestro equipo de bibliotecarios trabaja incansablemente para
+					ofrecerte los mejores recursos</p>
+			</div>
+			<div>
+				<p>Gracias por formar parte de esta comunidad de lectores</p>
+			</div>
+		</div>
+		<h4>©Bibliotecarios S.L. 2022/2023</h4>
+	</footer>
+	<script th:src="@{/js/jquery-3.6.3.min.js}"></script>
+	<script th:src="@{/js/admin.js}"></script>
 </body>
+
 </html>

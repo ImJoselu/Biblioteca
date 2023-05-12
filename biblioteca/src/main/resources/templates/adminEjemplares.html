@@ -104,12 +104,13 @@
 			</tbody>
 		</table>
 		<h1 th:if="${listaEjemplaresDTO.size() == 0}">No hay ejemplares para <span th:text="${libroDTO.titulo}" style="text-decoration: underline;"></span> </h1>
+		<div class="volver">
+			<p>
+				Volver a Inicio: <a th:href="@{/adminIndex}">Inicio</a>
+			</p>
+		</div>
 	</main>
-	<div class="volver">
-		<p>
-			Volver a Inicio: <a th:href="@{/adminIndex}">Inicio</a>
-		</p>
-	</div>
+
 	<footer>
 		<div>
 			<div>
@@ -131,9 +132,8 @@
 		<h4>©Bibliotecarios S.L. 2022/2023</h4>
 	</footer>
 
-	<script src="js/jquery-3.6.3.min.js"></script>
-	<script src="js/admin.js"></script>
-
+	<script th:src="@{/js/jquery-3.6.3.min.js}"></script>
+	<script th:src="@{/js/admin.js}"></script>
 </body>
 
 </html>

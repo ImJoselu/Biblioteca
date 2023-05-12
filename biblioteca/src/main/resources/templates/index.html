@@ -49,6 +49,9 @@
 			<a href="proximamente.html">Cuenta</a>
 		</h3>
 		<h3>
+			<a th:href="@{/foro}">Foro</a>
+		</h3>
+		<h3>
 			<a th:href="@{/login}">Login</a>
 		</h3>
 	</aside>
@@ -61,6 +64,9 @@
 		</h3>
 		<h3>
 			<a th:href="@{/contacto}">Contacto</a>
+		</h3>
+		<h3>
+			<a th:href="@{/foro}">Foro</a>
 		</h3>
 		<!--solo puede haber 1 de estos dos activo-->
 		<h3 sec:authorize="isAnonymous()">
@@ -177,8 +183,8 @@
         </script>
 		</h4>
 	</footer>
-	<script src="js/jquery-3.6.3.min.js"></script>
-	<script src="js/general.js"></script>
-	<script src="js/carousel.js"></script>
+	<script th:src="@{/js/jquery-3.6.3.min.js}"></script>
+	<script th:src="@{/js/general.js}"></script>
+	<script th:src="@{/js/carousel.js}"></script>
 </body>
 </html>

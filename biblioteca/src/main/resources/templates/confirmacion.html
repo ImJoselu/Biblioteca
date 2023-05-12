@@ -49,6 +49,9 @@
 			<a href="proximamente.html">Cuenta</a>
 		</h3>
 		<h3>
+			<a th:href="@{/foro}">Foro</a>
+		</h3>
+		<h3>
 			<a th:href="@{/login}">Login</a>
 		</h3>
 	</aside>
@@ -62,13 +65,16 @@
 		<h3>
 			<a th:href="@{/contacto}">Contacto</a>
 		</h3>
+		<h3>
+			<a th:href="@{/foro}">Foro</a>
+		</h3>
 		<!--solo puede haber 1 de estos dos activo-->
 		<h3 sec:authorize="isAnonymous()">
 			<a th:href="@{/login}">Cuenta</a>
 		</h3>
 		<h3 sec:authorize="isAuthenticated()">
     		<a th:href="@{/usuarios/{idUsuario}(idUsuario=${#authentication.name})}">Cuenta</a>
-		</h3>
+		
 		<div sec:authorize="hasRole('ROLE_ADMIN')">
 			<h3>
 				<a th:href="@{/adminIndex}">Admin</a>
@@ -100,22 +106,78 @@
 
 
 	<main>
-		<div th:if="${existe == 0}">
-
-			<h1>No hay stock disponible</h1>
-			<p>Lo sentimos, en este momento no hay unidades disponibles del
-				libro que estás buscando.</p>
+		<div th:if="${existe == 0}" class="confirmDiv">
+			<h1>No hay Stock Disponible</h1>
+			<p>
+				Lo sentimos, en este momento no hay unidades disponibles del libro <b
+					th:text="${libroDTO.titulo}"></b>.
+			</p>
+			<p>
+				<b>Editorial:</b> <span th:text="${libroDTO.editorialDTO.nombre}"></span>
+			</p>
+			<p>
+				<b>ISBN:</b> <span th:text="${libroDTO.isbn}"></span>
+			</p>
+			<p>Puedes buscar otro título en nuestro catálogo.</p>
+			<img th:src="'/imagenesLibros/' + ${libroDTO.isbn} + '.jpg'" alt=""
+				class="imagenConfirm">
 		</div>
-		<div th:if="${existe > 0}">
-			<h1>¡Libro alquilado correctamente!</h1>
+
+		<div th:if="${existe > 0}" class="confirmDiv">
+			<h1>
+				<b th:text="${libroDTO.titulo}"></b>
+			</h1>
+			<p>
+				<b>Editorial:</b> <span th:text="${libroDTO.editorialDTO.nombre}"></span>
+			</p>
+			<p>
+				<b>ISBN:</b> <span th:text="${libroDTO.isbn}"></span>
+			</p>
+			<img th:src="'/imagenesLibros/' + ${libroDTO.isbn} + '.jpg'" alt=""
+				class="imagenConfirm">
+			<p>¿Quieres alquilar este libro?</p>
+			<a
+				th:href="@{/usuario/{idUsuario}/alquilar/{idLibro}/confirmar (idUsuario=${usuarioDTO.id},idLibro=${libroDTO.isbn})}">
+				<button>Alquilar Este Libro</button>
+			</a>
+		</div>
+
+		<div th:if="${alquilado}" class="confirmDiv">
+			<h1>¡Libro Alquilado Correctamente!</h1>
 			<p>Gracias por confiar en nuestra biblioteca para el alquiler de
 				tu libro.</p>
 			<p>
-				Tu libro es: <b th:text="${ejemplarDTO.libroDTO.titulo}"></b>.
+				El libro que has alquilado es: <b
+					th:text="${ejemplarDTO.libroDTO.titulo}"></b>.
 			</p>
-
+			<img
+				th:src="'/imagenesLibros/' + ${ejemplarDTO.libroDTO.isbn} + '.jpg'"
+				alt="" class="imagenConfirm">
+			<p>Hemos enviado una confirmación de tu alquiler a tu correo
+				electrónico. Por favor, revisa tu bandeja de entrada para ver los
+				detalles del alquiler.</p>
+			<p>
+				La fecha de entrega para el libro es: <b
+					th:text="${alquilerDTO.fecha_limite}"></b>.
+			</p>
+			<p>"Recuerda que, para disfrutar del libro, deberás pasar por
+				nuestra biblioteca física antes de la fecha límite de devolución. La
+				dirección y horarios de atención los puedes encontrar en nuestra
+				página web o preguntar a nuestro personal de atención al cliente.
+				¡Te esperamos!"</p>
 		</div>
-		<a th:href="@{/tienda}">Volver a la tienda</a>
+
+		<div class="catalogoDiv">
+			<h2>Explora Nuestro Catálogo</h2>
+			<p>En nuestra biblioteca encontrarás una amplia selección de
+				libros de diversos géneros y temáticas.</p>
+			<p>Nuestro catálogo se actualiza constantemente con las últimas
+				novedades editoriales.</p>
+			<a th:href="@{/tienda}">
+				<button>Volver al Catálogo</button>
+			</a>
+		</div>
+
 	</main>
 	<footer>
 		<div>
@@ -154,8 +216,7 @@
         </script>
 		</h4>
 	</footer>
-	<script src="js/jquery-3.6.3.min.js"></script>
-	<script src="js/general.js"></script>
-	<script src="js/carousel.js"></script>
+	<script th:src="@{/js/jquery-3.6.3.min.js}"></script>
+	<script th:src="@{/js/general.js}"></script>
 </body>
 </html>

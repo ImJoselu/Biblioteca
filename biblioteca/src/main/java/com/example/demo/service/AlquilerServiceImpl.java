@@ -27,6 +27,7 @@ import com.example.demo.repository.dao.LibroRepository;
 import com.example.demo.repository.dao.UsuarioRepository;
 import com.example.demo.repository.entity.Alquiler;
 import com.example.demo.repository.entity.Ejemplar;
+import com.example.demo.repository.entity.Libro;
 import com.example.demo.repository.entity.Usuario;
 import com.example.demo.repository.entity.Alquiler;
 
@@ -110,6 +111,31 @@ public class AlquilerServiceImpl implements AlquilerService {
 
 		}
 
+	}
+
+	@Override
+	public AlquilerDTO findAll(UsuarioDTO usuarioDTO) {
+
+		List<Alquiler> listaAlquileres = alquilerRepository.findAll();
+
+		return AlquilerDTO.convertToDTO(listaAlquileres.get(listaAlquileres.size() - 1), usuarioDTO);
+	}
+
+	@Override
+	public EjemplarDTO comprobar(UsuarioDTO usuarioDTO, LibroDTO libroDTO) {
+		// TODO Auto-generated method stub
+		Optional<Ejemplar> optionalEjemplar = ejemplarRepository.findFirstByISBNDisponible(libroDTO.getIsbn());
+		EjemplarDTO ejemplarDTO;
+		if (!optionalEjemplar.isPresent()) {
+
+			ejemplarDTO = new EjemplarDTO();
+			ejemplarDTO.setId(0L);
+		} else {
+
+			ejemplarDTO = EjemplarDTO.convertToDTO(optionalEjemplar.get());
+		}
+
+		return ejemplarDTO;
 	}
 
 }

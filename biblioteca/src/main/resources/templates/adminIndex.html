@@ -90,7 +90,7 @@
 		<!---->
 		<img th:src="@{/images/menu_black_24dp.svg}" id="btnMenuMovil" />
 	</nav>
-	<main>
+	<main id="mainIndexAdmin">
 
 		<a th:href="@{/adminClientes}">
 			<button class="btnAdmin">
@@ -133,9 +133,8 @@
 		</div>
 		<h4>©Bibliotecarios S.L. 2022/2023</h4>
 	</footer>
-	<script src="/js/jquery-3.6.3.min.js"></script>
-	<script src="/js/admin.js"></script>
-
+	<script th:src="@{/js/jquery-3.6.3.min.js}"></script>
+	<script th:src="@{/js/admin.js}"></script>
 </body>
 
 </html>

@@ -46,6 +46,7 @@ main {
 	margin-bottom: 40px;
 	justify-items: center
 }
+
 #mensajeBienvenida{
 	margin-left: 20px;
     transition: all 1s;
@@ -59,4 +60,27 @@ main {
     cursor: pointer;
     border-bottom: none;
     height: auto;
+}
+
+.imagenConfirm {
+	height: 300px;
+}
+
+.confirmDiv {
+	display: flex;
+	gap: 30px;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	align-content: center;
+}
+
+.catalogoDiv {
+	display: flex;
+	gap: 30px;
+	flex-direction: column;
+}
+
+.confirmDiv>p {
+	max-width: 739px;
 }

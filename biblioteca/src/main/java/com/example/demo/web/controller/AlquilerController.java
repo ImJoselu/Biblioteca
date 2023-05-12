@@ -22,6 +22,9 @@ import com.example.demo.repository.entity.Ejemplar;
 import com.example.demo.repository.entity.Usuario;
 import com.example.demo.service.AlquilerService;
 import com.example.demo.service.UsuarioService;
+import com.example.demo.service.EmailSenderService;
+import com.example.demo.service.LibroService;
+
 
 @Controller
 public class AlquilerController {
@@ -30,8 +33,15 @@ public class AlquilerController {
 
 	@Autowired
 	private UsuarioService usuarioService;
+	
+	@Autowired
+	private EmailSenderService senderService;
+	
 	@Autowired
 	private AlquilerService alquilerService;
+
+	@Autowired
+	private LibroService libroService;
 
 	// Listar los alquileres
 	@GetMapping("/usuario/{idUsuario}/adminAlquiler")
@@ -98,18 +108,61 @@ public class AlquilerController {
 
 		LibroDTO libroDTO = new LibroDTO();
 		libroDTO.setIsbn(idLibro);
-
+		
 		EjemplarDTO ejemplarDTO = alquilerService.alquilar(usuarioDTO, libroDTO);
-		
+		libroDTO = libroService.findByISBN(libroDTO);
+
+		EjemplarDTO ejemplarDTO = alquilerService.comprobar(usuarioDTO, libroDTO);
+
+		if (ejemplarDTO == null) {
+			ejemplarDTO = new EjemplarDTO();
+			ejemplarDTO.setId(0L);
+		}
+
 		ModelAndView mav = new ModelAndView("confirmacion");
-		
+
 		mav.addObject("usuarioDTO", usuarioDTO);
 		mav.addObject("existe", ejemplarDTO.getId());
 		mav.addObject("ejemplarDTO", ejemplarDTO);
+		mav.addObject("libroDTO", libroDTO);
 		return mav;
 	}
-	
-	
-	
+
+	@GetMapping("/usuario/{idUsuario}/alquilar/{idLibro}/confirmar")
+	public ModelAndView alquilarConfirmado(@PathVariable Long idUsuario, @PathVariable String idLibro) {
+
+		log.info("AlqulerController - alquilarConfirmado: Confirm de alquiler del usuario: " + idUsuario);
+
+		// Obtenemos el usuario para luego poner sus datos en la pantalla
+		UsuarioDTO usuarioDTO = new UsuarioDTO();
+		usuarioDTO.setId(idUsuario);
+
+		LibroDTO libroDTO = new LibroDTO();
+		libroDTO.setIsbn(idLibro);
+
+		EjemplarDTO ejemplarDTO = alquilerService.alquilar(usuarioDTO, libroDTO);
+
+		/*
+		 * if (ejemplarDTO.getId()>0) {
+		 * senderService.sendSimpleEmail("davmarbos@alu.edu.gva.es"usuarioDTO.email,//
+		 * Poner email del usuario al que se le envia "This is email titulo",
+		 * "This is email body"); }
+		 */
+
+		libroDTO = libroService.findByISBN(libroDTO);
+
+		ejemplarDTO.setLibroDTO(libroDTO);
+
+		AlquilerDTO alquilerDTO = alquilerService.findAll(usuarioDTO);
+
+		ModelAndView mav = new ModelAndView("confirmacion");
+
+		mav.addObject("alquilerDTO", alquilerDTO);
+		mav.addObject("usuarioDTO", usuarioDTO);
+		mav.addObject("alquilado", true);
+		mav.addObject("ejemplarDTO", ejemplarDTO);
+		mav.addObject("libroDTO", libroDTO);
+		return mav;
+	}
 
 }

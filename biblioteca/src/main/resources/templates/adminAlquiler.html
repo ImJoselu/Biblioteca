@@ -115,23 +115,29 @@
 					<td th:text="${alquilerDTO.fecha_limite}"></td>
 					<td th:text="${alquilerDTO.fecha_entrega}"></td>
 					<td><a href="adminMultas.html"
-						th:href="@{/usuario/{idUsuario}/adminAlquiler/{idAlquiler}/adminMultas (idUsuario=${usuarioDTO.id} , idAlquiler=${alquilerDTO.id}) }">Ver
-							Multas</a></td>
+						th:href="@{/usuario/{idUsuario}/adminAlquiler/{idAlquiler}/adminMultas (idUsuario=${usuarioDTO.id} , idAlquiler=${alquilerDTO.id}) }"><img
+							th:src="@{/images/money_off_csred_black_24dp.svg}"
+							class="botonIcono" /></a></td>
 				</tr>
 
 
 			</tbody>
 
 		</table>
+
 		<h1 th:if="${listaAlquileresDTO.size() == 0}">No hay alquileres de <span th:text="${usuarioDTO.nombre}" style="text-decoration: underline;"></span> </h1>
-		
+
+		<div class="volver">
+			<p>
+				Volver a Clientes: <a th:href="@{/adminClientes}"><img
+					th:src="@{/images/arrow_back_black_24dp.svg}"
+					class="botonIconoBack" /></a>
+			</p>
+		</div>
+
 	</main>
 
-	<div class="volver">
-		<p>
-			Volver a Clientes: <a th:href="@{/adminClientes}"><b>Volver</b></a>
-		</p>
-	</div>
+
 	<footer>
 		<div>
 			<div>
@@ -152,10 +158,8 @@
 		</div>
 		<h4>©Bibliotecarios S.L. 2022/2023</h4>
 	</footer>
-	<script src="js/jquery-3.6.3.min.js"></script>
-	<script src="js/admin.js"></script>
-
-
+	<script th:src="@{/js/jquery-3.6.3.min.js}"></script>
+	<script th:src="@{/js/admin.js}"></script>
 </body>
 
 </html>

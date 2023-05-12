@@ -83,52 +83,45 @@
 		<!---->
 		<img th:src="@{/images/menu_black_24dp.svg}" id="btnMenuMovil" />
 	</nav>
-	<main style="flex-direction: column;">
-
-
+	<main>
 		<div th:if="${alquilerDTO}" class="btnAdmin">
 			<a
 				th:href="@{/usuario/{idUsuario}/adminAlquiler/{idAlquiler}/adminMultas/add (idUsuario=${usuarioDTO.id} , idAlquiler=${alquilerDTO.id})}"><h3>Añadir
 					Multa</h3></a>
 		</div>
-		<h2 th:if="${listaMultasDTO.size() > 0}" style="text-align: center; margin-bottom: 20px;">
-			Viendo alquileres de:<b th:text="${usuarioDTO.nombre}" style="text-decoration: underline;"></b>
-		</h2>
 		<table>
 			<thead>
 				<tr>
 					<th>Fecha</th>
 					<th>Importe</th>
 					<th>Observaciones</th>
-					<th>Descartar Multa</th>
+					<th>Estado</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="multaDTO:${listaMultasDTO}">
 					<td th:text="${multaDTO.fecha}"></td>
 					<td th:text="${multaDTO.importe}"></td>
-					<td class="verTextarea"><a>Ver Obsevacion</a>
-					<textarea th:utext="${multaDTO.observaciones}" readonly></textarea></td>
-					<td><a
-						th:classappend="${multaDTO.descartada == true} ?  'descartada' : ''"
-						th:href="@{/usuario/{idUsuario}/adminMultas/{idMulta}/descartar (idUsuario=${usuarioDTO.id} , idMulta=${multaDTO.id})}">Descartar</a></td>
-
-					<!--Cuando hagas click en el link de cambiar stock, aparecerá el input number-->
+					<td class="verTextarea"><a><img
+							th:src="@{/images/visibility_black_24dp.svg}" class="botonIcono" /></a>
+						<textarea th:utext="${multaDTO.observaciones}" readonly></textarea></td>
+					<td><a th:if="${multaDTO.descartada == false}"
+						th:href="@{/usuario/{idUsuario}/adminMultas/{idMulta}/descartar (idUsuario=${usuarioDTO.id} , idMulta=${multaDTO.id})}">No
+							Pagada</a> <a th:if="${multaDTO.descartada == true}"
+						class="descartada">Pagada</a></td>
 				</tr>
 			</tbody>
 
 
-
 		</table>
-
+		<div class="volver">
+			<p>
+				Volver a clientes: <a th:href="@{/adminClientes}"><img
+					th:src="@{/images/arrow_back_black_24dp.svg}"
+					class="botonIconoBack" /></a>
+			</p>
+		</div>
 	</main>
-
-
-	<div class="volver">
-		<p>
-			Volver a clientes: <a th:href="@{/adminClientes}"><b>Volver</b></a>
-		</p>
-	</div>
 	<footer>
 		<div>
 			<div>
@@ -149,11 +142,8 @@
 		</div>
 		<h4>©Bibliotecarios S.L. 2022/2023</h4>
 	</footer>
-	<script src="/js/jquery-3.6.3.min.js"></script>
-	<script src="/js/admin.js"></script>
-
-
-
+	<script th:src="@{/js/jquery-3.6.3.min.js}"></script>
+	<script th:src="@{/js/admin.js}"></script>
 </body>
 
 </html>

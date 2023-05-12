@@ -6,14 +6,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contacto</title>
-<link rel="stylesheet" href="css/general.css">
-<link rel="stylesheet" href="css/contacto.css">
-<link rel="stylesheet" media="(max-width: 600px)" href="css/movil.css">
+<link rel="stylesheet" th:href="@{/css/general.css}">
+<link rel="stylesheet" th:href="@{/css/contacto.css}">
 <link rel="stylesheet" media="(max-width: 600px)"
-	href="css/movilContacto.css">
+	th:href="@{/css/movil.css}">
+<link rel="stylesheet" media="(max-width: 600px)"
+	th:href="@{/css/movilContacto.css}">
 <link rel="stylesheet" media="(min-width: 600px) and (max-width: 800px)"
-	href="css/tablet.css">
-<link rel="stylesheet" media="(min-width: 800px)" href="css/pc.css">
+	th:href="@{/css/tablet.css}">
+<link rel="stylesheet" media="(min-width: 800px)"
+	th:href="@{/css/pc.css}">
 <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 
 </head>
@@ -50,6 +52,9 @@
 			<a href="proximamente.html">Cuenta</a>
 		</h3>
 		<h3>
+			<a th:href="@{/foro}">Foro</a>
+		</h3>
+		<h3>
 			<a th:href="@{/login}">Login</a>
 		</h3>
 	</aside>
@@ -62,6 +67,9 @@
 		</h3>
 		<h3>
 			<a th:href="@{/contacto}">Contacto</a>
+		</h3>
+		<h3>
+			<a th:href="@{/foro}">Foro</a>
 		</h3>
 		<!--solo puede haber 1 de estos dos activo-->
 		<h3 sec:authorize="isAnonymous()">
@@ -137,7 +145,9 @@
 						placeholder="Mensaje"></textarea>
 					<button type="submit" id="btnEnviar">Enviar</button>
 				</form>
-
+				<div th:if="${error}" class="alert alert-danger" role="alert">
+					<span th:text="${error}"></span>
+				</div>
 			</div>
 		</section>
 		<iframe
@@ -191,8 +201,8 @@
 			<script>document.write(new Date().getFullYear());</script>
 		</h4>
 	</footer>
-	<script src="js/jquery-3.6.3.min.js"></script>
-	<script src="js/general.js"></script>
+	<script th:src="@{/js/jquery-3.6.3.min.js}"></script>
+	<script th:src="@{/js/general.js}"></script>
 
 </body>
 

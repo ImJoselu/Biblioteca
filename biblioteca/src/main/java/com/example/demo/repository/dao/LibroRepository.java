@@ -22,4 +22,7 @@ public interface LibroRepository extends JpaRepository<Libro, Long> {
 	@Query("SELECT l FROM Libro l WHERE l.isbn = :isbnLibro")
 	Libro findByIsbn(@Param("isbnLibro") String isbnLibro);
 
+	@Query("SELECT l FROM Libro l where isbn = :isbn")
+	Libro findByISBN(String isbn);
+
 }
