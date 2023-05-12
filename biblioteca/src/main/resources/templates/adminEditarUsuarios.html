@@ -49,11 +49,9 @@
 	</nav>
 	<h2 class="mensaje-error" th:if="${errorMessage}"
 		th:utext="${errorMessage}"></h2>
-	
-	<h1>Editando a <span th:text="${usuarioDTO.nombre}" style="text-decoration: underline;"></span> </h1> <br>
-
-	<form method="POST" th:action="@{/usuarios/save}"
-		th:object="${usuarioDTO}">
+	<br>
+	<h1>Editando a:&nbsp;<span th:text="${usuarioDTO.nombre}" style="text-decoration: underline;"></span> </h1>
+	<form method="POST" th:action="@{/usuarios/saveAdmin}" th:object="${usuarioDTO}">
 		<table>
 			<tr hidden>
 				<td><label for="nombre">ID:</label></td>
@@ -84,15 +82,11 @@
 				<td><input type="text" id="esadmin" th:field="*{es_administrador}" readonly/></td>
 			</tr>
 			<tr hidden>
-				<td><label for="nif">Nif:</label></td>
-				<td><input type="text" id="nif" th:field="*{nif}" readonly/></td>
-			</tr>
-			<tr hidden>
 				<td><label for="nombre">Es cliente:</label></td>
 				<td><input type="text" id="escliente" th:field="*{es_cliente}" readonly/></td>
 			</tr>
 		</table>
-		<input class="enlace-boton" type="submit" value="Actualizar" /> <br>
+		<input id="enviarForm" class="enlace-boton" type="submit" value="Actualizar" /> <br>
 		<a class="enlace-boton" th:href="@{/adminClientes}">Volver</a>
 	</form>
 

@@ -7,16 +7,24 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.configuracion.EncriptaPassword;
 import com.example.demo.model.dto.UsuarioDTO;
 import com.example.demo.repository.dao.UsuarioRepository;
+import com.example.demo.repository.entity.Rol;
 import com.example.demo.repository.entity.Usuario;
 
 import jakarta.transaction.Transactional;
 
 @Service
-public class UsuarioServiceImpl implements UsuarioService {
+public class UsuarioServiceImpl implements UserDetailsService, UsuarioService {
 
 	private static final Logger log = LoggerFactory.getLogger(UsuarioServiceImpl.class);
 
@@ -54,8 +62,46 @@ public class UsuarioServiceImpl implements UsuarioService {
 	public void save(UsuarioDTO usuarioDTO) {
 		log.info("UsuarioServiceImpl - save: Salva el cliente: " + usuarioDTO.toString());
 		Usuario usuario = UsuarioDTO.convertToEntity(usuarioDTO);
+		usuario.setPassword(EncriptaPassword.encriptarPassword(usuarioDTO.getPassword()));
+		usuarioRepository.actualizarUsuario(usuario);
+	}
 
-		usuarioRepository.actualizarUsuario(usuario);	
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		log.info("UsuarioServiceImpl - loadUserByUsername: " + username);
+
+		Usuario usuario = usuarioRepository.findByUsername(username);
+		if (usuario != null) {
+			List<GrantedAuthority> listaPermisos = new ArrayList<GrantedAuthority>();
+			List<Rol> listaRoles = new ArrayList<Rol>(usuario.getListaRoles());
+			for (Rol rol : listaRoles) {
+				listaPermisos.add(new SimpleGrantedAuthority(rol.getNombre()));
+			}
+
+			return new User(usuario.getUsername(), usuario.getPassword(), listaPermisos);
+
+		} else {
+			throw new UsernameNotFoundException(username);
+		}
+	}
+
+	@Override
+	public UsuarioDTO findByName(String usernameUsuario) {
+		// Paso de DTO a entidad
+		Usuario usuario = usuarioRepository.findByUsername(usernameUsuario);
+		UsuarioDTO usuarioDTO = new UsuarioDTO();
+		// Paso de entidad a DTO
+		usuarioDTO = UsuarioDTO.convertToDTO(usuario);
+
+		return usuarioDTO;
+	}
+
+	@Override
+	public void saveNuevoUsuario(UsuarioDTO usuarioDTO) {
+		log.info("UsuarioServiceImpl - save: salvamos el usuario : " + usuarioDTO.toString());
+		Usuario usuario = UsuarioDTO.convertToEntity(usuarioDTO);
+		usuarioRepository.save(usuario);
+
 	}
 
 }

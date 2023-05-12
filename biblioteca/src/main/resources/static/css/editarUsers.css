@@ -18,7 +18,7 @@ input[type="text"], input[type="email"] {
 	width: 250px;
 }
 
-input[type="submit"] {
+#enviarForm {
 	border: 2px solid #333;
 	border-radius: 5px;
 	background-color: #58341c;
@@ -34,7 +34,6 @@ input[type="submit"] {
 h1 {
 	grid-column: 1/3; /* Ocupa las dos columnas */
 	display: flex;
-	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	text-align: center;

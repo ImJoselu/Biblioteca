@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.dto.LibroDTO;
@@ -48,19 +49,30 @@ public class IndexController {
 
 		return mav;
 	}
-
+	/*
 	@GetMapping("/login")
 	public ModelAndView login() {
 
 		log.info("IndexController - index: Mostramos la pagina login");
 
 		ModelAndView mav = new ModelAndView("login");
-		/*
+		// comentado estas dos lineasd de abajo
 		 * mav.addObject("titulo", nombreAplicacion); mav.addObject("nombreAsignatura",
 		 * nombreAsignatura);
-		 */
+		 
 		return mav;
 	}
+	*/
+	
+	// Alta de usuarios
+	@GetMapping("/registro")
+	public ModelAndView registro() {
+		log.info("UsuarioController - register: Mostramos la pantalla de registro");
+		ModelAndView mav = new ModelAndView("registro");
+		mav.addObject("usuarioDTO", new UsuarioDTO());
+		 
+		return mav;
+	 }
 
 	@GetMapping("/contacto")
 	public ModelAndView contacto() {

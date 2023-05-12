@@ -21,10 +21,17 @@
 <body>
 	<header>
 		<h2>
-			<a href="index.html">Biblioteca</a>
+			<a th:href="@{/}">Biblioteca</a>
 		</h2>
 		<!--Esto será luego una imagen o algo asi-->
+		<div sec:authorize="isAuthenticated()">
+			<h2 id="mensajeBienvenida" th:inline="text">
+				<a th:href="@{/}">
+					¡Hola,	<span th:remove="tag" sec:authentication="name"> </span>!
+				</a>
 
+			</h2>
+		</div>
 	</header>
 	<aside id="menuMovil">
 		<img src="images/close_black_24dp.svg">
@@ -61,9 +68,21 @@
 		<h3>
 			<a href="proximamente.html">Cuenta</a>
 		</h3>
-		<h3>
-			<a href="login.html">Login</a>
-		</h3>
+		
+		<div sec:authorize="isAuthenticated()">
+			<form th:action="@{/logout}" method="post">
+				<h3>
+					<input id="logoutBoton" type="submit" value="Logout" />
+				</h3>
+			</form>
+		</div>
+
+		<!-- SI NO SE HA AUTENTICADO -->
+		<div sec:authorize="isAnonymous()">
+			<h3>
+				<a href="/login">Login</a>
+			</h3>
+		</div>
 		<h3>
 			<a th:href="@{/adminIndex}">Admin</a>
 		</h3>

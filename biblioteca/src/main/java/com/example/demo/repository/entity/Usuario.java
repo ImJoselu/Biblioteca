@@ -1,6 +1,8 @@
 package com.example.demo.repository.entity;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -10,6 +12,9 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -43,6 +48,10 @@ public class Usuario {
 	@ToString.Exclude
 	private Set<Alquiler> listaAlquileres;
 
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "usuario")
+	@ToString.Exclude
+	private List<Rol> listaRoles;
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -61,6 +70,7 @@ public class Usuario {
 	}
 
 	public Usuario() {
+		this.listaRoles = new ArrayList<Rol>();
 		this.listaAlquileres = new HashSet<Alquiler>();
 		this.listaSolicitudes = new HashSet<Solicitud>();
 	}
