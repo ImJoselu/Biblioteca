@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foro</title>
+
+
+<link rel="stylesheet" th:href="@{/css/general.css}" />
+<link rel="stylesheet" th:href="@{/css/index.css}" />
+<link rel="stylesheet" th:href="@{/css/foro.css}">
+<link rel="stylesheet" media="(max-width: 600px)"
+	th:href="@{/css/movil.css}" />
+<link rel="stylesheet" media="(min-width: 600px) and (max-width: 800px)"
+	th:href="@{/css/tablet.css}" />
+<link rel="stylesheet" media="(min-width: 800px)"
+	th:href="@{/css/pc.css}" />
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+
+</head>
+
+<body>
+
+	<header>
+		<h2>
+			<a th:href="@{/}">Biblioteca</a>
+		</h2>
+		<!--Esto será luego una imagen o algo asi-->
+	</header>
+
+	<aside id="menuMovil">
+		<img src="/images/close_black_24dp.svg">
+		<h3>
+			<a th:href="@{/}">Inicio</a>
+		</h3>
+		<h3>
+			<a th:href="@{/tienda}">Libros</a>
+		</h3>
+		<h3>
+			<a th:href="@{/contacto}">Contacto</a>
+		</h3>
+		<!--solo puede haber 1 de estos dos activo-->
+		<h3>
+			<a href="proximamente.html">Cuenta</a>
+		</h3>
+		<h3>
+			<a th:href="@{/foro}">Foro</a>
+		</h3>
+		<h3>
+			<a th:href="@{/login}">Login</a>
+		</h3>
+	</aside>
+	<nav>
+		<h3>
+			<a th:href="@{/}">Inicio</a>
+		</h3>
+		<h3>
+			<a th:href="@{/tienda}">Libros</a>
+		</h3>
+		<h3>
+			<a th:href="@{/contacto}">Contacto</a>
+		</h3>
+		<!--solo puede haber 1 de estos dos activo-->
+		<h3>
+			<a href="proximamente.html">Cuenta</a>
+		</h3>
+		<h3>
+			<a th:href="@{/foro}">Foro</a>
+		</h3>
+		<h3>
+			<a th:href="@{/login}">Login</a>
+		</h3>
+		<!---->
+		<img th:src="@{/images/menu_black_24dp.svg}" id="btnMenuMovil" />
+	</nav>
+	<main>
+		<section id="filtrosContent">
+
+
+			<h1>Bienvenido al Foro</h1>
+			<h3>Aqui podrás compartir tus opiniones sobre libros que te has
+				leido e interactuar con otros usuarios de la biblioteca.</h3>
+		</section>
+		<section id="filtrosForo">
+			<h2>Filtros disponibles</h2>
+			<!-- Aquí puedes añadir los filtros que quieras -->
+		</section>
+		<section id="postsForo">
+			<div class="post crearPost">
+				<a id="mostrar-crear-post" > <img
+					th:src="@{/images/add_black_24dp.svg}">
+				</a>
+				<div id="form-crear-post" style="display: none;">
+				<h2>Crea Un Nuevo Post</h2>
+					<form method="POST" th:action="@{/foro/nuevo}"
+						th:object="${nuevoPostDTO}">
+						<label for="titulo">Título</label> <input type="text" id="titulo"
+							name="titulo" th:field="${nuevoPostDTO.tituloDTO}" required placeholder="Escribe el titulo aqui..."><br>
+						<br> <label for="contenido">Contenido</label><br>
+						<textarea id="contenido" name="contenido" rows="5" cols="50"
+							th:field="${nuevoPostDTO.contenidoDTO}" placeholder="Escribe el contenido aqui..." required></textarea>
+						<br>
+						<br> <label for="categoria">Categoría</label> <select
+							id="categoria" name="categoria"
+							th:field="${nuevoPostDTO.categoriaDTO}" required>
+							<option value="General" selected>General</option>
+							<option value="Arte">Arte</option>
+							<option value="Autoayuda">Autoayuda</option>
+							<option value="Tecnologia">Tecnología</option>
+							<option value="Ciencia">Ciencia</option>
+							<option value="Ciencia ficción">Ciencia ficción</option>
+							<option value="Clásicos">Clásicos</option>
+							<option value="Cocina">Cocina</option>
+							<option value="Consejos de lectura">Consejos de lectura</option>
+							<option value="Gratis">Gratis</option>
+							<option value="Recomendaciones de lectura">Recomendaciones
+								de lectura</option>
+							<option value="Otras">Otras</option>
+						</select><br>
+						<br> <input type="submit" value="Publicar">
+					</form>
+				</div>
+
+
+			</div>
+
+			<!-- Iteramos sobre la lista de posts para mostrarlos en la vista -->
+			<div th:each="post : ${listaPostsDTO}" class="post">
+
+				<!-- Aquí puedes añadir más elementos HTML para mostrar los comentarios de cada post -->
+
+				<div>
+					<p th:text="${post.usuarioDTO.username}"></p>
+					<p th:text="${post.categoriaDTO}"></p>
+				</div>
+
+				<div>
+					<h3 th:text="${post.tituloDTO}"></h3>
+					<p th:text="${post.contenidoDTO}"></p>
+				</div>
+
+
+				<div>
+					<a th:href="@{/foro/{idPost} (idPost=${post.id})}"> <img
+						th:src="@{/images/arrow_forward_black_24dp.svg}">
+					</a>
+
+
+				</div>
+			</div>
+		</section>
+	</main>
+	<footer>
+		<div>
+			<div>
+				<h5>Nosotros</h5>
+				<ul>
+					<li><a>Acerca de nosotros</a></li>
+					<li><a>Contacto</a></li>
+					<li><a>Empleo</a></li>
+				</ul>
+			</div>
+
+			<div>
+				<h5>Servicios</h5>
+				<ul>
+					<li><a>Envío</a></li>
+					<li><a>Devoluciones</a></li>
+					<li><a>Preguntas frecuentes</a></li>
+				</ul>
+
+			</div>
+			<div>
+				<h5>Contacto</h5>
+				<ul>
+					<li>123 Calle Principal</li>
+					<li>Ciudad, Estado</li>
+					<li>Código Postal</li>
+					<li>555-555-5555</li>
+					<li><a>info@libreria.com</a></li>
+				</ul>
+			</div>
+		</div>
+		<h4>
+			Copyright &copy; Bibliotecarios S.L.
+			<script>document.write(new Date().getFullYear());</script>
+		</h4>
+	</footer>
+
+	<script th:src="@{/js/jquery-3.6.3.min.js}"></script>
+	<script th:src="@{/js/foro.js}"></script>
+	<script th:src="@{/js/general.js}"></script>
+
+</body>
+
+</html>

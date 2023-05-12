@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacto</title>
+<link rel="stylesheet" th:href="@{/css/general.css}">
+<link rel="stylesheet" th:href="@{/css/contacto.css}">
+<link rel="stylesheet" media="(max-width: 600px)"
+	th:href="@{/css/movil.css}">
+<link rel="stylesheet" media="(max-width: 600px)"
+	th:href="@{/css/movilContacto.css}">
+<link rel="stylesheet" media="(min-width: 600px) and (max-width: 800px)"
+	th:href="@{/css/tablet.css}">
+<link rel="stylesheet" media="(min-width: 800px)"
+	th:href="@{/css/pc.css}">
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+
+</head>
+
+<body>
+	<header>
+		<h2>
+			<a th:href="@{/}">Biblioteca</a>
+		</h2>
+		<!--Esto será luego una imagen o algo asi-->
+	</header>
+
+	<aside id="menuMovil">
+		<img src="/images/close_black_24dp.svg">
+		<h3>
+			<a th:href="@{/}">Inicio</a>
+		</h3>
+		<h3>
+			<a th:href="@{/tienda}">Libros</a>
+		</h3>
+		<h3>
+			<a th:href="@{/contacto}">Contacto</a>
+		</h3>
+		<!--solo puede haber 1 de estos dos activo-->
+		<h3>
+			<a href="proximamente.html">Cuenta</a>
+		</h3>
+		<h3>
+			<a th:href="@{/foro}">Foro</a>
+		</h3>
+		<h3>
+			<a th:href="@{/login}">Login</a>
+		</h3>
+	</aside>
+	<nav>
+		<h3>
+			<a th:href="@{/}">Inicio</a>
+		</h3>
+		<h3>
+			<a th:href="@{/tienda}">Libros</a>
+		</h3>
+		<h3>
+			<a th:href="@{/contacto}">Contacto</a>
+		</h3>
+		<!--solo puede haber 1 de estos dos activo-->
+		<h3>
+			<a href="proximamente.html">Cuenta</a>
+		</h3>
+		<h3>
+			<a th:href="@{/foro}">Foro</a>
+		</h3>
+		<h3>
+			<a th:href="@{/login}">Login</a>
+		</h3>
+		<!---->
+		<img th:src="@{/images/menu_black_24dp.svg}" id="btnMenuMovil" />
+	</nav>
+	<main>
+		<section>
+			<section>
+				<h2>Contacto</h2>
+				<h4>¿Quieres Recomendar Un Libro</h4>
+				<h4>Que No Está En Nuestro Catalogo?</h4>
+			</section>
+			<section>
+				<h3>Direccion</h3>
+				<p>Biblioteca Pública Municipal</p>
+				<p>Carrer Estació</p>
+				<p>46540, Valencia</p>
+			</section>
+			<section>
+				<h3>Horario</h3>
+				<p>
+					<b>Lunes a Sabado</b>
+				</p>
+				<p>09:00 - 19:30</p>
+				<p>
+					<b>Domingos y Festivos</b>
+				</p>
+				<p>09:00 - 14:30</p>
+			</section>
+			<div>
+				<form
+					th:action="@{/usuario/{idUsuario}/solicitud/save (idUsuario=${usuario.id})}"
+					th:object="${solicitud}" method="POST">
+					<input th:field="${solicitud.username}" type="text" id="nombre"
+						placeholder="Nombre"> <input th:field="${solicitud.email}"
+						type="email" id="email" placeholder="Correo Electrónico">
+					<input th:field="${solicitud.titulo}" type="text" id="titulo"
+						placeholder="Titulo Libro"> <input
+						th:field="${solicitud.ISBN}" type="text" id="isbn"
+						placeholder="ISBN Libro">
+					<textarea th:field="${solicitud.mensaje}" id="mensaje"
+						placeholder="Mensaje"></textarea>
+
+
+					<button type="submit" id="btnEnviar">Enviar</button>
+				</form>
+				<div th:if="${error}" class="alert alert-danger" role="alert">
+					<span th:text="${error}"></span>
+				</div>
+			</div>
+		</section>
+		<iframe
+			src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d98391.67516787963!2d-0.3864174545368164!3d39.58801314828648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6040bd0a70c63b%3A0x1cc8d0872252a152!2sBiblioteca%20P%C3%BAblica%20Municipal%20El%20Puig%20de%20Santa%20Maria!5e0!3m2!1ses!2ses!4v1674632286438!5m2!1ses!2ses"
+			allowfullscreen="" loading="lazy"
+			referrerpolicy="no-referrer-when-downgrade"></iframe>
+	</main>
+	<footer>
+		<div>
+			<div>
+				<h5>Nosotros</h5>
+				<ul>
+					<li><a>Acerca de nosotros</a></li>
+					<li><a>Contacto</a></li>
+					<li><a>Empleo</a></li>
+				</ul>
+			</div>
+
+			<div>
+				<h5>Servicios</h5>
+				<ul>
+					<li><a>Envío</a></li>
+					<li><a>Devoluciones</a></li>
+					<li><a>Preguntas frecuentes</a></li>
+				</ul>
+
+			</div>
+			<div>
+				<h5>Contacto</h5>
+				<ul>
+					<li>123 Calle Principal</li>
+					<li>Ciudad, Estado</li>
+					<li>Código Postal</li>
+					<li>555-555-5555</li>
+					<li><a>info@libreria.com</a></li>
+				</ul>
+			</div>
+		</div>
+		<h4>
+			Copyright &copy; Bibliotecarios S.L.
+			<script>document.write(new Date().getFullYear());</script>
+		</h4>
+	</footer>
+	<script src="js/jquery-3.6.3.min.js"></script>
+	<script src="js/general.js"></script>
+
+</body>
+
+</html>
