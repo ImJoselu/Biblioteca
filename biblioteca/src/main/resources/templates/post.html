@@ -62,17 +62,41 @@
 		<h3>
 			<a th:href="@{/contacto}">Contacto</a>
 		</h3>
-		<!--solo puede haber 1 de estos dos activo-->
-		<h3>
-			<a href="proximamente.html">Cuenta</a>
-		</h3>
 		<h3>
 			<a th:href="@{/foro}">Foro</a>
 		</h3>
-		<h3>
-			<a th:href="@{/login}">Login</a>
+		<!--solo puede haber 1 de estos dos activo-->
+		<h3 sec:authorize="isAnonymous()">
+			<a th:href="@{/login}">Cuenta</a>
 		</h3>
+		<h3 sec:authorize="isAuthenticated()">
+    		<a th:href="@{/usuarios/{idUsuario}(idUsuario=${#authentication.name})}">Cuenta</a>
+		</h3>
+		<div sec:authorize="hasRole('ROLE_ADMIN')">
+			<h3>
+				<a th:href="@{/adminIndex}">Admin</a>
+			</h3>
+		</div>
+		<div sec:authorize="isAuthenticated()">
+			<form th:action="@{/logout}" method="post">
+				<h3>
+					<input id="logoutBoton" type="submit" value="Logout" />
+				</h3>
+			</form>
+		</div>
 
+		<!-- SI NO SE HA AUTENTICADO -->
+		<div sec:authorize="isAnonymous()">
+			<h3>
+				<a href="/login">Login</a>
+			</h3>
+			
+		</div>
+		<div sec:authorize="isAnonymous()">
+			<h3>
+				<a th:href="@{/registro}">Registro</a>
+			</h3>
+		</div>
 		<!---->
 		<img th:src="@{/images/menu_black_24dp.svg}" id="btnMenuMovil" />
 	</nav>
@@ -100,12 +124,12 @@
 
 
 			<div>
-				<a class="reply-link"><img id="btn-comment-post"
+				<a sec:authorize="isAuthenticated()" class="reply-link"><img id="btn-comment-post"
 					th:src="@{/images/chat_black_24dp.svg}" class="botonIcono" /></a>
 
 				<div>
 					<!-- Agregar el botón de like y un identificador para el post -->
-					<a class="like-link"
+					<a sec:authorize="isAuthenticated()" class="like-link"
 						th:href="@{/foro/{postId}/like(postId=${postDTO.id})}"> <img th:if="${postDTO.likesDTO >= 1 }"
 						th:src="@{/images/favorite_black_24dp.svg}" class="botonIcono" />
 						<img th:if="${postDTO.likesDTO < 1 }"
@@ -149,7 +173,7 @@
 						<p class="comment-author"
 							th:text="${#temporals.format(comentario.fechaCreacionDTO, 'dd/MM/yyyy HH:mm')}"></p>
 
-						<a class="reply-link"><img id="btn-comment-comment"
+						<a sec:authorize="isAuthenticated()" class="reply-link"><img id="btn-comment-comment"
 							th:src="@{/images/chat_black_24dp.svg}" class="botonIcono" /></a>
 
 						<div id="comment-form-container">

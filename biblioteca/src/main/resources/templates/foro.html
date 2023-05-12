@@ -62,16 +62,41 @@
 		<h3>
 			<a th:href="@{/contacto}">Contacto</a>
 		</h3>
-		<!--solo puede haber 1 de estos dos activo-->
-		<h3>
-			<a href="proximamente.html">Cuenta</a>
-		</h3>
 		<h3>
 			<a th:href="@{/foro}">Foro</a>
 		</h3>
-		<h3>
-			<a th:href="@{/login}">Login</a>
+		<!--solo puede haber 1 de estos dos activo-->
+		<h3 sec:authorize="isAnonymous()">
+			<a th:href="@{/login}">Cuenta</a>
 		</h3>
+		<h3 sec:authorize="isAuthenticated()">
+    		<a th:href="@{/usuarios/{idUsuario}(idUsuario=${#authentication.name})}">Cuenta</a>
+		</h3>
+		<div sec:authorize="hasRole('ROLE_ADMIN')">
+			<h3>
+				<a th:href="@{/adminIndex}">Admin</a>
+			</h3>
+		</div>
+		<div sec:authorize="isAuthenticated()">
+			<form th:action="@{/logout}" method="post">
+				<h3>
+					<input id="logoutBoton" type="submit" value="Logout" />
+				</h3>
+			</form>
+		</div>
+
+		<!-- SI NO SE HA AUTENTICADO -->
+		<div sec:authorize="isAnonymous()">
+			<h3>
+				<a href="/login">Login</a>
+			</h3>
+			
+		</div>
+		<div sec:authorize="isAnonymous()">
+			<h3>
+				<a th:href="@{/registro}">Registro</a>
+			</h3>
+		</div>
 		<!---->
 		<img th:src="@{/images/menu_black_24dp.svg}" id="btnMenuMovil" />
 	</nav>
@@ -89,7 +114,7 @@
 		</section>
 		<section id="postsForo">
 			<div class="post crearPost">
-				<a id="mostrar-crear-post" > <img
+				<a id="mostrar-crear-post" sec:authorize="isAuthenticated()"> <img
 					th:src="@{/images/add_black_24dp.svg}">
 				</a>
 				<div id="form-crear-post" style="display: none;">

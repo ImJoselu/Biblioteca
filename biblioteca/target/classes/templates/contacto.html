@@ -26,6 +26,14 @@
 			<a th:href="@{/}">Biblioteca</a>
 		</h2>
 		<!--Esto será luego una imagen o algo asi-->
+		<div sec:authorize="isAuthenticated()">
+			<h2 id="mensajeBienvenida" th:inline="text">
+				<a th:href="@{/}"> ¡Hola, <span th:remove="tag"
+					sec:authentication="name"> </span>!
+				</a>
+
+			</h2>
+		</div>
 	</header>
 
 	<aside id="menuMovil">
@@ -60,16 +68,41 @@
 		<h3>
 			<a th:href="@{/contacto}">Contacto</a>
 		</h3>
-		<!--solo puede haber 1 de estos dos activo-->
-		<h3>
-			<a href="proximamente.html">Cuenta</a>
-		</h3>
 		<h3>
 			<a th:href="@{/foro}">Foro</a>
 		</h3>
-		<h3>
-			<a th:href="@{/login}">Login</a>
+		<!--solo puede haber 1 de estos dos activo-->
+		<h3 sec:authorize="isAnonymous()">
+			<a th:href="@{/login}">Cuenta</a>
 		</h3>
+		<h3 sec:authorize="isAuthenticated()">
+    		<a th:href="@{/usuarios/{idUsuario}(idUsuario=${#authentication.name})}">Cuenta</a>
+		</h3>
+		<div sec:authorize="hasRole('ROLE_ADMIN')">
+			<h3>
+				<a th:href="@{/adminIndex}">Admin</a>
+			</h3>
+		</div>
+		<div sec:authorize="isAuthenticated()">
+			<form th:action="@{/logout}" method="post">
+				<h3>
+					<input id="logoutBoton" type="submit" value="Logout" />
+				</h3>
+			</form>
+		</div>
+
+		<!-- SI NO SE HA AUTENTICADO -->
+		<div sec:authorize="isAnonymous()">
+			<h3>
+				<a href="/login">Login</a>
+			</h3>
+			
+		</div>
+		<div sec:authorize="isAnonymous()">
+			<h3>
+				<a th:href="@{/registro}">Registro</a>
+			</h3>
+		</div>
 		<!---->
 		<img th:src="@{/images/menu_black_24dp.svg}" id="btnMenuMovil" />
 	</nav>
@@ -110,8 +143,6 @@
 						placeholder="ISBN Libro">
 					<textarea th:field="${solicitud.mensaje}" id="mensaje"
 						placeholder="Mensaje"></textarea>
-
-
 					<button type="submit" id="btnEnviar">Enviar</button>
 				</form>
 				<div th:if="${error}" class="alert alert-danger" role="alert">
@@ -141,8 +172,10 @@
 					<li><a>Envío</a></li>
 					<li><a>Devoluciones</a></li>
 					<li><a>Preguntas frecuentes</a></li>
+					<br>
+					<br>
+					<h5>Redes sociales</h5>
 				</ul>
-
 			</div>
 			<div>
 				<h5>Contacto</h5>
@@ -155,13 +188,21 @@
 				</ul>
 			</div>
 		</div>
+		<div id="contenedorSocial">
+			<abbr title="Siguenos en Instagram"><a
+				th:href="@{https://www.instagram.com/bibliotecasocialpremium/}">
+					<img th:src="'/images/instagram.png'" alt="Logo de mi proyecto">
+			</a></abbr> <abbr title="Siguenos en Twitter"><a
+				th:href="@{https://twitter.com/bilbiotecaSP}"> <img
+					th:src="'/images/twitter.png'" alt="Logo de mi proyecto"></a></abbr>
+		</div>
 		<h4>
 			Copyright &copy; Bibliotecarios S.L.
 			<script>document.write(new Date().getFullYear());</script>
 		</h4>
 	</footer>
-	<script src="js/jquery-3.6.3.min.js"></script>
-	<script src="js/general.js"></script>
+	<script th:src="@{/js/jquery-3.6.3.min.js}"></script>
+	<script th:src="@{/js/general.js}"></script>
 
 </body>
 

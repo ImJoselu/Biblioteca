@@ -32,21 +32,53 @@
 			<a th:href="@{/adminClientes}">Cliente</a>
 		</h3>
 		<h3>
-			<a th:href="@{/adminEjemplares}">Libro</a>
+			<a th:href="@{/adminLibros}">Libro</a>
 		</h3>
 	</aside>
 	<nav>
 		<h3>
-			<a th:href="@{/adminContacto}">Contacto</a>
+			<a th:href="@{/}">Inicio</a>
 		</h3>
 		<h3>
-			<a th:href="@{/adminClientes}">Cliente</a>
+			<a th:href="@{/tienda}">Libros</a>
 		</h3>
 		<h3>
-			<a th:href="@{/adminEjemplares}">Libro</a>
+			<a th:href="@{/contacto}">Contacto</a>
 		</h3>
+		<!--solo puede haber 1 de estos dos activo-->
+		<h3 sec:authorize="isAnonymous()">
+			<a th:href="@{/login}">Cuenta</a>
+		</h3>
+		<h3 sec:authorize="isAuthenticated()">
+    		<a th:href="@{/usuarios/{idUsuario}(idUsuario=${#authentication.name})}">Cuenta</a>
+		</h3>
+		<div sec:authorize="hasRole('ROLE_ADMIN')">
+			<h3>
+				<a th:href="@{/adminIndex}">Admin</a>
+			</h3>
+		</div>
+		<div sec:authorize="isAuthenticated()">
+			<form th:action="@{/logout}" method="post">
+				<h3>
+					<input id="logoutBoton" type="submit" value="Logout" />
+				</h3>
+			</form>
+		</div>
+
+		<!-- SI NO SE HA AUTENTICADO -->
+		<div sec:authorize="isAnonymous()">
+			<h3>
+				<a href="/login">Login</a>
+			</h3>
+			
+		</div>
+		<div sec:authorize="isAnonymous()">
+			<h3>
+				<a th:href="@{/registro}">Registro</a>
+			</h3>
+		</div>
 		<!---->
-		<img src="images/menu_black_24dp.svg" id="btnMenuMovil">
+		<img th:src="@{/images/menu_black_24dp.svg}" id="btnMenuMovil" />
 	</nav>
 	<main>
 
@@ -54,21 +86,16 @@
 			<thead>
 				<tr>
 					<th>ISBN</th>
-					<th>Nombre</th>
-					<th>Editorial</th>
-					<th>Stock</th>
-					<th>Cambiar Stock</th>
+					<th>Titulo</th>
+					<th>Ejemplares</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="${}">
-					<td th:text="${}"></td>
-					<td th:text="${}"></td>
-					<td th:text="${}"></td>
-					<td th:text="${}"></td>
-					<td class="cambiarInput"><a>Cambiar Stock</a> <input
-						type="number" id="cambiarStock"></td>
-					<!--Cuando hagas click en el link de cambiar stock, aparecerá el input number-->
+				<tr th:each="libroDTO : ${listaLibrosDTO}">
+					<td th:text="${libroDTO.isbn}"></td>
+					<td th:text="${libroDTO.titulo}"></td>
+					<td><a th:href="@{/adminLibros/{isbnLibro}/adminEjemplares (isbnLibro=${libroDTO.isbn})}">Ver ejemplares</a></td>
+					
 				</tr>
 			</tbody>
 		</table>
@@ -76,15 +103,19 @@
 	<footer>
 		<div>
 			<div>
-				<p>adipisicing elit. Perferendis praesentium veniam eligendi</p>
+				<p>En la Biblioteca, nos esforzamos por brindar un acceso fácil
+					y conveniente a una amplia selección de libros y recursos.</p>
 			</div>
 			<div>
-				<p>nihil, totam molestiae, soluta facilis quibusdam fugit
-					reiciendis natus quam fuga alias dolores repudiandae!</p>
+				<p>Nuestro compromiso es brindar una experiencia de lectura
+					inolvidable</p>
 			</div>
 			<div>
-				<p>Lorem ipsum dolor sit amet consectetur aliquid deserunt.
-					Iusto, a</p>
+				<p>Nuestro equipo de bibliotecarios trabaja incansablemente para
+					ofrecerte los mejores recursos</p>
+			</div>
+			<div>
+				<p>Gracias por formar parte de esta comunidad de lectores</p>
 			</div>
 		</div>
 		<h4>©Bibliotecarios S.L. 2022/2023</h4>

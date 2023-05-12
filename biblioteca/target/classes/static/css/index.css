@@ -47,6 +47,21 @@ main {
 	justify-items: center
 }
 
+#mensajeBienvenida{
+	margin-left: 20px;
+    transition: all 1s;
+    font-weight: bold;
+}
+#logoutBoton {
+	text-decoration: none;
+    color: #513719;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    border-bottom: none;
+    height: auto;
+}
+
 .imagenConfirm {
 	height: 300px;
 }
