@@ -108,8 +108,6 @@ public class AlquilerController {
 
 		LibroDTO libroDTO = new LibroDTO();
 		libroDTO.setIsbn(idLibro);
-		
-		EjemplarDTO ejemplarDTO = alquilerService.alquilar(usuarioDTO, libroDTO);
 		libroDTO = libroService.findByISBN(libroDTO);
 
 		EjemplarDTO ejemplarDTO = alquilerService.comprobar(usuarioDTO, libroDTO);

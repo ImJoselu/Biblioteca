@@ -204,7 +204,7 @@ public class LibroController {
 		mav.addObject("listaPopulares", listaAleatoria);
 		return mav;
 	}
-
+/*
 	@GetMapping("/adminLibros")
 	public ModelAndView index() {
 
@@ -221,6 +221,7 @@ public class LibroController {
 
 		return mav;
 	}
+*/
 	@GetMapping("/tienda")
 	public ModelAndView mostrarCatalogo(@RequestParam(value = "filtro", required = false) String filtro,
 			
