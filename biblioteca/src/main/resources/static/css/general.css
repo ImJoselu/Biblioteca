@@ -53,16 +53,12 @@ nav {
 	animation: anim 1s ease 0s 1 normal forwards;
 }
 
-@
-keyframes anim { 0% {
+@keyframes anim { 0% {
 	opacity: 0;
 	transform: translateY(-100px) scale(0, 0);
 }
 
-100
-
-
-%
+100%
 {
 opacity
 

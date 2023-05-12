@@ -91,49 +91,34 @@
 				</figure>
 			</div>
 			<div id="carousel">
-				<img src="images/CasadelLibro_Blog.webp" alt="Image 1"> <img
-					src="images/imagen-libros.wep.webp" alt="Image 2"> <img
-					src="images/libro.webp" alt="Image 3">
+				<img th:src="@{/images/CasadelLibro_Blog.webp}" alt="Image 1">
+				<img th:src="@{/images/imagen-libros.wep.webp}" alt="Image 2">
+				<img th:src="@{/images/libro.webp}" alt="Image 3">
 
 
 			</div>
 
 		</section>
 		<div id="content">
+			<div>
+				<label for="filtro">Filtrar por:</label> <input type="text"
+					id="filtro" name="filtro" placeholder="Buscar...">
+				<button id="aplicarFiltro">Buscar</button>
 
-			<select name="filtros" id="filtros">
-				<option value="-1" selected hidden disabled>Seleccione
-					filtro</option>
-				<option value="all">Por Defecto (Todos)</option>
-				<option value="autor">Autor</option>
-				<option value="genero">Genero</option>
-				<option value="editorial">Editorial</option>
-			</select> <select name="filtroAutor" id="filtroAutor" hidden>
-				<option value="-1" disabled selected hidden>Seleccione
-					Autor</option>
-				<!--Este select se rellenará desde servidor-->
-			</select> <select name="filtroEditorial" id="filtroEditorial" hidden>
+			</div>
+			<div>
+				<label for="orden">Ordenar por:</label> <select id="orden">
+					<option value="" selected hidden disabled>Seleccionar
+						Orden</option>
+					<option value="ascendente">Titulo A -> Z</option>
+					<option value="descendente">Titulo Z -> A</option>
+					<option value="editorial-ascendente">Editorial A -> Z</option>
+					<option value="editorial-descendente">Editorial Z -> A</option>
+				</select>
+			</div>
 
-				<option value="-1" disabled selected hidden>Seleccione
-					Editorial</option>
-				<!--Este select se rellenará desde servidor-->
-			</select> <select name="filtroGenero" id="filtroGenero" hidden>
 
-				<option value="-1" disabled selected hidden>Seleccione
-					Genero</option>
-				<!--Este select se rellenará desde servidor-->
-			</select> <select name="ordenar" id="ordenar">
-				<option value="-1" selected hidden disabled>Seleccione
-					orden</option>
-				<option value="ua">Por Defecto (Ultimos Añadidos)</option>
-				<option value="az">A - Z</option>
-				<option value="za">Z - A</option>
-				<option value="eaz">Editorial A - Z</option>
-				<option value="eza">Editorial Z - A</option>
-				<option value="edad0">Edad 0 - 18</option>
-				<option value="edad18">Edad 18 - 0</option>
 
-			</select>
 		</div>
 
 		<section id="catalogo">
@@ -144,21 +129,48 @@
 				<figure th:each="libro : ${listaLibrosDTO}">
 					<img th:src="'/imagenesLibros/' + ${libro.isbn} + '.jpg'" alt="">
 					<figcaption th:text="${libro.titulo}"></figcaption>
+					<div>
+						<b>Editorial:</b> <span th:text="${libro.editorialDTO.nombre}"></span>
+					</div>
 					<a
 						th:href="@{/usuario/{idUsuario}/alquilar/{idLibro} (idUsuario=${usuario.id},idLibro=${libro.isbn})}"><button>Alquilar</button></a>
 
 				</figure>
 
 			</div>
-			<div id="btnPaginacion">
-				<button>
-					<<
-					<button>1</button>
-					<button>2</button>
-					<button>3</button>
-					<button>4</button>
-					<button>>></button>
-			</div>
+		<div id="btnPaginacion">
+  <nav aria-label="...">
+    <a th:href="@{/tienda/filtrada(filtro=${filtro}, orden=${orden}, page=0, size=${size})}">
+      <button th:class="${currentPage == 0 ? 'disabled' : ''}" type="button">
+        &laquo;
+      </button>
+    </a>
+    <a th:href="@{/tienda/filtrada(filtro=${filtro}, orden=${orden}, page=${currentPage-1}, size=${size})}" th:class="${currentPage == 0 ? 'disabled' : ''}" th:disabled="${currentPage == 0}">
+      <button type="button">
+        &lsaquo;
+      </button>
+    </a>
+    <div th:each="page : ${#numbers.sequence(0, totalPages-1)}">
+      <a th:href="@{/tienda/filtrada(filtro=${filtro}, orden=${orden}, page=${page}, size=${size})}" th:class="${currentPage == page ? 'active' : ''}">
+        <button type="button" th:text="${page+1}"></button>
+      </a>
+    </div>
+    <a th:href="@{/tienda/filtrada(filtro=${filtro}, orden=${orden}, page=${currentPage+1}, size=${size})}" th:class="${currentPage == totalPages-1 ? 'disabled' : ''}" th:disabled="${currentPage == totalPages-1}">
+      <button type="button">
+        &rsaquo;
+      </button>
+    </a>
+    <a th:href="@{/tienda/filtrada(filtro=${filtro}, orden=${orden}, page=${totalPages-1}, size=${size})}">
+      <button th:class="${currentPage == totalPages-1 ? 'disabled' : ''}" type="button">
+        &raquo;
+      </button>
+    </a>
+  </nav>
+</div>
+
+
+
+
 		</section>
 	</main>
 	<footer>
@@ -197,10 +209,10 @@
 			<script>document.write(new Date().getFullYear());</script>
 		</h4>
 	</footer>
-	<script src="js/jquery-3.6.3.min.js"></script>
-	<script src="js/tienda.js"></script>
-	<script src="js/carousel.js"></script>
-	<script src="js/general.js"></script>
+	<script th:src="@{/js/jquery-3.6.3.min.js}"></script>
+	<script th:src="@{/js/tienda.js}"></script>
+	<script th:src="@{/js/carousel.js}"></script>
+	<script th:src="@{/js/general.js}"></script>
 
 </body>
 
