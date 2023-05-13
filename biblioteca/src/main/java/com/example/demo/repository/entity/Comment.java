@@ -51,8 +51,8 @@ public class Comment {
 		@ToString.Exclude
 		private List<Comment> listaComentarios= new ArrayList<>();
 	    
-	    @JoinColumn(name = "es_padre")
-	    private boolean esPadre;
+	   // @JoinColumn(name = "es_padre")
+	   // private boolean esPadre;
 
 		@Override
 		public boolean equals(Object obj) {

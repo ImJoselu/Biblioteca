@@ -202,6 +202,11 @@ public class LibroController {
 		// ESTA LINEA HAY QUE CAMBIAR EL "1" POR EL ID DEL USUARIO LOGEADO EN EL MOMENTO
 		mav.addObject("usuario", usuario);
 		mav.addObject("listaPopulares", listaAleatoria);
+		
+		mav.addObject("listaLibrosDTO", subListaLibrosFiltrada);
+		mav.addObject("totalPages", (listaLibrosFiltrada.size() + size - 1) / size);
+		mav.addObject("currentPage", page);
+		
 		return mav;
 	}
 /*
