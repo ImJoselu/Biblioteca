@@ -24,8 +24,8 @@
 		</h2>
 		<div sec:authorize="isAuthenticated()">
 			<h2 id="mensajeBienvenida" th:inline="text">
-				<a th:href="@{/}">
-					¡Hola,	<span th:remove="tag" sec:authentication="name"> </span>!
+				<a th:href="@{/}"> ¡Hola, <span th:remove="tag"
+					sec:authentication="name"> </span>!
 				</a>
 
 			</h2>
@@ -60,7 +60,8 @@
 			<a th:href="@{/login}">Cuenta</a>
 		</h3>
 		<h3 sec:authorize="isAuthenticated()">
-    		<a th:href="@{/usuarios/{idUsuario}(idUsuario=${#authentication.name})}">Cuenta</a>
+			<a
+				th:href="@{/usuarios/{idUsuario}(idUsuario=${#authentication.name})}">Cuenta</a>
 		</h3>
 		<div sec:authorize="hasRole('ROLE_ADMIN')">
 			<h3>
@@ -80,13 +81,16 @@
 			<h3>
 				<a href="/login">Login</a>
 			</h3>
-			
+
 		</div>
 		<div sec:authorize="isAnonymous()">
 			<h3>
 				<a th:href="@{/registro}">Registro</a>
 			</h3>
 		</div>
+		<div id="google_translate_element" class="google"></div>
+		</div>
+
 		<!---->
 		<img th:src="@{/images/menu_black_24dp.svg}" id="btnMenuMovil" />
 	</nav>
@@ -94,22 +98,18 @@
 
 		<a th:href="@{/adminClientes}">
 			<button class="btnAdmin">
-			<h2>Clientes</h2>
-			<img src="images/groups_white_48dp.svg" alt="">
+				<h2>Clientes</h2>
+				<img src="images/groups_white_48dp.svg" alt="">
 			</button>
-		</a> 
-	
-		<a th:href="@{/adminLibros}">
+		</a> <a th:href="@{/adminLibros}">
 			<button class="btnAdmin">
-			<h2>Libros</h2>
-			<img src="images/book_white_24dp.svg" alt="">
+				<h2>Libros</h2>
+				<img src="images/book_white_24dp.svg" alt="">
 			</button>
-		</a> 
-		
-		<a th:href="@{/adminContacto}">
+		</a> <a th:href="@{/adminContacto}">
 			<button class="btnAdmin">
-			<h2>Contacto</h2>
-			<img src="images/support_agent_white_48dp.svg" alt="">
+				<h2>Contacto</h2>
+				<img src="images/support_agent_white_48dp.svg" alt="">
 			</button>
 		</a>
 	</main>
@@ -133,6 +133,9 @@
 		</div>
 		<h4>©Bibliotecarios S.L. 2022/2023</h4>
 	</footer>
+	<script type="text/javascript"
+		src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+	<script th:src="@{/js/traduccion.js}"></script>
 	<script th:src="@{/js/jquery-3.6.3.min.js}"></script>
 	<script th:src="@{/js/admin.js}"></script>
 </body>

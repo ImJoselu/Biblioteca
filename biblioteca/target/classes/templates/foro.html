@@ -51,9 +51,17 @@
 		<h3>
 			<a th:href="@{/login}">Login</a>
 		</h3>
+		<div>
+			<div id="google_translate_element" class="google"></div>
+		</div>
 	</aside>
 	<nav>
-	
+
+
+
+
+
+
 		<h3>
 			<a th:href="@{/}">Inicio</a>
 		</h3>
@@ -71,7 +79,8 @@
 			<a th:href="@{/login}">Cuenta</a>
 		</h3>
 		<h3 sec:authorize="isAuthenticated()">
-    		<a th:href="@{/usuarios/{idUsuario}(idUsuario=${#authentication.name})}">Cuenta</a>
+			<a
+				th:href="@{/usuarios/{idUsuario}(idUsuario=${#authentication.name})}">Cuenta</a>
 		</h3>
 		<div sec:authorize="hasRole('ROLE_ADMIN')">
 			<h3>
@@ -91,14 +100,16 @@
 			<h3>
 				<a href="/login">Login</a>
 			</h3>
-			
+
 		</div>
 		<div sec:authorize="isAnonymous()">
 			<h3>
 				<a th:href="@{/registro}">Registro</a>
 			</h3>
 		</div>
-		<!---->
+<div id="google_translate_element" class="google"></div>
+
+<!---->
 		<img th:src="@{/images/menu_black_24dp.svg}" id="btnMenuMovil" />
 	</nav>
 	<main>
@@ -108,27 +119,30 @@
 			<h1>Bienvenido al Foro</h1>
 			<h3>Aqui podrás compartir tus opiniones sobre libros que te has
 				leido e interactuar con otros usuarios de la biblioteca.</h3>
+
+
 		</section>
 		<section id="filtrosForo">
 			<h2>Filtros disponibles</h2>
 			<!-- Aquí puedes añadir los filtros que quieras -->
 		</section>
 		<section id="postsForo">
-			<div class="post crearPost">
-				<a id="mostrar-crear-post" sec:authorize="isAuthenticated()"> <img
+			<div class="post crearPost" sec:authorize="isAuthenticated()">
+				<a id="mostrar-crear-post"> <img
 					th:src="@{/images/add_black_24dp.svg}">
 				</a>
 				<div id="form-crear-post" style="display: none;">
-				<h2>Crea Un Nuevo Post</h2>
+					<h2>Crea Un Nuevo Post</h2>
 					<form method="POST" th:action="@{/foro/nuevo}"
 						th:object="${nuevoPostDTO}">
 						<label for="titulo">Título</label> <input type="text" id="titulo"
-							name="titulo" th:field="${nuevoPostDTO.tituloDTO}" required placeholder="Escribe el titulo aqui..."><br>
-						<br> <label for="contenido">Contenido</label><br>
+							name="titulo" th:field="${nuevoPostDTO.tituloDTO}" required
+							placeholder="Escribe el titulo aqui..."><br> <br>
+						<label for="contenido">Contenido</label><br>
 						<textarea id="contenido" name="contenido" rows="5" cols="50"
-							th:field="${nuevoPostDTO.contenidoDTO}" placeholder="Escribe el contenido aqui..." required></textarea>
-						<br>
-						<br> <label for="categoria">Categoría</label> <select
+							th:field="${nuevoPostDTO.contenidoDTO}"
+							placeholder="Escribe el contenido aqui..." required></textarea>
+						<br> <br> <label for="categoria">Categoría</label> <select
 							id="categoria" name="categoria"
 							th:field="${nuevoPostDTO.categoriaDTO}" required>
 							<option value="General" selected>General</option>
@@ -144,8 +158,7 @@
 							<option value="Recomendaciones de lectura">Recomendaciones
 								de lectura</option>
 							<option value="Otras">Otras</option>
-						</select><br>
-						<br> <input type="submit" value="Publicar">
+						</select><br> <br> <input type="submit" value="Publicar">
 					</form>
 				</div>
 
@@ -214,13 +227,14 @@
 			<script>document.write(new Date().getFullYear());</script>
 		</h4>
 	</footer>
-  
+ <script type="text/javascript"
+		src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+	<script th:src="@{/js/traduccion.js}"></script>
 	<script th:src="@{/js/jquery-3.6.3.min.js}"></script>
-	<script th:src="@{/js/traduccion.mjs}"></script>
 	<script th:src="@{/js/foro.js}"></script>
 	<script th:src="@{/js/general.js}"></script>
 
-  
+
 </body>
 
 </html>

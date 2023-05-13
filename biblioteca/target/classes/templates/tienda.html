@@ -30,8 +30,8 @@
 		<!--Esto será luego una imagen o algo asi-->
 		<div sec:authorize="isAuthenticated()">
 			<h2 id="mensajeBienvenida" th:inline="text">
-				<a th:href="@{/}">
-					¡Hola,	<span th:remove="tag" sec:authentication="name"> </span>!
+				<a th:href="@{/}"> ¡Hola, <span th:remove="tag"
+					sec:authentication="name"> </span>!
 				</a>
 
 			</h2>
@@ -61,6 +61,12 @@
 		</h3>
 	</aside>
 	<nav>
+
+
+
+
+
+
 		<h3>
 			<a th:href="@{/}">Inicio</a>
 		</h3>
@@ -78,7 +84,8 @@
 			<a th:href="@{/login}">Cuenta</a>
 		</h3>
 		<h3 sec:authorize="isAuthenticated()">
-    		<a th:href="@{/usuarios/{idUsuario}(idUsuario=${#authentication.name})}">Cuenta</a>
+			<a
+				th:href="@{/usuarios/{idUsuario}(idUsuario=${#authentication.name})}">Cuenta</a>
 		</h3>
 		<div sec:authorize="hasRole('ROLE_ADMIN')">
 			<h3>
@@ -98,13 +105,16 @@
 			<h3>
 				<a href="/login">Login</a>
 			</h3>
-			
+
 		</div>
 		<div sec:authorize="isAnonymous()">
 			<h3>
 				<a th:href="@{/registro}">Registro</a>
 			</h3>
 		</div>
+		<div id="google_translate_element" class="google"></div>
+		</div>
+
 		<!---->
 		<img th:src="@{/images/menu_black_24dp.svg}" id="btnMenuMovil" />
 	</nav>
@@ -171,35 +181,38 @@
 				</figure>
 
 			</div>
-		<div id="btnPaginacion">
-  <nav aria-label="...">
-    <a th:href="@{/tienda/filtrada(filtro=${filtro}, orden=${orden}, page=0, size=${size})}">
-      <button th:class="${currentPage == 0 ? 'disabled' : ''}" type="button">
-        &laquo;
-      </button>
-    </a>
-    <a th:href="@{/tienda/filtrada(filtro=${filtro}, orden=${orden}, page=${currentPage-1}, size=${size})}" th:class="${currentPage == 0 ? 'disabled' : ''}" th:disabled="${currentPage == 0}">
-      <button type="button">
-        &lsaquo;
-      </button>
-    </a>
-    <div th:each="page : ${#numbers.sequence(0, totalPages-1)}">
-      <a th:href="@{/tienda/filtrada(filtro=${filtro}, orden=${orden}, page=${page}, size=${size})}" th:class="${currentPage == page ? 'active' : ''}">
-        <button type="button" th:text="${page+1}"></button>
-      </a>
-    </div>
-    <a th:href="@{/tienda/filtrada(filtro=${filtro}, orden=${orden}, page=${currentPage+1}, size=${size})}" th:class="${currentPage == totalPages-1 ? 'disabled' : ''}" th:disabled="${currentPage == totalPages-1}">
-      <button type="button">
-        &rsaquo;
-      </button>
-    </a>
-    <a th:href="@{/tienda/filtrada(filtro=${filtro}, orden=${orden}, page=${totalPages-1}, size=${size})}">
-      <button th:class="${currentPage == totalPages-1 ? 'disabled' : ''}" type="button">
-        &raquo;
-      </button>
-    </a>
-  </nav>
-</div>
+			<div id="btnPaginacion">
+				<nav aria-label="...">
+					<a
+						th:href="@{/tienda/filtrada(filtro=${filtro}, orden=${orden}, page=0, size=${size})}">
+						<button th:class="${currentPage == 0 ? 'disabled' : ''}"
+							type="button">&laquo;</button>
+					</a> <a
+						th:href="@{/tienda/filtrada(filtro=${filtro}, orden=${orden}, page=${currentPage-1}, size=${size})}"
+						th:class="${currentPage == 0 ? 'disabled' : ''}"
+						th:disabled="${currentPage == 0}">
+						<button type="button">&lsaquo;</button>
+					</a>
+					<div th:each="page : ${#numbers.sequence(0, totalPages-1)}">
+						<a
+							th:href="@{/tienda/filtrada(filtro=${filtro}, orden=${orden}, page=${page}, size=${size})}"
+							th:class="${currentPage == page ? 'active' : ''}">
+							<button type="button" th:text="${page+1}"></button>
+						</a>
+					</div>
+					<a
+						th:href="@{/tienda/filtrada(filtro=${filtro}, orden=${orden}, page=${currentPage+1}, size=${size})}"
+						th:class="${currentPage == totalPages-1 ? 'disabled' : ''}"
+						th:disabled="${currentPage == totalPages-1}">
+						<button type="button">&rsaquo;</button>
+					</a> <a
+						th:href="@{/tienda/filtrada(filtro=${filtro}, orden=${orden}, page=${totalPages-1}, size=${size})}">
+						<button
+							th:class="${currentPage == totalPages-1 ? 'disabled' : ''}"
+							type="button">&raquo;</button>
+					</a>
+				</nav>
+			</div>
 
 
 
@@ -240,14 +253,21 @@
 			</div>
 		</div>
 		<div id="contenedorSocial">
-		<abbr title="Siguenos en Instagram"><a th:href="@{https://www.instagram.com/bibliotecasocialpremium/}"> <img th:src="'/images/instagram.png'" alt="Logo de mi proyecto"></a></abbr>
-		<abbr title="Siguenos en Twitter"><a th:href="@{https://twitter.com/bilbiotecaSP}"> <img th:src="'/images/twitter.png'" alt="Logo de mi proyecto"></a></abbr>
+			<abbr title="Siguenos en Instagram"><a
+				th:href="@{https://www.instagram.com/bibliotecasocialpremium/}">
+					<img th:src="'/images/instagram.png'" alt="Logo de mi proyecto">
+			</a></abbr> <abbr title="Siguenos en Twitter"><a
+				th:href="@{https://twitter.com/bilbiotecaSP}"> <img
+					th:src="'/images/twitter.png'" alt="Logo de mi proyecto"></a></abbr>
 		</div>
 		<h4>
 			Copyright &copy; Bibliotecarios S.L.
 			<script>document.write(new Date().getFullYear());</script>
 		</h4>
 	</footer>
+	<script type="text/javascript"
+		src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+	<script th:src="@{/js/traduccion.js}"></script>
 	<script th:src="@{/js/jquery-3.6.3.min.js}"></script>
 	<script th:src="@{/js/tienda.js}"></script>
 	<script th:src="@{/js/carousel.js}"></script>

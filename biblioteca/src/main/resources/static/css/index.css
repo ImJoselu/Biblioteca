@@ -47,19 +47,20 @@ main {
 	justify-items: center
 }
 
-#mensajeBienvenida{
+#mensajeBienvenida {
 	margin-left: 20px;
-    transition: all 1s;
-    font-weight: bold;
+	transition: all 1s;
+	font-weight: bold;
 }
+
 #logoutBoton {
 	text-decoration: none;
-    color: #513719;
-    font-size: 1em;
-    font-weight: bold;
-    cursor: pointer;
-    border-bottom: none;
-    height: auto;
+	color: #513719;
+	font-size: 1em;
+	font-weight: bold;
+	cursor: pointer;
+	border-bottom: none;
+	height: auto;
 }
 
 .imagenConfirm {

@@ -135,41 +135,42 @@ main {
 }
 
 .crearPost {
-    /* display: flex; */
-    flex-direction: column;
+	/* display: flex; */
+	flex-direction: column;
 }
 
 .crearPost img {
-       height: 35px;
-    cursor: pointer;
+	height: 35px;
+	cursor: pointer;
 }
 
 .crearPost a:hover {
-    transform: scale(1.1);
-}
-.crearPost a {
-    cursor: pointer;
-    transition: all 0.5s;
-}
-#form-crear-post label {
-  display: block;
-  margin-bottom: 10px;
+	transform: scale(1.1);
 }
 
-#form-crear-post input[type="text"],
-#form-crear-post textarea,
-#form-crear-post select {
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 100%;
-  height: 36px;
-  box-sizing: border-box;
-  margin-bottom: 10px;
+.crearPost a {
+	cursor: pointer;
+	transition: all 0.5s;
+}
+
+#form-crear-post label {
+	display: block;
+	margin-bottom: 10px;
+}
+
+#form-crear-post input[type="text"], #form-crear-post textarea,
+	#form-crear-post select {
+	padding: 5px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	width: 100%;
+	height: 36px;
+	box-sizing: border-box;
+	margin-bottom: 10px;
 }
 
 #form-crear-post input[type="submit"] {
- padding: 10px;
+	padding: 10px;
 	border-radius: 8px;
 	border: none;
 	background-color: #513719;
@@ -177,24 +178,21 @@ main {
 	height: 44px; /* width: 340px; */
 	font-weight: bold;
 	cursor: pointer;
-	width:100px;
-	font-size:1rem;
+	width: 100px;
+	font-size: 1rem;
 }
 
 #form-crear-post input[type="submit"]:hover {
-  background-color: #ffffff00;
-	color:black;
+	background-color: #ffffff00;
+	color: black;
 }
 
-
 textarea#contenido {
-    height: 189px;
-	
+	height: 189px;
 }
 
 .post>div:nth-of-type(2)>p {
-    max-height: 2.5em; /* ajusta la altura a lo que necesites */
-  overflow: hidden;
- 
-  text-overflow: ellipsis;
+	max-height: 2.5em; /* ajusta la altura a lo que necesites */
+	overflow: hidden;
+	text-overflow: ellipsis;
 }

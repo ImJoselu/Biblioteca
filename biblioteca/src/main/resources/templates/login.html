@@ -64,7 +64,8 @@
 			<a th:href="@{/login}">Cuenta</a>
 		</h3>
 		<h3 sec:authorize="isAuthenticated()">
-    		<a th:href="@{/usuarios/{idUsuario}(idUsuario=${#authentication.name})}">Cuenta</a>
+			<a
+				th:href="@{/usuarios/{idUsuario}(idUsuario=${#authentication.name})}">Cuenta</a>
 		</h3>
 		<div sec:authorize="hasRole('ROLE_ADMIN')">
 			<h3>
@@ -84,13 +85,16 @@
 			<h3>
 				<a href="/login">Login</a>
 			</h3>
-			
+
 		</div>
 		<div sec:authorize="isAnonymous()">
 			<h3>
 				<a th:href="@{/registro}">Registro</a>
 			</h3>
 		</div>
+		<div id="google_translate_element" class="google"></div>
+		</div>
+
 		<!---->
 		<img th:src="@{/images/menu_black_24dp.svg}" id="btnMenuMovil" />
 	</nav>
@@ -98,60 +102,65 @@
 	<main>
 		<section id="seccionLogin">
 			<h1>Login</h1>
-			<form th:action="@{/login}" method="post" >
-				<input type="password" id="loginPass" placeholder="Contraseña" name="password"> 
-				<input type="text" id="loginUser" placeholder="Nombre de Usuario" name="username" >
+			<form th:action="@{/login}" method="post">
+				<input type="password" id="loginPass" placeholder="Contraseña"
+					name="password"> <input type="text" id="loginUser"
+					placeholder="Nombre de Usuario" name="username">
 				<button id="btnLogin" type="submit">Entrar</button>
 			</form>
-			<div id="errorIncorrecto" th:if="${param.error}">Usuario y/o password inválido.</div>
+			<div id="errorIncorrecto" th:if="${param.error}">Usuario y/o
+				password inválido.</div>
 		</section>
-		</main>
-		<footer>
+	</main>
+	<footer>
+		<div>
 			<div>
-				<div>
-					<h5>Nosotros</h5>
-					<ul>
-						<li><a>Acerca de nosotros</a></li>
-						<li><a>Contacto</a></li>
-						<li><a>Empleo</a></li>
-					</ul>
-				</div>
-	
-				<div>
-					<h5>Servicios</h5>
-					<ul>
-						<li><a>Envío</a></li>
-						<li><a>Devoluciones</a></li>
-						<li><a>Preguntas frecuentes</a></li>
-						<br>
-						<br>
-						<h5>Redes sociales</h5>
-					</ul>
-				</div>
-				<div>
-					<h5>Contacto</h5>
-					<ul>
-						<li>123 Calle Principal</li>
-						<li>Ciudad, Estado</li>
-						<li>Código Postal</li>
-						<li>555-555-5555</li>
-						<li><a>info@libreria.com</a></li>
-					</ul>
-				</div>
+				<h5>Nosotros</h5>
+				<ul>
+					<li><a>Acerca de nosotros</a></li>
+					<li><a>Contacto</a></li>
+					<li><a>Empleo</a></li>
+				</ul>
 			</div>
-			<div id="contenedorSocial">
-				<abbr title="Siguenos en Instagram"><a
-					th:href="@{https://www.instagram.com/bibliotecasocialpremium/}">
-						<img th:src="'/images/instagram.png'" alt="Logo de mi proyecto">
-				</a></abbr> <abbr title="Siguenos en Twitter"><a
-					th:href="@{https://twitter.com/bilbiotecaSP}"> <img
-						th:src="'/images/twitter.png'" alt="Logo de mi proyecto"></a></abbr>
+
+			<div>
+				<h5>Servicios</h5>
+				<ul>
+					<li><a>Envío</a></li>
+					<li><a>Devoluciones</a></li>
+					<li><a>Preguntas frecuentes</a></li>
+					<br>
+					<br>
+					<h5>Redes sociales</h5>
+				</ul>
 			</div>
-			<h4>
-				Copyright &copy; Bibliotecarios S.L.
-				<script>document.write(new Date().getFullYear());</script>
-			</h4>
+			<div>
+				<h5>Contacto</h5>
+				<ul>
+					<li>123 Calle Principal</li>
+					<li>Ciudad, Estado</li>
+					<li>Código Postal</li>
+					<li>555-555-5555</li>
+					<li><a>info@libreria.com</a></li>
+				</ul>
+			</div>
+		</div>
+		<div id="contenedorSocial">
+			<abbr title="Siguenos en Instagram"><a
+				th:href="@{https://www.instagram.com/bibliotecasocialpremium/}">
+					<img th:src="'/images/instagram.png'" alt="Logo de mi proyecto">
+			</a></abbr> <abbr title="Siguenos en Twitter"><a
+				th:href="@{https://twitter.com/bilbiotecaSP}"> <img
+					th:src="'/images/twitter.png'" alt="Logo de mi proyecto"></a></abbr>
+		</div>
+		<h4>
+			Copyright &copy; Bibliotecarios S.L.
+			<script>document.write(new Date().getFullYear());</script>
+		</h4>
 	</footer>
+	<script type="text/javascript"
+		src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+	<script th:src="@{/js/traduccion.js}"></script>
 	<script th:src="@{/js/jquery-3.6.3.min.js}"></script>
 	<script th:src="@{/js/login.js}"></script>
 	<script th:src="@{/js/general.js}"></script>

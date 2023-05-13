@@ -50,7 +50,8 @@
 			<a th:href="@{/login}">Cuenta</a>
 		</h3>
 		<h3 sec:authorize="isAuthenticated()">
-    		<a th:href="@{/usuarios/{idUsuario}(idUsuario=${#authentication.name})}">Cuenta</a>
+			<a
+				th:href="@{/usuarios/{idUsuario}(idUsuario=${#authentication.name})}">Cuenta</a>
 		</h3>
 		<div sec:authorize="hasRole('ROLE_ADMIN')">
 			<h3>
@@ -70,13 +71,16 @@
 			<h3>
 				<a href="/login">Login</a>
 			</h3>
-			
+
 		</div>
 		<div sec:authorize="isAnonymous()">
 			<h3>
 				<a th:href="@{/registro}">Registro</a>
 			</h3>
 		</div>
+		<div id="google_translate_element" class="google"></div>
+		</div>
+
 		<!---->
 		<img th:src="@{/images/menu_black_24dp.svg}" id="btnMenuMovil" />
 	</nav>
@@ -94,8 +98,10 @@
 				<tr th:each="libroDTO : ${listaLibrosDTO}">
 					<td th:text="${libroDTO.isbn}"></td>
 					<td th:text="${libroDTO.titulo}"></td>
-					<td><a th:href="@{/adminLibros/{isbnLibro}/adminEjemplares (isbnLibro=${libroDTO.isbn})}">Ver ejemplares</a></td>
-					
+					<td><a
+						th:href="@{/adminLibros/{isbnLibro}/adminEjemplares (isbnLibro=${libroDTO.isbn})}">Ver
+							ejemplares</a></td>
+
 				</tr>
 			</tbody>
 		</table>
@@ -120,6 +126,9 @@
 		</div>
 		<h4>©Bibliotecarios S.L. 2022/2023</h4>
 	</footer>
+	<script type="text/javascript"
+		src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+	<script th:src="@{/js/traduccion.js}"></script>
 	<script th:src="@{/js/jquery-3.6.3.min.js}"></script>
 	<script th:src="@{/js/admin.js}"></script>
 

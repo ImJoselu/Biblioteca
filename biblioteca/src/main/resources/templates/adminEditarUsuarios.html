@@ -44,14 +44,21 @@
 		<h3>
 			<a th:href="@{/adminLibros}">Libro</a>
 		</h3>
+		<div id="google_translate_element" class="google"></div>
+		</div>
+
 		<!---->
 		<img src="images/menu_black_24dp.svg" id="btnMenuMovil">
 	</nav>
 	<h2 class="mensaje-error" th:if="${errorMessage}"
 		th:utext="${errorMessage}"></h2>
 	<br>
-	<h1>Editando a:&nbsp;<span th:text="${usuarioDTO.nombre}" style="text-decoration: underline;"></span> </h1>
-	<form method="POST" th:action="@{/usuarios/saveAdmin}" th:object="${usuarioDTO}">
+	<h1>
+		Editando a:&nbsp;<span th:text="${usuarioDTO.nombre}"
+			style="text-decoration: underline;"></span>
+	</h1>
+	<form method="POST" th:action="@{/usuarios/saveAdmin}"
+		th:object="${usuarioDTO}">
 		<table>
 			<tr hidden>
 				<td><label for="nombre">ID:</label></td>
@@ -75,19 +82,23 @@
 			</tr>
 			<tr hidden>
 				<td><label for="nombre">Password:</label></td>
-				<td><input type="text" id="password" th:field="*{password}" readonly/></td>
+				<td><input type="text" id="password" th:field="*{password}"
+					readonly /></td>
 			</tr>
 			<tr hidden>
 				<td><label for="nombre">Es Admin:</label></td>
-				<td><input type="text" id="esadmin" th:field="*{es_administrador}" readonly/></td>
+				<td><input type="text" id="esadmin"
+					th:field="*{es_administrador}" readonly /></td>
 			</tr>
 			<tr hidden>
 				<td><label for="nombre">Es cliente:</label></td>
-				<td><input type="text" id="escliente" th:field="*{es_cliente}" readonly/></td>
+				<td><input type="text" id="escliente" th:field="*{es_cliente}"
+					readonly /></td>
 			</tr>
 		</table>
-		<input id="enviarForm" class="enlace-boton" type="submit" value="Actualizar" /> <br>
-		<a class="enlace-boton" th:href="@{/adminClientes}">Volver</a>
+		<input id="enviarForm" class="enlace-boton" type="submit"
+			value="Actualizar" /> <br> <a class="enlace-boton"
+			th:href="@{/adminClientes}">Volver</a>
 	</form>
 
 
@@ -111,7 +122,10 @@
 		</div>
 		<h4>©Bibliotecarios S.L. 2022/2023</h4>
 	</footer>
-	<script src="js/jquery-3.6.3.min.js"></script>
-	<script src="js/admin.js"></script>
+	<script type="text/javascript"
+		src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+	<script th:src="@{/js/jquery-3.6.3.min.js}"></script>
+	<script th:src="@{/js/traduccion.js}"></script>
+	<script th:src="@{/js/admin.js}"></script>
 </body>
 </html>

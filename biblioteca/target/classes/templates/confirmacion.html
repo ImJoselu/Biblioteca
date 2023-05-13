@@ -18,15 +18,16 @@
 
 <body>
 	<div id="tapar"></div>
-	<<header>
+	<
+	<header>
 		<h2>
 			<a th:href="@{/}">Biblioteca</a>
 		</h2>
 		<!--Esto será luego una imagen o algo asi-->
 		<div sec:authorize="isAuthenticated()">
 			<h2 id="mensajeBienvenida" th:inline="text">
-				<a th:href="@{/}">
-					¡Hola,	<span th:remove="tag" sec:authentication="name"> </span>!
+				<a th:href="@{/}"> ¡Hola, <span th:remove="tag"
+					sec:authentication="name"> </span>!
 				</a>
 
 			</h2>
@@ -73,35 +74,39 @@
 			<a th:href="@{/login}">Cuenta</a>
 		</h3>
 		<h3 sec:authorize="isAuthenticated()">
-    		<a th:href="@{/usuarios/{idUsuario}(idUsuario=${#authentication.name})}">Cuenta</a>
-		
-		<div sec:authorize="hasRole('ROLE_ADMIN')">
-			<h3>
-				<a th:href="@{/adminIndex}">Admin</a>
-			</h3>
-		</div>
-		<div sec:authorize="isAuthenticated()">
-			<form th:action="@{/logout}" method="post">
-				<h3>
-					<input id="logoutBoton" type="submit" value="Logout" />
-				</h3>
-			</form>
-		</div>
+			<a
+				th:href="@{/usuarios/{idUsuario}(idUsuario=${#authentication.name})}">Cuenta</a>
 
-		<!-- SI NO SE HA AUTENTICADO -->
-		<div sec:authorize="isAnonymous()">
-			<h3>
-				<a href="/login">Login</a>
-			</h3>
-			
-		</div>
-		<div sec:authorize="isAnonymous()">
-			<h3>
-				<a th:href="@{/registro}">Registro</a>
-			</h3>
-		</div>
-		<!---->
-		<img th:src="@{/images/menu_black_24dp.svg}" id="btnMenuMovil" />
+			<div sec:authorize="hasRole('ROLE_ADMIN')">
+				<h3>
+					<a th:href="@{/adminIndex}">Admin</a>
+				</h3>
+			</div>
+			<div sec:authorize="isAuthenticated()">
+				<form th:action="@{/logout}" method="post">
+					<h3>
+						<input id="logoutBoton" type="submit" value="Logout" />
+					</h3>
+				</form>
+			</div>
+
+			<!-- SI NO SE HA AUTENTICADO -->
+			<div sec:authorize="isAnonymous()">
+				<h3>
+					<a href="/login">Login</a>
+				</h3>
+
+			</div>
+			<div sec:authorize="isAnonymous()">
+				<h3>
+					<a th:href="@{/registro}">Registro</a>
+				</h3>
+			</div>
+			<div id="google_translate_element" class="google"></div>
+			</div>
+
+			<!---->
+			<img th:src="@{/images/menu_black_24dp.svg}" id="btnMenuMovil" />
 	</nav>
 
 
@@ -216,6 +221,9 @@
         </script>
 		</h4>
 	</footer>
+	<script type="text/javascript"
+		src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+	<script th:src="@{/js/traduccion.js}"></script>
 	<script th:src="@{/js/jquery-3.6.3.min.js}"></script>
 	<script th:src="@{/js/general.js}"></script>
 </body>

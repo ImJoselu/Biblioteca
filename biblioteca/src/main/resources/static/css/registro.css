@@ -36,7 +36,7 @@ main>div {
 }
 
 #seccionRegistro {
-	display: flex;
+	display: flex !important;
 	flex-direction: column;
 	text-align: center;
 }
@@ -66,6 +66,7 @@ main>div {
 	grid-row: 2;
 	grid-column: 2;
 }
+
 #registroUser {
 	grid-row: 3;
 	grid-column: span 2;
@@ -80,11 +81,12 @@ main>div {
 	grid-row: 5;
 	grid-column: span 2;
 }
+
 #errorIncorrecto {
 	margin: 10px;
-    color: red;
-    font-weight: bold;
-    font-size: 1em;
+	color: red;
+	font-weight: bold;
+	font-size: 1em;
 }
 
 @media ( min-width : 800px) {
