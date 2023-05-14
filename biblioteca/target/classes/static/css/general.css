@@ -305,7 +305,9 @@ body {
     top: 0px !important;
 }
 
-
+nav form {
+    display: block;
+}
 
 
 

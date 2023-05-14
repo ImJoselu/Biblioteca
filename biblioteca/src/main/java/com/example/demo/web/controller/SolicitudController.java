@@ -117,13 +117,13 @@ public class SolicitudController {
 		}
 
 		solucitudService.nuevaSolicitud(solicitudDTO);
-
-		// Si el correo electrónico está presente, redirigir al usuario a una vista de
-		// confirmación
-
-		senderService.sendEmail("biblioteca.daw@myyahoo.com", "This is email titulo", "This is email body");
-		// Poner email del usuario al que se le envia solicitudDTO.getEmail()
-		// usuarioDTO.getEmail()
+//
+//		// Si el correo electrónico está presente, redirigir al usuario a una vista de
+//		// confirmación
+//
+//		senderService.sendEmail("biblioteca.daw@myyahoo.com", "This is email titulo", "This is email body");
+//		// Poner email del usuario al que se le envia solicitudDTO.getEmail()
+//		// usuarioDTO.getEmail()
 
 		ModelAndView mav = new ModelAndView("confirmacion");
 		mav.addObject("solicitud", true);
