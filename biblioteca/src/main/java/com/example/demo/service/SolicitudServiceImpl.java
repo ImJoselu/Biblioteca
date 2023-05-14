@@ -73,7 +73,7 @@ public class SolicitudServiceImpl implements SolicitudService {
 	@Override
 	public void nuevaSolicitud(SolicitudDTO solicitudDTO) {
 		// TODO Auto-generated method stub
-		log.info("SolicitudServiceImpl - findById: Entidad usuario: ");
+		log.info("SolicitudServiceImpl - save ");
 		Solicitud solicitud = SolicitudDTO.convertToEntity(solicitudDTO);
 
 		solicitud.setEstado("Pendiente");

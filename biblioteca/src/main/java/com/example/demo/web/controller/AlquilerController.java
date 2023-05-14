@@ -25,7 +25,6 @@ import com.example.demo.service.UsuarioService;
 import com.example.demo.service.EmailSenderService;
 import com.example.demo.service.LibroService;
 
-
 @Controller
 public class AlquilerController {
 
@@ -33,10 +32,10 @@ public class AlquilerController {
 
 	@Autowired
 	private UsuarioService usuarioService;
-	
+
 	@Autowired
 	private EmailSenderService senderService;
-	
+
 	@Autowired
 	private AlquilerService alquilerService;
 

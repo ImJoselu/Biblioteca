@@ -18,27 +18,28 @@ import com.sendgrid.helpers.mail.objects.Email;
 
 @Service
 public class EmailSenderService {
-    private static final Logger log = LoggerFactory.getLogger(EmailSenderService.class);
-    
-    @Autowired
-    private Environment env;
-    
-    public void sendEmail(String toEmail, String subject, String body) throws IOException {
-        Email from = new Email("biblioteca.daw@myyahoo.com");
-        Email to = new Email(toEmail);
-        Content content = new Content("text/plain", body);
-        Mail mail = new Mail(from, subject, to, content);
+	private static final Logger log = LoggerFactory.getLogger(EmailSenderService.class);
 
-        SendGrid sg = new SendGrid(env.getProperty("spring.sendgrid.api-key"));
-        Request request = new Request();
-        try {
-            request.setMethod(Method.POST);
-            request.setEndpoint("mail/send");
-            request.setBody(mail.build());
-            Response response = sg.api(request);
-            log.info("SendGrid API response - Status code: {}, Body: {}, Headers: {}", response.getStatusCode(), response.getBody(), response.getHeaders());
-        } catch (IOException ex) {
-            throw ex;
-        }
-    }
+	@Autowired
+	private Environment env;
+
+	public void sendEmail(String toEmail, String subject, String body) throws IOException {
+		Email from = new Email("biblioteca.daw@myyahoo.com");
+		Email to = new Email(toEmail);
+		Content content = new Content("text/plain", body);
+		Mail mail = new Mail(from, subject, to, content);
+
+		SendGrid sg = new SendGrid(env.getProperty("spring.sendgrid.api-key"));
+		Request request = new Request();
+		try {
+			request.setMethod(Method.POST);
+			request.setEndpoint("mail/send");
+			request.setBody(mail.build());
+			Response response = sg.api(request);
+			log.info("SendGrid API response - Status code: {}, Body: {}, Headers: {}", response.getStatusCode(),
+					response.getBody(), response.getHeaders());
+		} catch (IOException ex) {
+			throw ex;
+		}
+	}
 }

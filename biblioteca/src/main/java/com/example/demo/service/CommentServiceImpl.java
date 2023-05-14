@@ -22,7 +22,6 @@ public class CommentServiceImpl implements CommentService {
 	@Autowired
 	CommentRepository commentRepository;
 
-
 	@Override
 	public List<CommentDTO> findAllByPost(PostDTO postDTO) {
 
@@ -32,7 +31,7 @@ public class CommentServiceImpl implements CommentService {
 
 		for (Comment comment : commentRepository.findAllByPost(postDTO.getId())) {
 
-			CommentDTO commentDTO = CommentDTO.convertToDTO(comment,postDTO);
+			CommentDTO commentDTO = CommentDTO.convertToDTO(comment, postDTO);
 
 			commentDTO.setListaComentariosDTO(new ArrayList<>());
 
@@ -70,16 +69,17 @@ public class CommentServiceImpl implements CommentService {
 		comment.setPost(post);
 		comment.setUsuario(UsuarioDTO.convertToEntity(comentarioDTO.getUsuarioDTO()));
 		Comment commentPadre = new Comment();
-		if(comentarioDTO.getComentarioPadreDTO()!=null) {
-		commentPadre.setId(comentarioDTO.getComentarioPadreDTO().getId());
-		comment.setComentarioPadre(commentPadre);
+		if (comentarioDTO.getComentarioPadreDTO() != null) {
+			commentPadre.setId(comentarioDTO.getComentarioPadreDTO().getId());
+			comment.setComentarioPadre(commentPadre);
 		}
 		commentRepository.save(comment);
 	}
 
 	@Override
 	public CommentDTO findById(Long idComment) {
-		return CommentDTO.convertToDTO(commentRepository.findById(idComment).get(),PostDTO.convertToDTO(commentRepository.findById(idComment).get().getPost()));
+		return CommentDTO.convertToDTO(commentRepository.findById(idComment).get(),
+				PostDTO.convertToDTO(commentRepository.findById(idComment).get().getPost()));
 	}
 
 }

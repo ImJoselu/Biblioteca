@@ -1,4 +1,4 @@
-      package com.example.demo.service;
+package com.example.demo.service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -41,21 +41,13 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public void save(PostDTO postDTO) {
-		
-		Post post= PostDTO.convertToEntity(postDTO);
-		if (post.getFechaCreacion()==null) {
+
+		Post post = PostDTO.convertToEntity(postDTO);
+		if (post.getFechaCreacion() == null) {
 			post.setFechaCreacion(LocalDateTime.now()); // Agrega esta línea
 		}
 
-		
-		
-		 
-		 
-		
-		postRepository.save(post);		
+		postRepository.save(post);
 	}
 
-	
-
-	
 }

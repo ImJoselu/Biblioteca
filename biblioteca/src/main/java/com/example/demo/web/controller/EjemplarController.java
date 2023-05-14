@@ -20,7 +20,7 @@ public class EjemplarController {
 
 	@Autowired
 	private LibroService libroService;
-	
+
 	@Autowired
 	private EjemplarService ejemplarService;
 
@@ -37,7 +37,7 @@ public class EjemplarController {
 		List<EjemplarDTO> listaEjemplaresDTO = ejemplarService.findByLibro(libroDTO);
 
 		ModelAndView mav = new ModelAndView("adminEjemplares");
-		
+
 		mav.addObject("libroDTO", libroDTO);
 		mav.addObject("listaEjemplaresDTO", listaEjemplaresDTO);
 

@@ -11,7 +11,7 @@ public interface LibroService {
 	List<LibroDTO> findTop6ByOrderByIdDesc();
 
 	LibroDTO findByIsbn(String isbnLibro);
-	
+
 	LibroDTO findByISBN(LibroDTO libroDTO);
 
 }

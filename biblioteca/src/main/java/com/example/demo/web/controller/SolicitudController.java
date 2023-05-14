@@ -93,7 +93,6 @@ public class SolicitudController {
 	@PostMapping("/usuario/{idUsuario}/solicitud/save")
 	public ModelAndView nuevaSolicitud(@ModelAttribute("solicitud") SolicitudDTO solicitudDTO,
 			@PathVariable("idUsuario") Long idUsuario) throws IOException {
-	
 
 		log.info("SolicitudController - save: Salvamos los datos de la solicitud:" + solicitudDTO.toString());
 

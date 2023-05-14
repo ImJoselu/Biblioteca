@@ -17,7 +17,7 @@
 </head>
 
 <body>
-	
+
 	<header>
 		<h2>
 			<a th:href="@{/}">Biblioteca</a>
@@ -142,7 +142,7 @@
 			<p>¿Quieres alquilar este libro?</p>
 			<a
 				th:href="@{/usuario/{idUsuario}/alquilar/{idLibro}/confirmar (idUsuario=${usuarioDTO.id},idLibro=${libroDTO.isbn})}">
-				<button>Alquilar Este Libro</button>
+				<button  onclick="enviarCorreoAlquiler()">Alquilar Este Libro</button>
 			</a>
 		</div>
 
@@ -170,7 +170,44 @@
 				página web o preguntar a nuestro personal de atención al cliente.
 				¡Te esperamos!"</p>
 		</div>
+		<div  class="catalogoDiv">
+			<h2>¿Quieres Que Te Enviemos Un Correo Electronico?</h2>
 
+			<button onclick="enviarCorreo()" th:if="${solicitud == true}">Quiero recibir un correo de
+				confirmación</button>
+			
+				
+				
+				
+				
+			<h3>
+				Te lo enviaremos a <b id="correoElectronico"
+					th:text="${solicitudDTO.email}"></b>
+			</h3>
+
+<div th:if="${solicitud == true}"><h2>Solicitud</h2>
+
+
+<h3 th:text="${solicitudDTO.username}"  id="correoUsername">
+</h3>
+
+<h4 th:text="${solicitudDTO.mensaje}" id="correoMensaje">
+</h4>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+		</div>
 		<div class="catalogoDiv">
 			<h2>Explora Nuestro Catálogo</h2>
 			<p>En nuestra biblioteca encontrarás una amplia selección de
@@ -220,10 +257,11 @@
         </script>
 		</h4>
 	</footer>
+	<script src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
 	<script type="text/javascript"
 		src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 	<script th:src="@{/js/traduccion.js}"></script>
-		<script th:src="@{/js/email.js}"></script>
+	<script th:src="@{/js/email.js}"></script>
 	<script th:src="@{/js/jquery-3.6.3.min.js}"></script>
 	<script th:src="@{/js/general.js}"></script>
 </body>

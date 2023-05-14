@@ -71,7 +71,7 @@ public class UsuarioController {
 		}
 		return mav;
 	}
-	
+
 	@PostMapping("/usuarios/save")
 	public ModelAndView save(@ModelAttribute("usuarioDTO") UsuarioDTO usuarioDTO) {
 
