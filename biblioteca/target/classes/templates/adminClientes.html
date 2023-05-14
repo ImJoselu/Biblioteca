@@ -94,6 +94,7 @@
 					<th>Email</th>
 					<th>Nombre</th>
 					<th>Editar</th>
+					<th>Premium</th>
 					<th>Alquileres</th>
 					<th>Multas</th>
 				</tr>
@@ -104,9 +105,13 @@
 					<td th:text="${usuarioDTO.username}"></td>
 					<td th:text="${usuarioDTO.email}"></td>
 					<td th:text="${usuarioDTO.nombre}"></td>
-
+					
 					<td><a
 						th:href="@{/usuario/{idUsuario}/adminEditarUsuarios (idUsuario=${usuarioDTO.id})}">Editar</a></td>
+					<td>
+					  <span th:if="${usuarioDTO.es_administrador} == true" style="color:green">&#10004;</span>
+  					  <span th:if="${usuarioDTO.es_cliente} == true" style="color:red">&#10006;</span>
+					</td>
 					<td><a
 						th:href="@{/usuario/{idUsuario}/adminAlquiler (idUsuario=${usuarioDTO.id})}"><img
 							th:src="@{/images/bookmark_border_black_24dp.svg}"

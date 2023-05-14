@@ -1,5 +1,10 @@
 'use strict'
 
+$(document).ready(function() {
+  $('.rol-checkbox').click(function() {
+    $('.rol-checkbox').not(this).prop('checked', false);
+  });
+});
 
 $(function () {
 
@@ -20,7 +25,6 @@ $(function () {
       });
 
 });
-
 
 // Obtener elementos del DOM
 const main = document.querySelector('main');

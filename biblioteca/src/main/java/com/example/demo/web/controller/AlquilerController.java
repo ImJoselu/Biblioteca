@@ -98,13 +98,13 @@ public class AlquilerController {
 	}
 
 	@GetMapping("/usuario/{idUsuario}/alquilar/{idLibro}")
-	public ModelAndView alquilar(@PathVariable Long idUsuario, @PathVariable String idLibro) {
+	public ModelAndView alquilar(@PathVariable String idUsuario, @PathVariable String idLibro) {
 
 		log.info("CuentaController - add: Alta de alquiler del usuario: " + idUsuario);
 
 		// Obtenemos el usuario para luego poner sus datos en la pantalla
 		UsuarioDTO usuarioDTO = new UsuarioDTO();
-		usuarioDTO.setId(idUsuario);
+		usuarioDTO = usuarioService.findByName(idUsuario);
 
 		LibroDTO libroDTO = new LibroDTO();
 		libroDTO.setIsbn(idLibro);
@@ -127,13 +127,13 @@ public class AlquilerController {
 	}
 
 	@GetMapping("/usuario/{idUsuario}/alquilar/{idLibro}/confirmar")
-	public ModelAndView alquilarConfirmado(@PathVariable Long idUsuario, @PathVariable String idLibro) {
+	public ModelAndView alquilarConfirmado(@PathVariable String idUsuario, @PathVariable String idLibro) {
 
 		log.info("AlqulerController - alquilarConfirmado: Confirm de alquiler del usuario: " + idUsuario);
 
 		// Obtenemos el usuario para luego poner sus datos en la pantalla
 		UsuarioDTO usuarioDTO = new UsuarioDTO();
-		usuarioDTO.setId(idUsuario);
+		usuarioDTO = usuarioService.findByName(idUsuario);
 
 		LibroDTO libroDTO = new LibroDTO();
 		libroDTO.setIsbn(idLibro);

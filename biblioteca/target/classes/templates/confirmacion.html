@@ -142,7 +142,7 @@
 				class="imagenConfirm">
 			<p>¿Quieres alquilar este libro?</p>
 			<a
-				th:href="@{/usuario/{idUsuario}/alquilar/{idLibro}/confirmar (idUsuario=${usuarioDTO.id},idLibro=${libroDTO.isbn})}">
+				th:href="@{/usuario/{idUsuario}/alquilar/{idLibro}/confirmar (idUsuario=${#authentication.name},idLibro=${libroDTO.isbn})}">
 				<button>Alquilar Este Libro</button>
 			</a>
 		</div>

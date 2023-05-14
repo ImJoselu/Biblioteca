@@ -16,6 +16,7 @@
 <link rel="stylesheet" media="(min-width: 800px)"
 	th:href="@{/css/pc.css}" />
 <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+
 </head>
 
 <body>
@@ -101,6 +102,8 @@
 					<th>ISBN</th>
 					<th>Nombre</th>
 					<th>Editorial</th>
+					<th>Localizacion</th>
+					<th>Prestado</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -108,6 +111,11 @@
 					<td th:text="${ejemplarDTO.libroDTO.isbn}"></td>
 					<td th:text="${ejemplarDTO.libroDTO.titulo}"></td>
 					<td th:text="${ejemplarDTO.libroDTO.editorialDTO.nombre}"></td>
+					<td th:text="${ejemplarDTO.localizacion}"></td>
+					<td>
+					  <span th:if="${ejemplarDTO.prestado} == true" style="color:green">&#10004;</span>
+  					  <span th:if="${ejemplarDTO.prestado} == false" style="color:red">&#10006;</span>
+					</td>
 				</tr>
 			</tbody>
 		</table>

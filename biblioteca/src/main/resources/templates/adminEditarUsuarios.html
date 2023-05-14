@@ -85,15 +85,17 @@
 				<td><input type="text" id="password" th:field="*{password}"
 					readonly /></td>
 			</tr>
-			<tr hidden>
-				<td><label for="nombre">Es Admin:</label></td>
-				<td><input type="text" id="esadmin"
-					th:field="*{es_administrador}" readonly /></td>
+			<tr>
+			  <td><label for="esadmin">Cuenta Premium:</label></td>
+			  <td>
+			    <input type="checkbox" id="esadmin" name="rol" th:field="*{es_administrador}" class="rol-checkbox" />
+			  </td>
 			</tr>
-			<tr hidden>
-				<td><label for="nombre">Es cliente:</label></td>
-				<td><input type="text" id="escliente" th:field="*{es_cliente}"
-					readonly /></td>
+			<tr>
+			  <td><label for="escliente">Cuenta Estandar:</label></td>
+			  <td>
+			    <input type="checkbox" id="escliente" name="rol" th:field="*{es_cliente}" class="rol-checkbox" />
+			  </td>
 			</tr>
 		</table>
 		<input id="enviarForm" class="enlace-boton" type="submit"

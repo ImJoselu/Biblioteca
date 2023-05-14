@@ -176,7 +176,7 @@
 						<b>Editorial:</b> <span th:text="${libro.editorialDTO.nombre}"></span>
 					</div>
 					<a
-						th:href="@{/usuario/{idUsuario}/alquilar/{idLibro} (idUsuario=${usuario.id},idLibro=${libro.isbn})}"><button>Alquilar</button></a>
+						th:href="@{/usuario/{idUsuario}/alquilar/{idLibro} (idUsuario=${#authentication.name},idLibro=${libro.isbn})}"><button>Alquilar</button></a>
 
 				</figure>
 
