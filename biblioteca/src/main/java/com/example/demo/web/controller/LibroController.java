@@ -209,7 +209,7 @@ public class LibroController {
 		
 		return mav;
 	}
-/*
+
 	@GetMapping("/adminLibros")
 	public ModelAndView index() {
 
@@ -220,13 +220,11 @@ public class LibroController {
 		ModelAndView mav = new ModelAndView("adminLibros");
 		mav.addObject("listaLibrosDTO", listaLibrosDTO);
 
-		mav.addObject("listaLibrosDTO", subListaLibrosFiltrada);
-		mav.addObject("totalPages", (listaLibrosFiltrada.size() + size - 1) / size);
-		mav.addObject("currentPage", page);
+	
 
 		return mav;
 	}
-*/
+
 	@GetMapping("/tienda")
 	public ModelAndView mostrarCatalogo(@RequestParam(value = "filtro", required = false) String filtro,
 			
