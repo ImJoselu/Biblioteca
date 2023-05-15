@@ -21,10 +21,10 @@
 <body>
   <h1>Bienvenido a la Página de Usuarios Premium</h1>
   <section th:if="${usuarioDTO.es_administrador} == true">
-  
+  Vista de Alguien que es premium
   </section>
   <section th:if="${usuarioDTO.es_cliente} == true">
-  
+  Vista de Alguien que no es premium
   </section>
 </body>
 </html>
