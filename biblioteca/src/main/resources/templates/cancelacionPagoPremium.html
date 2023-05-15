@@ -75,6 +75,7 @@
 		<h3 sec:authorize="isAuthenticated()">
 			<a
 				th:href="@{/usuarios/{idUsuario}(idUsuario=${#authentication.name})}">Cuenta</a>
+		</h3>
 
 			<div sec:authorize="hasRole('ROLE_ADMIN')">
 				<h3>
