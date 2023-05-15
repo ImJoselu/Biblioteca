@@ -68,6 +68,8 @@ public class AlquilerController {
 		// Obtenemos el usuario para luego poner sus datos en la pantalla
 		UsuarioDTO usuarioDTO = new UsuarioDTO();
 		usuarioDTO.setId(idUsuario);
+		usuarioDTO = usuarioService.findById(idUsuario);
+
 
 		// pasamos el usuario y la nueva multa a la vista
 		ModelAndView mav = new ModelAndView("alquilerForm");
@@ -92,7 +94,7 @@ public class AlquilerController {
 		// invocamos la operacion save a la capa de servicio de alquiler
 		alquilerService.save(alquilerDTO);
 		// Retornamos a la lista de alquilers del usuario
-		ModelAndView mav = new ModelAndView("redirect:/usuario/{idUsuario}/adminAlquilers");
+		ModelAndView mav = new ModelAndView("redirect:/usuario/{idUsuario}/adminAlquiler");
 		return mav;
 	}
 
@@ -104,7 +106,8 @@ public class AlquilerController {
 		// Obtenemos el usuario para luego poner sus datos en la pantalla
 		UsuarioDTO usuarioDTO = new UsuarioDTO();
 		usuarioDTO.setId(idUsuario);
-
+		usuarioDTO = usuarioService.findById(idUsuario);
+		
 		LibroDTO libroDTO = new LibroDTO();
 		libroDTO.setIsbn(idLibro);
 		libroDTO = libroService.findByISBN(libroDTO);
@@ -133,7 +136,8 @@ public class AlquilerController {
 		// Obtenemos el usuario para luego poner sus datos en la pantalla
 		UsuarioDTO usuarioDTO = new UsuarioDTO();
 		usuarioDTO.setId(idUsuario);
-
+		usuarioDTO = usuarioService.findById(idUsuario);
+		
 		LibroDTO libroDTO = new LibroDTO();
 		libroDTO.setIsbn(idLibro);
 
