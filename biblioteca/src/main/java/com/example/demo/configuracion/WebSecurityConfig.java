@@ -24,6 +24,8 @@ public class WebSecurityConfig {
 				.requestMatchers("/", "/login", "/contacto", "/contacto/**","/adminContacto", "/adminContacto/**","/solicitud/**","/usuario","/MisSolicitudes","/tienda", "/tienda/**","/css/**", "/js/**", "/imagenesLibros/**",
 						"/images/**", "/registro","/usuarios/saveNuevoUsuario", "/usuarios/saveNuevoUsuario/**" , "/usuarios/save", "/foro" , "/foro/**","/usuario/**" )
 				.permitAll()
+				.requestMatchers("/zonaPremium" , "/zonaPremium/**" , "/usuarios/{usernameUsuario}/confirmacionCorreo")
+				.hasAnyRole("USER", "ADMIN")
 				.requestMatchers("/adminIndex", 
 						"/usuario/{idUsuario}/adminAlquiler",
 						"/usuario/{idUsuario}/adminAlquiler/add", 

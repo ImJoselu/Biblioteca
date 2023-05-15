@@ -105,6 +105,36 @@ public class UsuarioController {
 
 		return mav;
 	}
+	
+	// ConfirmacionPagoParaEnviarCorreo
+	@GetMapping("/usuarios/{usernameUsuario}/confirmacionCorreo")
+	public ModelAndView enviarCorreoAlUser(@PathVariable("usernameUsuario") String usernameUsuario) {
+
+		log.info("UsuarioController - adminEditarUsuarios: editamos la gestion de usuarios");
+		ModelAndView mav = new ModelAndView("confirmacionPagoPremium");
+		UsuarioDTO usuarioDTO = usuarioService.findByName(usernameUsuario);
+		usuarioDTO = usuarioService.cambiarPremium(usuarioDTO);
+		log.info(usuarioDTO.toString());
+
+		mav.addObject("usuarioDTO", usuarioDTO);
+
+		return mav;
+	}
+	
+	// CancelacionPagoParaEnviarCorreo
+		@GetMapping("/usuarios/{usernameUsuario}/cancelacionCorreo")
+		public ModelAndView enviarCorreoAlUserDos(@PathVariable("usernameUsuario") String usernameUsuario) {
+
+			log.info("UsuarioController - adminEditarUsuarios: editamos la gestion de usuarios");
+			ModelAndView mav = new ModelAndView("cancelacionPagoPremium");
+			UsuarioDTO usuarioDTO = usuarioService.findByName(usernameUsuario);
+			usuarioDTO = usuarioService.cambiarEstandar(usuarioDTO);
+			log.info(usuarioDTO.toString());
+
+			mav.addObject("usuarioDTO", usuarioDTO);
+
+			return mav;
+		}
 
 	// Alamcenar usuarios
 	@PostMapping("/usuarios/saveNuevoUsuario")
@@ -114,6 +144,18 @@ public class UsuarioController {
 		usuarioService.saveNuevoUsuario(usuarioDTO);
 		// Redireccionamos para volver a invocar a la raiz
 		ModelAndView mav = new ModelAndView("redirect:/");
+		return mav;
+	}
+	
+	// Premium
+	@GetMapping("/zonaPremium/{usernameUsuario}")
+	public ModelAndView zonaPremium(@PathVariable("usernameUsuario") String usernameUsuario) {
+
+		ModelAndView mav = new ModelAndView("zonaPremium");
+		UsuarioDTO usuarioDTO = usuarioService.findByName(usernameUsuario);
+
+		mav.addObject("usuarioDTO", usuarioDTO);
+
 		return mav;
 	}
 }

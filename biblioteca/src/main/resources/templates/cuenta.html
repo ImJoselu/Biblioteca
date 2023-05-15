@@ -77,6 +77,10 @@
 				<a th:href="@{/adminIndex}">Admin</a>
 			</h3>
 		</div>
+		<h3 sec:authorize="isAuthenticated()">
+			<a
+				th:href="@{/zonaPremium/{idUsuario}(idUsuario=${#authentication.name})}">Zona Premium</a>
+		</h3>
 		<div sec:authorize="isAuthenticated()">
 			<form th:action="@{/logout}" method="post">
 				<h3>
@@ -151,9 +155,13 @@
 						readonly /></td>
 				</tr>
 			</table>
-			<input class="enlace-boton" id="enviarForm" type="submit"
-				value="Actualizar" /> <br> <a class="enlace-boton"
-				th:href="@{/adminClientes}">Volver</a>
+			<div style="display: flex;">
+			<input class="enlace-boton" id="enviarForm" type="submit" value="Actualizar" /> 
+			<a th:if="${usuarioDTO.es_administrador} == false" class="enlace-boton" id="enviarForm" th:href="@{/usuarios/{idUsuario}/confirmacionCorreo(idUsuario=${#authentication.name})}" style="margin-left: 10px;">Mejorar Plan</a>
+			<a th:if="${usuarioDTO.es_administrador} == true" class="enlace-boton" id="enviarForm" th:href="@{/usuarios/{idUsuario}/cancelacionCorreo(idUsuario=${#authentication.name})}" style="margin-left: 10px;">Cancelar Plan</a>
+			</div>
+			<br> 
+			<a class="enlace-boton" th:href="@{/}">Volver</a>
 		</form>
 	</main>
 	<footer>

@@ -23,4 +23,7 @@ public interface UsuarioService {
 
 	void saveNuevoUsuario(UsuarioDTO usuarioDTO);
 
+	UsuarioDTO cambiarPremium(UsuarioDTO usuarioDTO);
+
+	UsuarioDTO cambiarEstandar(UsuarioDTO usuarioDTO);
 }
