@@ -30,7 +30,7 @@ public class LibroController {
 	@Autowired
 	private EstadisticasService estadisticasService;
 
-	private static final Logger log = LoggerFactory.getLogger(IndexController.class);
+	private static final Logger log = LoggerFactory.getLogger(LibroController.class);
 
 	@GetMapping("/tienda")
 	public ModelAndView tienda() {
@@ -43,20 +43,7 @@ public class LibroController {
 		listaAleatoria = estadisticasService.librosRecomendados();
 		
 		log.info(listaAleatoria.toString());
-		/*
-		// Obtenemos tres índices aleatorios
-		Random random = new Random();
-		Set<Integer> indices = new HashSet<>();
-		while (indices.size() < 3) {
-			indices.add(random.nextInt(listaLibrosDTO.size()));
-		}
 
-		// Añadimos los libros correspondientes a los índices aleatorios a la lista
-		// nueva
-		for (Integer indice : indices) {
-			listaAleatoria.add(listaLibrosDTO.get(indice));
-		}
-*/
 		ModelAndView mav = new ModelAndView("tienda");
 
 		UsuarioDTO usuario = new UsuarioDTO();

@@ -20,7 +20,7 @@ import com.example.demo.service.EstadisticasService;
 @RestController
 @RequestMapping("/ws/estadisticas")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST}, allowedHeaders = {"*"})
-public class EstadisticasController {
+public class EstadisticasControllerREST {
 
 	@Autowired
 	EstadisticasService estadisticasService;
