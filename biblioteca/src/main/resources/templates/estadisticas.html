@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Identificate</title>
+
+	<link rel="stylesheet" th:href="@{/css/general.css}" />
+	<link rel="stylesheet" th:href="@{/css/generalAdmin.css}" />
+	<link rel="stylesheet" media="(max-width: 600px)" th:href="@{/css/movil.css}" />
+	<link rel="stylesheet" media="(min-width: 600px) and (max-width: 800px)" th:href="@{/css/tablet.css}" />
+	<link rel="stylesheet" media="(min-width: 800px)" th:href="@{/css/pc.css}" />
+
+</head>
+
+<body>
+	<header>
+		<h2>
+			<a href="index.html">Biblioteca</a>
+		</h2>
+		<!--Esto será luego una imagen o algo asi-->
+
+	</header>
+	<aside id="menuMovil">
+		<img src="images/close_black_24dp.svg">
+		<h3>
+			<a href="index.html">Inicio</a>
+		</h3>
+		<h3>
+			<a href="tienda.html">Libros</a>
+		</h3>
+		<h3>
+			<a href="contacto.html">Contacto</a>
+		</h3>
+		<!--solo puede haber 1 de estos dos activo-->
+		<h3>
+			<a href="proximamente.html">Cuenta</a>
+		</h3>
+		<h3>
+			<a href="login.html">Login</a>
+		</h3>
+	</aside>
+	<nav>
+
+
+		<h3>
+			<a href="index.html">Inicio</a>
+		</h3>
+		<h3>
+			<a href="tienda.html">Libros</a>
+		</h3>
+		<h3>
+			<a href="contacto.html">Contacto</a>
+		</h3>
+		<!--solo puede haber 1 de estos dos activo-->
+		<h3>
+			<a href="proximamente.html">Cuenta</a>
+		</h3>
+		<h3>
+			<a href="login.html">Login</a>
+		</h3>
+		<h3>
+			<a th:href="@{/adminIndex}">Admin</a>
+		</h3>
+		<!---->
+		<img src="images/menu_black_24dp.svg" id="btnMenuMovil">
+	</nav>
+	<main>
+
+		<section>
+			<h1>Estadisticas</h1>
+			<input id="genPopular" th:value="${genPopular}" hidden>
+			<p th:text="${genPopular}" hidden></p>
+			<p th:text="${libPopular}" hidden></p>
+			<p th:text="${alqMes}" hidden></p>
+
+			<div style="width: 800px;"><canvas id="barChart"></canvas></div>
+			<div style="height: 500px; width: 600px;"><canvas id="pieChart"></canvas></div>
+			<br><br><br><br><br><br>
+			<div style="height: 500px; width: 600px;"><canvas id="lineChart"></canvas>
+				<!--
+				<select id="selectAños">
+					<option value=2021>2021</option>
+					<option value=2022 selected>2022</option>
+					<option value=2023>2023</option>
+				</select>
+				-->
+			</div>
+
+			<iframe
+				src="http://localhost:3000/d-solo/Yo9Q6OL4k/biblioteca-dashboard?orgId=1&refresh=5s&from=1680664521026&to=1680686121026&panelId=2"
+				width="450" height="200" frameborder="0"></iframe>
+
+			<form th:action="@{/estadisticas/{anyo}(anyo=${selectedValue})}" method="get">
+				<select name="selectedValue" th:onchange="this.form.submit()">
+					<option value=2021>2021</option>
+					<option value=2022 selected>2022</option>
+					<option value=2023>2023</option>
+				</select>
+				<button type="submit">Enviar</button>
+			</form>
+
+
+		</section>
+
+
+	</main>
+	<footer>
+		<div>
+			<div>
+				<h5>Nosotros</h5>
+				<ul>
+					<li><a>Acerca de nosotros</a></li>
+					<li><a>Contacto</a></li>
+					<li><a>Empleo</a></li>
+				</ul>
+			</div>
+
+			<div>
+				<h5>Servicios</h5>
+				<ul>
+					<li><a>Envío</a></li>
+					<li><a>Devoluciones</a></li>
+					<li><a>Preguntas frecuentes</a></li>
+				</ul>
+
+			</div>
+			<div>
+				<h5>Contacto</h5>
+				<ul>
+					<li>123 Calle Principal</li>
+					<li>Ciudad, Estado</li>
+					<li>Código Postal</li>
+					<li>555-555-5555</li>
+					<li><a>info@libreria.com</a></li>
+				</ul>
+			</div>
+		</div>
+		<h4>
+			Copyright &copy; Bibliotecarios S.L.
+			<script>document.write(new Date().getFullYear());</script>
+		</h4>
+	</footer>
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+		var genPopulares = [[${genPopular}]];
+		var libPopulares = [[${libPopular}]];
+		var alqMes = [[${alqMes}]];
+		console.log(genPopulares);
+		console.log(libPopulares);
+		console.log(alqMes);
+        /*]]>*/
+	</script>
+
+
+	<script src="/js/jquery-3.6.3.min.js"></script>
+	<script src="/js/general.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+	<script src="/js/helpers.js"></script>
+	<script src="/js/chartBuilder.js"></script>
+
+</body>
+
+</html>

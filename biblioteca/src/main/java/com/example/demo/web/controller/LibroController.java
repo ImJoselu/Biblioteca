@@ -21,9 +21,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.dto.EjemplarDTO;
+import com.example.demo.model.dto.EstadisticaDTO;
 import com.example.demo.model.dto.LibroDTO;
 import com.example.demo.model.dto.UsuarioDTO;
 import com.example.demo.service.EjemplarService;
+import com.example.demo.service.EstadisticasService;
 import com.example.demo.service.LibroService;
 
 @Controller
@@ -31,8 +33,11 @@ public class LibroController {
 
 	@Autowired
 	private LibroService libroService;
+	
+	@Autowired
+	private EstadisticasService estadisticasService;
 
-	private static final Logger log = LoggerFactory.getLogger(IndexController.class);
+	private static final Logger log = LoggerFactory.getLogger(LibroController.class);
 
 //	@GetMapping("/tienda")
 //	public ModelAndView tienda() {
@@ -147,19 +152,8 @@ public class LibroController {
 		List<LibroDTO> listaLibrosDTO = libroService.findAll();
 
 		List<LibroDTO> listaAleatoria = new ArrayList<>();
-
-		// Obtenemos tres índices aleatorios
-		Random random = new Random();
-		Set<Integer> indices = new HashSet<>();
-		while (indices.size() < 3) {
-			indices.add(random.nextInt(listaLibrosDTO.size()));
-		}
-
-		// Añadimos los libros correspondientes a los índices aleatorios a la lista
-		// nueva
-		for (Integer indice : indices) {
-			listaAleatoria.add(listaLibrosDTO.get(indice));
-		}
+		listaAleatoria = estadisticasService.librosRecomendados();
+		log.info(listaAleatoria.toString());
 
 		List<LibroDTO> listaLibrosFiltrada = libroService.findAll();
 
@@ -238,6 +232,8 @@ public class LibroController {
 		List<LibroDTO> listaLibrosDTO = libroService.findAll();
 		
 		List<LibroDTO> listaAleatoria = new ArrayList<>();
+		listaAleatoria = estadisticasService.librosRecomendados();
+		log.info(listaAleatoria.toString());
 		
 		// Obtenemos tres índices aleatorios
 		Random random = new Random();
