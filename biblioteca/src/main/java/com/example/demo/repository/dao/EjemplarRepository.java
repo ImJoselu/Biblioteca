@@ -29,6 +29,5 @@ public interface EjemplarRepository extends JpaRepository<Ejemplar, Long> {
 
 	@Query(value = "SELECT m FROM Ejemplar m WHERE m.libro.isbn = :idA")
 	public List<Ejemplar> findAllByLibro(@Param("idA") String libroIsbn);
-	
 
 }

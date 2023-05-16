@@ -46,19 +46,17 @@ public class PostController {
 
 		List<PostDTO> listaPostsDTO = postService.findAll();
 
-	
-
 		ModelAndView mav = new ModelAndView("foro");
 
 		UsuarioDTO usuarioDTO = new UsuarioDTO();
 		usuarioDTO.setId(1L); // ESTA LINEA HAY QUE CAMBIAR EL "1" POR EL ID DEL USUARIO LOGEADO EN EL MOMENTO
-		
-		mav.addObject("nuevoPostDTO",new PostDTO());
+
+		mav.addObject("nuevoPostDTO", new PostDTO());
 		mav.addObject("usuarioDTO", usuarioDTO);
 		mav.addObject("listaPostsDTO", listaPostsDTO);
 		return mav;
 	}
-	
+
 	/*
 	 * @GetMapping("/foro/{idPost}") public ModelAndView
 	 * mostrarComments(@PathVariable Long idPost) {
@@ -102,74 +100,66 @@ public class PostController {
 
 		return mav;
 	}
-	
-	
+
 	@GetMapping("/foro/{idPost}/like")
 	public ModelAndView darLike(@PathVariable Long idPost) {
-		
+
 		log.info("PostController - darLike:Damos lika al post " + idPost);
-		
+
 		UsuarioDTO usuarioDTO = new UsuarioDTO();
 		usuarioDTO.setId(1L); // Cambiar por el ID del usuario logeado en el momento
-		
+
 		PostDTO postDTO = postService.findById(idPost);
-			postDTO.setLikesDTO(postDTO.getLikesDTO()+1);
-			postService.save(postDTO);
-		
-		
+		postDTO.setLikesDTO(postDTO.getLikesDTO() + 1);
+		postService.save(postDTO);
+
 		ModelAndView mav = new ModelAndView("post");
-		 mav.setViewName("redirect:/foro/" + idPost);
-		
+		mav.setViewName("redirect:/foro/" + idPost);
+
 		return mav;
 	}
-	
-	
+
 	@PostMapping("/foro/{idPost}/comentar")
-	public ModelAndView comentarPost(@PathVariable Long idPost, @ModelAttribute("nuevoComentarioDTO") CommentDTO comentarioDTO) {
-	    log.info("PostController - comentarPost: Se intenta crear un comentario en el post " + idPost);
+	public ModelAndView comentarPost(@PathVariable Long idPost,
+			@ModelAttribute("nuevoComentarioDTO") CommentDTO comentarioDTO) {
+		log.info("PostController - comentarPost: Se intenta crear un comentario en el post " + idPost);
 
-	    ModelAndView mav = new ModelAndView("");
+		ModelAndView mav = new ModelAndView("");
 
-	    UsuarioDTO usuarioDTO = usuarioService.findById(1L); // Cambiar por el ID del usuario logeado en el momento
-	   
+		UsuarioDTO usuarioDTO = usuarioService.findById(1L); // Cambiar por el ID del usuario logeado en el momento
 
-	    comentarioDTO.setUsuarioDTO(usuarioDTO);
-	    
-	    
-	    PostDTO postDTO = postService.findById(idPost);
-	    
-	    
-	    if (postDTO != null) {
-	        comentarioDTO.setPostDTO(postDTO);
-	        
-	 commentService.save(comentarioDTO);
-	        mav.setViewName("redirect:/foro/" + idPost);
-	   
-	    } else {
-	        // Si el postDTO es nulo, se podría manejar el error de alguna forma, por ejemplo:
-	        log.error("El post con ID " + idPost + " no existe.");
-	        mav.setViewName("redirect:/foro");
-	    }
-	    return mav;
+		comentarioDTO.setUsuarioDTO(usuarioDTO);
+
+		PostDTO postDTO = postService.findById(idPost);
+
+		if (postDTO != null) {
+			comentarioDTO.setPostDTO(postDTO);
+
+			commentService.save(comentarioDTO);
+			mav.setViewName("redirect:/foro/" + idPost);
+
+		} else {
+			// Si el postDTO es nulo, se podría manejar el error de alguna forma, por
+			// ejemplo:
+			log.error("El post con ID " + idPost + " no existe.");
+			mav.setViewName("redirect:/foro");
+		}
+		return mav;
 	}
-	
+
 	@PostMapping("/foro/nuevo")
 	public ModelAndView crearPost(@ModelAttribute("nuevoPostDTO") PostDTO postDTO) {
 		log.info("PostController - crearPost: Se intenta crear un post ");
-		
+
 		ModelAndView mav = new ModelAndView("");
-		
+
 		UsuarioDTO usuarioDTO = usuarioService.findById(1L); // Cambiar por el ID del usuario logeado en el momento
 		postDTO.setUsuarioDTO(usuarioDTO);
-		
-			
-			
-			postService.save(postDTO);
-			mav.setViewName("redirect:/foro");
-			
-		
+
+		postService.save(postDTO);
+		mav.setViewName("redirect:/foro");
+
 		return mav;
 	}
-
 
 }

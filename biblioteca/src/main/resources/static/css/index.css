@@ -74,6 +74,7 @@ main {
 	align-items: center;
 	justify-content: space-around;
 	align-content: center;
+	max-width: 60%;
 }
 
 .catalogoDiv {
@@ -85,3 +86,25 @@ main {
 .confirmDiv>p {
 	max-width: 739px;
 }
+
+.mensaje-despues::after {
+	
+  content: "Se ha enviado un correo. Puede tardar unos minutos.";
+  display: block;
+  margin-top: 10px;
+  color: green;
+}
+
+button[disabled] {
+ 
+  cursor: not-allowed;
+}
+
+
+button[disabled]:hover {
+ transform:scale(1);
+	background-color:#0000001a;
+	box-shadow: none;
+}
+
+

@@ -25,7 +25,7 @@ public class MultaController {
 
 	@Autowired
 	private UsuarioService usuarioService;
-	
+
 	@Autowired
 	private MultaService multaService;
 

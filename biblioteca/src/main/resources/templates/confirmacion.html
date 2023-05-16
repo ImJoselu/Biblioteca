@@ -17,8 +17,7 @@
 </head>
 
 <body>
-	<div id="tapar"></div>
-	<
+
 	<header>
 		<h2>
 			<a th:href="@{/}">Biblioteca</a>
@@ -142,8 +141,9 @@
 				class="imagenConfirm">
 			<p>¿Quieres alquilar este libro?</p>
 			<a
-				th:href="@{/usuario/{idUsuario}/alquilar/{idLibro}/confirmar (idUsuario=${#authentication.name},idLibro=${libroDTO.isbn})}">
-				<button>Alquilar Este Libro</button>
+				th:href="@{/usuario/{idUsuario}/alquilar/{idLibro}/confirmar (idUsuario=${usuarioDTO.id},idLibro=${libroDTO.isbn})}">
+				<button>Alquilar Este
+					Libro</button>
 			</a>
 		</div>
 
@@ -152,37 +152,98 @@
 			<p>Gracias por confiar en nuestra biblioteca para el alquiler de
 				tu libro.</p>
 			<p>
-				El libro que has alquilado es: <b
+				El libro que has alquilado es: <b id="correoTitulo"
 					th:text="${ejemplarDTO.libroDTO.titulo}"></b>.
 			</p>
 			<img
 				th:src="'/imagenesLibros/' + ${ejemplarDTO.libroDTO.isbn} + '.jpg'"
 				alt="" class="imagenConfirm">
-			<p>Hemos enviado una confirmación de tu alquiler a tu correo
-				electrónico. Por favor, revisa tu bandeja de entrada para ver los
-				detalles del alquiler.</p>
+
 			<p>
-				La fecha de entrega para el libro es: <b
-					th:text="${alquilerDTO.fecha_limite}"></b>.
+				La fecha de inicio del alquiler es: <b id="correoFechaIn"
+					th:text="${#dates.format(alquilerDTO.fecha_inicio, 'dd/MM/yyyy')}"></b>.
+				La fecha de entrega para el libro es: <b id="correoFecha"
+					th:text="${#dates.format(alquilerDTO.fecha_limite, 'dd/MM/yyyy')}"></b>.
 			</p>
 			<p>"Recuerda que, para disfrutar del libro, deberás pasar por
 				nuestra biblioteca física antes de la fecha límite de devolución. La
 				dirección y horarios de atención los puedes encontrar en nuestra
 				página web o preguntar a nuestro personal de atención al cliente.
 				¡Te esperamos!"</p>
+
+
+
+
+			<div class="catalogoDiv">
+				<h2>¿Quieres Que Te Enviemos Un Correo Electronico?</h2>
+				<h3>Recomendamos que solicite una confirmación de correo
+					electrónico para asegurarse de recibir una notificación oficial y
+					escrita sobre su alquiler de libro en nuestra biblioteca. Al
+					solicitar una confirmación de correo, podrá tener un registro
+					documentado de su alquiler y recibir la tranquilidad de que ha sido
+					registrado correctamente.</h3>
+
+				<button onclick="enviarCorreoAlquiler()" id="miBoton2">Quiero recibir un
+					correo de confirmación</button>
+
+
+				<h3>
+					Te lo enviaremos a <b id="correoElectronico2"
+						th:text="${usuarioDTO.email}"></b>
+				</h3>
+				<h3 th:text="${usuarioDTO.username}" id="correoUsername2"></h3>
+
+			</div>
+
+			<div class="catalogoDiv">
+				<h2>Explora Nuestro Catálogo</h2>
+				<p>En nuestra biblioteca encontrarás una amplia selección de
+					libros de diversos géneros y temáticas.</p>
+				<p>Nuestro catálogo se actualiza constantemente con las últimas
+					novedades editoriales.</p>
+				<a th:href="@{/tienda}">
+					<button>Volver al Catálogo</button>
+				</a>
+			</div>
 		</div>
 
-		<div class="catalogoDiv">
-			<h2>Explora Nuestro Catálogo</h2>
-			<p>En nuestra biblioteca encontrarás una amplia selección de
-				libros de diversos géneros y temáticas.</p>
-			<p>Nuestro catálogo se actualiza constantemente con las últimas
-				novedades editoriales.</p>
-			<a th:href="@{/tienda}">
-				<button>Volver al Catálogo</button>
-			</a>
-		</div>
 
+
+		<div class="catalogoDiv" th:if="${solicitud == true}">
+			<h2>¿Quieres Que Te Enviemos Un Correo Electronico?</h2>
+
+			<button onclick="enviarCorreo()" th:if="${solicitud == true}" id="miBoton">Quiero
+				recibir un correo de confirmación</button>
+
+
+
+
+			<h3 th:if="${solicitud == true}">
+				Te lo enviaremos a <b id="correoElectronico"
+					th:text="${solicitudDTO.email}"></b>
+			</h3>
+
+			<div>
+				<h2>Solicitud</h2>
+
+
+				<h3 th:text="${solicitudDTO.username}" id="correoUsername"></h3>
+
+				<h4 th:text="${solicitudDTO.mensaje}" id="correoMensaje"></h4>
+
+			</div>
+
+
+			<div class="catalogoDiv">
+				<h2>Explora Nuestro Catálogo</h2>
+				<p>En nuestra biblioteca encontrarás una amplia selección de
+					libros de diversos géneros y temáticas.</p>
+				<p>Nuestro catálogo se actualiza constantemente con las últimas
+					novedades editoriales.</p>
+				<a th:href="@{/tienda}">
+					<button>Volver al Catálogo</button>
+				</a>
+			</div>
 	</main>
 	<footer>
 		<div>
@@ -221,9 +282,11 @@
         </script>
 		</h4>
 	</footer>
+	<script src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
 	<script type="text/javascript"
 		src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 	<script th:src="@{/js/traduccion.js}"></script>
+	<script th:src="@{/js/email.js}"></script>
 	<script th:src="@{/js/jquery-3.6.3.min.js}"></script>
 	<script th:src="@{/js/general.js}"></script>
 </body>

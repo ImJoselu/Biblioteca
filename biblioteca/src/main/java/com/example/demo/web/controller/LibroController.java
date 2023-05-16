@@ -202,11 +202,11 @@ public class LibroController {
 		// ESTA LINEA HAY QUE CAMBIAR EL "1" POR EL ID DEL USUARIO LOGEADO EN EL MOMENTO
 		mav.addObject("usuario", usuario);
 		mav.addObject("listaPopulares", listaAleatoria);
-		
+
 		mav.addObject("listaLibrosDTO", subListaLibrosFiltrada);
 		mav.addObject("totalPages", (listaLibrosFiltrada.size() + size - 1) / size);
 		mav.addObject("currentPage", page);
-		
+
 		return mav;
 	}
 
@@ -220,40 +220,38 @@ public class LibroController {
 		ModelAndView mav = new ModelAndView("adminLibros");
 		mav.addObject("listaLibrosDTO", listaLibrosDTO);
 
-	
-
 		return mav;
 	}
 
 	@GetMapping("/tienda")
 	public ModelAndView mostrarCatalogo(@RequestParam(value = "filtro", required = false) String filtro,
-			
+
 			@RequestParam(value = "orden", required = false) String orden,
 			@RequestParam(value = "page", defaultValue = "0") int page,
 			@RequestParam(value = "size", defaultValue = "4") int size) {
-		
+
 		log.info("LibroController - tiendaFiltros: Mostramos la tienda filtrada por filtro: {} y orden: {}", filtro,
 				orden);
-		
+
 		List<LibroDTO> listaLibrosDTO = libroService.findAll();
-		
+
 		List<LibroDTO> listaAleatoria = new ArrayList<>();
-		
+
 		// Obtenemos tres índices aleatorios
 		Random random = new Random();
 		Set<Integer> indices = new HashSet<>();
 		while (indices.size() < 3) {
 			indices.add(random.nextInt(listaLibrosDTO.size()));
 		}
-		
+
 		// Añadimos los libros correspondientes a los índices aleatorios a la lista
 		// nueva
 		for (Integer indice : indices) {
 			listaAleatoria.add(listaLibrosDTO.get(indice));
 		}
-		
+
 		List<LibroDTO> listaLibrosFiltrada = libroService.findAll();
-		
+
 		// Aplicamos el filtro si existe
 		if (filtro != null && !filtro.isEmpty()) {
 			listaLibrosFiltrada = listaLibrosFiltrada.stream()
@@ -262,7 +260,7 @@ public class LibroController {
 							|| libro.getIsbn().toLowerCase().contains(filtro.toLowerCase()))
 					.collect(Collectors.toList());
 		}
-		
+
 		// Aplicamos el orden si existe
 		if (orden != null && !orden.isEmpty()) {
 			switch (orden) {
@@ -281,23 +279,23 @@ public class LibroController {
 				break;
 			}
 		}
-		
+
 		int start = page * size;
 		int end = Math.min(start + size, listaLibrosFiltrada.size());
 		List<LibroDTO> subListaLibrosFiltrada = listaLibrosFiltrada.subList(start, end);
-		
+
 		ModelAndView mav = new ModelAndView("tienda");
-		
+
 		UsuarioDTO usuario = new UsuarioDTO();
 		usuario.setId(1L);
 		// ESTA LINEA HAY QUE CAMBIAR EL "1" POR EL ID DEL USUARIO LOGEADO EN EL MOMENTO
 		mav.addObject("usuario", usuario);
 		mav.addObject("listaPopulares", listaAleatoria);
-		
+
 		mav.addObject("listaLibrosDTO", subListaLibrosFiltrada);
 		mav.addObject("totalPages", (listaLibrosFiltrada.size() + size - 1) / size);
 		mav.addObject("currentPage", page);
-		
+
 		return mav;
 	}
 

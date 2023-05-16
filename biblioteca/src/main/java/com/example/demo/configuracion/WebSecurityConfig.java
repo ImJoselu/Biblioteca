@@ -16,13 +16,15 @@ public class WebSecurityConfig {
 
 	@Autowired
 	private UserDetailsService userDetailsService;
-	
+
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
 		http.authorizeHttpRequests()
-				.requestMatchers("/", "/login", "/contacto", "/contacto/**","/adminContacto", "/adminContacto/**","/solicitud/**","/usuario","/MisSolicitudes","/tienda", "/tienda/**","/css/**", "/js/**", "/imagenesLibros/**",
-						"/images/**", "/registro","/usuarios/saveNuevoUsuario", "/usuarios/saveNuevoUsuario/**" , "/usuarios/save", "/foro" , "/foro/**","/usuario/**" )
+				.requestMatchers("/", "/login", "/contacto", "/contacto/**", "/adminContacto", "/adminContacto/**",
+						"/solicitud/**", "/usuario", "/MisSolicitudes", "/tienda", "/tienda/**", "/css/**", "/js/**",
+						"/imagenesLibros/**", "/images/**", "/registro", "/usuarios/saveNuevoUsuario",
+						"/usuarios/saveNuevoUsuario/**", "/usuarios/save", "/foro", "/foro/**", "/usuario/**")
 				.permitAll()
 				.requestMatchers("/zonaPremium" , "/zonaPremium/**" , "/usuarios/{usernameUsuario}/confirmacionCorreo")
 				.hasAnyRole("USER", "ADMIN")
@@ -38,25 +40,17 @@ public class WebSecurityConfig {
 						"/usuario/{idUsuario}/adminAlquiler/{idAlquiler}/adminMultas/add",
 						"/usuario/{idUsuario}/adminAlquiler/{idAlquiler}/adminMultas/save",
 						"/usuario/{idUsuario}/adminAlquiler/{idAlquiler}/adminMultas/delete/{idMulta}",
-						"/usuario/{idUsuario}/adminMultas/{idMulta}/descartar", 
-						"/adminContacto",
-						"/adminContacto/{idSolicitud}/adminContactoform", 
-						"/adminClientes",
+						"/usuario/{idUsuario}/adminMultas/{idMulta}/descartar", "/adminContacto",
+						"/adminContacto/{idSolicitud}/adminContactoform", "/adminClientes",
 						"/usuario/{idUsuario}/adminEditarUsuarios")
-				.hasRole("ADMIN").anyRequest().authenticated()
-				.and()
-				.formLogin().loginPage("/login")
-				.defaultSuccessUrl("/").failureUrl("/login?error").permitAll()
-				.and()
-				.logout().permitAll().logoutSuccessUrl("/")
-				.and()
-				.exceptionHandling().accessDeniedPage("/errors/403");
+				.hasRole("ADMIN").anyRequest().authenticated().and().formLogin().loginPage("/login")
+				.defaultSuccessUrl("/").failureUrl("/login?error").permitAll().and().logout().permitAll()
+				.logoutSuccessUrl("/").and().exceptionHandling().accessDeniedPage("/errors/403");
 		return http.build();
 	}
-	
+
 	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder build) throws Exception{
-	build.userDetailsService(userDetailsService).passwordEncoder(new
-	BCryptPasswordEncoder());
-	 }
+	public void configureGlobal(AuthenticationManagerBuilder build) throws Exception {
+		build.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+	}
 }

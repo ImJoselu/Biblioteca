@@ -26,33 +26,33 @@ import lombok.ToString;
 @Table(name = "post")
 public class Post {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_post")
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_post")
+	private Long id;
 
-    @Column(name = "titulo")
-    private String titulo;
+	@Column(name = "titulo")
+	private String titulo;
 
-    @Column(name = "contenido")
-    private String contenido;
+	@Column(name = "contenido")
+	private String contenido;
 
-    @Column(name = "fecha_creacion")
-    private LocalDateTime fechaCreacion;
+	@Column(name = "fecha_creacion")
+	private LocalDateTime fechaCreacion;
 
-    @Column(name = "likes")
-    private int likes;
+	@Column(name = "likes")
+	private int likes;
 
-    @Column(name = "categoria")
-    private String categoria;
+	@Column(name = "categoria")
+	private String categoria;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_usuario")
-    private Usuario usuario;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_usuario")
+	private Usuario usuario;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "post")
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "post")
 	@ToString.Exclude
-	private List<Comment> listaComentarios= new ArrayList<>();
+	private List<Comment> listaComentarios = new ArrayList<>();
 
 	@Override
 	public boolean equals(Object obj) {
@@ -66,27 +66,15 @@ public class Post {
 		return Objects.equals(id, other.id);
 	}
 
-
-
-
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
 
-
-
-
-
 	public Post() {
-		
+
 		this.listaComentarios = new ArrayList<Comment>();
 	}
-    
-    
-    
-    
-    // Getters y Setters
-}
 
+	// Getters y Setters
+}

@@ -13,7 +13,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="rol")
+@Table(name = "rol")
 public class Rol {
 
 	@Id
@@ -25,7 +25,7 @@ public class Rol {
 	@ManyToOne
 	@JoinColumn(name = "idusuario")
 	private Usuario usuario;
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -42,6 +42,5 @@ public class Rol {
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-	
-	
+
 }

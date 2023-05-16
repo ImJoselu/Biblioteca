@@ -22,7 +22,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 	@Modifying
 	@Query ("UPDATE Usuario u SET u.nombre = :#{#usuario.nombre}, u.apellidos = :#{#usuario.apellidos}, u.email = :#{#usuario.email} , u.username = :#{#usuario.username} , u.es_administrador = :#{#usuario.es_administrador} , u.es_cliente = :#{#usuario.es_cliente} WHERE u.id = :#{#usuario.id}")
 	void actualizarUsuario(@Param("usuario") Usuario usuario);
-	
+
 	@Query("SELECT u FROM Usuario u WHERE u.username = :username")
 	Usuario findByUsername(@Param("username")String username);
 
@@ -33,5 +33,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 	@Modifying
 	@Query ("UPDATE Usuario u SET u.es_administrador = false, u.es_cliente = true WHERE u.id = :#{#usuario.id}")
 	void cambiarEstandar(@Param("usuario")Usuario usuario);
-	
+
+
 }

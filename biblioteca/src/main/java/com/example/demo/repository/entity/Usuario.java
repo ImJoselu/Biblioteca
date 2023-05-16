@@ -51,7 +51,7 @@ public class Usuario {
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "usuario")
 	@ToString.Exclude
 	private List<Rol> listaRoles;
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

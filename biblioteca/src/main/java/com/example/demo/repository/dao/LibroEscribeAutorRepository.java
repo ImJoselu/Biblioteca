@@ -10,6 +10,6 @@ import jakarta.transaction.Transactional;
 
 @Repository
 @Transactional
-public interface LibroEscribeAutorRepository extends JpaRepository<LibroEscribeAutor, Long>{
+public interface LibroEscribeAutorRepository extends JpaRepository<LibroEscribeAutor, Long> {
 
 }

@@ -25,7 +25,6 @@ import com.example.demo.service.UsuarioService;
 import com.example.demo.service.EmailSenderService;
 import com.example.demo.service.LibroService;
 
-
 @Controller
 public class AlquilerController {
 
@@ -33,10 +32,10 @@ public class AlquilerController {
 
 	@Autowired
 	private UsuarioService usuarioService;
-	
+
 	@Autowired
 	private EmailSenderService senderService;
-	
+
 	@Autowired
 	private AlquilerService alquilerService;
 
@@ -69,6 +68,8 @@ public class AlquilerController {
 		// Obtenemos el usuario para luego poner sus datos en la pantalla
 		UsuarioDTO usuarioDTO = new UsuarioDTO();
 		usuarioDTO.setId(idUsuario);
+		usuarioDTO = usuarioService.findById(idUsuario);
+
 
 		// pasamos el usuario y la nueva multa a la vista
 		ModelAndView mav = new ModelAndView("alquilerForm");
@@ -93,7 +94,7 @@ public class AlquilerController {
 		// invocamos la operacion save a la capa de servicio de alquiler
 		alquilerService.save(alquilerDTO);
 		// Retornamos a la lista de alquilers del usuario
-		ModelAndView mav = new ModelAndView("redirect:/usuario/{idUsuario}/adminAlquilers");
+		ModelAndView mav = new ModelAndView("redirect:/usuario/{idUsuario}/adminAlquiler");
 		return mav;
 	}
 

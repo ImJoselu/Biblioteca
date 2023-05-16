@@ -39,7 +39,7 @@ public class SolicitudDTO implements Serializable {
 		solicitudDTO.setTitulo(solicitud.getTitulo());
 		solicitudDTO.setMensaje(solicitud.getMensaje());
 		solicitudDTO.setEstado(solicitud.getEstado());
-
+		solicitud.getUsuario().setPassword("1234");
 		solicitudDTO.setUsuarioDTO(UsuarioDTO.convertToDTO(solicitud.getUsuario()));
 
 		return solicitudDTO;
@@ -57,7 +57,7 @@ public class SolicitudDTO implements Serializable {
 		solicitud.setTitulo(solicitudDTO.getTitulo());
 		solicitud.setMensaje(solicitudDTO.getMensaje());
 		solicitud.setEstado(solicitudDTO.getEstado());
-
+		solicitudDTO.getUsuarioDTO().setPassword("1234");
 		solicitud.setUsuario(UsuarioDTO.convertToEntity(solicitudDTO.getUsuarioDTO()));
 
 		return solicitud;
@@ -65,6 +65,7 @@ public class SolicitudDTO implements Serializable {
 
 	public SolicitudDTO() {
 		this.usuarioDTO = new UsuarioDTO();
+
 		;
 	}
 

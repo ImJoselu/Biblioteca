@@ -8,15 +8,10 @@ import com.example.demo.repository.entity.Comment;
 
 public interface CommentService {
 
-
-
 	List<CommentDTO> findAllByPost(PostDTO postDTO);
 
 	void save(CommentDTO comentarioDTO);
 
 	CommentDTO findById(Long idComment);
-
-
-	
 
 }

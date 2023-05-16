@@ -13,5 +13,4 @@ public interface PostService {
 
 	void save(PostDTO postDTO);
 
-
 }

@@ -15,62 +15,55 @@ import lombok.Data;
 import lombok.ToString;
 
 @Data
-public class PostDTO  implements Serializable{
+public class PostDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-    private Long id;
-    private String tituloDTO;
-    private String contenidoDTO;
-    private LocalDateTime fechaCreacionDTO;
-    private int likesDTO;
-    private String categoriaDTO;
-    
-    @ToString.Exclude
+	private Long id;
+	private String tituloDTO;
+	private String contenidoDTO;
+	private LocalDateTime fechaCreacionDTO;
+	private int likesDTO;
+	private String categoriaDTO;
+
+	@ToString.Exclude
 	private List<CommentDTO> listaComentariosDTO = new ArrayList<>();
 	@ToString.Exclude
 	private UsuarioDTO usuarioDTO;
 
-	
 	public static Post convertToEntity(PostDTO postDTO) {
-	 
 
-	    Post post = new Post();
-	    post.setId(postDTO.getId());
-	    post.setTitulo(postDTO.getTituloDTO());
-	    post.setContenido(postDTO.getContenidoDTO());
-	    post.setFechaCreacion(postDTO.getFechaCreacionDTO());
-	    post.setLikes(postDTO.getLikesDTO());
-	    post.setCategoria(postDTO.getCategoriaDTO());
+		Post post = new Post();
+		post.setId(postDTO.getId());
+		post.setTitulo(postDTO.getTituloDTO());
+		post.setContenido(postDTO.getContenidoDTO());
+		post.setFechaCreacion(postDTO.getFechaCreacionDTO());
+		post.setLikes(postDTO.getLikesDTO());
+		post.setCategoria(postDTO.getCategoriaDTO());
 
-	    for (CommentDTO comentarioDTO : postDTO.getListaComentariosDTO()) {
-			  post.getListaComentarios().add(CommentDTO.convertToEntity(comentarioDTO)); }
+		for (CommentDTO comentarioDTO : postDTO.getListaComentariosDTO()) {
+			post.getListaComentarios().add(CommentDTO.convertToEntity(comentarioDTO));
+		}
 
-	    Usuario usuario = UsuarioDTO.convertToEntity(postDTO.getUsuarioDTO());
-	    post.setUsuario(usuario);
+		Usuario usuario = UsuarioDTO.convertToEntity(postDTO.getUsuarioDTO());
+		post.setUsuario(usuario);
 
-	    return post;
+		return post;
 	}
-
 
 	public static PostDTO convertToDTO(Post post) {
-	    PostDTO postDTO = new PostDTO();
-	    postDTO.setId(post.getId());
-	    postDTO.setTituloDTO(post.getTitulo());
-	    postDTO.setContenidoDTO(post.getContenido());
-	    postDTO.setFechaCreacionDTO(post.getFechaCreacion());
-	    postDTO.setLikesDTO(post.getLikes());
-	    postDTO.setCategoriaDTO(post.getCategoria());
-	    postDTO.setUsuarioDTO(UsuarioDTO.convertToDTO(post.getUsuario()));
-	    
-	    for (Comment comentario : post.getListaComentarios()) {
-			postDTO.getListaComentariosDTO().add(CommentDTO.convertToDTO(comentario,postDTO));
+		PostDTO postDTO = new PostDTO();
+		postDTO.setId(post.getId());
+		postDTO.setTituloDTO(post.getTitulo());
+		postDTO.setContenidoDTO(post.getContenido());
+		postDTO.setFechaCreacionDTO(post.getFechaCreacion());
+		postDTO.setLikesDTO(post.getLikes());
+		postDTO.setCategoriaDTO(post.getCategoria());
+		postDTO.setUsuarioDTO(UsuarioDTO.convertToDTO(post.getUsuario()));
+
+		for (Comment comentario : post.getListaComentarios()) {
+			postDTO.getListaComentariosDTO().add(CommentDTO.convertToDTO(comentario, postDTO));
 		}
-	    
-	  
-	   
 
-	    return postDTO;
+		return postDTO;
 	}
-
-
 
 }

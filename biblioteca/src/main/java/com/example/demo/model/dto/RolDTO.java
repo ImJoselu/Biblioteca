@@ -11,38 +11,38 @@ import lombok.ToString;
 @Data
 public class RolDTO implements Serializable {
 
-		private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-		private Long id;
-		private String nombre;
+	private Long id;
+	private String nombre;
 
-		@ToString.Exclude
-		private UsuarioDTO usuarioDTO;
-		
-		public static RolDTO convertToDTO(Rol rol, UsuarioDTO usuarioDTO) {
+	@ToString.Exclude
+	private UsuarioDTO usuarioDTO;
 
-			RolDTO rolDTO = new RolDTO();
+	public static RolDTO convertToDTO(Rol rol, UsuarioDTO usuarioDTO) {
 
-			rolDTO.setId(rol.getId());
-			rolDTO.setNombre(rol.getNombre());
-			rolDTO.setUsuarioDTO(usuarioDTO);
+		RolDTO rolDTO = new RolDTO();
 
-			return rolDTO;
-		}
+		rolDTO.setId(rol.getId());
+		rolDTO.setNombre(rol.getNombre());
+		rolDTO.setUsuarioDTO(usuarioDTO);
 
-		public static Rol convertToEntity(RolDTO rolDTO , Usuario usuario) {
-
-			Rol rol = new Rol();
-
-			rol.setId(rolDTO.getId());
-			rol.setNombre(rolDTO.getNombre());
-			rol.setUsuario(usuario);
-
-			return rol;
-		}
-		
-		public RolDTO() {
-			super();
-		}
-
+		return rolDTO;
 	}
+
+	public static Rol convertToEntity(RolDTO rolDTO, Usuario usuario) {
+
+		Rol rol = new Rol();
+
+		rol.setId(rolDTO.getId());
+		rol.setNombre(rolDTO.getNombre());
+		rol.setUsuario(usuario);
+
+		return rol;
+	}
+
+	public RolDTO() {
+		super();
+	}
+
+}

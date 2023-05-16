@@ -79,16 +79,13 @@ public class UsuarioDTO implements Serializable {
 		Alquiler alquiler = new Alquiler();
 
 		/*
-		for (SolicitudDTO s : usuarioDTO.getListaSolicitudesDTO()) {
-			solicitud = SolicitudDTO.convertToEntity(s);
-			usuario.getListaSolicitudes().add(solicitud);
-		}
-
-		for (AlquilerDTO a : usuarioDTO.getListaAlquileresDTO()) {
-			alquiler = AlquilerDTO.convertToEntity(a);
-			usuario.getListaAlquileres().add(alquiler);
-		}
-*/
+		 * for (SolicitudDTO s : usuarioDTO.getListaSolicitudesDTO()) { solicitud =
+		 * SolicitudDTO.convertToEntity(s);
+		 * usuario.getListaSolicitudes().add(solicitud); }
+		 * 
+		 * for (AlquilerDTO a : usuarioDTO.getListaAlquileresDTO()) { alquiler =
+		 * AlquilerDTO.convertToEntity(a); usuario.getListaAlquileres().add(alquiler); }
+		 */
 		return usuario;
 
 	}

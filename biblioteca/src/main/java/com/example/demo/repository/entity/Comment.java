@@ -24,59 +24,56 @@ import lombok.ToString;
 @Entity
 @Table(name = "comentario")
 public class Comment {
-		@Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    @Column(name = "id_comentario")
-	    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_comentario")
+	private Long id;
 
-	    @Column(name = "contenido")
-	    private String contenido;
+	@Column(name = "contenido")
+	private String contenido;
 
-	    @Column(name = "fecha_creacion")
-	    private LocalDateTime fechaCreacion;
+	@Column(name = "fecha_creacion")
+	private LocalDateTime fechaCreacion;
 
-	    @ManyToOne(fetch = FetchType.LAZY)
-	    @JoinColumn(name = "id_usuario")
-	    private Usuario usuario;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_usuario")
+	private Usuario usuario;
 
-	    @ManyToOne(fetch = FetchType.LAZY)
-	    @JoinColumn(name = "id_post")
-	    private Post post;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_post")
+	private Post post;
 
-	    @ManyToOne(fetch = FetchType.LAZY)
-	    @JoinColumn(name = "id_comentario_padre")
-	    private Comment comentarioPadre;
-	   
-	    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "comentarioPadre")
-		@ToString.Exclude
-		private List<Comment> listaComentarios= new ArrayList<>();
-	    
-	   // @JoinColumn(name = "es_padre")
-	   // private boolean esPadre;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_comentario_padre")
+	private Comment comentarioPadre;
 
-		@Override
-		public boolean equals(Object obj) {
-			if (this == obj)
-				return true;
-			if (obj == null)
-				return false;
-			if (getClass() != obj.getClass())
-				return false;
-			Comment other = (Comment) obj;
-			return Objects.equals(id, other.id);
-		}
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "comentarioPadre")
+	@ToString.Exclude
+	private List<Comment> listaComentarios = new ArrayList<>();
 
-		@Override
-		public int hashCode() {
-			return Objects.hash(id);
-		}
+	// @JoinColumn(name = "es_padre")
+	// private boolean esPadre;
 
-		public Comment() {
-			
-			this.listaComentarios =  new ArrayList<Comment>();
-		}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Comment other = (Comment) obj;
+		return Objects.equals(id, other.id);
+	}
 
-	
-		
-	    
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	public Comment() {
+
+		this.listaComentarios = new ArrayList<Comment>();
+	}
+
 }
