@@ -2,29 +2,221 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Administracion de Ejemplares</title>
-<link rel="stylesheet" th:href="@{/css/general.css}" />
-<link rel="stylesheet" th:href="@{/css/generalAdmin.css}" />
-<link rel="stylesheet" th:href="@{/css/movil.css}">
-<link rel="stylesheet" media="(max-width: 600px)"
-	th:href="@{/css/movil.css}" />
-<link rel="stylesheet" media="(min-width: 600px) and (max-width: 800px)"
-	th:href="@{/css/tablet.css}" />
-<link rel="stylesheet" media="(min-width: 800px)"
-	th:href="@{/css/pc.css}" />
-<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administracion de Ejemplares</title>
+  <link rel="stylesheet" th:href="@{/css/general.css}" />
+  <link rel="stylesheet" th:href="@{/css/movil.css}">
+  <link rel="stylesheet" media="(max-width: 600px)" th:href="@{/css/movil.css}" />
+  <link rel="stylesheet" media="(min-width: 600px) and (max-width: 800px)" th:href="@{/css/tablet.css}" />
+  <link rel="stylesheet" media="(min-width: 800px)" th:href="@{/css/pc.css}" />
+  <link rel="stylesheet" th:href="@{/css/Premium.css}" />
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 
 </head>
+
 <body>
-  <h1>Bienvenido a la Página de Usuarios Premium</h1>
-  <section th:if="${usuarioDTO.es_administrador} == true">
-  Vista de Alguien que es premium
-  </section>
-  <section th:if="${usuarioDTO.es_cliente} == true">
-  Vista de Alguien que no es premium
-  </section>
+  <div id="tapar"></div>
+  <header>
+    <h2>
+      <a th:href="@{/}">Biblioteca</a>
+    </h2>
+    <!--Esto será luego una imagen o algo asi-->
+    <div sec:authorize="isAuthenticated()">
+      <h2 id="mensajeBienvenida" th:inline="text">
+        <a th:href="@{/}"> ¡Hola, <span th:remove="tag" sec:authentication="name"> </span>!
+        </a>
+
+      </h2>
+    </div>
+  </header>
+
+  <aside id="menuMovil">
+    <img src="/images/close_black_24dp.svg">
+    <h3>
+      <a th:href="@{/}">Inicio</a>
+    </h3>
+    <h3>
+      <a th:href="@{/tienda}">Libros</a>
+    </h3>
+    <h3>
+      <a th:href="@{/contacto}">Contacto</a>
+    </h3>
+    <!--solo puede haber 1 de estos dos activo-->
+    <h3>
+      <a href="proximamente.html">Cuenta</a>
+    </h3>
+    <h3>
+      <a th:href="@{/foro}">Foro</a>
+    </h3>
+    <h3>
+      <a th:href="@{/login}">Login</a>
+    </h3>
+  </aside>
+  <nav>
+    <h3>
+      <a th:href="@{/}">Inicio</a>
+    </h3>
+    <h3>
+      <a th:href="@{/tienda}">Libros</a>
+    </h3>
+    <h3>
+      <a th:href="@{/contacto}">Contacto</a>
+    </h3>
+    <h3>
+      <a th:href="@{/foro}">Foro</a>
+    </h3>
+    <!--solo puede haber 1 de estos dos activo-->
+    <h3 sec:authorize="isAnonymous()">
+      <a th:href="@{/login}">Cuenta</a>
+    </h3>
+    <h3 sec:authorize="isAuthenticated()">
+      <a th:href="@{/usuarios/{idUsuario}(idUsuario=${#authentication.name})}">Cuenta</a>
+    </h3>
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+      <h3>
+        <a th:href="@{/adminIndex}">Admin</a>
+      </h3>
+    </div>
+    <div sec:authorize="isAuthenticated()">
+      <form th:action="@{/logout}" method="post">
+        <h3>
+          <input id="logoutBoton" type="submit" value="Logout" />
+        </h3>
+      </form>
+    </div>
+
+    <!-- SI NO SE HA AUTENTICADO -->
+    <div sec:authorize="isAnonymous()">
+      <h3>
+        <a href="/login">Login</a>
+      </h3>
+
+    </div>
+    <div sec:authorize="isAnonymous()">
+      <h3>
+        <a th:href="@{/registro}">Registro</a>
+      </h3>
+    </div>
+    <div id="google_translate_element" class="google"></div>
+    </div>
+
+    <!---->
+    <img th:src="@{/images/menu_black_24dp.svg}" id="btnMenuMovil" />
+  </nav>
+  <main>
+    <section th:if="${usuarioDTO.es_administrador} == true">
+      <div id="contendorPremium">
+        <!-- CONTENEDOR -->
+        <div><h1>Hola&nbsp;<span th:text="${usuarioDTO.nombre}"></span>, ¡esta es tu zona!</h1></div>
+        <!-- CONTENEDOR -->
+        <aside>
+          <h3>¡Hay un nuevo concurso activo!</h3>
+          <!-- IF nueva columna participando , si no lo está -->
+          <button class="botonConcurso">Participar</button>
+          <!-- IF nueva columna participando , si lo está -->
+          <button class="botonConcurso" disabled>Ya estás participando</button>
+        </aside>
+        <!-- CONTENEDOR -->
+        <div>
+          <h3>El equipo de biblioteca te recomienda estas listas de música para tu lectura</h3>
+          <!-- Anyadir las fotos -->
+          <a href="https://open.spotify.com/playlist/37i9dQZF1DX9MDcH3vBMo0?si=5ba65fa1a35848bf"> <img src=""
+              alt="Lista 1"> </a>
+          <a href="https://open.spotify.com/playlist/2bTgVuIz3g6kAq7ylDwyow?si=db0b4e74650e4b57"> <img src=""
+              alt="Lista 2"> </a>
+          <a href="https://open.spotify.com/playlist/37i9dQZF1DWVfM4SvitJPy?si=6eedfa7a7f6e4ac7"> <img src=""
+              alt="Lista 3"> </a>
+        </div>
+        <!-- CONTENEDOR -->
+        <div>
+          <!-- Añadr form para mandar una solicitud, vista contacto, pasarle la solicitud en el controller! -->
+          <h3>Mandanos una solicitud con alta prioridad desde aquí</h3>
+        </div>
+        <!-- CONTENEDOR -->
+        <aside>
+          <h3>¿Necesitas una copias de seguridad de tus datos?</h3>
+          <div id="miContenedor" hidden>
+            Usuario: <span id="nombreUsuario" th:text="${usuarioDTO.nombre}"></span>
+            Correo: <span id="emailUsuario" th:text="${usuarioDTO.email}"></span>
+          </div>
+          <button onclick = "downloadFile()"> ¡Pulsa aqui! </button>
+        </aside>
+      </div>
+    </section>
+    <section th:if="${usuarioDTO.es_cliente} == true">
+      <div>
+        <h1>Parece ser que aun no eres Premium&nbsp;<span th:text="${usuarioDTO.nombre}"></span></h1>
+        <h3 sec:authorize="isAuthenticated()">
+          Pulsa <a th:href="@{/usuarios/{idUsuario}(idUsuario=${#authentication.name})}">Aquí</a> para volver a tu
+          cuenta y suscribirte al plan premium si así lo deseas
+        </h3>
+        <h5>No te arrepentirás</h5>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div>
+      <div>
+        <h5>Nosotros</h5>
+        <ul>
+          <li><a>Acerca de nosotros</a></li>
+          <li><a>Contacto</a></li>
+          <li><a>Empleo</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Servicios</h5>
+        <ul>
+          <li><a>Envío</a></li>
+          <li><a>Devoluciones</a></li>
+          <li><a>Preguntas frecuentes</a></li>
+          <br>
+          <br>
+          <h5>Redes sociales</h5>
+        </ul>
+      </div>
+      <div>
+        <h5>Contacto</h5>
+        <ul>
+          <li>123 Calle Principal</li>
+          <li>Ciudad, Estado</li>
+          <li>Código Postal</li>
+          <li>555-555-5555</li>
+          <li><a>info@libreria.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="contenedorSocial">
+      <abbr title="Siguenos en Instagram"><a th:href="@{https://www.instagram.com/bibliotecasocialpremium/}">
+          <img th:src="'/images/instagram.png'" alt="Logo de mi proyecto">
+        </a></abbr> <abbr title="Siguenos en Twitter"><a th:href="@{https://twitter.com/bilbiotecaSP}"> <img
+            th:src="'/images/twitter.png'" alt="Logo de mi proyecto"></a></abbr>
+    </div>
+    <h4>
+      Copyright &copy; Bibliotecarios S.L.
+      <script>
+        document.write(new Date().getFullYear());
+      </script>
+    </h4>
+  </footer>
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <script th:src="@{/js/traduccion.js}"></script>
+  <script th:src="@{/js/jquery-3.6.3.min.js}"></script>
+  <script th:src="@{/js/general.js}"></script>
+  <script th:src="@{/js/carousel.js}"></script>
+  <script>
+    const downloadFile = () => {
+       const link = document.createElement("a");
+       const content = document.querySelector("#miContenedor").textContent;
+       const file = new Blob([content], { type: 'text/plain' });
+       link.href = URL.createObjectURL(file);
+       link.download = "datos.txt";
+       link.click();
+       URL.revokeObjectURL(link.href);
+    };
+ </script>
 </body>
+
 </html>
