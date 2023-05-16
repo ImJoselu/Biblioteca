@@ -6,12 +6,12 @@
 	padding: 10px;
 }
 
-aside {
+#contenedorPremium > aside {
 	background-color: #f2f2f2;
 	padding: 10px;
 }
 
-div {
+#contenedorPremium > div {
 	background-color: #e0e0e0;
 	padding: 10px;
 }
