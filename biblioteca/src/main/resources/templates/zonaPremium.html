@@ -107,9 +107,9 @@
         <aside>
           <h3>¡Hay un nuevo concurso activo!</h3>
           <!-- IF nueva columna participando , si no lo está -->
-          <button class="botonConcurso">Participar</button>
+          <button th:if="${usuarioDTO.es_cliente} == false" class="botonConcurso">Participar</button>
           <!-- IF nueva columna participando , si lo está -->
-          <button class="botonConcurso" disabled>Ya estás participando</button>
+          <button th:if="${usuarioDTO.es_cliente} == true" class="botonConcurso" disabled>Ya estás participando</button>
         </aside>
         <!-- CONTENEDOR -->
         <div>
@@ -138,7 +138,7 @@
         </aside>
       </div>
     </section>
-    <section th:if="${usuarioDTO.es_cliente} == true">
+    <section th:if="${usuarioDTO.es_administrador} == false">
       <div>
         <h1>Parece ser que aun no eres Premium&nbsp;<span th:text="${usuarioDTO.nombre}"></span></h1>
         <h3 sec:authorize="isAuthenticated()">

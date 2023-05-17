@@ -110,7 +110,7 @@
 						th:href="@{/usuario/{idUsuario}/adminEditarUsuarios (idUsuario=${usuarioDTO.id})}">Editar</a></td>
 					<td>
 					  <span th:if="${usuarioDTO.es_administrador} == true" style="color:green">&#10004;</span>
-  					  <span th:if="${usuarioDTO.es_cliente} == true" style="color:red">&#10006;</span>
+  					  <span th:if="${usuarioDTO.es_administrador} == false" style="color:red">&#10006;</span>
 					</td>
 					<td><a
 						th:href="@{/usuario/{idUsuario}/adminAlquiler (idUsuario=${usuarioDTO.id})}"><img
