@@ -1,6 +1,7 @@
 package com.example.demo.web.controller;
 
 import java.util.ArrayList;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -26,6 +27,9 @@ import com.example.demo.service.CommentService;
 import com.example.demo.service.EjemplarService;
 import com.example.demo.service.PostService;
 import com.example.demo.service.UsuarioService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
 
 @Controller
 public class PostController {
@@ -57,6 +61,14 @@ public class PostController {
 		return mav;
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
 	/*
 	 * @GetMapping("/foro/{idPost}") public ModelAndView
 	 * mostrarComments(@PathVariable Long idPost) {
@@ -119,14 +131,14 @@ public class PostController {
 		return mav;
 	}
 
-	@PostMapping("/foro/{idPost}/comentar")
+	@PostMapping("/foro/{idPost}/comentar/{usernameUsuario}")
 	public ModelAndView comentarPost(@PathVariable Long idPost,
-			@ModelAttribute("nuevoComentarioDTO") CommentDTO comentarioDTO) {
+			@ModelAttribute("nuevoComentarioDTO") CommentDTO comentarioDTO, @PathVariable("usernameUsuario") String usernameUsuario) {
 		log.info("PostController - comentarPost: Se intenta crear un comentario en el post " + idPost);
 
 		ModelAndView mav = new ModelAndView("");
 
-		UsuarioDTO usuarioDTO = usuarioService.findById(1L); // Cambiar por el ID del usuario logeado en el momento
+		UsuarioDTO usuarioDTO = usuarioService.findByName(usernameUsuario); // Cambiar por el ID del usuario logeado en el momento
 
 		comentarioDTO.setUsuarioDTO(usuarioDTO);
 
@@ -147,13 +159,13 @@ public class PostController {
 		return mav;
 	}
 
-	@PostMapping("/foro/nuevo")
-	public ModelAndView crearPost(@ModelAttribute("nuevoPostDTO") PostDTO postDTO) {
+	@PostMapping("/foro/nuevo/{usernameUsuario}")
+	public ModelAndView crearPost(@ModelAttribute("nuevoPostDTO") PostDTO postDTO, @PathVariable("usernameUsuario") String usernameUsuario) {
 		log.info("PostController - crearPost: Se intenta crear un post ");
 
 		ModelAndView mav = new ModelAndView("");
 
-		UsuarioDTO usuarioDTO = usuarioService.findById(1L); // Cambiar por el ID del usuario logeado en el momento
+		UsuarioDTO usuarioDTO = usuarioService.findByName(usernameUsuario); // Cambiar por el ID del usuario logeado en el momento
 		postDTO.setUsuarioDTO(usuarioDTO);
 
 		postService.save(postDTO);

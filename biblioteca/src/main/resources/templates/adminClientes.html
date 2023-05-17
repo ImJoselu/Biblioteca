@@ -107,7 +107,9 @@
 					<td th:text="${usuarioDTO.nombre}"></td>
 					
 					<td><a
-						th:href="@{/usuario/{idUsuario}/adminEditarUsuarios (idUsuario=${usuarioDTO.id})}">Editar</a></td>
+						th:href="@{/usuario/{idUsuario}/adminEditarUsuarios (idUsuario=${usuarioDTO.id})}"><img
+							th:src="@{/images/edit_black_24dp.svg}"
+							class="botonIcono" /></a></td>
 					<td>
 					  <span th:if="${usuarioDTO.es_administrador} == true" style="color:green">&#10004;</span>
   					  <span th:if="${usuarioDTO.es_administrador} == false" style="color:red">&#10006;</span>
@@ -127,7 +129,7 @@
 		</table>
 		<div class="volver">
 			<p>
-				Volver a Inicio: <a th:href="@{/adminIndex}"><img
+				<a th:href="@{/adminIndex}"><img
 					th:src="@{/images/arrow_back_black_24dp.svg}"
 					class="botonIconoBack" /></a>
 			</p>

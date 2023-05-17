@@ -39,18 +39,12 @@ iframe {
 	animation: anim2 1s ease 0s 1 normal forwards;
 }
 
-@
-keyframes anim2 { 0% {
+@keyframes anim2 { 0% {
 	opacity: 0;
 	transform: translateY(-100px) scale(0, 0);
 }
 
-100
-
-
-
-
-%
+100%
 {
 opacity
 
@@ -164,10 +158,17 @@ form>input:nth-of-type(4) {
 
 form>textarea {
 	grid-column: span 4;
-	grid-row: 3
+	grid-row: 3;
+	height: 80px;
 }
 
 form>button {
 	grid-column: 2/4;
 	grid-row: 4
+}
+
+
+textarea:focus {
+
+    height: 80px;
 }

@@ -133,7 +133,7 @@
 				</a>
 				<div id="form-crear-post" style="display: none;">
 					<h2>Crea Un Nuevo Post</h2>
-					<form method="POST" th:action="@{/foro/nuevo}"
+					<form method="POST" th:action="@{/foro/nuevo/{usernameUsuario} (usernameUsuario=${#authentication.name})}"
 						th:object="${nuevoPostDTO}">
 						<label for="titulo">Título</label> <input type="text" id="titulo"
 							name="titulo" th:field="${nuevoPostDTO.tituloDTO}" required

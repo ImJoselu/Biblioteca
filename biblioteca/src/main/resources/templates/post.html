@@ -154,7 +154,7 @@
 		<!-- Agrega este código en la vista post.html donde deseas que aparezca el formulario de comentarios -->
 
 		<div id="comment-form-container">
-			<form th:action="@{/foro/{idPost}/comentar (idPost= ${postDTO.id})}"
+			<form th:action="@{/foro/{idPost}/comentar/{usernameUsuario} (idPost= ${postDTO.id},usernameUsuario=${#authentication.name})}"
 				method="POST" th:object="${nuevoComentarioDTO}">
 				<div class="form-group">
 					<textarea class="form-control" rows="3"
@@ -185,7 +185,7 @@
 
 						<div id="comment-form-container">
 							<form
-								th:action="@{/foro/{idPost}/comentar/{idComment} (idPost= ${postDTO.id},idComment= ${comentario.id})}"
+								th:action="@{/foro/{idPost}/comentar/{idComment}/{usernameUsuario} (idPost= ${postDTO.id},idComment= ${comentario.id},usernameUsuario=${#authentication.name})}"
 								method="POST" th:object="${nuevoComentarioDTO}">
 								<div class="form-group">
 									<textarea class="form-control" rows="3"
