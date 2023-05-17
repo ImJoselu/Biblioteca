@@ -158,4 +158,19 @@ public class UsuarioController {
 
 		return mav;
 	}
+	
+	// ConfirmacionConcurso
+		@GetMapping("/usuarios/{usernameUsuario}/confirmacionConcurso")
+		public ModelAndView confirmacionConcurso(@PathVariable("usernameUsuario") String usernameUsuario) {
+
+			log.info("UsuarioController - adminEditarUsuarios: editamos la gestion de usuarios");
+			ModelAndView mav = new ModelAndView("redirect:/zonaPremium/{usernameUsuario}");
+			UsuarioDTO usuarioDTO = usuarioService.findByName(usernameUsuario);
+			usuarioDTO = usuarioService.concursando(usuarioDTO);
+			log.info(usuarioDTO.toString());
+
+			mav.addObject("usuarioDTO", usuarioDTO);
+		
+			return mav;
+		}
 }

@@ -26,4 +26,6 @@ public interface UsuarioService {
 	UsuarioDTO cambiarPremium(UsuarioDTO usuarioDTO);
 
 	UsuarioDTO cambiarEstandar(UsuarioDTO usuarioDTO);
+
+	UsuarioDTO concursando(UsuarioDTO usuarioDTO);
 }

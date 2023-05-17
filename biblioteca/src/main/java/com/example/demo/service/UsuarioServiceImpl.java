@@ -120,4 +120,12 @@ public class UsuarioServiceImpl implements UserDetailsService, UsuarioService {
 		return usuarioPremium;
 	}
 
+	@Override
+	public UsuarioDTO concursando(UsuarioDTO usuarioDTO) {
+		Usuario usuario = UsuarioDTO.convertToEntity(usuarioDTO);
+		usuarioRepository.concursando(usuario);
+		UsuarioDTO usuarioPremium = UsuarioDTO.convertToDTO(usuario);
+		return usuarioPremium;
+	}
+
 }

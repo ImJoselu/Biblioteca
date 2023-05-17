@@ -1,0 +1,201 @@
+/* Estilos generales */
+#contenedorPremium {
+	display: grid;
+	grid-template-columns: 1fr 2fr 1fr;
+	grid-template-rows: 1fr 2fr 1fr;
+	gap: 10px;
+	padding: 20px;
+}
+
+h1, h3 {
+	display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+
+a {
+	text-decoration: none;
+}
+
+/* Estilos del encabezado */
+#contenedorPremium>div:nth-of-type(1) {
+	display: flex;
+    justify-content: center;
+	grid-column: 2/3;
+	text-align: center;
+	background-color: #f0f0f0;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+/* Estilos de la sección del concurso */
+#contenedorPremium>aside:nth-of-type(1) {
+	grid-column: 1/2;
+	grid-row: 1/-1;
+	background-color: #e0e0e0;
+	padding: 10px;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.botonConcurso {
+	padding: 10px 20px;
+	border: none;
+	background-color: #4caf50;
+	color: white;
+	font-weight: bold;
+	cursor: pointer;
+	border-radius: 5px;
+	margin-top: 10px;
+}
+
+.botonConcurso[disabled] {
+	background-color: gray;
+	cursor: not-allowed;
+}
+
+/* Estilos de la sección de listas de música */
+#contenedorPremium>div:nth-of-type(2){
+	grid-column: 2/3;
+	grid-row:2/-1;
+	background-color: #f0f0f0;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+img {
+	width: 200px;
+	height: auto;
+	margin-right: 10px;
+}
+
+/* Estilos de la sección de solicitud */
+#contenedorPremium>div:nth-of-type(4) {
+	grid-column: 2/3;
+	text-align: center;
+	background-color: #f0f0f0;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+/* Estilos de la sección de copias de seguridad */
+#contenedorPremium>aside:nth-of-type(2) {
+	grid-column: 3;
+	grid-row: 1/-1;
+	background-color: #e0e0e0;
+	padding: 10px;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+button {
+	padding: 10px 20px;
+	border: none;
+	background-color: #4caf50;
+	color: white;
+	font-weight: bold;
+	cursor: pointer;
+	border-radius: 5px;
+	margin-top: 10px;
+}
+
+button:hover {
+	background-color: #45a049;
+}
+
+#miContenedor {
+	margin-top: 10px;
+}
+
+/* Estilos de la tabla de datos de usuario */
+#miContenedor span {
+	display: block;
+	margin-bottom: 5px;
+}
+
+#listasPlaylists {
+	display: flex;
+	justify-content: center;
+}
+
+#listasPlaylists>a {
+	display: inline-block;
+	margin: 10px;
+	text-align: center;
+	text-decoration: none;
+}
+
+#listasPlaylists>img {
+	width: 200px;
+	height: auto;
+	border-radius: 5px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+	transition: transform 0.3s ease;
+}
+
+img:hover {
+	transform: scale(1.1);
+}
+
+#concursoBotonParticipar {
+	padding: 10px 20px;
+    border: none;
+    background-color: #4caf50;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+#concursoBotonParticipar:hover {
+	transform: scale(0.9);
+    box-shadow: #513719 0px 0px 8px;
+}
+
+#seccionNoValido {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#seccionNoValido > h1, h3, h5 {
+  margin: 0;
+}
+
+#seccionNoValido > h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+#seccionNoValido > h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+#seccionNoValido > h3 a {
+  color: #4caf50;
+}
+
+#seccionNoValido > h3 a:hover {
+  text-decoration: underline;
+}
+
+#seccionNoValido > h5 {
+  font-size: 14px;
+  color: #888;
+  margin-top: 10px;
+}
