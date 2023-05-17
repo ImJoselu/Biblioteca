@@ -33,3 +33,16 @@ $("#seccionLogin").show();
 
 })
 
+ var toggleVisibility = document.getElementById('toggleVisibility');
+  var registroPass = document.getElementById('registroPass');
+  var registroPass2 = document.getElementById('registroPass2');
+
+  toggleVisibility.addEventListener('click', function() {
+    if (registroPass.type === 'password') {
+      registroPass.type = 'text';
+      registroPass2.type = 'text';
+    } else {
+      registroPass.type = 'password';
+      registroPass2.type = 'password';
+    }
+  });

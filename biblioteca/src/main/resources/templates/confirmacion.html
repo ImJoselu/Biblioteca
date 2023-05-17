@@ -75,37 +75,37 @@
 		<h3 sec:authorize="isAuthenticated()">
 			<a
 				th:href="@{/usuarios/{idUsuario}(idUsuario=${#authentication.name})}">Cuenta</a>
-
-			<div sec:authorize="hasRole('ROLE_ADMIN')">
+		</h3>
+		<div sec:authorize="hasRole('ROLE_ADMIN')">
+			<h3>
+				<a th:href="@{/adminIndex}">Admin</a>
+			</h3>
+		</div>
+		<div sec:authorize="isAuthenticated()">
+			<form th:action="@{/logout}" method="post">
 				<h3>
-					<a th:href="@{/adminIndex}">Admin</a>
+					<input id="logoutBoton" type="submit" value="Logout" />
 				</h3>
-			</div>
-			<div sec:authorize="isAuthenticated()">
-				<form th:action="@{/logout}" method="post">
-					<h3>
-						<input id="logoutBoton" type="submit" value="Logout" />
-					</h3>
-				</form>
-			</div>
+			</form>
+		</div>
 
-			<!-- SI NO SE HA AUTENTICADO -->
-			<div sec:authorize="isAnonymous()">
-				<h3>
-					<a href="/login">Login</a>
-				</h3>
+		<!-- SI NO SE HA AUTENTICADO -->
+		<div sec:authorize="isAnonymous()">
+			<h3>
+				<a href="/login">Login</a>
+			</h3>
 
-			</div>
-			<div sec:authorize="isAnonymous()">
-				<h3>
-					<a th:href="@{/registro}">Registro</a>
-				</h3>
-			</div>
-			<div id="google_translate_element" class="google"></div>
-			</div>
+		</div>
+		<div sec:authorize="isAnonymous()">
+			<h3>
+				<a th:href="@{/registro}">Registro</a>
+			</h3>
+		</div>
+		<div id="google_translate_element" class="google"></div>
+		</div>
 
-			<!---->
-			<img th:src="@{/images/menu_black_24dp.svg}" id="btnMenuMovil" />
+		<!---->
+		<img th:src="@{/images/menu_black_24dp.svg}" id="btnMenuMovil" />
 	</nav>
 
 
@@ -125,6 +125,17 @@
 			<p>Puedes buscar otro título en nuestro catálogo.</p>
 			<img th:src="'/imagenesLibros/' + ${libroDTO.isbn} + '.jpg'" alt=""
 				class="imagenConfirm">
+				
+				<div class="catalogoDiv">
+				<h2>Explora Nuestro Catálogo</h2>
+				<p>En nuestra biblioteca encontrarás una amplia selección de
+					libros de diversos géneros y temáticas.</p>
+				<p>Nuestro catálogo se actualiza constantemente con las últimas
+					novedades editoriales.</p>
+				<a th:href="@{/tienda}">
+					<button>Volver al Catálogo</button>
+				</a>
+			</div>
 		</div>
 
 		<div th:if="${existe > 0}" class="confirmDiv">
@@ -142,8 +153,7 @@
 			<p>¿Quieres alquilar este libro?</p>
 			<a
 				th:href="@{/usuario/{idUsuario}/alquilar/{idLibro}/confirmar (idUsuario=${#authentication.name},idLibro=${libroDTO.isbn})}">
-				<button>Alquilar Este
-					Libro</button>
+				<button>Alquilar Este Libro</button>
 			</a>
 		</div>
 
@@ -183,8 +193,8 @@
 					documentado de su alquiler y recibir la tranquilidad de que ha sido
 					registrado correctamente.</h3>
 
-				<button onclick="enviarCorreoAlquiler()" id="miBoton2">Quiero recibir un
-					correo de confirmación</button>
+				<button onclick="enviarCorreoAlquiler()" id="miBoton2">Quiero
+					recibir un correo de confirmación</button>
 
 
 				<h3>
@@ -212,8 +222,8 @@
 		<div class="catalogoDiv" th:if="${solicitud == true}">
 			<h2>¿Quieres Que Te Enviemos Un Correo Electronico?</h2>
 
-			<button onclick="enviarCorreo()" th:if="${solicitud == true}" id="miBoton">Quiero
-				recibir un correo de confirmación</button>
+			<button onclick="enviarCorreo()" th:if="${solicitud == true}"
+				id="miBoton">Quiero recibir un correo de confirmación</button>
 
 
 

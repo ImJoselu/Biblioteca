@@ -40,14 +40,14 @@ public class CommentController {
 
 	private static final Logger log = LoggerFactory.getLogger(CommentController.class);
 
-	@PostMapping("/foro/{idPost}/comentar/{idComment}")
+	@PostMapping("/foro/{idPost}/comentar/{idComment}/{usernameUsuario}")
 	public ModelAndView comentarPost(@PathVariable Long idComment, @PathVariable Long idPost,
-			@ModelAttribute("nuevoComentarioDTO") CommentDTO comentarioDTO) {
+			@ModelAttribute("nuevoComentarioDTO") CommentDTO comentarioDTO, @PathVariable("usernameUsuario") String usernameUsuario) {
 		log.info("PostController - comentarPost: Se intenta crear un comentario en el post " + idPost);
 
 		ModelAndView mav = new ModelAndView("");
 
-		UsuarioDTO usuarioDTO = usuarioService.findById(1L); // Cambiar por el ID del usuario logeado en el momento
+		UsuarioDTO usuarioDTO = usuarioService.findByName(usernameUsuario); // Cambiar por el ID del usuario logeado en el momento
 
 		comentarioDTO.setUsuarioDTO(usuarioDTO);
 

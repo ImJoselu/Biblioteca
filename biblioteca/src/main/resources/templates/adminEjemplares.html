@@ -99,6 +99,7 @@
 		<table th:if="${listaEjemplaresDTO.size() > 0}">
 			<thead>
 				<tr>
+					<th>ID Ejemplar</th>
 					<th>ISBN</th>
 					<th>Nombre</th>
 					<th>Editorial</th>
@@ -108,6 +109,7 @@
 			</thead>
 			<tbody>
 				<tr th:each="ejemplarDTO : ${listaEjemplaresDTO}">
+					<td th:text="${ejemplarDTO.id}"></td>
 					<td th:text="${ejemplarDTO.libroDTO.isbn}"></td>
 					<td th:text="${ejemplarDTO.libroDTO.titulo}"></td>
 					<td th:text="${ejemplarDTO.libroDTO.editorialDTO.nombre}"></td>
@@ -125,7 +127,9 @@
 		</h1>
 		<div class="volver">
 			<p>
-				Volver a Inicio: <a th:href="@{/adminIndex}">Inicio</a>
+				<a th:href="@{/adminLibros}"><img
+					th:src="@{/images/arrow_back_black_24dp.svg}"
+					class="botonIconoBack" /></a>
 			</p>
 		</div>
 	</main>

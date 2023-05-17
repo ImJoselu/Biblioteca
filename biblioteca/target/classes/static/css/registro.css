@@ -34,6 +34,13 @@ main>div {
 	width: 15%;
 	justify-content: space-evenly;
 }
+label{
+
+grid-row: 4;
+	grid-column: span 2;
+	
+}
+.btnIcono{/* height:100%; */margin-right: 4px;cursor: pointer;margin-top: 7px;}
 
 #seccionRegistro {
 	display: flex !important;
@@ -72,10 +79,7 @@ main>div {
 	grid-column: span 2;
 }
 
-#registroPass {
-	grid-row: 4;
-	grid-column: span 2;
-}
+
 
 #seccionRegistro button {
 	grid-row: 5;

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,9 +9,11 @@
 <title>Administracion de Libros</title>
 <link rel="stylesheet" href="css/general.css">
 <link rel="stylesheet" href="css/generalAdmin.css">
-<link rel="stylesheet" href="css/movil.css">
-<link rel="stylesheet" media="(max-width: 600px)" href="css/tablet.css">
-<link rel="stylesheet" media="(max-width: 800px)" href="css/pc.css">
+<link rel="stylesheet" href="css/adminIndex.css">
+<link rel="stylesheet" media="(max-width: 600px)" href="css/movil.css">
+<link rel="stylesheet" media="(min-width: 600px) and (max-width: 800px)"
+	href="css/tablet.css">
+<link rel="stylesheet" media="(min-width: 800px)" href="css/pc.css">
 <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 
 </head>
@@ -99,12 +102,18 @@
 					<td th:text="${libroDTO.isbn}"></td>
 					<td th:text="${libroDTO.titulo}"></td>
 					<td><a
-						th:href="@{/adminLibros/{isbnLibro}/adminEjemplares (isbnLibro=${libroDTO.isbn})}">Ver
-							ejemplares</a></td>
+						th:href="@{/adminLibros/{isbnLibro}/adminEjemplares (isbnLibro=${libroDTO.isbn})}">📚</a></td>
 
 				</tr>
 			</tbody>
 		</table>
+		<div class="volver">
+			<p>
+				<a th:href="@{/adminIndex}"><img
+					th:src="@{/images/arrow_back_black_24dp.svg}"
+					class="botonIconoBack" /></a>
+			</p>
+		</div>
 	</main>
 	<footer>
 		<div>
