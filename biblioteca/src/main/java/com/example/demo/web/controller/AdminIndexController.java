@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AdminIndexController {
 
-	private static final Logger log = LoggerFactory.getLogger(IndexController.class);
+	private static final Logger log = LoggerFactory.getLogger(AdminIndexController.class);
 
 	@GetMapping("/adminIndex")
 	public ModelAndView index() {
