@@ -11,11 +11,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.example.demo.configuracion.EncriptaPassword;
 import com.example.demo.model.dto.RolDTO;
+import com.example.demo.model.dto.EjemplarDTO;
+import com.example.demo.model.dto.MultaDTO;
 import com.example.demo.model.dto.UsuarioDTO;
+import com.example.demo.service.EjemplarService;
+import com.example.demo.service.MultaService;
 import com.example.demo.service.UsuarioService;
 
 @Controller
@@ -23,6 +27,9 @@ public class UsuarioController {
 
 	@Autowired
 	private UsuarioService usuarioService;
+	
+	@Autowired
+	private MultaService multaService;
 
 	private static final Logger log = LoggerFactory.getLogger(UsuarioController.class);
 
@@ -35,6 +42,23 @@ public class UsuarioController {
 
 		ModelAndView mav = new ModelAndView("adminClientes");
 		mav.addObject("listaClientesDTO", listaClientesDTO);
+
+		return mav;
+	}
+	
+	@GetMapping("/cuenta") // "/usuario/{idUsuario}/cuenta" ¿El usuario va en la ruta o como constante?
+	public ModelAndView cuenta() {
+
+		log.info("EjemplarController - index: Mostramos la gestion de clientes");
+
+		UsuarioDTO usuarioDTO = new UsuarioDTO();
+		usuarioDTO.setId((long) 1); //Temportal: Cuenta del usuario 1.
+		
+		List<MultaDTO> listaMultasDTO = multaService.findAllByUsuario(usuarioDTO);
+
+		ModelAndView mav = new ModelAndView("cuenta");
+		mav.addObject("listaMultasDTO", listaMultasDTO);
+		mav.addObject("usuarioDTO", usuarioDTO);
 
 		return mav;
 	}
