@@ -24,48 +24,84 @@
 
 	</header>
 	<aside id="menuMovil">
-		<img src="images/close_black_24dp.svg">
+		<img src="/images/close_black_24dp.svg">
 		<h3>
-			<a href="index.html">Inicio</a>
+			<a th:href="@{/}">Inicio</a>
 		</h3>
 		<h3>
-			<a href="tienda.html">Libros</a>
+			<a th:href="@{/tienda}">Libros</a>
 		</h3>
 		<h3>
-			<a href="contacto.html">Contacto</a>
+			<a th:href="@{/contacto}">Contacto</a>
 		</h3>
 		<!--solo puede haber 1 de estos dos activo-->
 		<h3>
 			<a href="proximamente.html">Cuenta</a>
 		</h3>
 		<h3>
-			<a href="login.html">Login</a>
+			<a th:href="@{/foro}">Foro</a>
+		</h3>
+		<h3>
+			<a th:href="@{/estadisticas}">Estadisticas</a>
+		</h3>
+		<h3>
+			<a th:href="@{/login}">Login</a>
 		</h3>
 	</aside>
 	<nav>
-
-
 		<h3>
-			<a href="index.html">Inicio</a>
+			<a th:href="@{/}">Inicio</a>
 		</h3>
 		<h3>
-			<a href="tienda.html">Libros</a>
+			<a th:href="@{/tienda}">Libros</a>
 		</h3>
 		<h3>
-			<a href="contacto.html">Contacto</a>
+			<a th:href="@{/contacto}">Contacto</a>
+		</h3>
+		<h3>
+			<a th:href="@{/foro}">Foro</a>
+		</h3>
+		<h3>
+			<a th:href="@{/estadisticas}">Estadisticas</a>
 		</h3>
 		<!--solo puede haber 1 de estos dos activo-->
-		<h3>
-			<a href="proximamente.html">Cuenta</a>
+		<h3 sec:authorize="isAnonymous()">
+			<a th:href="@{/login}">Cuenta</a>
 		</h3>
-		<h3>
-			<a href="login.html">Login</a>
+		<h3 sec:authorize="isAuthenticated()">
+			<a
+				th:href="@{/usuarios/{idUsuario}(idUsuario=${#authentication.name})}">Cuenta</a>
 		</h3>
-		<h3>
-			<a th:href="@{/adminIndex}">Admin</a>
-		</h3>
+		<div sec:authorize="hasRole('ROLE_ADMIN')">
+			<h3>
+				<a th:href="@{/adminIndex}">Admin</a>
+			</h3>
+		</div>
+		<div sec:authorize="isAuthenticated()">
+			<form th:action="@{/logout}" method="post">
+				<h3>
+					<input id="logoutBoton" type="submit" value="Logout" />
+				</h3>
+			</form>
+		</div>
+
+		<!-- SI NO SE HA AUTENTICADO -->
+		<div sec:authorize="isAnonymous()">
+			<h3>
+				<a href="/login">Login</a>
+			</h3>
+
+		</div>
+		<div sec:authorize="isAnonymous()">
+			<h3>
+				<a th:href="@{/registro}">Registro</a>
+			</h3>
+		</div>
+		<div id="google_translate_element" class="google"></div>
+		</div>
+
 		<!---->
-		<img src="images/menu_black_24dp.svg" id="btnMenuMovil">
+		<img th:src="@{/images/menu_black_24dp.svg}" id="btnMenuMovil" />
 	</nav>
 	<main>
 
@@ -80,27 +116,22 @@
 			<div style="height: 500px; width: 600px;"><canvas id="pieChart"></canvas></div>
 			<br><br><br><br><br><br>
 			<div style="height: 500px; width: 600px;"><canvas id="lineChart"></canvas>
-				<!--
-				<select id="selectAños">
+			
+			
+				<select id="selectAnyo">
 					<option value=2021>2021</option>
 					<option value=2022 selected>2022</option>
 					<option value=2023>2023</option>
 				</select>
-				-->
+				
+			
 			</div>
 
 			<iframe
 				src="http://localhost:3000/d-solo/Yo9Q6OL4k/biblioteca-dashboard?orgId=1&refresh=5s&from=1680664521026&to=1680686121026&panelId=2"
 				width="450" height="200" frameborder="0"></iframe>
 
-			<form th:action="@{/estadisticas/{anyo}(anyo=${selectedValue})}" method="get">
-				<select name="selectedValue" th:onchange="this.form.submit()">
-					<option value=2021>2021</option>
-					<option value=2022 selected>2022</option>
-					<option value=2023>2023</option>
-				</select>
-				<button type="submit">Enviar</button>
-			</form>
+
 
 
 		</section>
@@ -159,6 +190,7 @@
 			<script>document.write(new Date().getFullYear());</script>
 		</h4>
 	</footer>
+	<!--
 	<script th:inline="javascript">
 		/*<![CDATA[*/
 		var genPopulares = [[${genPopular}]];
@@ -169,12 +201,12 @@
 		console.log(alqMes);
         /*]]>*/
 	</script>
-
+-->
 
 	<script src="/js/jquery-3.6.3.min.js"></script>
 	<script src="/js/general.js"></script>
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+	<script src="/js/chart.min.js"></script>
+	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>-->
 	<script src="/js/helpers.js"></script>
 	<script src="/js/chartBuilder.js"></script>
 

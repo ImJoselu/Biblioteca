@@ -1,8 +1,13 @@
 /*
-const selectAños = document.getElementById("selectAños");
+async function obtenerDatos() {
+  const respuesta = await fetch('https://ejemplo.com/datos');
+  const datos = await respuesta.json();
+  return datos;
+}
+*/
+const selectAños = document.getElementById("selectAnyo");
 
 llamadaAlquiladosPorMes(selectAños.options[selectAños.selectedIndex].value);
-
 selectAños.addEventListener("change", function () {
   const selectedValue = selectAños.options[selectAños.selectedIndex].value;
   console.log("El valor seleccionado es: " + selectedValue);
@@ -10,7 +15,7 @@ selectAños.addEventListener("change", function () {
   window.lineChart.destroy();
   llamadaAlquiladosPorMes(selectedValue);
 });
-*/
+
 const integerYAxis = {
   scales: {
     y: {
@@ -21,38 +26,6 @@ const integerYAxis = {
     }
   }
 };
-
-
-  try{
-    librosPopulares(libPopulares);
-    console.log(libPopulares);
-    // hacer algo con los datos en formato JSON
-  }
-  catch(error){
-    // manejar el error
-    console.log("Error");
-  };
-  
-  try{
-    generosPopulares(genPopulares);
-    console.log(genPopulares);
-    // hacer algo con los datos en formato JSON
-  }
-  catch(error){
-    // manejar el error
-    console.log("Error");
-  };
-  
-    try{
-		alquileresPorMes(alqMes);
-      	console.log(alqMes);
-    // hacer algo con los datos en formato JSON
-  }
-  catch(error){
-    // manejar el error
-    console.log("Error");
-  };
-
 
 function librosPopulares(datos) {
 
@@ -83,6 +56,79 @@ function librosPopulares(datos) {
     }
 
   )
+}
+
+fetch("http://localhost:8888/ws/estadisticas/librosPopulares")
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Error al obtener los datos');
+    }
+
+    console.log("Estado: " + response.status);
+    return response.json();
+  })
+  .then(data => {
+    librosPopulares(data);
+    console.log(data);
+    // hacer algo con los datos en formato JSON
+  })
+  .catch(error => {
+    // manejar el error
+    console.log("Error");
+  });
+
+
+fetch("http://localhost:8888/ws/estadisticas/generosPopulares")
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Error al obtener los datos');
+    }
+
+    console.log("Estado: " + response.status);
+    return response.json();
+  })
+  .then(data => {
+    generosPopulares(data);
+    console.log(data);
+    // hacer algo con los datos en formato JSON
+  })
+  .catch(error => {
+    // manejar el error
+    console.log("Error");
+  });
+
+
+function llamadaAlquiladosPorMes(valorAño) {
+  const url = new URL("http://localhost:8888/ws/estadisticas/alquiladosPorMes");
+  url.searchParams.set('anyo', parseInt(valorAño));
+
+console.log(url);
+
+  fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Error al obtener los datos');
+      }
+
+      console.log("Estado: " + response.status);
+      return response.json();
+    })
+    .then(data => {
+      alquileresPorMes(data);
+      console.log(data);
+      // hacer algo con los datos en formato JSON
+    })
+    .catch(error => {
+      // manejar el error
+      console.log("Error");
+      console.log(error);
+    });
 }
 
 

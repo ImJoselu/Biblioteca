@@ -54,7 +54,7 @@ public class MultaController {
 
 	// Listar los multas
 	@GetMapping("/usuario/{idUsuario}/adminMultas")
-	public ModelAndView findAllByAlquiler(@PathVariable Long idUsuario) {
+	public ModelAndView findAllByUsuario(@PathVariable Long idUsuario) {
 
 		log.info("MultaController - findAll: Mostramos todos los multas del usuario: " + idUsuario);
 
@@ -62,6 +62,22 @@ public class MultaController {
 		usuarioDTO = usuarioService.findById(idUsuario);
 
 		ModelAndView mav = new ModelAndView("adminMultas");
+		List<MultaDTO> listaMultasDTO = multaService.findAllByUsuario(usuarioDTO);
+		mav.addObject("listaMultasDTO", listaMultasDTO);
+		mav.addObject("usuarioDTO", usuarioDTO);
+		return mav;
+
+	}
+	
+	
+	@GetMapping("/misMultas/{usernameUsuario}")
+	public ModelAndView misMultas(@PathVariable("usernameUsuario") String username) {
+
+		log.info("MultaController - findAll: Mostramos todos los multas del usuario: " + username);
+
+		UsuarioDTO usuarioDTO = usuarioService.findByName(username);
+
+		ModelAndView mav = new ModelAndView("misMultas");
 		List<MultaDTO> listaMultasDTO = multaService.findAllByUsuario(usuarioDTO);
 		mav.addObject("listaMultasDTO", listaMultasDTO);
 		mav.addObject("usuarioDTO", usuarioDTO);

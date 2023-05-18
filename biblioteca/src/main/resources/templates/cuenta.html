@@ -163,6 +163,8 @@
 			</div>
 			<br> 
 			<a class="enlace-boton" th:href="@{/}">Volver</a>
+			
+			<a class="enlace-boton" th:href="@{/misMultas/{idUsuario}(idUsuario=${#authentication.name})}">Mis multas</a>
 		</form>
 	</main>
 	<footer>

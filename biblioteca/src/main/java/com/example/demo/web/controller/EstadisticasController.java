@@ -21,13 +21,14 @@ public class EstadisticasController {
 	
 	private static final Logger log = LoggerFactory.getLogger(EstadisticasController.class);
 	
-	@GetMapping("/estadisticas/{anyo}")
-	public ModelAndView estadisticas(@PathVariable("anyo") Integer anyo) {
+	@GetMapping("/estadisticas")
+	public ModelAndView estadisticas() {
 
 	log.info("IndexController - index: Mostramos la pagina inicial");
 
 	ModelAndView mav = new ModelAndView("estadisticas");
-		
+	
+	/* Van por REST
 	EstadisticaDTO genPopular = estadisticasService.generosPopulares();
 	EstadisticaDTO libPopular = estadisticasService.librosPopulares();
 	EstadisticaDTO alqMes = estadisticasService.alquileresPorMes(anyo);
@@ -36,7 +37,7 @@ public class EstadisticasController {
 	mav.addObject("genPopular", genPopular);
 	mav.addObject("libPopular", libPopular);
 	mav.addObject("alqMes", alqMes);
-	
+	*/
 	return mav;
 
 	}

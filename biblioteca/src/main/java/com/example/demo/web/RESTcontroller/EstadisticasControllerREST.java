@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.dto.EstadisticaDTO;
+import com.example.demo.model.dto.MultaDTO;
 import com.example.demo.service.EstadisticasService;
+import com.example.demo.service.MultaService;
 
 @RestController
 @RequestMapping("/ws/estadisticas")
@@ -23,7 +25,10 @@ import com.example.demo.service.EstadisticasService;
 public class EstadisticasControllerREST {
 
 	@Autowired
-	EstadisticasService estadisticasService;
+	private EstadisticasService estadisticasService;
+	
+	@Autowired
+	private MultaService multaService;
 	
 	@GetMapping("/generosPopulares")
 	public ResponseEntity<EstadisticaDTO> generosPopulares() {
@@ -53,5 +58,23 @@ public class EstadisticasControllerREST {
 	EstadisticaDTO stat = estadisticasService.alquileresPorMes(año);
 
 	return new ResponseEntity<>(stat, HttpStatus.OK);
+	}
+	
+	@GetMapping("/pagarMulta")
+	public ResponseEntity<Boolean> pagarMulta(@RequestParam(name="id") Long id) {
+
+		try {
+			MultaDTO multaDTO = new MultaDTO();
+			multaDTO.setId(id);
+
+			multaService.descartar(multaDTO);
+			return new ResponseEntity<>(true, HttpStatus.OK);
+			
+		} catch (Exception e) {
+			return new ResponseEntity<>(false, HttpStatus.OK);
+		}
+
+
+	
 	}
 }
