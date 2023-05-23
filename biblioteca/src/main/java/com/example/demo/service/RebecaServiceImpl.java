@@ -52,8 +52,12 @@ public class RebecaServiceImpl implements RebecaService{
 			if(libroBuscado == null) {
 				if(edBuscada == null) {
 					editorialRepository.save(libro.getEditorial());
+					libroRepository.save(libro);
+				}else {
+					libro.setEditorial(edBuscada);
+					libroRepository.save(libro);
 				}
-				libroRepository.save(libro);
+				
 			}else {
 				return false;
 			}

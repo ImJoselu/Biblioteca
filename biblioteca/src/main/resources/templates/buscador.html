@@ -154,10 +154,10 @@
 					<td><input type="text" th:field="*{genero}" /></td>
 				</tr>
 			</table>
-			<div style="display: flex;">
+			<div style="display: flex; margin-top: 20px;">
 
-				<input class="enlace-boton" id="enviarForm" type="submit" value="Añadir al catalogo" />
-				<a href="#" onclick="limpiarFormulario();">Limpiar formulario</a>
+				<button style="width:50%;" id="enviarForm" type="submit">Añadir al catalogo</button>
+				<button style="width:50%;" href="#" onclick="limpiarFormulario();">Limpiar formulario</button>
 
 			</div>
 			<br>
@@ -218,7 +218,7 @@
       var formulario = document.getElementById("miFormulario");
       var inputs = formulario.getElementsByTagName("input");
 
-      for (var i = 0; i < inputs.length-1; i++) {
+      for (var i = 0; i < inputs.length; i++) {
         inputs[i].value = "";
       }
     }
