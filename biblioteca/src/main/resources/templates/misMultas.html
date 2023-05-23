@@ -15,6 +15,9 @@
 </head>
 
 <body>
+	
+	<input th:value="${ruta}" id="ruta" hidden></input>
+	
 	<header>
 		<h2>
 			<a th:href="@{/adminIndex}">LogoAdmin</a>
@@ -118,7 +121,10 @@
 							element.innerHTML = '<h3>Pago completado!</h3>';
 */
 							// Or go to another URL:  actions.redirect('thank_you.html');
-							fetch("http://localhost:8888/ws/estadisticas/pagarMulta?id="+id)
+							const pRuta = document.getElementById("ruta");
+							const ruta = pRuta.value;
+							
+							fetch(ruta+"ws/estadisticas/pagarMulta?id="+id)
 								.then(response => {
 									// Manejar la respuesta del servidor
 									if (response.ok) {

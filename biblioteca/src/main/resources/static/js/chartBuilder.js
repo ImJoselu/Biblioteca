@@ -5,7 +5,16 @@ async function obtenerDatos() {
   return datos;
 }
 */
+
+/*<![CDATA[*/
+
 const selectAños = document.getElementById("selectAnyo");
+
+const pRuta = document.getElementById("ruta");
+const ruta = pRuta.value;
+
+
+console.log("Ruta:" + ruta);
 
 llamadaAlquiladosPorMes(selectAños.options[selectAños.selectedIndex].value);
 selectAños.addEventListener("change", function () {
@@ -58,7 +67,7 @@ function librosPopulares(datos) {
   )
 }
 
-fetch("http://localhost:8888/ws/estadisticas/librosPopulares")
+fetch(ruta+"ws/estadisticas/librosPopulares")
   .then(response => {
     if (!response.ok) {
       throw new Error('Error al obtener los datos');
@@ -78,7 +87,7 @@ fetch("http://localhost:8888/ws/estadisticas/librosPopulares")
   });
 
 
-fetch("http://localhost:8888/ws/estadisticas/generosPopulares")
+fetch(ruta+"ws/estadisticas/generosPopulares")
   .then(response => {
     if (!response.ok) {
       throw new Error('Error al obtener los datos');
@@ -99,7 +108,7 @@ fetch("http://localhost:8888/ws/estadisticas/generosPopulares")
 
 
 function llamadaAlquiladosPorMes(valorAño) {
-  const url = new URL("http://localhost:8888/ws/estadisticas/alquiladosPorMes");
+  const url = new URL(ruta+"ws/estadisticas/alquiladosPorMes");
   url.searchParams.set('anyo', parseInt(valorAño));
 
 console.log(url);
