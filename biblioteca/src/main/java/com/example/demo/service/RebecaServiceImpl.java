@@ -29,6 +29,14 @@ import com.example.demo.repository.entity.LibroRebeca;
 
 @Service
 public class RebecaServiceImpl implements RebecaService{
+	
+	
+	@Override
+	public boolean save(LibroRebeca libroRebeca) {
+
+		return false;
+	}
+	
 
 	@Override
 public LibroRebeca performSearch(String isbn13) {
@@ -45,8 +53,8 @@ public LibroRebeca performSearch(String isbn13) {
 
 			LibroRebeca libroRebeca = new LibroRebeca();
 			
-			String isbn = findISBN(bites);
 			String copyRight = findCopy(bites);
+			String isbn = findISBN(bites);
 			String catSource = findCatSource(bites);
 			String UDSN = findUDSN(bites);
 			String author = findAuthor(bites);
@@ -54,9 +62,11 @@ public LibroRebeca performSearch(String isbn13) {
 			String edicion = findEdicion(bites);
 			String publicacion = findPublisher(bites);
 			String fisico = findFisico(bites);
+			String notas = findNotas(bites);
+			String genero = findGenero(bites);
 			
-			libroRebeca.setIsbn13(isbn);
 			libroRebeca.setCopyright(copyRight);
+			libroRebeca.setIsbn13(isbn);
 			libroRebeca.setCatSource(catSource);
 			libroRebeca.setUdsn(UDSN);
 			libroRebeca.setAutor(author);
@@ -64,9 +74,11 @@ public LibroRebeca performSearch(String isbn13) {
 			libroRebeca.setEdicion(edicion);
 			libroRebeca.setPublicacion(publicacion);
 			libroRebeca.setDatosFisicos(fisico);
+			libroRebeca.setNotas(notas);
+			libroRebeca.setGenero(genero);
 			
 			return libroRebeca;
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
@@ -829,6 +841,170 @@ switch (field.getTag()) {
 }
 return false;
 }
+
+
+//------------------------------ NOTES 500 a ----------------------------------------------
+
+
+
+public String findNotas(byte[] bites) throws IOException {
+	InputStream in = new ByteArrayInputStream(bites);
+Map<String, List<Map<String, String>>> result = new TreeMap<>();
+//set up MARC listener
+MarcListener marcListener = new MarcFieldAdapter() {
+@Override
+public void field(MarcField field) {
+	System.out.println(field);
+    Collection<Map<String, String>> values = field.getSubfields().stream()
+            .filter(f -> matchNotesField(field, f))
+            .map(f -> Collections.singletonMap(f.getId(), f.getValue()))
+            .collect(Collectors.toList());
+    if (!values.isEmpty()) {
+        result.putIfAbsent(field.getTag(), new ArrayList<>());
+        List<Map<String, String>> list = result.get(field.getTag());
+        list.addAll(values);
+        result.put(field.getTag(), list);
+    }
+}
+};
+//read MARC file
+Marc.builder()
+    .setInputStream(in)
+    .setMarcListener(marcListener)
+    .build()
+    .writeCollection();
+//collect ISSNs
+List<String> issns = result.values().stream()
+    .map(l -> l.stream()
+            .map(m -> m.values().iterator().next())
+            .collect(Collectors.toList()))
+    .flatMap(List::stream)
+    .distinct()
+    .collect(Collectors.toList());
+
+for (String string : issns) {
+		System.out.println(string);
+	}
+
+in.close();
+
+if(issns.isEmpty()) {
+	return null;
+}else {
+	StringBuilder stringBuilder = new StringBuilder();
+	for (String string : issns) {
+		stringBuilder.append(string);
+	}
+	return stringBuilder.toString();
+}
+
+}
+
+private static boolean matchNotesField(MarcField field, MarcField.Subfield subfield) {
+switch (field.getTag()) {
+//011-> ISSN
+//020-> ISBN
+//245-> Title Statement
+//017 - Copyright or Legal Deposit Number (R)
+//100 - Main Entry - Personal Name (Autor)
+//260 - Publication, Distribution, etc. (Imprint)
+//490 - coleccion + version (v2)
+//700 - Traduccion
+case "500": {
+    return "a".equals(subfield.getId());
+}
+case "421":
+case "451":
+case "452":
+case "488":
+    return "x".equals(subfield.getId());
+}
+return false;
+}
+
+
+//------------------------------ GENRE 655 a ----------------------------------------------
+
+
+
+public String findGenero(byte[] bites) throws IOException {
+	InputStream in = new ByteArrayInputStream(bites);
+Map<String, List<Map<String, String>>> result = new TreeMap<>();
+//set up MARC listener
+MarcListener marcListener = new MarcFieldAdapter() {
+@Override
+public void field(MarcField field) {
+	System.out.println(field);
+  Collection<Map<String, String>> values = field.getSubfields().stream()
+          .filter(f -> matchGenreField(field, f))
+          .map(f -> Collections.singletonMap(f.getId(), f.getValue()))
+          .collect(Collectors.toList());
+  if (!values.isEmpty()) {
+      result.putIfAbsent(field.getTag(), new ArrayList<>());
+      List<Map<String, String>> list = result.get(field.getTag());
+      list.addAll(values);
+      result.put(field.getTag(), list);
+  }
+}
+};
+//read MARC file
+Marc.builder()
+  .setInputStream(in)
+  .setMarcListener(marcListener)
+  .build()
+  .writeCollection();
+//collect ISSNs
+List<String> issns = result.values().stream()
+  .map(l -> l.stream()
+          .map(m -> m.values().iterator().next())
+          .collect(Collectors.toList()))
+  .flatMap(List::stream)
+  .distinct()
+  .collect(Collectors.toList());
+
+for (String string : issns) {
+		System.out.println(string);
+	}
+
+in.close();
+
+if(issns.isEmpty()) {
+	return null;
+}else {
+	StringBuilder stringBuilder = new StringBuilder();
+	for (String string : issns) {
+		stringBuilder.append(string);
+	}
+	return stringBuilder.toString();
+}
+
+}
+
+private static boolean matchGenreField(MarcField field, MarcField.Subfield subfield) {
+switch (field.getTag()) {
+//011-> ISSN
+//020-> ISBN
+//245-> Title Statement
+//017 - Copyright or Legal Deposit Number (R)
+//100 - Main Entry - Personal Name (Autor)
+//260 - Publication, Distribution, etc. (Imprint)
+//490 - coleccion + version (v2)
+//700 - Traduccion
+case "655": {
+  return "a".equals(subfield.getId());
+}
+case "421":
+case "451":
+case "452":
+case "488":
+  return "x".equals(subfield.getId());
+}
+return false;
+}
+
+
+
+
 
 
 

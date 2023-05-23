@@ -6,4 +6,6 @@ public interface RebecaService {
 
 	LibroRebeca performSearch(String isbn13);
 
+	boolean save(LibroRebeca libroRebeca);
+
 }

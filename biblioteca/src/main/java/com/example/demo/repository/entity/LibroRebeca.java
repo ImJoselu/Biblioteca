@@ -2,6 +2,12 @@ package com.example.demo.repository.entity;
 
 import java.util.Set;
 
+import org.springframework.web.multipart.MultipartFile;
+
+import com.example.demo.model.dto.EditorialDTO;
+import com.example.demo.model.dto.EjemplarDTO;
+import com.example.demo.model.dto.LibroDTO;
+
 import lombok.Data;
 
 @Data
@@ -16,11 +22,32 @@ public class LibroRebeca {
 	private String edicion;			//250 $a 		Edicion
 	private String publicacion; 	//260 $abc		Ubicacion + Editorial + año publicacion
 	private String datosFisicos; 	//300 $ac   	Paginas + tamaño
+	private String notas;			//500 $a		Notas Pertinentes
+	private String genero;			//655 $a		genero
+	
+	private MultipartFile imagen;
 	
 	
-	
-	
+	//Muy basico, podria añadir editorial, genero, autor...
+	public static Libro convertToLibro(LibroRebeca libroRebeca) {
+		
+		Libro libro = new Libro();
+		libro.setIsbn(libroRebeca.getIsbn13());
+		libro.setTitulo(libroRebeca.getTitulo());
+		
+		Ejemplar ejemplar = new Ejemplar();
+		ejemplar.setLibro(libro);
+		ejemplar.setLocalizacion(libroRebeca.getUdsn());
+		ejemplar.setPrestado(false);
+		
+		libro.getListaEjemplares().add(ejemplar);
+
+		return libro;
+	}
 }
+
+
+
 
 /*
 001$$ES-MaREB00875036-3
