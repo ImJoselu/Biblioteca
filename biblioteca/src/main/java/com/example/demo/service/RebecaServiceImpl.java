@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.xbib.marc.Marc;
 import org.xbib.marc.MarcField;
@@ -25,16 +26,45 @@ import org.yaz4j.Record;
 import org.yaz4j.ResultSet;
 import org.yaz4j.exception.ZoomException;
 
+import com.example.demo.repository.dao.EditorialRepository;
+import com.example.demo.repository.dao.LibroRepository;
+import com.example.demo.repository.entity.Editorial;
+import com.example.demo.repository.entity.Libro;
 import com.example.demo.repository.entity.LibroRebeca;
 
 @Service
 public class RebecaServiceImpl implements RebecaService{
 	
+	@Autowired
+	private LibroRepository libroRepository;
+	
+	@Autowired
+	private EditorialRepository editorialRepository;
 	
 	@Override
 	public boolean save(LibroRebeca libroRebeca) {
+		
+		try {
+			Libro libro = LibroRebeca.convertToLibro(libroRebeca);
+			
+			Libro libroBuscado = libroRepository.findByISBN(libroRebeca.getIsbn13());
+			Editorial edBuscada = editorialRepository.findByNombre(libroRebeca.getPublicacion());
+			if(libroBuscado == null) {
+				if(edBuscada == null) {
+					editorialRepository.save(libro.getEditorial());
+				}
+				libroRepository.save(libro);
+			}else {
+				return false;
+			}
+			
+			return true;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 
-		return false;
+		
 	}
 	
 

@@ -36,10 +36,16 @@ public class LibroRebeca {
 		libro.setTitulo(libroRebeca.getTitulo());
 		
 		Ejemplar ejemplar = new Ejemplar();
-		ejemplar.setLibro(libro);
 		ejemplar.setLocalizacion(libroRebeca.getUdsn());
 		ejemplar.setPrestado(false);
+		ejemplar.setLibro(libro);
 		
+		Editorial editorial = new Editorial();
+		editorial.setNombre(libroRebeca.getPublicacion());
+		editorial.getListaLibros().add(libro);
+		
+		
+		libro.setEditorial(editorial);
 		libro.getListaEjemplares().add(ejemplar);
 
 		return libro;

@@ -67,16 +67,36 @@ public class RebecaController {
 
 	}
 	
-	@PostMapping("/usuario/{idUsuario}/adminAlquiler/{idAlquiler}/adminMultas/save")
+	@PostMapping("/buscador/save")
 	public ModelAndView saveLibroRebeca(@ModelAttribute("libroRebeca") LibroRebeca libroRebeca) {
 
 		log.info("RebecaController - save: Salvando el libro: " + libroRebeca.getIsbn13());
-
+		ModelAndView mav = new ModelAndView();
 		// invocamos la operacion save a la capa de servicio de multa
-		boolean guardado = rebecaService.save(libroRebeca);
-		// Retornamos a la lista de multas del usuario
-		ModelAndView mav = new ModelAndView("buscador");
-		mav.addObject("guardado", guardado);
+		
+		System.out.println("Longitud: " + libroRebeca.getIsbn13().length());
+
+		boolean seguir = !libroRebeca.getIsbn13().isEmpty() && !libroRebeca.getTitulo().isEmpty()
+				 && !(libroRebeca.getIsbn13().length() != 17);
+		
+		if (!seguir) {
+			mav.addObject("libroRebeca", libroRebeca);
+			mav.addObject("error", true);
+			mav.setViewName("buscador");
+		} else {
+			
+			boolean guardado = rebecaService.save(libroRebeca);
+			
+			if(guardado == false) {
+				mav.addObject("libroRebeca", libroRebeca);
+				mav.addObject("repetido", true);
+				mav.setViewName("buscador");
+			}
+			
+			mav.addObject("guardado", true);
+			mav.setViewName("buscador");
+		}
+		
 		return mav;
 	}
 
