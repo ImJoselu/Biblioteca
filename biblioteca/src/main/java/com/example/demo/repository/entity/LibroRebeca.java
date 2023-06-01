@@ -1,5 +1,6 @@
 package com.example.demo.repository.entity;
 
+import java.io.File;
 import java.util.Set;
 
 import org.springframework.web.multipart.MultipartFile;

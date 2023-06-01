@@ -1,0 +1,25 @@
+td:nth-child(even){
+	padding-right: 20px;
+}
+
+td input{
+
+	width: 100%;
+}
+
+
+
+#divImg img{
+		position: relative;
+	max-width: 100%;
+	object-fit:cover;
+	    
+}
+
+#divImg{
+	position: relative;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,9 +1,16 @@
 package com.example.demo.service;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -15,6 +22,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 import org.xbib.marc.Marc;
 import org.xbib.marc.MarcField;
 import org.xbib.marc.MarcFieldAdapter;
@@ -41,10 +50,27 @@ public class RebecaServiceImpl implements RebecaService{
 	@Autowired
 	private EditorialRepository editorialRepository;
 	
+	public void guardarArchivo(MultipartFile archivo, String nombreArchivo) throws IOException {
+	    String rutaCompleta = nombreArchivo;
+	    File destinationFile = new File(rutaCompleta);
+	 
+
+		
+        // Guarda el archivo en el servidor
+       
+        Path filePath = new File("src/main/resources/static/imagenesLibros/"+nombreArchivo).toPath();
+        Files.copy(archivo.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+
+		
+		
+	}
+	
 	@Override
 	public boolean save(LibroRebeca libroRebeca) {
 		
 		try {
+			
+			
 			Libro libro = LibroRebeca.convertToLibro(libroRebeca);
 			
 			Libro libroBuscado = libroRepository.findByISBN(libroRebeca.getIsbn13());
@@ -53,9 +79,11 @@ public class RebecaServiceImpl implements RebecaService{
 				if(edBuscada == null) {
 					editorialRepository.save(libro.getEditorial());
 					libroRepository.save(libro);
+					guardarArchivo(libroRebeca.getImagen(), libroRebeca.getIsbn13()+".jpg");
 				}else {
 					libro.setEditorial(edBuscada);
 					libroRepository.save(libro);
+					guardarArchivo(libroRebeca.getImagen(), libroRebeca.getIsbn13()+".jpg");
 				}
 				
 			}else {

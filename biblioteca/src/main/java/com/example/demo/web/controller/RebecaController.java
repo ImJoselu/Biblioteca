@@ -77,7 +77,7 @@ public class RebecaController {
 		System.out.println("Longitud: " + libroRebeca.getIsbn13().length());
 
 		boolean seguir = !libroRebeca.getIsbn13().isEmpty() && !libroRebeca.getTitulo().isEmpty()
-				 && !(libroRebeca.getIsbn13().length() != 17);
+				 && !(libroRebeca.getIsbn13().length() != 17 && !(libroRebeca.getTitulo().length() >= 100) && !(libroRebeca.getImagen() == null));
 		
 		if (!seguir) {
 			mav.addObject("libroRebeca", libroRebeca);

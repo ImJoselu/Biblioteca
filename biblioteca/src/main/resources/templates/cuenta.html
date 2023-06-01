@@ -162,9 +162,15 @@
 			<a th:if="${usuarioDTO.es_administrador} == true" class="enlace-boton" id="enviarForm" th:href="@{/usuarios/{idUsuario}/cancelacionCorreo(idUsuario=${#authentication.name})}" style="margin-left: 10px;">Cancelar Plan</a>
 			</div>
 			<br> 
-			<a class="enlace-boton" th:href="@{/}">Volver</a>
+			<a  id="enviarForm" class="enlace-boton" th:href="@{/misMultas/{idUsuario}(idUsuario=${#authentication.name})}">Mis multas</a> <br>
+					<div class="volver">
+			<p>
+				<a th:href="@{/}"><img
+						th:src="@{/images/arrow_back_black_24dp.svg}" class="botonIconoBack" /></a>
+			</p>
+		</div>
 			
-			<a class="enlace-boton" th:href="@{/misMultas/{idUsuario}(idUsuario=${#authentication.name})}">Mis multas</a>
+			
 		</form>
 	</main>
 	<footer>
