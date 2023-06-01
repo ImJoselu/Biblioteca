@@ -47,7 +47,8 @@ function librosPopulares(datos) {
         datasets: [
           {
             label: 'Veces Alquilado en el ultimo Año',
-            data: datos.data
+            data: datos.data,
+            backgroundColor: 'rgba(81, 55, 25, 0.8)'
           }
         ]
       },

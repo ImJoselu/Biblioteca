@@ -9,6 +9,7 @@
 
 	<link rel="stylesheet" th:href="@{/css/general.css}" />
 	<link rel="stylesheet" th:href="@{/css/generalAdmin.css}" />
+	<link rel="stylesheet" th:href="@{/css/estadisticas.css}" />
 	<link rel="stylesheet" media="(max-width: 600px)" th:href="@{/css/movil.css}" />
 	<link rel="stylesheet" media="(min-width: 600px) and (max-width: 800px)" th:href="@{/css/tablet.css}" />
 	<link rel="stylesheet" media="(min-width: 800px)" th:href="@{/css/pc.css}" />
@@ -108,19 +109,18 @@
 	</nav>
 	<main>
 
-		<section>
+			
 			<h1>Estadisticas</h1>
-			<input id="genPopular" th:value="${genPopular}" hidden>
-			<p th:text="${genPopular}" hidden></p>
-			<p th:text="${libPopular}" hidden></p>
-			<p th:text="${alqMes}" hidden></p>
+			
+		<section class="grid-container">
+			
 
-			<div style="width: 800px;"><canvas id="barChart"></canvas></div>
-			<div style="height: 500px; width: 600px;"><canvas id="pieChart"></canvas></div>
-			<br><br><br><br><br><br>
-			<div style="height: 500px; width: 600px;"><canvas id="lineChart"></canvas>
+
+			<div id = "div1" class="grid-item" ><canvas id="barChart"></canvas></div>
+			<div id = "div2" class="grid-item" ><canvas id="pieChart"></canvas></div>
+			<div id = "div3" class="grid-item" ><canvas id="lineChart"></canvas>
 			
-			
+			<br>
 				<select id="selectAnyo">
 					<option value=2021>2021</option>
 					<option value=2022 selected>2022</option>
@@ -129,12 +129,6 @@
 				
 			
 			</div>
-
-			<iframe
-				src="http://localhost:3000/d-solo/Yo9Q6OL4k/biblioteca-dashboard?orgId=1&refresh=5s&from=1680664521026&to=1680686121026&panelId=2"
-				width="450" height="200" frameborder="0"></iframe>
-
-
 
 
 		</section>

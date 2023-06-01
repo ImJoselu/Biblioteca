@@ -16,6 +16,7 @@
 <link rel="stylesheet" media="(min-width: 800px)"
 	th:href="@{/css/pc.css}" />
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body>
@@ -92,7 +93,8 @@
 	<main>
 
 		<form th:action="@{/buscador}" method="post">
-			<input type="text" name="isbn" />
+			<input type="text" name="isbn" id="contenedorIsbn"/>
+			<p id="resultado">Aquí aparecerá el código</p>
 			<button type="submit">Enviar</button>
 		</form>
 
@@ -303,6 +305,8 @@
 	<script th:src="@{/js/traduccion.js}"></script>
 	<script th:src="@{/js/jquery-3.6.3.min.js}"></script>
 	<script th:src="@{/js/admin.js}"></script>
+	<script src="https://unpkg.com/quagga@0.12.1/dist/quagga.min.js"></script>
+	<script th:src="@{/js/lectorBarras.js}"></script>
 </body>
 
 </html>
