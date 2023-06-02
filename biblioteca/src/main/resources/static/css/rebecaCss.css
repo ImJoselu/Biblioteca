@@ -10,7 +10,7 @@ td input{
 
 
 #divImg img{
-		position: relative;
+	position: relative;
 	max-width: 100%;
 	object-fit:cover;
 	    
@@ -22,4 +22,15 @@ td input{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+td{
+	width: 300px;
+
+}
+
+#tdImagen{
+	
+	max-width: 300px;
+	max-height: 300px;
 }
