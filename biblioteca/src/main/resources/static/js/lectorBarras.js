@@ -1,6 +1,6 @@
 
 document.addEventListener("DOMContentLoaded", () => {
-	const $resultados = document.querySelector("#resultado");
+	const $resultados = document.querySelector("#contenedorIsbn");
 	Quagga.init({
 		inputStream: {
 			constraints: {
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 
 	Quagga.onDetected((data) => {
-		$resultados.textContent = data.codeResult.code;
+		$resultados.value = data.codeResult.code;
 		// Imprimimos todo el data para que puedas depurar
 		console.log(data);
 	});
