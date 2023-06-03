@@ -27,11 +27,11 @@ import lombok.ToString;
 public class Libro {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String isbn;
 
 	private String titulo;
 
+	@ToString.Exclude
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "libro")
 	private Set<Ejemplar> listaEjemplares;
 
@@ -51,6 +51,7 @@ public class Libro {
 	@ToString.Exclude
 	private Set<Genero> listaGeneros;
 
+	@ToString.Exclude
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "libro")
 	private Set<LibroEscribeAutor> listaLibroEscribeAutor;
 

@@ -108,7 +108,7 @@
 				<tr>
 					<th>Titulo</th>
 					<th>ISBN</th>
-					<th>Fecha Incio</th>
+					<th>Fecha Inicio</th>
 					<th>Fecha Limite</th>
 					<th>Fecha Entrega</th>
 					<th>Multas</th>
@@ -118,9 +118,9 @@
 				<tr th:each="alquilerDTO :${listaAlquileresDTO}">
 					<td th:text="${alquilerDTO.ejemplarDTO.libroDTO.titulo}"></td>
 					<td th:text="${alquilerDTO.ejemplarDTO.libroDTO.isbn}"></td>
-					<td th:text="${alquilerDTO.fecha_inicio}"></td>
-					<td th:text="${alquilerDTO.fecha_limite}"></td>
-					<td th:text="${alquilerDTO.fecha_entrega}"></td>
+					<td th:text="${#dates.format(alquilerDTO.fecha_inicio, 'dd/MM/yyyy HH:mm:ss')}"></td>
+					<td th:text="${#dates.format(alquilerDTO.fecha_limite, 'dd/MM/yyyy')}"></td>
+					<td th:text="${#dates.format(alquilerDTO.fecha_entrega, 'dd/MM/yyyy HH:mm:ss')}"></td>
 					<td><a href="adminMultas.html"
 						th:href="@{/usuario/{idUsuario}/adminAlquiler/{idAlquiler}/adminMultas (idUsuario=${usuarioDTO.id} , idAlquiler=${alquilerDTO.id}) }"><img
 							th:src="@{/images/money_off_csred_black_24dp.svg}"

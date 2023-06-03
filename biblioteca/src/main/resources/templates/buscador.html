@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Administracion de Multas</title>
+<link rel="stylesheet" th:href="@{/css/general.css}" />
+<link rel="stylesheet" th:href="@{/css/generalAdmin.css}" />
+<link rel="stylesheet" th:href="@{/css/rebecaCss.css}" />
+<link rel="stylesheet" media="(max-width: 600px)"
+	th:href="@{/css/movil.css}" />
+<link rel="stylesheet" media="(min-width: 600px) and (max-width: 800px)"
+	th:href="@{/css/tablet.css}" />
+<link rel="stylesheet" media="(min-width: 800px)"
+	th:href="@{/css/pc.css}" />
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<body>
+	<header>
+		<h2>
+			<a th:href="@{/adminIndex}">LogoAdmin</a>
+		</h2>
+		<!--Esto será luego una imagen o algo asi-->
+
+
+	</header>
+	<aside id="menuMovil">
+		<img src="images/close_black_24dp.svg">
+		<h3>
+			<a th:href="@{/adminContacto}">Contacto</a>
+		</h3>
+		<h3>
+			<a th:href="@{/adminClientes}">Cliente</a>
+		</h3>
+		<h3>
+			<a th:href="@{/adminLibros}">Libro</a>
+		</h3>
+	</aside>
+	<nav>
+		<h3>
+			<a th:href="@{/}">Inicio</a>
+		</h3>
+		<h3>
+			<a th:href="@{/tienda}">Libros</a>
+		</h3>
+		<h3>
+			<a th:href="@{/contacto}">Contacto</a>
+		</h3>
+		<!--solo puede haber 1 de estos dos activo-->
+		<h3 sec:authorize="isAnonymous()">
+			<a th:href="@{/login}">Cuenta</a>
+		</h3>
+		<h3 sec:authorize="isAuthenticated()">
+			<a
+				th:href="@{/usuarios/{idUsuario}(idUsuario=${#authentication.name})}">Cuenta</a>
+		</h3>
+		<div sec:authorize="hasRole('ROLE_ADMIN')">
+			<h3>
+				<a th:href="@{/adminIndex}">Admin</a>
+			</h3>
+		</div>
+		<div sec:authorize="isAuthenticated()">
+			<form th:action="@{/logout}" method="post">
+				<h3>
+					<input id="logoutBoton" type="submit" value="Logout" />
+				</h3>
+			</form>
+		</div>
+
+		<!-- SI NO SE HA AUTENTICADO -->
+		<div sec:authorize="isAnonymous()">
+			<h3>
+				<a href="/login">Login</a>
+			</h3>
+
+		</div>
+		<div sec:authorize="isAnonymous()">
+			<h3>
+				<a th:href="@{/registro}">Registro</a>
+			</h3>
+		</div>
+		<div id="google_translate_element" class="google"></div>
+		</div>
+
+		<!---->
+		<img th:src="@{/images/menu_black_24dp.svg}" id="btnMenuMovil" />
+	</nav>
+
+	<main>
+
+		<form th:action="@{/buscador}" method="post">
+			<input type="text" name="isbn" id="contenedorIsbn"/>
+			<button type="submit">Enviar</button>
+		</form>
+
+		<h1 th:unless="${libroRebeca}">Lo sentimos no hemos encontrado el
+			libro que buscas</h1>
+
+		<form id="miFormulario" th:if="${libroRebeca}" method="POST" enctype="multipart/form-data"
+			th:action="@{/buscador/save}" th:object="${libroRebeca}">
+			<table>
+				<tr>
+					<td
+						title="El ISBN-13 (International Standard Book Number) es un identificador único de &#10;trece dígitos utilizado para identificar de manera única libros y publicaciones relacionadas.">
+						<label for="nombre">ISBN-13:</label>
+						<span id="obgl">*</span>
+					</td>
+					<td><input type="text" id="nombre" th:field="*{isbn13}"
+						required /></td>
+					<p th:if="${error}" style="color: red;">El ISBN debe tener 17
+						caracteres entre numeros y guiones y el titulo un maximo de 100 caracteres</p>
+
+				</tr>
+				<tr>
+					<td
+						title="El número de depósito legal se utiliza para identificar y catalogar la obra &#10;en el sistema de la institución encargada del depósito legal.">
+						<label for="nombre">Legal deposit number:</label>
+					</td>
+					<td><input type="text" id="id" th:field="*{copyright}" /></td>
+				</tr>
+
+				<tr>
+					<td
+						title="El cataloging source de un libro se refiere a la entidad o institución responsable &#10;de proporcionar la información de catalogación del libro.">
+						<label for="apellidos">Cataloging source:</label>
+					</td>
+					<td><input type="text" id="apellidos" th:field="*{catSource}" /></td>
+				</tr>
+				<tr>
+					<td
+						title="El Universal Decimal Classification (UDC) es un sistema de clasificación bibliotecaria &#10;que se utiliza para organizar y clasificar el conocimiento en diferentes áreas.&#10;Cada tema o área de conocimiento se identifica con un número específico en el sistema UDC.">
+						<label for="email">UDSN:</label>
+					</td>
+					<td><input type="text" id="email" th:field="*{udsn}" /></td>
+				</tr>
+				<tr>
+					<td title="Autor de la obra."><label for="username">Autor:</label></td>
+					<td><input type="text" id="username" th:field="*{autor}" /></td>
+				</tr>
+				<tr>
+					<td title="Título de la obra."><label for="nombre">Titulo:</label><span id="obgl">*</span></td>
+					<td><input type="text" id="password" th:field="*{titulo}"
+						required /></td>
+				</tr>
+				<tr>
+					<td title="Edición de la obra."><label for="nombre">Edición:</label></td>
+					<td><input type="text" id="esadmin" th:field="*{edicion}" /></td>
+				</tr>
+				<tr>
+					<td
+						title="Localización de la editorial, nombre de la editorial y año de publicación."><label
+						for="nif">Publicación:</label></td>
+					<td><input type="text" id="nif" th:field="*{publicacion}" /></td>
+				</tr>
+				<tr>
+					<td title="Numero de páginas y tamaño físico del libro."><label
+						for="nombre">Datos físicos:</label></td>
+					<td><input type="text" th:field="*{datosFisicos}" /></td>
+				</tr>
+				<tr>
+					<td title="Anotaciones relevantes sobre la obra."><label
+						for="nombre">Notas:</label></td>
+					<td><input type="text" th:field="*{notas}" /></td>
+				</tr>
+				<tr>
+					<td title="Género de la obra."><label for="nombre">Género:</label></td>
+					<td><input type="text" th:field="*{genero}" /></td>
+				</tr>
+				<tr>
+					<td>
+						<div class="form-group">
+							<label for="exampleFormControlSelect2">Imagen</label><span id="obgl">*</span><br><br>
+							<input type="file" class="form-control-file" id="file" th:field="*{imagen}" required>
+						</div>
+					</td>
+
+					<td id="tdImagen">
+						<div id="divImg">
+							<img id="imagenProducto" th:src="'/imagenesLibros/' + *{isbn13} + '.jpg'" alt="">
+
+						</div>
+					</td>
+				</tr>
+
+
+
+
+
+
+
+
+			</table>
+			<div style="display: flex; margin-top: 20px;">
+
+				<button style="width: 50%;" id="enviarForm" type="submit">Añadir
+					al catalogo</button>
+				<button style="width: 50%;" href="#" onclick="limpiarFormulario();">Limpiar
+					formulario</button>
+
+			</div>
+			<br>
+
+		</form>
+
+
+
+
+
+		<a th:href="@{/buscador}">Abrir formulario</a>
+		<div class="volver">
+			<p>
+				Volver a Admin: <a th:href="@{/adminIndex}"><img
+					th:src="@{/images/arrow_back_black_24dp.svg}"
+					class="botonIconoBack" /></a>
+			</p>
+		</div>
+	</main>
+	<footer>
+		<div>
+			<div>
+				<p>En la Biblioteca, nos esforzamos por brindar un acceso fácil
+					y conveniente a una amplia selección de libros y recursos.</p>
+			</div>
+			<div>
+				<p>Nuestro compromiso es brindar una experiencia de lectura
+					inolvidable</p>
+			</div>
+			<div>
+				<p>Nuestro equipo de bibliotecarios trabaja incansablemente para
+					ofrecerte los mejores recursos</p>
+			</div>
+			<div>
+				<p>Gracias por formar parte de esta comunidad de lectores</p>
+			</div>
+		</div>
+		<h4>©Bibliotecarios S.L. 2022/2023</h4>
+	</footer>
+	
+	<script>
+    function limpiarFormulario() {
+      var formulario = document.getElementById("miFormulario");
+      var inputs = formulario.getElementsByTagName("input");
+	  let imagen = document.getElementById("imagenProducto");
+		
+	  imagen.src = "";
+      for (var i = 0; i < inputs.length; i++) {
+        inputs[i].value = "";
+      }
+    }
+    
+    var extension = /\.jpg$/i;
+    let filesInput = document.getElementById("file");
+    let imagen = document.getElementById("imagenProducto");
+    filesInput.addEventListener("change", function (e) {
+        let archivo = this.files[0];
+        console.log(archivo.type);
+        if (archivo.type.match("image.jpeg") && extension.test(archivo.name)) {
+            let tmpPath = URL.createObjectURL(archivo);
+            imagen.setAttribute("src", tmpPath);
+        } else {
+        	this.value = null;
+            alert("No es un archivo de imagen jpg");
+            
+        }
+
+    });
+    
+  </script>
+
+	<script th:if="${guardado}">
+		Swal.fire({
+			title: "Libro guardado",
+			text: "Libro guardado en la base de datos con exito",
+			icon: "success",
+			confirmButtonText: "Continuar"
+
+		});
+		
+		
+		let file = filesInput.files[0]; 
+		
+		
+	</script>
+
+	<script th:if="${repetido}">
+		Swal.fire({
+			title: "Libro existente",
+			text: "El ISBN introducido ya esta presente en la base de datos",
+			icon: "error",
+			confirmButtonText: "Continuar"
+
+
+		})
+	</script>
+
+	
+
+	<script type="text/javascript"
+		src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+	<script th:src="@{/js/traduccion.js}"></script>
+	<script th:src="@{/js/jquery-3.6.3.min.js}"></script>
+	<script th:src="@{/js/admin.js}"></script>
+	<script src="https://unpkg.com/quagga@0.12.1/dist/quagga.min.js"></script>
+	<script th:src="@{/js/lectorBarras.js}"></script>
+</body>
+
+</html>

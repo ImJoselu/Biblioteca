@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Administracion de Multas</title>
+	<link rel="stylesheet" th:href="@{/css/general.css}" />
+	<link rel="stylesheet" th:href="@{/css/generalAdmin.css}" />
+	<link rel="stylesheet" media="(max-width: 600px)" th:href="@{/css/movil.css}" />
+	<link rel="stylesheet" media="(min-width: 600px) and (max-width: 800px)" th:href="@{/css/tablet.css}" />
+	<link rel="stylesheet" media="(min-width: 800px)" th:href="@{/css/pc.css}" />
+
+</head>
+
+<body>
+	
+	<input th:value="${ruta}" id="ruta" hidden></input>
+	
+	<header>
+		<h2>
+			<a th:href="@{/adminIndex}">LogoAdmin</a>
+		</h2>
+		<!--Esto será luego una imagen o algo asi-->
+
+
+	</header>
+	<aside id="menuMovil">
+		<img src="images/close_black_24dp.svg">
+		<h3>
+			<a th:href="@{/adminContacto}">Contacto</a>
+		</h3>
+		<h3>
+			<a th:href="@{/adminClientes}">Cliente</a>
+		</h3>
+		<h3>
+			<a th:href="@{/adminLibros}">Libro</a>
+		</h3>
+	</aside>
+	<nav>
+		<h3>
+			<a th:href="@{/}">Inicio</a>
+		</h3>
+		<h3>
+			<a th:href="@{/tienda}">Libros</a>
+		</h3>
+		<h3>
+			<a th:href="@{/contacto}">Contacto</a>
+		</h3>
+		<!--solo puede haber 1 de estos dos activo-->
+		<h3 sec:authorize="isAnonymous()">
+			<a th:href="@{/login}">Cuenta</a>
+		</h3>
+		<h3 sec:authorize="isAuthenticated()">
+			<a th:href="@{/usuarios/{idUsuario}(idUsuario=${#authentication.name})}">Cuenta</a>
+		</h3>
+		<div sec:authorize="hasRole('ROLE_ADMIN')">
+			<h3>
+				<a th:href="@{/adminIndex}">Admin</a>
+			</h3>
+		</div>
+		<div sec:authorize="isAuthenticated()">
+			<form th:action="@{/logout}" method="post">
+				<h3>
+					<input id="logoutBoton" type="submit" value="Logout" />
+				</h3>
+			</form>
+		</div>
+
+		<!-- SI NO SE HA AUTENTICADO -->
+		<div sec:authorize="isAnonymous()">
+			<h3>
+				<a href="/login">Login</a>
+			</h3>
+
+		</div>
+		<div sec:authorize="isAnonymous()">
+			<h3>
+				<a th:href="@{/registro}">Registro</a>
+			</h3>
+		</div>
+		<div id="google_translate_element" class="google"></div>
+		</div>
+
+		<!---->
+		<img th:src="@{/images/menu_black_24dp.svg}" id="btnMenuMovil" />
+	</nav>
+
+	<main>
+
+		<script
+			src="https://www.paypal.com/sdk/js?client-id=AWrMorxHhDLEbXXz_f__N4tRbIJgr-tm31qG-umQkW2ddHASWimtsgeRay02P61fsI1BfGZ7hjRKwl3p&enable-funding=venmo&currency=EUR"
+			data-sdk-integration-source="button-factory"></script>
+		<script>
+			function initPayPalButton(precio, id) {
+				paypal.Buttons({
+					style: {
+						shape: 'pill',
+						color: 'gold',
+						layout: 'horizontal',
+						label: 'paypal',
+
+					},
+
+					createOrder: function (data, actions) {
+						return actions.order.create({
+							purchase_units: [{"amount": {"currency_code": "EUR", "value": precio}}]
+						});
+					},
+
+					onApprove: function (data, actions) {
+						return actions.order.capture().then(function (orderData) {
+
+							// Full available details
+							console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+/*
+							// Show a success message within this page, e.g.
+							const element = document.getElementById('paypal-button-container' + id);
+							element.innerHTML = '';
+							element.innerHTML = '<h3>Pago completado!</h3>';
+*/
+							// Or go to another URL:  actions.redirect('thank_you.html');
+							const pRuta = document.getElementById("ruta");
+							const ruta = pRuta.value;
+							
+							fetch(ruta+"ws/estadisticas/pagarMulta?id="+id)
+								.then(response => {
+									// Manejar la respuesta del servidor
+									if (response.ok) {
+										
+										if(response.json().value != false){
+											Swal.fire({
+												title: "Biblioteca",
+												text: "Operacion completada",
+												icon: "success",
+												confirmButtonText: "Continuar"
+												
+												
+											}).then((result) => {
+												
+												location.reload();
+											})
+										}
+										
+										
+										
+									} else {
+										throw new Error('Error en la respuesta del servidor');
+									}
+								})
+								.then(data => {
+									// Hacer algo con los datos obtenidos
+									console.log(data);
+								})
+								.catch(error => {
+									// Manejar errores
+									console.error('Error:', error);
+								});
+
+						});
+					},
+
+					onError: function (err) {
+						console.log(err);
+					}
+				}).render('#paypal-button-container' + id);
+			}
+
+		</script>
+
+
+		<table>
+			<thead>
+				<tr>
+					<th>Fecha</th>
+					<th>Importe</th>
+					<th>Observaciones</th>
+					<th>Pagar Multa</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="multaDTO:${listaMultasDTO}">
+					<td th:text="${#dates.format(multaDTO.fecha, 'dd/MM/yyyy')}"></td>
+					<td th:text="${multaDTO.importe}"></td>
+					<td class="verTextarea"><a>Ver Obsevacion</a><textarea th:utext="${multaDTO.observaciones}"
+							readonly></textarea></td>
+					<td>
+						<!-- if descartada == false poner boton paypal si no poner descartada -->
+						<div th:if="${multaDTO.descartada == false}" th:id="smart-button-container + ${multaDTO.id}">
+							<div style="text-align: center;">
+								<div th:id="paypal-button-container + ${multaDTO.id}"></div>
+							</div>
+						</div>
+
+						<script th:inline="javascript">
+							var importe = /*[[${multaDTO.importe}]]*/ null;
+							var id = /*[[${multaDTO.id}]]*/ null;
+
+
+							initPayPalButton(importe, id);
+						</script>
+
+						<div th:unless="${multaDTO.descartada == false}">
+							Descartada
+						</div>
+					</td>
+
+					<!--Cuando hagas click en el link de cambiar stock, aparecerá el input number-->
+				</tr>
+			</tbody>
+
+
+
+		</table>
+		<div class="volver">
+			<p>
+				<a th:href="@{/usuarios/{idUsuario}(idUsuario=${#authentication.name})}"><img
+						th:src="@{/images/arrow_back_black_24dp.svg}" class="botonIconoBack" /></a>
+			</p>
+		</div>
+	</main>
+	<footer>
+		<div>
+			<div>
+				<p>En la Biblioteca, nos esforzamos por brindar un acceso fácil
+					y conveniente a una amplia selección de libros y recursos.</p>
+			</div>
+			<div>
+				<p>Nuestro compromiso es brindar una experiencia de lectura
+					inolvidable</p>
+			</div>
+			<div>
+				<p>Nuestro equipo de bibliotecarios trabaja incansablemente para
+					ofrecerte los mejores recursos</p>
+			</div>
+			<div>
+				<p>Gracias por formar parte de esta comunidad de lectores</p>
+			</div>
+		</div>
+		<h4>©Bibliotecarios S.L. 2022/2023</h4>
+	</footer>
+	<script type="text/javascript"
+		src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+	<script th:src="@{/js/traduccion.js}"></script>
+	<script th:src="@{/js/jquery-3.6.3.min.js}"></script>
+	<script th:src="@{/js/admin.js}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>

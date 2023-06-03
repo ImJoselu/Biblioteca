@@ -310,7 +310,23 @@ nav form {
 }
 
 
+.botonIcono {
+	cursor: pointer;
+}
 
+img.botonIconoBack {
+	border: 1px solid black;
+	height: 30px;
+	margin-left: 15px;
+	transition: all 0.4s;
+	cursor: pointer;
+}
+
+img.botonIconoBack:hover {
+	border: 2px solid #513719;
+	color: #513719;
+	height: 38px;
+}
 
 
 

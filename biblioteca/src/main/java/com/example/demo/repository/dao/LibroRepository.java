@@ -14,7 +14,7 @@ import jakarta.transaction.Transactional;
 
 @Repository
 @Transactional
-public interface LibroRepository extends JpaRepository<Libro, Long> {
+public interface LibroRepository extends JpaRepository<Libro, String> {
 
 	@Query("SELECT l FROM Libro l ORDER BY l.id DESC LIMIT 6")
 	List<Libro> findTop6ByOrderByIdDesc();

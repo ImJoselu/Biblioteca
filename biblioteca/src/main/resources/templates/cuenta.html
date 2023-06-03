@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -161,7 +162,15 @@
 			<a th:if="${usuarioDTO.es_administrador} == true" class="enlace-boton" id="enviarForm" th:href="@{/usuarios/{idUsuario}/cancelacionCorreo(idUsuario=${#authentication.name})}" style="margin-left: 10px;">Cancelar Plan</a>
 			</div>
 			<br> 
-			<a class="enlace-boton" th:href="@{/}">Volver</a>
+			<a  id="enviarForm" class="enlace-boton" th:href="@{/misMultas/{idUsuario}(idUsuario=${#authentication.name})}">Mis multas</a> <br>
+					<div class="volver">
+			<p>
+				<a th:href="@{/}"><img
+						th:src="@{/images/arrow_back_black_24dp.svg}" class="botonIconoBack" /></a>
+			</p>
+		</div>
+			
+			
 		</form>
 	</main>
 	<footer>
@@ -172,6 +181,22 @@
 					<li><a>Acerca de nosotros</a></li>
 					<li><a>Contacto</a></li>
 					<li><a>Empleo</a></li>
+										<br>
+					<div id="donate-button-container">
+						<div id="donate-button"></div>
+						<script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
+						<script>
+							PayPal.Donation.Button({
+								env: 'sandbox',
+								hosted_button_id: 'BRUKLHDVMJMUE',
+								image: {
+									src: 'https://www.paypalobjects.com/es_ES/ES/i/btn/btn_donateCC_LG.gif',
+									alt: 'Botón Donar con PayPal',
+									title: 'PayPal - The safer, easier way to pay online!',
+								}
+							}).render('#donate-button');
+						</script>
+					</div>
 				</ul>
 			</div>
 
@@ -222,3 +247,4 @@
 
 </body>
 </html>
+
