@@ -6,6 +6,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -73,10 +76,21 @@ public class MultaController {
 	@Value("${direccion.despligue}")
     private String despliegue;
 	
-	@GetMapping("/misMultas/{usernameUsuario}")
-	public ModelAndView misMultas(@PathVariable("usernameUsuario") String username) {
+	@GetMapping("/misMultas/{nombreUsuario}")
+	public ModelAndView misMultas(@PathVariable("nombreUsuario") String username) {
 
 		log.info("MultaController - findAll: Mostramos todos los multas del usuario: " + username);
+		
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String nombreUsuarioAutenticado = authentication.getName();
+        
+        // Verifica si el nombre de usuario coincide
+        if (username.equals(nombreUsuarioAutenticado)) {
+      
+        } else {
+        	ModelAndView mav = new ModelAndView("403");
+        	return mav;
+        }
 
 		UsuarioDTO usuarioDTO = usuarioService.findByName(username);
 

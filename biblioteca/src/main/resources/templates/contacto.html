@@ -54,7 +54,7 @@
 		<h3>
 			<a th:href="@{/foro}">Foro</a>
 		</h3>
-				<h3>
+				<h3 sec:authorize="isAuthenticated()">
 			<a th:href="@{/estadisticas}">Estadisticas</a>
 		</h3>
 		<h3>
@@ -74,7 +74,7 @@
 		<h3>
 			<a th:href="@{/foro}">Foro</a>
 		</h3>
-				<h3>
+				<h3 sec:authorize="isAuthenticated()">
 			<a th:href="@{/estadisticas}">Estadisticas</a>
 		</h3>
 		<!--solo puede haber 1 de estos dos activo-->

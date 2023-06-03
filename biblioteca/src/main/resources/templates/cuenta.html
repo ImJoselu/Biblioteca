@@ -52,7 +52,7 @@
 			<a href="proximamente.html">Cuenta</a>
 		</h3>
 		<h3>
-			<a th:href="@{/login}">Login</a>
+			<a href="/login">Login</a>
 		</h3>
 	</aside>
 	<nav>
@@ -67,7 +67,7 @@
 		</h3>
 		<!--solo puede haber 1 de estos dos activo-->
 		<h3 sec:authorize="isAnonymous()">
-			<a th:href="@{/login}">Cuenta</a>
+			<a href="login">Cuenta</a>
 		</h3>
 		<h3 sec:authorize="isAuthenticated()">
 			<a
@@ -162,7 +162,7 @@
 			<a th:if="${usuarioDTO.es_administrador} == true" class="enlace-boton" id="enviarForm" th:href="@{/usuarios/{idUsuario}/cancelacionCorreo(idUsuario=${#authentication.name})}" style="margin-left: 10px;">Cancelar Plan</a>
 			</div>
 			<br> 
-			<a  id="enviarForm" class="enlace-boton" th:href="@{/misMultas/{idUsuario}(idUsuario=${#authentication.name})}">Mis multas</a> <br>
+			<a  id="enviarForm" class="enlace-boton" th:href="@{/misMultas/{nombreUsuario}(nombreUsuario=${#authentication.name})}">Mis multas</a> <br>
 					<div class="volver">
 			<p>
 				<a th:href="@{/}"><img
