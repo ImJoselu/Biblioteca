@@ -64,7 +64,7 @@ public class EstadisticasServiceImpl implements EstadisticasService{
 		
 		return stat;
 	}
-	
+	//HOLA
 	//Para la pestaña tienda
 	public List<LibroDTO> librosRecomendados(){
 		List<Libro> libros = libroRepository.findAll();
