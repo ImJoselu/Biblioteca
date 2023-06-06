@@ -121,6 +121,13 @@ main>section>section:nth-of-type(1) {
 	font-size: 35px;
 }
 
+#menuMovil>div>h3>a {
+	color: white;
+	text-decoration: none;
+	margin: 11px;
+	font-size: 35px;
+}
+
 #menuMovil>h3:first-of-type {
 	margin-top: 35%;
 }
