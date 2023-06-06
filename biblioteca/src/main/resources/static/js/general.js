@@ -16,7 +16,12 @@ function () {
 }
 );
 
-
+    $("#btnMenuMovil").click(function() {
+        $("#menuMovil").toggleClass("active");
+      });
+      $("aside>img").click(function() {
+        $("#menuMovil").toggleClass("active");
+      });
 
 })
 
