@@ -61,6 +61,10 @@
 						<h3 sec:authorize="isAuthenticated()">
 			<a th:href="@{/estadisticas}">Estadisticas</a>
 		</h3>
+		<h3 sec:authorize="isAuthenticated()">
+			<a
+				th:href="@{/zonaPremium/{idUsuario}(idUsuario=${#authentication.name})}">Zona Premium</a>
+		</h3>
 		<!-- SI NO SE HA AUTENTICADO -->
 		<div sec:authorize="isAnonymous()">
 			<h3>

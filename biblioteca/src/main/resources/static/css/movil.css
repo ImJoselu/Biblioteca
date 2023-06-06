@@ -136,6 +136,11 @@ main>section>section:nth-of-type(1) {
 	margin-top: 18px;
 }
 
+
+#menuMovil>div>h3 {
+	margin-top: 18px;
+}
+
 #menuMovil.active {
 	transform: translateX(0%);
 	box-shadow: black 0px 0px 6px;
