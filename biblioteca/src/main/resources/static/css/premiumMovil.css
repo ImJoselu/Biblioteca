@@ -35,7 +35,7 @@ a {
 /* Estilos de la sección del concurso */
 #contenedorPremium>aside:nth-of-type(1) {
 	grid-column: 1;
-	grid-row: 1;
+	grid-row: auto;
 	background-color: #e0e0e0;
 	padding: 10px;
 	border-radius: 5px;
@@ -65,7 +65,7 @@ a {
 /* Estilos de la sección de listas de música */
 #contenedorPremium>div:nth-of-type(2){
 	grid-column: 1;
-	grid-row:1;
+	grid-row:auto;
 	background-color: #f0f0f0;
 	padding: 10px;
 	border-radius: 5px;
@@ -89,7 +89,7 @@ img {
 /* Estilos de la sección de copias de seguridad */
 #contenedorPremium>aside:nth-of-type(2) {
 	grid-column: 1;
-	grid-row: 1;
+	grid-row: auto;
 	background-color: #e0e0e0;
 	padding: 10px;
 	border-radius: 5px;
