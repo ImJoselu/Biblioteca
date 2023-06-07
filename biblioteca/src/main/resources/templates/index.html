@@ -71,6 +71,13 @@
 				<a th:href="@{/registro}">Registro</a>
 			</h3>
 		</div>
+		<div sec:authorize="isAuthenticated()">
+			<form th:action="@{/logout}" method="post">
+				<h3>
+					<input id="logoutBoton" type="submit" value="Logout" />
+				</h3>
+			</form>
+		</div>
 	</aside>
 	<nav>
 		<h3>
