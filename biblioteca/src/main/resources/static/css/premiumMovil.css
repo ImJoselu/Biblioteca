@@ -5,6 +5,7 @@
     grid-template-rows: auto;
     gap: 10px;
     padding: 20px;
+    box-sizing: border-box; /* Añadido */
 }
 
 h1, h3 {
@@ -53,6 +54,7 @@ a {
     background-color: #f0f0f0;
     padding: 10px;
     border-radius: 5px;
+    overflow: hidden; /* Añadido */
 }
 
 img {
