@@ -87,6 +87,11 @@
 		<h3>
 			<a th:href="@{/foro}">Foro</a>
 		</h3>
+		<div sec:authorize="hasRole('ROLE_ADMIN')">
+            <h3>
+                <a th:href="@{/adminIndex}">Admin</a>
+            </h3>
+        </div>
 				<h3 sec:authorize="isAuthenticated()">
 			<a th:href="@{/estadisticas}">Estadisticas</a>
 		</h3>

@@ -21,7 +21,7 @@
 <body>
 	<header>
 		<h2>
-			<a th:href="@{/adminIndex}">LogoAdmin</a>
+			<a th:href="@{/adminIndex}">Biblioteca</a>
 		</h2>
 		<!--Esto será luego una imagen o algo asi-->
 
@@ -37,6 +37,9 @@
 		<h3>
 			<a th:href="@{/adminLibros}">Libro</a>
 		</h3>
+						<h3>
+			<a th:href="@{/buscador}">Buscador</a>
+		</h3>
 	</aside>
 	<nav>
 		<h3>
@@ -47,6 +50,9 @@
 		</h3>
 		<h3>
 			<a th:href="@{/contacto}">Contacto</a>
+		</h3>
+						<h3>
+			<a th:href="@{/buscador}">Buscador</a>
 		</h3>
 		<!--solo puede haber 1 de estos dos activo-->
 		<h3 sec:authorize="isAnonymous()">

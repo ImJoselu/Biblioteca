@@ -22,7 +22,7 @@
 <body>
 	<header>
 		<h2>
-			<a th:href="@{/adminIndex}">LogoAdmin</a>
+			<a th:href="@{/adminIndex}">Biblioteca</a>
 		</h2>
 		<!--Esto será luego una imagen o algo asi-->
 
@@ -164,7 +164,7 @@
 				<tr>
 					<td title="Anotaciones relevantes sobre la obra."><label
 						for="nombre">Notas:</label></td>
-					<td><input type="text" th:field="*{notas}" /></td>
+					<td><textarea  rows="" cols="" th:field="*{notas}"></textarea></td>
 				</tr>
 				<tr>
 					<td title="Género de la obra."><label for="nombre">Género:</label></td>

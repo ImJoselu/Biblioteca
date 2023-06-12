@@ -20,7 +20,7 @@
 	
 	<header>
 		<h2>
-			<a th:href="@{/adminIndex}">LogoAdmin</a>
+			<a th:href="@{/adminIndex}">Biblioteca</a>
 		</h2>
 		<!--Esto será luego una imagen o algo asi-->
 
@@ -169,6 +169,14 @@
 
 		</script>
 
+<div sec:authorize="isAuthenticated()">
+			<h2 id="mensajeBienvenida" th:inline="text">
+				 Multas de <span th:remove="tag"
+					sec:authentication="name"> </span>
+				
+
+			</h2>
+		</div>
 
 		<table>
 			<thead>
