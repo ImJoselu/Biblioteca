@@ -49,7 +49,6 @@ public class WebSecurityConfig{
 				.hasRole("ADMIN").anyRequest().authenticated().and().formLogin().loginPage("/login")
 				.defaultSuccessUrl("/").failureUrl("/login?error").permitAll().and().logout().permitAll()
 				.logoutSuccessUrl("/").and().exceptionHandling().accessDeniedPage("/error");
-
 		return http.build();
 	}
 
