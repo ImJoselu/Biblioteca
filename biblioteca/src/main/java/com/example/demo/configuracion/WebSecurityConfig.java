@@ -48,7 +48,8 @@ public class WebSecurityConfig{
 				        "/buscador/**")
 				.hasRole("ADMIN").anyRequest().authenticated().and().formLogin().loginPage("/login")
 				.defaultSuccessUrl("/").failureUrl("/login?error").permitAll().and().logout().permitAll()
-				.logoutSuccessUrl("/").and().exceptionHandling().accessDeniedPage("/errors/403");
+				.logoutSuccessUrl("/").and().exceptionHandling().accessDeniedPage("/error");
+
 		return http.build();
 	}
 
