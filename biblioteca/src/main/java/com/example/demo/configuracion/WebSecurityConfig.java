@@ -45,10 +45,11 @@ public class WebSecurityConfig{
 						"/usuario/{idUsuario}/adminMultas/{idMulta}/descartar", "/adminContacto",
 						"/adminContacto/{idSolicitud}/adminContactoform", "/adminClientes",
 						"/usuario/{idUsuario}/adminEditarUsuarios",
-				        "/buscador/**")
+				        "/buscador/**"
+				        )
 				.hasRole("ADMIN").anyRequest().authenticated().and().formLogin().loginPage("/login")
 				.defaultSuccessUrl("/").failureUrl("/login?error").permitAll().and().logout().permitAll()
-				.logoutSuccessUrl("/").and().exceptionHandling().accessDeniedPage("/error");
+				.logoutSuccessUrl("/").and().exceptionHandling().accessDeniedPage("/403");
 		return http.build();
 	}
 
