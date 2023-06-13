@@ -48,14 +48,16 @@ public class WebSecurityConfig{
 				        "/buscador/**"
 				        )
 				.hasRole("ADMIN").anyRequest().authenticated().and().formLogin().loginPage("/login")
-				.defaultSuccessUrl("/").failureUrl("/login?error").permitAll()
+				.defaultSuccessUrl("/", true)
+				.failureUrl("/login?error")
 				.and()
-				 .logout()
-				 .permitAll()
-				 .logoutSuccessUrl("/")
-				 .and()
-				 .exceptionHandling().accessDeniedPage("/errors/403");
-				 return http.build();
+				.logout()
+				.logoutSuccessUrl("/")
+				.permitAll()
+				.and()
+				.exceptionHandling()
+				.accessDeniedPage("/errors/403");
+				return http.build();
 	}
 
 	@Autowired
