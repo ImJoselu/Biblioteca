@@ -7,10 +7,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
 import java.nio.file.StandardCopyOption;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.attribute.FileTime;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -54,16 +59,21 @@ public class RebecaServiceImpl implements RebecaService{
 	    String rutaCompleta = nombreArchivo;
 	    File destinationFile = new File(rutaCompleta);
 	 
+	    InputStream a = archivo.getInputStream();
 
 		
         // Guarda el archivo en el servidor
        
         Path filePath = new File("src/main/resources/static/imagenesLibros/"+nombreArchivo).toPath();
-        Files.copy(archivo.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+        Files.copy(a, filePath, StandardCopyOption.REPLACE_EXISTING);
 
-		
-		
-	}
+        filePath.toFile().exists();
+		a.close();
+        String rutaDestino = "src/main/resources/static/imagenesLibros";
+
+
+    }
+	
 	
 	@Override
 	public boolean save(LibroRebeca libroRebeca) {

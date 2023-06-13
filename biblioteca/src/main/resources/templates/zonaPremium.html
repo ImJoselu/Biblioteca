@@ -50,7 +50,7 @@
 		<h3>
 			<a th:href="@{/foro}">Foro</a>
 		</h3>
-						<h3 sec:authorize="isAuthenticated()">
+		<h3 sec:authorize="isAuthenticated()">
 			<a th:href="@{/estadisticas}">Estadisticas</a>
 		</h3>
 		<!-- SI NO SE HA AUTENTICADO -->
@@ -79,7 +79,7 @@
 		<h3>
 			<a th:href="@{/foro}">Foro</a>
 		</h3>
-						<h3 sec:authorize="isAuthenticated()">
+		<h3 sec:authorize="isAuthenticated()">
 			<a th:href="@{/estadisticas}">Estadisticas</a>
 		</h3>
 		<!--solo puede haber 1 de estos dos activo-->
@@ -136,8 +136,7 @@
 					<h3>¡Hay un nuevo concurso activo!</h3>
 					<!-- IF nueva columna participando , si no lo está -->
 					<a th:if="${usuarioDTO.es_cliente} == false"
-						id="concursoBotonParticipar"
-						class="botonConcurso"
+						id="concursoBotonParticipar" class="botonConcurso"
 						th:href="@{/usuarios/{idUsuario}/confirmacionConcurso(idUsuario=${#authentication.name})}">
 						Participar</a>
 					<!-- IF nueva columna participando , si lo está -->
@@ -164,16 +163,19 @@
 				</div>
 				<!-- CONTENEDOR -->
 				<aside>
-					<h3>¿Necesitas una copia de seguridad? </h3>
+					<h3>¿Necesitas una copia de seguridad?</h3>
 					<div id="miContenedor" hidden>
-						Usuario: <span id="nombreUsuario" th:text="${usuarioDTO.nombre}"></span>
+						Nombre: <span id="nombreUsuario" th:text="${usuarioDTO.nombre}"></span>
+						Apellidos: <span id="nombreUsuario"
+							th:text="${usuarioDTO.apellidos}"></span> Usuario: <span
+							id="nombreUsuario" th:text="${usuarioDTO.username}"></span>
 						Correo: <span id="emailUsuario" th:text="${usuarioDTO.email}"></span>
 					</div>
 					<button onclick="downloadFile()">¡Pulsa aqui!</button>
 				</aside>
 			</div>
 		</section>
-		<section th:if="${usuarioDTO.es_administrador} == false" >
+		<section th:if="${usuarioDTO.es_administrador} == false">
 			<div id="seccionNoValido">
 				<h1>
 					Parece ser que aun no eres Premium&nbsp;<span
@@ -182,8 +184,8 @@
 				<h3 sec:authorize="isAuthenticated()">
 					Pulsa&nbsp; <a
 						th:href="@{/usuarios/{idUsuario}(idUsuario=${#authentication.name})}">Aquí</a>
-					&nbsp;para volver a tu cuenta y suscribirte al plan premium si así lo
-					deseas
+					&nbsp;para volver a tu cuenta y suscribirte al plan premium si así
+					lo deseas
 				</h3>
 				<h5>No te arrepentirás</h5>
 			</div>
@@ -200,7 +202,9 @@
 					<br>
 					<div id="donate-button-container">
 						<div id="donate-button"></div>
-						<script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
+						<script
+							src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js"
+							charset="UTF-8"></script>
 						<script>
 							PayPal.Donation.Button({
 								env: 'sandbox',
