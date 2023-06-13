@@ -26,7 +26,7 @@ public class WebSecurityConfig{
 				.requestMatchers("/", "/login", "/contacto", "/contacto/**", "/adminContacto", "/adminContacto/**",
 						"/solicitud/**", "/usuario", "/MisSolicitudes", "/tienda", "/tienda/**", "/css/**", "/js/**",	//TODOS
 						"/imagenesLibros/**", "/images/**", "/registro", "/usuarios/saveNuevoUsuario",
-						"/usuarios/saveNuevoUsuario/**", "/usuarios/save", "/foro", "/foro/**", "/usuario/**")
+						"/usuarios/saveNuevoUsuario/**", "/usuarios/save", "/foro", "/foro/**", "/usuario/**","/login/**")
 				.permitAll()
 				.requestMatchers("/zonaPremium" , "/zonaPremium/**" , "/usuarios/{usernameUsuario}/confirmacionCorreo", "/estadisticas", "/misMultas/{nombreUsuario}") //AUTENTICADOS SOLO
 				.hasAnyRole("USER", "ADMIN")
@@ -48,9 +48,14 @@ public class WebSecurityConfig{
 				        "/buscador/**"
 				        )
 				.hasRole("ADMIN").anyRequest().authenticated().and().formLogin().loginPage("/login")
-				.defaultSuccessUrl("/").failureUrl("/login?error").permitAll().and().logout().permitAll()
-				.logoutSuccessUrl("/").and().exceptionHandling().accessDeniedPage("/errors/403");
-		return http.build();
+				.defaultSuccessUrl("/").failureUrl("/login?error").permitAll()
+				.and()
+				 .logout()
+				 .permitAll()
+				 .logoutSuccessUrl("/")
+				 .and()
+				 .exceptionHandling().accessDeniedPage("/errors/403");
+				 return http.build();
 	}
 
 	@Autowired
