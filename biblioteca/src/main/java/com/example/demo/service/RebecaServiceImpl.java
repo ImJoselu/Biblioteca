@@ -56,8 +56,8 @@ public class RebecaServiceImpl implements RebecaService{
 	private EditorialRepository editorialRepository;
 	
 	public void guardarArchivo(MultipartFile archivo, String nombreArchivo) throws IOException {
-	    String rutaCompleta = nombreArchivo;
-	    File destinationFile = new File(rutaCompleta);
+	    //String rutaCompleta = nombreArchivo;
+	    //File destinationFile = new File(rutaCompleta);
 	 
 	    InputStream a = archivo.getInputStream();
 
